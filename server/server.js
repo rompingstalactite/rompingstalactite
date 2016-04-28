@@ -13,5 +13,5 @@ var app = express();
 
 require('./config/middleware.js')(app, express);
 require('./config/routes.js')(app, express);
-
+console.log('Server listening on port: ' + PORT);
 app.listen(PORT);
