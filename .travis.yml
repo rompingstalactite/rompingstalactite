@@ -7,7 +7,7 @@ apt addons:
 before_install:
 
 before_script:
-- npm install -g webpack
+- npm install
 
 script:
 
