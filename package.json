@@ -10,7 +10,7 @@
   ],
   "main": "server.js",
   "scripts": {
-    "test": "echo \"No tests written yet.\" && exit 1",
+    "test": "mocha test.js",
     "start": "node server/server.js",
     "dev": "nodemon server/server.js"
   },
