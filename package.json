@@ -10,7 +10,7 @@
   ],
   "main": "server.js",
   "scripts": {
-    "test": "mocha test.js",
+    "test": "echo 'SERVER SIDE TESTS\n' && mocha server/tests/tests.js && echo 'CLIENT SIDE TESTS\n' && mocha client/tests/tests.js",
     "start": "node server/server.js",
     "dev": "nodemon server/server.js"
   },
