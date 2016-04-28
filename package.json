@@ -10,7 +10,7 @@
   ],
   "main": "server.js",
   "scripts": {
-    "test": "echo \"No tests written yet.\" && exit 1",
+    "test": "echo 'SERVER SIDE TESTS\n' && mocha server/tests/tests.js && echo 'CLIENT SIDE TESTS\n' && mocha client/tests/tests.js",
     "start": "node server/server.js",
     "dev": "nodemon server/server.js"
   },
@@ -30,5 +30,8 @@
     "express": "^4.4.5",
     "morgan": "^1.7.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+  }
 }
