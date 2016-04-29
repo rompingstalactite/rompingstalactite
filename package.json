@@ -11,8 +11,8 @@
   "main": "server.js",
   "scripts": {
     "lint": "eslint client",
-    "db:setup": "./server/db/create_db.sh",
-    "test": "mocha --compilers jsx?:babel-core/register --require ./test/setup.js ./test",
+    "db-setup": "./server/db/create_db.sh",
+    "test": "karma start",
     "start": "webpack -p && node server/server.js",
     "dev-start": "webpack -d --watch & nodemon server/server.js"
   },
@@ -38,8 +38,6 @@
     "body-parser": "^1.15.0",
     "chai": "^3.5.0",
     "express": "^4.4.5",
-    "jsdom": "^8.4.1",
-    "morgan": "^1.7.0",
     "react": "^15.0.1",
     "react-addons-test-utils": "^15.0.1",
     "react-dom": "^15.0.1",
@@ -55,6 +53,14 @@
     "eslint-plugin-import": "^1.6.1",
     "eslint-plugin-jsx-a11y": "^1.0.4",
     "eslint-plugin-react": "^5.0.1",
-    "mocha": "^2.4.5"
+    "mocha": "^2.4.5",
+    "morgan": "^1.7.0",
+    "karma": "^0.13.22",
+    "karma-chrome-launcher": "^0.2.3",
+    "karma-firefox-launcher": "^0.1.7",
+    "karma-mocha": "^0.2.2",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-spec-reporter": "0.0.26",
+    "karma-webpack": "^1.7.0"
   }
 }
