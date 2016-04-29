@@ -13,8 +13,9 @@
     "lint": "eslint client",
     "db-setup": "./server/db/create_db.sh",
     "test": "karma start",
-    "start": "webpack -p && node server/server.js",
-    "dev-start": "webpack -d --watch & nodemon server/server.js"
+    "start": "npm run build-css && webpack -p && node server/server.js",
+    "dev-start": "npm run build-css && webpack -d --watch & nodemon server/server.js",
+    "build-css": "node-sass --include-path scss client/scss/app.scss client/css/app.css"
   },
   "repository": {
     "type": "git",
@@ -52,14 +53,15 @@
     "eslint-plugin-import": "^1.6.1",
     "eslint-plugin-jsx-a11y": "^1.0.4",
     "eslint-plugin-react": "^5.0.1",
-    "mocha": "^2.4.5",
-    "morgan": "^1.7.0",
     "karma": "^0.13.22",
     "karma-chrome-launcher": "^0.2.3",
     "karma-firefox-launcher": "^0.1.7",
     "karma-mocha": "^0.2.2",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-spec-reporter": "0.0.26",
-    "karma-webpack": "^1.7.0"
+    "karma-webpack": "^1.7.0",
+    "mocha": "^2.4.5",
+    "morgan": "^1.7.0",
+    "node-sass": "^3.6.0"
   }
 }
