@@ -3,7 +3,7 @@
  *
  * dev port: 8080, gulp port: 9090
 */
-var PORT = 8080;
+var PORT = process.env.PORT || 8080;
 
 /**
  * Initialize express
