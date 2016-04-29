@@ -11,7 +11,7 @@
   "main": "server.js",
   "scripts": {
     "lint": "eslint client",
-    "test": "echo 'SERVER SIDE TESTS\n' && mocha server/tests/tests.js && echo 'CLIENT SIDE TESTS\n' && mocha client/tests/tests.js",
+    "test": "mocha --compilers jsx?:babel-core/register --require ./test/setup.js ./test",
     "start": "webpack -p && node server/server.js",
     "dev-start": "webpack -d --watch & nodemon server/server.js"
   },
