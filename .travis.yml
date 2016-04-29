@@ -1,24 +1,21 @@
 language: node_js
 node_js:
 - '5.8'
-
-apt addons:
-
-before_install:
-
+apt addons: 
+before_install: 
 before_script:
 - npm install
-
-script:
-
-after_success:
-
-after_failure:
-
-before_deploy:
-
+script: 
+after_success: 
+after_failure: 
+before_deploy: 
+after_deploy: 
+- npm start
+after_script: 
 deploy:
-
-after_deploy:
-
-after_script:
+  provider: heroku
+  api_key:
+    secure: lTSMR+LXx64NL4VgNMyGVj6HCCaBsMZpMvua+jjnBtikQHRO15gvuMRs/Zksy60GMkUNXbZkVLICt+HAm1i8nXRJW8jFlCyHa5PrWHJEzlOPD3N5Fd8kbR2gz9t4prY5fBT9Tf6DhE01cvyax68B9SBV5Ztjj7xtMF6DZpcvmxaDSpEninHgBoaf9OB3FAzetdNj3G6B9mgHpL76CCYQdWEtZ7d/evg6nqQk8aWLuk/QtKpmHBLP6jYMMi+/ppIZlN0YylpIDpdqCRB6A5CganEnQQIeUs28d2OSWz4xJ210+Sqs1UcuoCBe4YOQfasxPf8aJBEWM6w1/APS1EV+l1jAC6PR8+FQas/zHbMhOMW6zYpKmrPHURMBeHckIAyaOkI0WvBmH2RrvCf1/AGlrr4FZfKUeBkhWNqNIn5F95KaDXyreIU+nOYnDNRNGiceupPUk5GiwMKZqbAcqU65yFOWTqMJNOCnvrfigk1VIeBgDz7R5aL1Th6Ji7BnXhaobdYvzomEQN2eehOCouGbE4r6vdZIxDIuQYT+Qtab2ekmSibOmCb06eOYagWvNbS/Umk2iI2yf+wO07NMTtD7BWRGfi20bCWHxY2LO3NP/89uKwpU/ehoWIcHm0ZfPPFlR1kow8VkcR8hXmdWTYDlqO0TgS9SkUg0msu5HuUbcas=
+  app: kitchengalactica
+  on:
+    repo: rompingstalactite/rompingstalactite
