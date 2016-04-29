@@ -10,7 +10,6 @@ after_success:
 after_failure: 
 before_deploy: 
 after_deploy: 
-- npm start
 after_script: 
 deploy:
   provider: heroku
@@ -19,3 +18,4 @@ deploy:
   app: kitchengalactica
   on:
     repo: rompingstalactite/rompingstalactite
+  run: 'npm start'
