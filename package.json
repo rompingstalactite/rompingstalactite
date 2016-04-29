@@ -11,7 +11,7 @@
   "main": "server.js",
   "scripts": {
     "lint": "eslint client",
-    "test": "mocha --compilers jsx?:babel-core/register --require ./test/setup.js ./test",
+    "test": "karma start",
     "start": "webpack -p && node server/server.js",
     "dev-start": "webpack -d --watch & nodemon server/server.js"
   },
@@ -37,7 +37,7 @@
     "body-parser": "^1.15.0",
     "chai": "^3.5.0",
     "express": "^4.4.5",
-    "jsdom": "^8.4.1",
+    "karma": "^0.13.22",
     "morgan": "^1.7.0",
     "react": "^15.0.1",
     "react-addons-test-utils": "^15.0.1",
