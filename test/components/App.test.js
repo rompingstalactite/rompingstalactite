@@ -1,4 +1,4 @@
-var expect = require('chai').expect;
+const expect = require('chai').expect;
 const React = require('react');
 const TestUtils = require('react-addons-test-utils'); // Alternately could use the DOM API
 
@@ -22,6 +22,6 @@ describe('app', () => {
 
   it('renders without problems', () => {
     const app = TestUtils.renderIntoDocument(<App />);
-    expect(app).toBeDefined();
+    expect(app).to.not.be.undefined;
   });
 });
