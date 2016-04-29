@@ -4,7 +4,7 @@ CREATE TABLE "users" (
 	"username" VARCHAR(255) NOT NULL UNIQUE,
 	"facebook_id" VARCHAR(255) NOT NULL UNIQUE,
 	"google_id" VARCHAR(255) NOT NULL UNIQUE,
-	"avatar" BYTEA NOT NULL UNIQUE,
+	"avatar" BYTEA NOT NULL,
 	CONSTRAINT users_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
