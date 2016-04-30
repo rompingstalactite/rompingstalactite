@@ -23,7 +23,11 @@ module.exports = function (config) {
             query: {
               presets: ['es2015', 'react']
             }
-          }
+          },
+          {
+            test: /\.scss$/,
+            loaders: ["style", "css?sourceMap", "sass?sourceMap"]
+          },
         ]
       }
     },
