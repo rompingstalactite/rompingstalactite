@@ -14,16 +14,20 @@ class App extends Component {
         <Nav />
         <Profile profile={{ avatar: 'http://www.carderator.com/assets/avatar_placeholder_small.png', username: 'USERNAME' }} />
         <RecipeContainer
+          className="recipes-owned"
+          type="My Owned Recipes"
           recipes={[
             { name: 'Owned Recipe 1' },
             { name: 'Owned Recipe 2' },
             { name: 'Owned Recipe 3' }]}
         />
         <RecipeContainer
+          className="recipes-followed"
+          type="My Followed Recipes"
           recipes={[
-            { name: 'Saved Recipe 1' },
-            { name: 'Saved Recipe 2' },
-            { name: 'Saved Recipe 3' }]}
+            { name: 'Followed Recipe 1' },
+            { name: 'Followed Recipe 2' },
+            { name: 'Followed Recipe 3' }]}
         />
       </div>
     );
