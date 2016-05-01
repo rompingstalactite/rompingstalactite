@@ -2,7 +2,6 @@ import { expect } from 'chai';
 import request from 'supertest';
 
 import app from '../../server/server.js';
-import userController from '../../server/APIv1/users/userController';
 
 
 describe('User APIv1 tests', () => {
