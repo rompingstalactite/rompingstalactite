@@ -1,7 +1,7 @@
 import * as types from '../constants/ActionTypes.js';
 
 module.exports = {
-  updateRecipe: function(recipe) {
+  updateRecipe(recipe) {
     return { type: types.UPDATE_RECIPE, recipe };
   },
 };
