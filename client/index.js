@@ -18,13 +18,14 @@ const initialState = window.__INITIAL_STATE__;
 // createStore accepts a single reducer or a collection of reducers
 const store = createStore(rootReducer, initialState);
 
-var render = function() {
+const render = function () {
   ReactDOM.render(
     <Provider store={store}>
-    <App />
+      <App />
     </Provider>,
     document.getElementById('app')
   );
 };
 
 render();
+store.subscribe(render);
