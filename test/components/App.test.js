@@ -19,8 +19,8 @@ const initialStateProfile = {
 
 // Make fake reducers
 const profile = (state = initialStateProfile) => state;
-const recipesOwned = (state = initialStateRecipe) => state;
-const recipesFollowed = (state = initialStateRecipe) => state;
+const recipesOwned = (state = initialStateRecipes) => state;
+const recipesFollowed = (state = initialStateRecipes) => state;
 const fakeRootReducer = combineReducers({ profile, recipesOwned, recipesFollowed });
 
 const fakeStore = createStore(fakeRootReducer);

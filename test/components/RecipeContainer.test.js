@@ -15,4 +15,9 @@ describe('recipeContainer', () => {
     const recipeContainer = TestUtils.renderIntoDocument(<RecipeContainer recipes={fakeRecipes} />);
     expect(recipeContainer).to.not.be.undefined;
   });
+
+  it('renders all child recipes', () => {
+    // TODO: Fix this test
+  });
+
 });
