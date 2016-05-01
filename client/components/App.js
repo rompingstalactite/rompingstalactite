@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import actions from '../actions/index.js';
-import '../scss/app.scss';
+// import '../scss/app.scss';
 
 import Nav from './Nav.js';
 import Profile from './Profile.js';
