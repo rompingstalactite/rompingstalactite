@@ -25,9 +25,9 @@ describe('User APIv1 tests', () => {
         .expect(201, done);
     });
 
-    it('returns 403 forbidden on GET "/api/users/"', (done) => {
+    it('returns 403 forbidden on GET "/api/users"', (done) => {
       request(app)
-        .get('api/v1/users')
+        .get('/api/v1/users')
         .expect(403, done);
     });
 
