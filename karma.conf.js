@@ -6,7 +6,7 @@ module.exports = function (config) {
     singleRun: true,
     frameworks: [ 'mocha' ],
     files: [
-      'tests.webpack.js'
+      'tests.webpack.js',
     ],
     preprocessors: {
       'tests.webpack.js': [ 'webpack', 'sourcemap' ]
@@ -16,6 +16,10 @@ module.exports = function (config) {
       devtool: 'inline-source-map',
       module: {
         loaders: [
+          {
+            test: /sinon.*\.js$/,
+            loader: "imports?define=>false,require=>false",
+          },
           {
             test: /.jsx?$/,
             loader: 'babel-loader',
@@ -32,7 +36,10 @@ module.exports = function (config) {
             test: /\.json$/,
             loaders: ['json']
           },
-        ]
+        ],
+        noparse: [
+          /sinon/,
+        ],
       }
     },
     webpackServer: {
