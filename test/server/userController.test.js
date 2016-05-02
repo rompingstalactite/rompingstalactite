@@ -34,7 +34,13 @@ describe('User APIv1 tests', () => {
         User.createUser(app.request, app.response, app.next());
       });
       it('Should create a new user only if one with properties does not exist', (done) => {
-        User.createUser(app.request, app.response, app.next(done));
+      app.request.json(app.existingUser);
+      const cb = () => {
+        expect(app.response.status()).to.equal(202);
+        done();
+      };
+
+      Users.createUser(app.request, app.response, cb);
       });
       it('Should get info for the current user');
       it('Should update the current user');
