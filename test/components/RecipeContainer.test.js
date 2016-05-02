@@ -1,8 +1,9 @@
 const expect = require('chai').expect;
 const React = require('react');
-const TestUtils = require('react-addons-test-utils'); // Alternately could use the DOM API
+import { mount } from 'enzyme';
 
 import RecipeContainer from '../../client/components/RecipeContainer.js';
+import RecipeEntry from '../../client/components/RecipeEntry.js';
 
 const fakeRecipes = [
   { name: 'Fake Recipe 1' },
@@ -10,14 +11,23 @@ const fakeRecipes = [
   { name: 'Fake Recipe 3' },
 ];
 
-describe('recipeContainer', () => {
-  it('renders without problems', () => {
-    const recipeContainer = TestUtils.renderIntoDocument(<RecipeContainer recipes={fakeRecipes} />);
-    expect(recipeContainer).to.not.be.undefined;
+const fakeTitle = 'This is the title.';
+
+describe('<RecipeContainer />', () => {
+
+  it('should render without problems', () => {
+    const wrapper = mount(<RecipeContainer recipes={fakeRecipes} />);
+    expect(wrapper.find(RecipeContainer)).to.have.length(1);
   });
 
-  it('renders all child recipes', () => {
-    // TODO: Fix this test
+  it('should render the recipe container title', () => {
+    const wrapper = mount(<RecipeContainer type={fakeTitle} recipes={fakeRecipes} />);
+    expect(wrapper.find('h1').text()).to.equal(fakeTitle);
+  });
+
+  it('should render all <RecipeEntry /> child components', () => {
+    const wrapper = mount(<RecipeContainer recipes={fakeRecipes} />);
+    expect(wrapper.find(RecipeEntry)).to.have.length(3);
   });
 
 });

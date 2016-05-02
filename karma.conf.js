@@ -6,16 +6,20 @@ module.exports = function (config) {
     singleRun: true,
     frameworks: [ 'mocha' ],
     files: [
-      'tests.webpack.js'
+      'tests.webpack.js',
     ],
     preprocessors: {
       'tests.webpack.js': [ 'webpack', 'sourcemap' ]
     },
-    reporters: [ 'dots' ],
+    reporters: [ 'spec' ],
     webpack: {
       devtool: 'inline-source-map',
       module: {
         loaders: [
+          {
+            test: /sinon.*\.js$/,
+            loader: "imports?define=>false,require=>false",
+          },
           {
             test: /.jsx?$/,
             loader: 'babel-loader',
@@ -28,11 +32,31 @@ module.exports = function (config) {
             test: /\.scss$/,
             loaders: ["style", "css?sourceMap", "sass?sourceMap"]
           },
-        ]
+          {
+            test: /\.json$/,
+            loaders: ['json']
+          },
+        ],
+        noparse: [
+          /sinon/,
+        ],
       }
     },
     webpackServer: {
-      noInfo: true
-    }
+      noInfo: true,
+    },
+    externals: {
+      'react/lib/ExecutionEnvironment': true,
+      'react/lib/ReactContext': 'window',
+      'react/addons': true,
+    },
+    plugins: [
+      'karma-mocha',
+      'karma-webpack',
+      'karma-chrome-launcher',
+      'karma-firefox-launcher',
+      'karma-spec-reporter',
+      'karma-sourcemap-loader',
+    ],
   });
 };
