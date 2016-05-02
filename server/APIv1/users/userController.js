@@ -34,6 +34,10 @@ module.exports = {
 
   getOneUser: (request, response, next) => {
     response.json({ totally: 'working '});
+  },
+
+  getAllUsers: (request, response, next) => {
+    response.status(403);
     next();
   },
 
