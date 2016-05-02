@@ -3,6 +3,11 @@ const pgp = require('pg-promise')();
 const db = pgp(cn);
 
 module.exports = {
+  getAllUsers: (request, response, next) => {
+    response.status(403);
+    response.json({data: 'forbidden'});
+    next();
+  },
   createUser: (request, response, next) => {
     const queryObj = {
       name: 'insert-user',
