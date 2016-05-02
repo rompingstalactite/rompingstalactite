@@ -17,10 +17,6 @@ module.exports = function (config) {
       module: {
         loaders: [
           {
-            test: /sinon.*\.js$/,
-            loader: "imports?define=>false,require=>false",
-          },
-          {
             test: /.jsx?$/,
             loader: 'babel-loader',
             exclude: /node_modules/,
@@ -36,9 +32,6 @@ module.exports = function (config) {
             test: /\.json$/,
             loaders: ['json']
           },
-        ],
-        noparse: [
-          /sinon/,
         ],
       }
     },
