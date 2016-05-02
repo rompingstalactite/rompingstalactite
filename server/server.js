@@ -18,6 +18,11 @@ middleware(app, express);
 routes(app, express);
 
 console.log('Server listening on port: ' + PORT);
-  app.listen(PORT);
 
+// prevent server from running twice in tests
+if (!module.parent) {
+  app.listen(PORT);
+}
+
+// export app to make it available for consuption, esp by tests
 module.exports = app;
