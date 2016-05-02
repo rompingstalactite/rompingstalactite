@@ -11,7 +11,7 @@ module.exports = function (config) {
     preprocessors: {
       'tests.webpack.js': [ 'webpack', 'sourcemap' ]
     },
-    reporters: [ 'dots' ],
+    reporters: [ 'spec' ],
     webpack: {
       devtool: 'inline-source-map',
       module: {
@@ -28,11 +28,28 @@ module.exports = function (config) {
             test: /\.scss$/,
             loaders: ["style", "css?sourceMap", "sass?sourceMap"]
           },
+          {
+            test: /\.json$/,
+            loaders: ['json']
+          },
         ]
       }
     },
     webpackServer: {
-      noInfo: true
-    }
+      noInfo: true,
+    },
+    externals: {
+      'react/lib/ExecutionEnvironment': true,
+      'react/lib/ReactContext': 'window',
+      'react/addons': true,
+    },
+    plugins: [
+      'karma-mocha',
+      'karma-webpack',
+      'karma-chrome-launcher',
+      'karma-firefox-launcher',
+      'karma-spec-reporter',
+      'karma-sourcemap-loader',
+    ],
   });
 };

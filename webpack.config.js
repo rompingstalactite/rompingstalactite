@@ -19,6 +19,15 @@ module.exports = {
         test: /\.scss$/,
         loaders: ["style", "css?sourceMap", "sass?sourceMap"]
       },
+      {
+        test: /\.json$/,
+        loaders: ['json']
+      },
     ]
+  },
+  externals: {
+    'react/lib/ExecutionEnvironment': true,
+    'react/lib/ReactContext': 'window',
+    'react/addons': true,
   }
 };
