@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 const React = require('react');
-const TestUtils = require('react-addons-test-utils'); // Alternately could use the DOM API
+// const TestUtils = require('react-addons-test-utils'); // Alternately could use the DOM API
 
 import RecipeEntry from '../../client/components/RecipeEntry.js';
 
