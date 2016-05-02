@@ -1,8 +1,8 @@
 import { expect } from 'chai';
-import request from 'supertest';
+import Stubs from './Stubs.js';
+const app = {};
 
-import User from '../../server/APIv1/users/userController.js';
-
+import Users from '../../server/APIv1/users/userController.js';
 
 describe('User APIv1 tests', () => {
 
