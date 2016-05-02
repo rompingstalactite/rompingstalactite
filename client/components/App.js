@@ -15,8 +15,6 @@ class App extends Component {
       <div>
         <MainRecipe />
         <Nav />
-        {'this in the STORE!!!!!'}
-        {this.props.store}
         <Profile profile={profile} />
         <h1>Dashboard</h1>
         <RecipeContainer
