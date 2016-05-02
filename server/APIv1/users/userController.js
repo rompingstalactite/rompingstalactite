@@ -24,14 +24,17 @@ module.exports = {
       .catch((error) => {
         if (error.code === '23505' || error.code === '23502') {
           response.status(202);
-          response.json({ error: 'user exists, please try another username' });
+          response.json({
+            usualError: 'user exists, please try another username',
+            actualError: `Error code: ${error.code}, Error message: ${error.detail}`,
+          });
           next();
-        } else if (error.code === '22007') {
-          console.log(error);
-          response.status(202);
-          response.json({ error: 'please yell at the developers: they cant code well'});
         } else {
-          response.json({error: `Error code: ${error.code}, Error message: ${error.detail}`});
+          response.status(500);
+          response.json({
+            error: `Error code: ${error.code}, Error message: ${error.detail}`,
+          });
+          console.log('createUser.catch RUNNING', response);
           next();
         }
       });
@@ -57,7 +60,7 @@ module.exports = {
     })
       .then((data) => {
         response.json(data);
-    next();
+        next();
       })
       .catch((error) => {
         response.json({
