@@ -6,10 +6,15 @@ import Users from '../../server/APIv1/users/userController.js';
 
 describe('User APIv1 tests', () => {
 
-  const app = {};
-  // before((done) => {
-  //   done();
-  // });
+  beforeEach(() => {
+    app.request = new Stubs.request();
+    app.response = new Stubs.response();
+    app.existingUser = {
+      username: 'FakeUser',
+      createdAt: new Date(),
+      avatar: 'none',
+    };
+  });
 
   describe('server-database', () => {
     describe('CRUD on users', () => {
