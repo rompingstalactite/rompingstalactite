@@ -66,17 +66,4 @@ module.exports = {
         next();
       });
   },
-
-  // getCurrentUser: function () {
-  //   return true;
-  // },
-
-  // updateUser: function () {
-  //   return true;
-  // },
-
-
-  // findFollowers: function () {
-  //   return true;
-  // }
 };
