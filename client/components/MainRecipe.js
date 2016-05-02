@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import actions from '../actions/index.js';
 
 
-class Recipe extends Component {
+class MainRecipe extends Component {
   constructor(props) {
     super(props);
   }
@@ -11,7 +11,7 @@ class Recipe extends Component {
   render() {
     return (
       <div>
-        <button onClick={console.log(props)}> Toggle Edit </button>
+        <button onClick={() => console.log(this.props.toggleEdit)}> Toggle Edit </button>
         <div className="recipeContent" contentEditable="false">
           <h5>*Recipe Component*</h5>
           <h2>Recipe Title</h2>
@@ -26,7 +26,11 @@ class Recipe extends Component {
   }
 }
 
-export default Recipe;
+const mapStateToProps = (state) => {
+  return { toggleEdit: state.toggleEdit };
+};
+
+export default connect(mapStateToProps)(MainRecipe);
 
 // swap out the div on line 9 once state is added to redux store
 // <div contentEditable={props.editable}>

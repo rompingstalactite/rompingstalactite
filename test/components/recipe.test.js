@@ -2,7 +2,7 @@ const expect = require('chai').expect;
 const React = require('react');
 const TestUtils = require('react-addons-test-utils'); // Alternately could use the DOM API
 
-import Recipe from '../../client/components/Recipe.js';
+import MainRecipe from '../../client/components/MainRecipe.js';
 import actions from '../../client/actions/index.js';
 
 describe('recipe', () => {
@@ -14,7 +14,7 @@ describe('recipe', () => {
 
   before('render recipe', () => {
     renderedComponent = TestUtils.renderIntoDocument(
-      <Recipe />
+      <MainRecipe />
     );
     // Searching for <input> tag within rendered React component
     // Throws an exception if not found
@@ -41,8 +41,8 @@ describe('recipe', () => {
 
   it('calls toggleEdit on button click', () => {
     expect(button).to.not.be.undefined;
+    
   });
-
   // it('initially renders in non-editable state', () => {
   //   const recipe = TestUtils.renderIntoDocument(<Recipe />);
   //   expect(recipe).to.not.be.undefined;

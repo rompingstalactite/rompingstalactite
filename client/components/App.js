@@ -4,6 +4,7 @@ import actions from '../actions/index.js';
 // import '../scss/app.scss';
 
 import Nav from './Nav.js';
+import MainRecipe from './MainRecipe.js';
 import Profile from './Profile.js';
 import RecipeContainer from './RecipeContainer.js';
 
@@ -12,7 +13,10 @@ class App extends Component {
     const { profile, recipesOwned, recipesFollowed } = this.props;
     return (
       <div>
+        <MainRecipe />
         <Nav />
+        {'this in the STORE!!!!!'}
+        {this.props.store}
         <Profile profile={profile} />
         <h1>Dashboard</h1>
         <RecipeContainer
@@ -51,6 +55,7 @@ App.propTypes = {
     avatar: PropTypes.string,
     username: PropTypes.string,
   }).isRequired,
+  toggleEdit: PropTypes.bool.isRequired,
 };
 
 export default connect(
