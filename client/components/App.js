@@ -10,7 +10,7 @@ import RecipeContainer from './RecipeContainer.js';
 
 class App extends Component {
   render() {
-    const { profile, recipesOwned, recipesFollowed } = this.props;
+    const { profile, recipesOwned, recipesFollowed, toggleEdit } = this.props;
     return (
       <div>
         <MainRecipe />
@@ -37,6 +37,7 @@ const mapStateToProps = function (state) {
     profile: state.profile,
     recipesOwned: state.recipesOwned,
     recipesFollowed: state.recipesFollowed,
+    toggleEdit: state.toggleEdit,
   };
 };
 
