@@ -16,24 +16,25 @@ describe('User APIv1 tests', () => {
     };
   });
 
-  describe('server-database', () => {
     describe('CRUD on users', () => {
       it('Should create a new user', (done) => {
-        app.request = {
-          body: {
-            username: `FakeUser ${Math.random() + new Date() }`,
-            createdAt: '2016-05-01 01:00:02.313',
+      const user = {
+        username: `FakeUser ${Math.random()}`,
+        createdAt: new Date(),
             avatar: 'none',
-          },
-        };
-        app.response = {};
-        app.next = (callback) => {
-          callback();
         };
 
-        User.createUser(app.request, app.response, app.next());
+      app.request.json(user);
+
+      const cb = () => {
+        expect(app.response.json().username).to.equal(user.username);
+        done();
+        };
+
+      Users.createUser(app.request, app.response, cb);
       });
-      it('Should create a new user only if one with properties does not exist', (done) => {
+
+    it('Should return 202 if a user with the same name is already in the database', (done) => {
       app.request.json(app.existingUser);
       const cb = () => {
         expect(app.response.status()).to.equal(202);
