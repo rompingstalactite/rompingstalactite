@@ -4,11 +4,16 @@ const db = pgp(cn);
 
 module.exports = {
   createUser: (request, response, next) => {
-    const params = [request.body.username, request.body.avatar,  request.body.created_at];
+    const queryObj = {
+      name: 'insert-user',
+      text: 'insert into users(username, created_at, avatar) values ($1, $2, $3)',
+      values: [request.body.username, request.body.createdAt, request.body.avatar],
+    };
 
-    db.none('insert into users(username, avatar, created_at) values($1, $2, $3)', params)
-      .then(() => {
-        response.json({ totally: 'working' });
+    db.none(queryObj)
+      .then((data) => {
+        response.status(201);
+        response.json(data);
         next();
       })
       .catch((error) => {
