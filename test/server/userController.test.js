@@ -39,7 +39,14 @@ describe('User APIv1 tests', () => {
       it('Should get info for the current user');
       it('Should update the current user');
       it('Should delete a user');
-      it('Should get all users from the database');
+    it('Should forbid getting all users from the database', (done) => {
+      const cb = () => {
+        expect(app.response.status()).to.equal(403);
+        done();
+      };
+
+      Users.getAllUsers(app.request, app.response, cb);
+    });
 
       it('Should not be able to access properties of other users');
     });
