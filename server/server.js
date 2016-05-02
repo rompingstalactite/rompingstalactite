@@ -18,4 +18,6 @@ middleware(app, express);
 routes(app, express);
 
 console.log('Server listening on port: ' + PORT);
-app.listen(PORT);
+  app.listen(PORT);
+
+module.exports = app;
