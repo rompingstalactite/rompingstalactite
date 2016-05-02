@@ -11,11 +11,11 @@ module.exports = {
   createUser: (request, response, next) => {
     const queryObj = {
       name: 'insert-user',
-      text: 'insert into users(username, created_at, avatar) values ($1, $2, $3)',
+      text: 'insert into users(username, created_at, avatar) values ($1, $2, $3) returning *',
       values: [request.body.username, request.body.createdAt, request.body.avatar],
     };
 
-    db.none(queryObj)
+    db.one(queryObj)
       .then((data) => {
         response.status(201);
         response.json(data);
