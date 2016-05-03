@@ -34,7 +34,6 @@ module.exports = {
           response.json({
             error: `Error code: ${error.code}, Error message: ${error.detail}`,
           });
-          console.log('createUser.catch RUNNING', response);
           next();
         }
       });
