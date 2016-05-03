@@ -41,6 +41,9 @@ describe('(client)-[(router)-(helpers)-CONTROLLERS]-(database)', () => {
         done();
       };
 
+      Users.createUser(app.request, app.response, () => {
+        console.log('inserted first user');
+      });
       Users.createUser(app.request, app.response, cb);
     });
     it('Should get info for the current user');
