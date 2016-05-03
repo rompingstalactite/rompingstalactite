@@ -1,37 +1,44 @@
 const expect = require('chai').expect;
 const React = require('react');
-const TestUtils = require('react-addons-test-utils'); // Alternately could use the DOM API
 
-import MainRecipe from '../../client/components/MainRecipe.js';
+import { MainRecipe } from '../../client/components/MainRecipe.js';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 import actions from '../../client/actions/index.js';
+import { shallow } from 'enzyme';
 
-describe('recipe', () => {
+describe('<MainRecipe />', () => {
+  // declare 'wrapper' in closure to have access for testing below.
+  let wrapper;
 
-  // testing the div in <Recipe />
-  let renderedComponent;
-  let inputComponent;
-  let button;
+  // create fake reducer and store
+  const fakeReducer = (state = false, action) => {
+    if (action.type === 'TOGGLE_EDIT') {
+      return !state;
+    }
+    return state;
+  };
+  const store = createStore(fakeReducer);
 
-  before('render recipe', () => {
-    renderedComponent = TestUtils.renderIntoDocument(
-      <MainRecipe />
+  // create callback function which renders a new wrapper to subscribe to store.
+  const renderWrapper = (store = store) => {
+    wrapper = shallow(
+      <MainRecipe
+        store={store}
+        dispatch={() => store.dispatch(actions.toggleEdit())}
+        toggleEdit={store.getState()}
+      />
     );
-    // Searching for <input> tag within rendered React component
-    // Throws an exception if not found
-    inputComponent = TestUtils.findRenderedDOMComponentWithClass(
-      renderedComponent,
-      'recipeContent'
-    );
+  };
+  store.subscribe(() => renderWrapper(store));
 
-    button = TestUtils.findRenderedDOMComponentWithTag(
-      renderedComponent,
-      'button'
-    );
+  beforeEach('render recipe', () => {
+    renderWrapper(store);
   });
 
   it('initially renders in non-editable state', () => {
-    expect(renderedComponent).to.not.be.undefined;
-    expect(inputComponent.getAttribute('contenteditable')).to.equal('false');
+    expect(wrapper).to.not.be.undefined;
+    expect(wrapper.find('.recipeContent').prop('contentEditable')).to.equal(false);
   });
 
   it('has an action called toggleEdit', () => {
@@ -39,15 +46,13 @@ describe('recipe', () => {
     expect(actions.toggleEdit().type).to.equal('TOGGLE_EDIT');
   });
 
-  it('calls toggleEdit on button click', () => {
-    expect(button).to.not.be.undefined;
-    
+  it('toggles "contentEditable" field on button click', () => {
+    expect(wrapper.find('button')).to.not.be.undefined;
+    wrapper.find('button').simulate('click');
+    expect(store.getState()).to.equal(true);
+    expect(wrapper.find('.recipeContent').prop('contentEditable')).to.equal(true);
+    wrapper.find('button').simulate('click');
+    expect(wrapper.find('.recipeContent').prop('contentEditable')).to.equal(false);
   });
-  // it('initially renders in non-editable state', () => {
-  //   const recipe = TestUtils.renderIntoDocument(<Recipe />);
-  //   expect(recipe).to.not.be.undefined;
-  //   expect(inputComponent.getAttribute('contenteditable')).to.equal('true');
-  // });
+
 });
-
-

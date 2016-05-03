@@ -1,8 +1,8 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import actions from '../actions/index.js';
 
-class MainRecipe extends Component {
+export class MainRecipe extends Component {
   constructor(props) {
     super(props);
   }
@@ -12,8 +12,6 @@ class MainRecipe extends Component {
     return (
       <div>
         <button onClick={() => dispatch(actions.toggleEdit())}> Toggle Edit </button>
-        {'THIS IS THE TOGGLE EDIT STATUS!!!!'}
-        {console.log(toggleEdit)}
         <div className="recipeContent" contentEditable={toggleEdit}>
           <h5>*Recipe Component*</h5>
           <h2>Recipe Title</h2>
