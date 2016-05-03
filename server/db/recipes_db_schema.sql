@@ -2,8 +2,8 @@ CREATE TABLE "users" (
 	"id" SERIAL NOT NULL UNIQUE,
   "created_at" TIMESTAMP NOT NULL,
 	"username" VARCHAR(255) NOT NULL UNIQUE,
-	"facebook_id" VARCHAR(255) NOT NULL UNIQUE,
-	"google_id" VARCHAR(255) NOT NULL UNIQUE,
+	"facebook_id" VARCHAR(255) UNIQUE,
+	"google_id" VARCHAR(255) UNIQUE,
 	"avatar" BYTEA NOT NULL,
 	CONSTRAINT users_pk PRIMARY KEY ("id")
 ) WITH (

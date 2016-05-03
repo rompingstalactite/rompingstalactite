@@ -3,15 +3,26 @@
  *
  * dev port: 8080, gulp port: 9090
 */
-var PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8080;
 
 /**
  * Initialize express
  */
-var express = require('express');
-var app = express();
+import express from 'express';
+import middleware from './config/middleware.js';
+import routes from './config/routes.js';
 
-require('./config/middleware.js')(app, express);
-require('./config/routes.js')(app, express);
+
+const app = express();
+middleware(app, express);
+routes(app, express);
+
 console.log('Server listening on port: ' + PORT);
-app.listen(PORT);
+
+// prevent server from running twice in tests
+if (!module.parent) {
+  app.listen(PORT);
+}
+
+// export app to make it available for consuption, esp by tests
+module.exports = app;
