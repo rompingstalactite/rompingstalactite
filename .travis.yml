@@ -9,7 +9,7 @@ before_install:
   - sh -e /etc/init.d/xvfb start
 before_script:
   - npm install
-  - npm run db-setup
+  - npm run db-setup-travis
 script:
 after_success:
 after_failure:
