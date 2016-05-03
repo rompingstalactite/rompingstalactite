@@ -3,7 +3,6 @@ const React = require('react');
 
 import { MainRecipe } from '../../client/components/MainRecipe.js';
 import { createStore } from 'redux';
-import { Provider } from 'react-redux';
 import actions from '../../client/actions/index.js';
 import { shallow } from 'enzyme';
 
