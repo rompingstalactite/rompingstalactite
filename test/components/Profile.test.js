@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 const React = require('react');
-const TestUtils = require('react-addons-test-utils'); // Alternately could use the DOM API
+import { mount } from 'enzyme';
 
 import Profile from '../../client/components/Profile.js';
 
@@ -9,9 +9,19 @@ const fakeProfile = {
   username: 'USERNAME',
 };
 
-describe('profile', () => {
+describe('<Profile />', () => {
   it('renders without problems', () => {
-    const profile = TestUtils.renderIntoDocument(<Profile profile={fakeProfile} />);
-    expect(profile).to.not.be.undefined;
+    const wrapper = mount(<Profile profile={fakeProfile} />);
+    expect(wrapper.find(Profile)).to.have.length(1);
+  });
+
+  it('should display the correct username', () => {
+    const wrapper = mount(<Profile profile={fakeProfile} />);
+    expect(wrapper.find('.profile-username').text()).to.equal(fakeProfile.username);
+  });
+
+  it('should display the correct avatar', () => {
+    const wrapper = mount(<Profile profile={fakeProfile} />);
+    expect(wrapper.find('.profile-avatar').html()).to.contain(fakeProfile.avatar);
   });
 });
