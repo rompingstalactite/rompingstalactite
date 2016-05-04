@@ -1,6 +1,9 @@
 import { postgresConnection as cn } from '../../config/helpers.js';
 const pgp = require('pg-promise')();
-const db = pgp(process.env.DATABASE_URL);
+
+console.log(cn);
+
+const db = pgp(cn);
 
 module.exports = {
   getAllUsers: (request, response, next) => {
