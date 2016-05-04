@@ -10,13 +10,13 @@ import RecipeContainer from './RecipeContainer.js';
 
 class App extends Component {
   render() {
-    const { profile, recipesOwned, recipesFollowed, } = this.props;
+    const { recipesOwned, recipesFollowed, children } = this.props;
     return (
       <div>
-        <MainRecipe />
+        {/*<MainRecipe />*/}
         <Nav />
-        <Profile profile={profile} />
-        <h1>Dashboard</h1>
+        {/*<Profile profile={profile} />*/}
+        {/*<h1>Dashboard</h1>
         <RecipeContainer
           className="recipes-owned"
           type="My Owned Recipes"
@@ -26,7 +26,8 @@ class App extends Component {
           className="recipes-followed"
           type="My Followed Recipes"
           recipes={recipesFollowed}
-        />
+        />*/}
+        <div>{ children }</div>
       </div>
     );
   }
@@ -34,7 +35,6 @@ class App extends Component {
 
 const mapStateToProps = function (state) {
   return {
-    profile: state.profile,
     recipesOwned: state.recipesOwned,
     recipesFollowed: state.recipesFollowed,
   };

@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux';
 import profile from './profile.js';
 import recipesFollowed from './recipesFollowed.js';
 import recipesOwned from './recipesOwned.js';
@@ -9,6 +10,7 @@ const rootReducer = combineReducers({
   recipesFollowed,
   recipesOwned,
   toggleEdit,
+  routing: routerReducer,
 });
 
 export default rootReducer;
