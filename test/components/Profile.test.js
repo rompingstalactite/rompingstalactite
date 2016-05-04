@@ -5,6 +5,7 @@ import { mount } from 'enzyme';
 import fakeStore from './fakeStore';
 
 import Profile from '../../client/components/Profile.js';
+import RecipeContainer from '../../client/components/RecipeContainer.js';
 
 const fakeProfile = {
   avatar: 'http://www.carderator.com/assets/avatar_placeholder_small.png',
@@ -32,4 +33,8 @@ describe('<Profile />', () => {
   it('should display the correct avatar', () => {
     expect(wrapper.find('.profile-avatar').html()).to.contain(fakeStore.getState().profile.avatar);
   });
+
+  it('should render two recipe containers', () => {
+    expect(wrapper.find(RecipeContainer)).to.have.length(2);
+  })
 });
