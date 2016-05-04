@@ -10,8 +10,8 @@ import { syncHistoryWithStore } from 'react-router-redux'
 
 import App from './components/App';
 import MainRecipe from './components/MainRecipe';
-import Nav from './components/Nav';
-import Profile from './components/Profile'
+import Profile from './components/Profile';
+import Dashboard from './components/Dashboard';
 
 import rootReducer from './reducers';
 
@@ -31,10 +31,10 @@ const render = function () {
       <div>
         <Router history={history}>
           <Route path="/" component={App}>
-            <IndexRoute component={MainRecipe}/>
+            <IndexRoute component={Dashboard}/>
             <Route path="profile" component={Profile}/>
-            {/*<Route path="dashboard" component={Dashboard}/>*/}
             <Route path="recipe" component={MainRecipe}/>
+            <Route path="dashboard" component={Dashboard}/>
           </Route>
         </Router>
       </div>
