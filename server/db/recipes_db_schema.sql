@@ -14,10 +14,10 @@ CREATE TABLE "users" (
 
 CREATE TABLE "recipes" (
 	"id" SERIAL NOT NULL UNIQUE,
-	"created_at" TIMESTAMP NOT NULL,
-	"updated_at" TIMESTAMP NOT NULL,
+	"created_at" TIMESTAMP NOT NULL DEFAULT current_timestamp,
+  "updated_at" TIMESTAMP NOT NULL DEFAULT current_timestamp,
 	"title" TEXT NOT NULL,
-	-- will need to make author/parent NOT NULL in future implementation
+	-- will need to make author NOT NULL in future implementation
   "author" integer,
   "parent" integer,
   "images" TEXT[] NOT NULL,

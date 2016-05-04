@@ -30,8 +30,6 @@ function createDatabase {
 #Insert test row to Recipes Table
 function seedData {
   psql recipes -c "INSERT INTO recipes (
-    created_at,
-    updated_at,
     title,
     images ,
     followers ,
@@ -45,8 +43,6 @@ function seedData {
     finish_steps,
     tags
   ) VALUES (
-    '2001-09-28 01:00:00',
-    '2001-09-28 03:00:00',
     'Vegan Red Velvet Cupcakes',
     ARRAY [
       'http://40aprons.com/wp-content/uploads/2013/10/red_velvet_cupcakes+2+of+81.jpg',
