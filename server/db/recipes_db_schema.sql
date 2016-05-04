@@ -14,13 +14,23 @@ CREATE TABLE "users" (
 
 CREATE TABLE "recipes" (
 	"id" SERIAL NOT NULL UNIQUE,
-	"created_at" TIMESTAMP NOT NULL,
-	"updated_at" TIMESTAMP NOT NULL,
+	"created_at" TIMESTAMP NOT NULL DEFAULT current_timestamp,
+  "updated_at" TIMESTAMP NOT NULL DEFAULT current_timestamp,
 	"title" TEXT NOT NULL,
-	"ingredients" TEXT NOT NULL,
-	"instructions" TEXT NOT NULL,
-	"parent" integer NOT NULL,
-	"author" integer NOT NULL,
+	-- will need to make author NOT NULL in future implementation
+  "author" integer,
+  "parent" integer,
+  "images" TEXT[] NOT NULL,
+  "followers" TEXT[] NOT NULL,
+  "yield" integer NOT NULL,
+  "yield_unit" TEXT NOT NULL,
+  "ingredients" TEXT[] NOT NULL,
+  "prep_time" integer NOT NULL,
+  "prep_steps" TEXT[] NOT NULL,
+  "cook_time" integer NOT NULL,
+  "cook_steps" TEXT[] NOT NULL,
+  "finish_steps" TEXT[] NOT NULL,
+  "tags" TEXT[] NOT NULL,
 	CONSTRAINT recipes_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
