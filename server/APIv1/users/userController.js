@@ -33,7 +33,7 @@ module.exports = {
           });
           next();
         } else {
-          response.status(500);
+          response.status(505);
           response.json({
             error: `Error code: ${error.code}, Error message: ${error.detail}`,
           });
