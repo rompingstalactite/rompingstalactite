@@ -1,7 +1,7 @@
 import { postgresConnection as cn } from '../../config/helpers.js';
 const pgp = require('pg-promise')();
 
-console.log(cn);
+console.log('Accessing DB with credentials:', cn);
 
 const db = pgp(cn);
 
@@ -33,7 +33,7 @@ module.exports = {
           });
           next();
         } else {
-          response.status(500);
+          response.status(505);
           response.json({
             error: `Error code: ${error.code}, Error message: ${error.detail}`,
           });
