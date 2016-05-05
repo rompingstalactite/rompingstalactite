@@ -75,10 +75,10 @@ export class MainRecipe extends Component {
     return (
       <div>
         <button onClick={() => dispatch(actions.toggleEdit())}> Toggle Edit </button>
-        <div className="recipeContent" contentEditable={toggleEdit}>
+        <div className="recipe-content" contentEditable={toggleEdit}>
 
           <div className="header">
-            <h2>{recipe.title}</h2>
+            <h2 className="recipe-title">{recipe.title}</h2>
             {recipe.images.map((i) => <img src={i} />)}
             <h4>Servings: {recipe.yield + ' ' + recipe.yield_unit} </h4>
             <h4> tags: {recipe.tags.map(t => <a> {t} </a>)} </h4>

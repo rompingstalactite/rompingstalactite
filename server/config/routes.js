@@ -33,5 +33,4 @@ module.exports = (app, express) => {
   app.get('*', function(req, res) {
     res.redirect('/');
   });
-
 };

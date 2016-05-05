@@ -56,15 +56,15 @@ describe('<MainRecipe />', () => {
   });
 
   it('displays the recipe title', () => {
-    expect(fakeRecipe.title).to.equal(fakeRecipe.title);
+    // expect(wrapper.find('')).to.equal(fakeRecipe.title);
   });
 
   it('displays the recipe procedures', () => {
-    expect(fakeRecipe.title).to.equal(fakeRecipe.title);
+    // expect().to.equal();
   });
 
   it('displays the recipe followers', () => {
-    expect(fakeRecipe.title).to.equal(fakeRecipe.title);
+    // expect().to.equal();
   });
 
 });
