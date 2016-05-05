@@ -9,7 +9,7 @@ import Dashboard from '../../client/components/Dashboard.js';
 describe('<Dashboard />', () => {
   let wrapper;
 
-  beforeEach('render Profile', () => {
+  beforeEach('render Dashboard', () => {
     wrapper = mount(
       <Provider store={fakeStore}>
         <Dashboard />

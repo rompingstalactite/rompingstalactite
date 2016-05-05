@@ -38,7 +38,7 @@ describe('<MainRecipe />', () => {
 
   it('initially renders in non-editable state', () => {
     expect(wrapper).to.not.be.undefined;
-    expect(wrapper.find('.recipeContent').prop('contentEditable')).to.equal(false);
+    expect(wrapper.find('.recipe-content').prop('contentEditable')).to.equal(false);
   });
 
   it('has an action called toggleEdit', () => {
@@ -50,9 +50,9 @@ describe('<MainRecipe />', () => {
     expect(wrapper.find('button')).to.not.be.undefined;
     wrapper.find('button').simulate('click');
     expect(store.getState()).to.equal(true);
-    expect(wrapper.find('.recipeContent').prop('contentEditable')).to.equal(true);
+    expect(wrapper.find('.recipe-content').prop('contentEditable')).to.equal(true);
     wrapper.find('button').simulate('click');
-    expect(wrapper.find('.recipeContent').prop('contentEditable')).to.equal(false);
+    expect(wrapper.find('.recipe-content').prop('contentEditable')).to.equal(false);
   });
 
   it('displays the recipe title', () => {
