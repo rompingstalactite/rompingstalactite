@@ -41,6 +41,7 @@ module.exports = (app, express) => {
    * Catch unspecified routes
    */
   app.get('*', (request, response) => {
+    // NOTE: this seems to conflict with /api/v1/users/ get
     response.redirect('/');
   });
 };

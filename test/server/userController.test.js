@@ -42,7 +42,7 @@ describe('(client)-[(router)-(helpers)-CONTROLLERS]-(database)', () => {
       };
 
       Users.createUser(app.request, app.response, () => {
-        console.log('inserted first user');
+        // console.log('inserted first user');
       });
       Users.createUser(app.request, app.response, cb);
     });
