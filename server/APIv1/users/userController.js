@@ -14,8 +14,8 @@ module.exports = {
   createUser: (request, response, next) => {
     const queryObj = {
       name: 'insert-user',
-      text: 'insert into users(username, created_at, avatar) values ($1, $2, $3) returning *',
-      values: [request.body.username, request.body.createdAt, request.body.avatar],
+      text: 'insert into users(username, avatar) values ($1, $2) returning *',
+      values: [request.body.username, request.body.avatar],
     };
 
     db.one(queryObj)
