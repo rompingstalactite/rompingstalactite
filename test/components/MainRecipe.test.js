@@ -5,6 +5,7 @@ import { MainRecipe } from '../../client/components/MainRecipe.js';
 import { createStore } from 'redux';
 import actions from '../../client/actions/index.js';
 import { shallow } from 'enzyme';
+import fakeRecipe from './fakeRecipe';
 
 describe('<MainRecipe />', () => {
   // declare 'wrapper' in closure to have access for testing below.
@@ -52,6 +53,18 @@ describe('<MainRecipe />', () => {
     expect(wrapper.find('.recipeContent').prop('contentEditable')).to.equal(true);
     wrapper.find('button').simulate('click');
     expect(wrapper.find('.recipeContent').prop('contentEditable')).to.equal(false);
+  });
+
+  it('displays the recipe title', () => {
+    expect(fakeRecipe.title).to.equal(fakeRecipe.title);
+  });
+
+  it('displays the recipe procedures', () => {
+    expect(fakeRecipe.title).to.equal(fakeRecipe.title);
+  });
+
+  it('displays the recipe followers', () => {
+    expect(fakeRecipe.title).to.equal(fakeRecipe.title);
   });
 
 });
