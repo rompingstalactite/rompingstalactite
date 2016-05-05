@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router'
 
 class Nav extends Component {
   render() {
@@ -6,8 +7,11 @@ class Nav extends Component {
       <div>
         <h1>Navigation</h1>
         <input placeholder="Search for recipes"></input>
-        <a href="#signin">Sign in</a>
-        <a href="#signout">Sign out</a>
+        <a href="#signin">Sign in</a>{' '}
+        <a href="#signout">Sign out</a>{' '}
+        <Link to="/">Index</Link>{' '}
+        <Link to="/profile">Profile</Link>{' '}
+        <Link to="/recipe">Recipe</Link>
       </div>
     );
   }
