@@ -5,13 +5,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router'
-import { syncHistoryWithStore } from 'react-router-redux'
+import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
 
 import App from './components/App';
 import MainRecipe from './components/MainRecipe';
 import Profile from './components/Profile';
 import Dashboard from './components/Dashboard';
+import SearchResults from './components/SearchResults';
 
 import rootReducer from './reducers';
 
@@ -31,10 +32,11 @@ const render = function () {
       <div>
         <Router history={history}>
           <Route path="/" component={App}>
-            <IndexRoute component={Dashboard}/>
-            <Route path="profile" component={Profile}/>
-            <Route path="recipe" component={MainRecipe}/>
-            <Route path="dashboard" component={Dashboard}/>
+            <IndexRoute component={Dashboard} />
+            <Route path="/profile" component={Profile} />
+            <Route path="/recipe" component={MainRecipe} />
+            <Route path="/dashboard" component={Dashboard} />
+            <Route path="/search" component={SearchResults} />
           </Route>
         </Router>
       </div>

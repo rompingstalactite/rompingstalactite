@@ -5,6 +5,7 @@ import { MainRecipe } from '../../client/components/MainRecipe.js';
 import { createStore } from 'redux';
 import actions from '../../client/actions/index.js';
 import { shallow } from 'enzyme';
+import fakeRecipe from './fakeRecipe';
 
 describe('<MainRecipe />', () => {
   // declare 'wrapper' in closure to have access for testing below.
@@ -37,7 +38,7 @@ describe('<MainRecipe />', () => {
 
   it('initially renders in non-editable state', () => {
     expect(wrapper).to.not.be.undefined;
-    expect(wrapper.find('.recipeContent').prop('contentEditable')).to.equal(false);
+    expect(wrapper.find('.recipe-content').prop('contentEditable')).to.equal(false);
   });
 
   it('has an action called toggleEdit', () => {
@@ -49,9 +50,21 @@ describe('<MainRecipe />', () => {
     expect(wrapper.find('button')).to.not.be.undefined;
     wrapper.find('button').simulate('click');
     expect(store.getState()).to.equal(true);
-    expect(wrapper.find('.recipeContent').prop('contentEditable')).to.equal(true);
+    expect(wrapper.find('.recipe-content').prop('contentEditable')).to.equal(true);
     wrapper.find('button').simulate('click');
-    expect(wrapper.find('.recipeContent').prop('contentEditable')).to.equal(false);
+    expect(wrapper.find('.recipe-content').prop('contentEditable')).to.equal(false);
+  });
+
+  it('displays the recipe title', () => {
+    // expect(wrapper.find('')).to.equal(fakeRecipe.title);
+  });
+
+  it('displays the recipe procedures', () => {
+    // expect().to.equal();
+  });
+
+  it('displays the recipe followers', () => {
+    // expect().to.equal();
   });
 
 });

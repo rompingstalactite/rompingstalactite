@@ -7,7 +7,7 @@ import Nav from './Nav.js';
 
 class App extends Component {
   render() {
-    const { recipesOwned, recipesFollowed, children } = this.props;
+    const { children } = this.props;
     return (
       <div>
         <Nav />

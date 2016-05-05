@@ -1,7 +1,3 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import actions from '../actions/index.js';
-
 const recipe = {
   title: 'Vegan Red Velvet Cupcakes',
   images: [
@@ -12,7 +8,7 @@ const recipe = {
   followers: [
     'user1',
     'user2',
-    'user3'
+    'user3',
   ],
   yield: 12,
   yield_unit: 'Cupcakes',
@@ -36,10 +32,10 @@ const recipe = {
     '1 teaspoon vanilla extract',
   ],
   prep_time: 15,
-  prep_steps:[
+  prep_steps: [
     'Preheat oven to 350 degrees and line muffin pans with liners.',
   ],
-  cook_time:20,
+  cook_time: 20,
   cook_steps: [
     'Whisk together the soy milk and vinegar and set aside to curdle.',
     'Sift the flour, sugar, cocoa, baking powder, baking soda, and salt into a large bowl and mix.',
@@ -65,78 +61,4 @@ const recipe = {
   ],
 };
 
-export class MainRecipe extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const { toggleEdit, dispatch, /*recipe*/ } = this.props;
-    return (
-      <div>
-        <button onClick={() => dispatch(actions.toggleEdit())}> Toggle Edit </button>
-        <div className="recipe-content" contentEditable={toggleEdit}>
-
-          <div className="header">
-            <h2 className="recipe-title">{recipe.title}</h2>
-            {recipe.images.map((i) => <img src={i} />)}
-            <h4>Servings: {recipe.yield + ' ' + recipe.yield_unit} </h4>
-            <h4> tags: {recipe.tags.map(t => <a> {t} </a>)} </h4>
-          </div>
-
-          <div className="instructions">
-
-            <ul className="ingredients">
-            <h4> Ingredients </h4>
-            {recipe.ingredients.map((i) => <li> {i} </li>)}
-            </ul>
-
-            <div className="prep">
-              <h4> Prep | Time: {recipe.prep_time} </h4>
-              <ol>
-              {recipe.prep_steps.map((s) => <li> {s} </li>)}
-              </ol>
-            </div>
-
-            <div className="cook">
-              <h4> Cook | Time: {recipe.cook_time} </h4>
-              <ol>
-              {recipe.cook_steps.map((s) => <li> {s} </li>)}
-              </ol>
-            </div>
-
-            <div className="finish">
-              <h4> Finish </h4>
-              <ol>
-              {recipe.finish_steps.map((s) => <li> {s} </li>)}
-              </ol>
-            </div>
-          </div>
-
-          <div className="documentation">
-            <h2> Documentation </h2>
-          </div>
-
-        </div>
-      </div>
-    );
-  }
-}
-
-const mapStateToProps = (state) => {
-  return { toggleEdit: state.toggleEdit,
-           // recipe: state.recipe
-  };
-};
-
-// const mapDispatchToProps = (dispatch) => {
-//   return toggleEdit() {
-//     dispatch({type: 'TOGGLE_EDIT'});
-//   }
-//   return { toggleEdit: state.toggleEdit };
-// };
-
-export default connect(mapStateToProps)(MainRecipe);
-
-// swap out the div on line 9 once state is added to redux store
-// <div contentEditable={props.editable}>
+export default recipe;

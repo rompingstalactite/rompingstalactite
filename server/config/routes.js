@@ -29,4 +29,8 @@ module.exports = (app, express) => {
    */
   // app.get('/api/v1/favorites/:user', /* auth, */ getUserFavorites);
   // app.get('/api/v1/favorites/:user/count', /* auth, */ getUserFavoritesCount);
+
+  app.get('*', function(req, res) {
+    res.redirect('/');
+  });
 };
