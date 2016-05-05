@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router'
+import { Link } from 'react-router';
 
 class Nav extends Component {
   render() {
@@ -11,7 +11,8 @@ class Nav extends Component {
         <a href="#signout">Sign out</a>{' '}
         <Link to="/">Index</Link>{' '}
         <Link to="/profile">Profile</Link>{' '}
-        <Link to="/recipe">Recipe</Link>
+        <Link to="/recipe">Recipe</Link>{' '}
+        <Link to="/search">Search</Link>
       </div>
     );
   }
