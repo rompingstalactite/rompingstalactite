@@ -15,7 +15,6 @@ describe('search results', () => {
     it('Should find results when using keyword with known match', (done) => {
       app.request.params = {};
       app.request.params.q = 'sdfasdf%20cupcake';
-      console.log(app.request.params.q);
 
       const cb = () => {
         // done callback fails if comparison fails. WUT
