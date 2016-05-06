@@ -5,8 +5,8 @@ module.exports = {
     this._responseCode = null;
     this._headers = null;
     this._data = null;
-    this._status = null,
-    this._json = null,
+    this._status = null;
+    this._json = null;
 
     this.status = (val) => {
       this._status = val === undefined ? this._status : val;
