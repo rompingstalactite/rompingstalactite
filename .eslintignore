@@ -1,4 +1,6 @@
 # /node_modules and /bower_components ignored by default
 
-client/tests
+test/components/
+test/server/
 client/bundle.js
+client/bundle.js.map
