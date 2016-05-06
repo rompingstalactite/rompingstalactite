@@ -1,39 +1,23 @@
 const expect = require('chai').expect;
 const React = require('react');
+import { Provider } from 'react-redux';
 
-import { MainRecipe } from '../../client/components/MainRecipe.js';
-import { createStore } from 'redux';
+import MainRecipe from '../../client/components/MainRecipe.js';
 import actions from '../../client/actions/index.js';
-import { shallow } from 'enzyme';
-import fakeRecipe from './fakeRecipe';
+import { mount } from 'enzyme';
+
+import fakeStore from './fakeStore';
 
 describe('<MainRecipe />', () => {
   // declare 'wrapper' in closure to have access for testing below.
   let wrapper;
 
-  // create fake reducer and store
-  const fakeReducer = (state = false, action) => {
-    if (action.type === 'TOGGLE_EDIT') {
-      return !state;
-    }
-    return state;
-  };
-  const store = createStore(fakeReducer);
-
-  // create callback function which renders a new wrapper to subscribe to store.
-  const renderWrapper = (store = store) => {
-    wrapper = shallow(
-      <MainRecipe
-        store={store}
-        dispatch={() => store.dispatch(actions.toggleEdit())}
-        toggleEdit={store.getState()}
-      />
-    );
-  };
-  store.subscribe(() => renderWrapper(store));
-
   beforeEach('render recipe', () => {
-    renderWrapper(store);
+    wrapper = mount(
+      <Provider store={fakeStore}>
+        <MainRecipe />
+      </Provider>
+    );
   });
 
   it('initially renders in non-editable state', () => {
@@ -47,24 +31,24 @@ describe('<MainRecipe />', () => {
   });
 
   it('toggles "contentEditable" field on button click', () => {
-    expect(wrapper.find('button')).to.not.be.undefined;
-    wrapper.find('button').simulate('click');
-    expect(store.getState()).to.equal(true);
+    expect(wrapper.find('.btn-toggle-edit')).to.not.be.undefined;
+    wrapper.find('.btn-toggle-edit').simulate('click');
     expect(wrapper.find('.recipe-content').prop('contentEditable')).to.equal(true);
-    wrapper.find('button').simulate('click');
+    wrapper.find('.btn-toggle-edit').simulate('click');
     expect(wrapper.find('.recipe-content').prop('contentEditable')).to.equal(false);
   });
 
+  it('has an action called forkRecipe', () => {
+    expect(actions.forkRecipe).to.not.be.undefined;
+    expect(actions.forkRecipe().type).to.equal('FORK_RECIPE');
+  });
+
   it('displays the recipe title', () => {
-    // expect(wrapper.find('')).to.equal(fakeRecipe.title);
+    expect(wrapper.find('.recipe-title').html()).to.contain(fakeStore.getState().recipe.title);
   });
 
   it('displays the recipe procedures', () => {
-    // expect().to.equal();
-  });
-
-  it('displays the recipe followers', () => {
-    // expect().to.equal();
+    expect(wrapper.find('.cook').find('li').length).to.equal(fakeStore.getState().recipe.cook_steps.length);
   });
 
 });

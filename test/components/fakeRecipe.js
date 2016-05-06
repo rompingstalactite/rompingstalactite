@@ -1,4 +1,7 @@
 const recipe = {
+  id: 1,
+  parent: null,
+  author: 1337,
   title: 'Vegan Red Velvet Cupcakes',
   images: [
     'http://40aprons.com/wp-content/uploads/2013/10/red_velvet_cupcakes+2+of+81.jpg',
