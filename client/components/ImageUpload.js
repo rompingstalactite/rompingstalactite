@@ -1,34 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import actions from '../actions/index.js';
 const filepicker = require('filepicker-js');
 
-let filePick =  ( ) => {
-  filepicker.setKey('AXQPXcRZOS2yRjJDsq39Hz');
-  filepicker.pick(
-    {
-      mimetype: 'image/*',
-      container: 'window',
-    },
-    function(data){
-      console.log(JSON.stringify(data));
-      let uploadURL = data.url;
-    },
-    function(error){
-      console.log(error)
-    }
-  );
-};
 
-class ImageUpload extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-
+class ImageUpload extends Component {  
+  filePick() {
+    filepicker.setKey('File-Picker-API-Key');
+    filepicker.pick(
+      {
+        mimetype: 'image/*',
+        container: 'window',
+      },
+      function(data){
+        console.log(JSON.stringify(data));
+        // uploadURL = data.url;
+      },
+      function(error){
+        console.log(error);
+      }
+    );
+  };
 
   render() {
     return (
       <div>
-      <button onclick={console.log('hi')}>Add Picsss</button>
+        <button onClick={this.filePick}>Add Pics</button>
       </div>
     );
   }
