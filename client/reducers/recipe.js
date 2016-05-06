@@ -78,8 +78,12 @@ export default function recipe(state = initialState, action) {
     case types.SET_RECIPE:
       return action.recipe;
 
-    // TOGGLE_EDIT
-    // return;
+    // case types.EDIT_RECIPE:
+    // return state;
+
+    // case types.TOGGLE_EDIT:
+    // return state;
+    
     default:
       return state;
   }
@@ -87,4 +91,3 @@ export default function recipe(state = initialState, action) {
 
 
 // AJAX call to set RECIPE initial state
-// finish fork recipe
