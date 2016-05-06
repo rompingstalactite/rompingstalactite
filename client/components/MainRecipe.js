@@ -3,19 +3,19 @@ import { connect } from 'react-redux';
 import actions from '../actions/index.js';
 import { forkRecipe } from '../utils/utils';
 
-export class MainRecipe extends Component {
+class MainRecipe extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    const { toggleEdit, dispatch, recipe, onForkClick } = this.props;
+    const { toggleEdit, handleToggleEdit, recipe, onForkClick } = this.props;
     return (
       <div>
-        <button onClick={() => dispatch(actions.toggleEdit())}> Toggle Edit </button>
+        <button className="btn-toggle-edit" onClick={ handleToggleEdit }> Toggle Edit </button>
 
         {/* hardcode userID to 1337 until authentication is implemented */}
-        <button onClick={ onForkClick.bind(null, recipe.id, 1337) }>Fork</button>
+        <button className="btn-fork" onClick={ onForkClick.bind(null, recipe.id, 1337) }>Fork</button>
         <div className="recipe-content" contentEditable={toggleEdit}>
 
           <div className="header">
@@ -67,7 +67,7 @@ export class MainRecipe extends Component {
 const mapStateToProps = (state) => {
   return {
     toggleEdit: state.toggleEdit,
-    // userID: state.user.id || 1337, 
+    // userID: state.user.id || 1337,
     recipe: state.recipe,
   };
 };
@@ -79,6 +79,7 @@ const mapDispatchToProps = (dispatch) => {
         dispatch(actions.forkRecipe(newRecipe));
       });
     },
+    handleToggleEdit: () => dispatch(actions.toggleEdit()),
   };
 };
 
