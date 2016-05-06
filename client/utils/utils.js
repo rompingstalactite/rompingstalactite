@@ -1,6 +1,6 @@
 require('isomorphic-fetch');
 
-const fetchRecipe = (recipe, callback) => {
+export const fetchRecipe = (recipe, callback) => {
   fetch(`http://localhost:8080/api/v1/recipes/${recipe}`, {
     method: 'GET',
     headers: {
@@ -61,9 +61,9 @@ const createRecipe = (recipe, callback) => {
   });
 };
 
-const forkRecipe = (originalRecipeId, userId, callback) => {
-  fetchRecipe(originalRecipeId, (recipe) => {
-    createRecipe(bindAuthorToNewRecipe(userId)(recipe), callback);
+export const forkRecipe = (originalRecipeID, userID, callback) => {
+  fetchRecipe(originalRecipeID, (recipe) => {
+    createRecipe(bindAuthorToNewRecipe(userID)(recipe), callback);
   });
 };
 
