@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import actions from '../actions/index.js';
 
 const recipe = {
-  title: 'Vegan Red Velvet Cupcakes',
+  title: 'Vegan Red Velvet Cupcakes<script>console.log(\'hello\')</script>',
   images: [
     'http://40aprons.com/wp-content/uploads/2013/10/red_velvet_cupcakes+2+of+81.jpg',
     'http://cf.tasteandtellblog.com/wp-content/uploads/2014/09/Red-Velvet-Cupcakes-recipe-taste-and-tell-1b-opt.jpg',
@@ -75,6 +75,7 @@ export class MainRecipe extends Component {
     return (
       <div>
         <button onClick={() => dispatch(actions.toggleEdit())}> Toggle Edit </button>
+        <button onClick={() => dispatch(actions.fork())}>Fork</button>
         <div className="recipe-content" contentEditable={toggleEdit}>
 
           <div className="header">
