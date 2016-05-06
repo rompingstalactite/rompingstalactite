@@ -1,11 +1,16 @@
 CREATE TABLE "users" (
-	"id" SERIAL NOT NULL UNIQUE,
-  "created_at" TIMESTAMP NOT NULL,
-	"username" VARCHAR(255) NOT NULL UNIQUE,
-	"facebook_id" VARCHAR(255) UNIQUE,
-	"google_id" VARCHAR(255) UNIQUE,
-	"avatar" BYTEA NOT NULL,
-	CONSTRAINT users_pk PRIMARY KEY ("id")
+  "id" SERIAL NOT NULL UNIQUE,
+  "username" VARCHAR(255) UNIQUE,
+  "facebook_id" VARCHAR(255) UNIQUE,
+  "google_id" VARCHAR(255) UNIQUE,
+  "created_at" TIMESTAMP NOT NULL DEFAULT current_timestamp,
+  "updated_at" TIMESTAMP NOT NULL DEFAULT current_timestamp,
+  "display_name" VARCHAR(255),
+  "avatar" VARCHAR(255),
+  "email" VARCHAR(255),
+  "google_access_token" VARCHAR(255),
+  "active" BOOLEAN DEFAULT true,
+  CONSTRAINT users_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
 );
