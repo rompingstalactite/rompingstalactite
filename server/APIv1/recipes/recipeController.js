@@ -7,12 +7,12 @@ module.exports = {
     const newQueryObj = {
       name: 'get-one-recipe',
       text: `SELECT
-               1
+               *
              FROM
                recipes
              WHERE
                id = $1`,
-      values: [request.params.id],
+      values: [request.params.recipe_id],
     };
 
     db.one(newQueryObj)
