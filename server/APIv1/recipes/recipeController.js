@@ -43,4 +43,40 @@ module.exports = {
       next();
     });
   },
+  addRecipeImage: (request, response, next) => {
+    const newQueryObj = {
+      name: `UPDATE recipes 
+              SET 
+                images = array_append(images, $1) 
+              WHERE
+                id = $2`,
+      values: [request.body.newURL, request.body.id],
+    };
+
+    db.query(newQueryObj).then((data) => {
+      response.json(data);
+      next();
+    }).catch((error) => {
+      response.json(error);
+      next();
+    });
+  },
+
+  removeRecipeImage: (request, response, next) => {
+    const newQueryObj = {
+      name: `UPDATE recipes 
+              SET
+                images = array_remove(images, $1) 
+              WHERE
+                id = $2`,
+      values: [request.body.newURL, request.body.id],
+    };
+    db.query(newQueryObj).then((data) => {
+      response.json(data);
+      next();
+    }).catch((error) => {
+      response.json(error);
+      next();
+    });
+  },
 };
