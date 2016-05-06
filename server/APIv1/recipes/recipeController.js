@@ -45,7 +45,8 @@ module.exports = {
   },
   addRecipeImage: (request, response, next) => {
     const newQueryObj = {
-      name: `UPDATE recipes 
+      name: 'add-recipe-image',
+      text: `UPDATE recipes 
               SET 
                 images = array_append(images, $1) 
               WHERE
@@ -53,25 +54,49 @@ module.exports = {
       values: [request.body.newURL, request.body.id],
     };
 
-    db.query(newQueryObj).then((data) => {
-      response.json(data);
-      next();
-    }).catch((error) => {
-      response.json(error);
-      next();
+    const newQueryObj2 = {
+      name: 'find-new-recipe-image',
+      text: `SELECT images
+              FROM recipes 
+                WHERE $1 = ANY(images)
+                AND id = $2`,
+      values: [request.body.newURL, request.body.id],
+    };
+    db.query(newQueryObj);
+    db.query(newQueryObj2)
+      .then((data) => {
+
+        response.status(201);
+        response.json(data);
+        next();
+       }).catch((error) => {
+        response.json(error);
+        next();
     });
   },
 
   removeRecipeImage: (request, response, next) => {
     const newQueryObj = {
-      name: `UPDATE recipes 
+      name: 'remove-recipe-image',
+      text: `UPDATE recipes 
               SET
                 images = array_remove(images, $1) 
               WHERE
                 id = $2`,
       values: [request.body.newURL, request.body.id],
     };
-    db.query(newQueryObj).then((data) => {
+
+    const newQueryObj2 = {
+      name: 'find-new-recipe-image',
+      text: `SELECT images
+              FROM recipes 
+                WHERE $1 = ANY(images)
+                AND id = $2`,
+      values: [request.body.newURL, request.body.id],
+    };
+
+    db.query(newQueryObj);
+    db.query(newQueryObj2).then((data) => {
       response.json(data);
       next();
     }).catch((error) => {

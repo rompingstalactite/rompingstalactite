@@ -13,7 +13,7 @@ import MainRecipe from './components/MainRecipe';
 import Profile from './components/Profile';
 import Dashboard from './components/Dashboard';
 import SearchResults from './components/SearchResults';
-import ImageUpload from './components/ImageUpload.js'
+import ImageUpload from './components/ImageUpload.js';
 
 import rootReducer from './reducers';
 
@@ -31,7 +31,6 @@ const render = function () {
   ReactDOM.render(
     <Provider store={store}>
       <div>
-        <ImageUpload />
         <Router history={history}>
           <Route path="/" component={App}>
             <IndexRoute component={Dashboard} />
