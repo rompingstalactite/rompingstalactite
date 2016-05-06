@@ -36,4 +36,4 @@ const fakeRootReducer = combineReducers({
   toggleEdit,
 });
 
-export default createStore(fakeRootReducer, initialStateProfile);
+export default createStore(fakeRootReducer);
