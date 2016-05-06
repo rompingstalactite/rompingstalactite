@@ -20,7 +20,7 @@ describe('Recipe Controller results', () => {
       const cb = () => {
         // done callback fails if comparison fails. WUT
         // expect(app.response.json().length).to.equal(2);
-        expect(app.response.json()).to.be.defined;
+        expect(app.response.json().length).to.be.above(0);
         done();
       };
 
