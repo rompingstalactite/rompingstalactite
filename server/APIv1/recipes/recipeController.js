@@ -62,10 +62,10 @@ module.exports = {
                 AND id = $2`,
       values: [request.body.newURL, request.body.id],
     };
-    db.query(newQueryObj);
+    db.query(newQueryObj)
     db.query(newQueryObj2)
       .then((data) => {
-
+        // console.log('THE DATA',data)
         response.status(201);
         response.json(data);
         next();
@@ -97,6 +97,7 @@ module.exports = {
 
     db.query(newQueryObj);
     db.query(newQueryObj2).then((data) => {
+      console.log('$$$$$$$$$$$THE DATA',data)
       response.json(data);
       next();
     }).catch((error) => {

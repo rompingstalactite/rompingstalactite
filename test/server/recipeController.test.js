@@ -15,9 +15,10 @@ describe('Recipe Controller results', () => {
     it('Should append newURL to recipe images array', (done) => {
       app.request.body = {};
       app.request.body.id = 1;
-      app.request.body.newURL = 'TEST.COM';
+      app.request.body.newURL = 'testURLs.COM';
      
       const cb = () => {
+        // console.log('*****ADD RESP*****',app.response.json())
         // done callback fails if comparison fails. WUT
         // expect(app.response.json().length).to.equal(2);
         expect(app.response.json().length).to.be.above(0);
@@ -29,10 +30,11 @@ describe('Recipe Controller results', () => {
 
     it('Should remove newURL to recipe images array', (done) => {
       app.request.body = {};
-      app.request.body.id = '1';
-      app.request.body.newURL = 'TEST.COM';
+      app.request.body.id = 11;
+      app.request.body.newURL = 'testURLs.COM';
      
       const cb = () => {
+
         // done callback fails if comparison fails. WUT
         // expect(app.response.json().length).to.equal(2);
         expect(app.response.json().length).to.equal(0);
