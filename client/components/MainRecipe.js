@@ -20,7 +20,7 @@ class MainRecipe extends Component {
 
           <div className="header">
             <h2 className="recipe-title">{recipe.title}</h2>
-            {recipe.images.map((i) => <img src={i} />)}
+            {recipe.images.map((image) => <img src={image} />)}
             <h4>Servings: {recipe.yield + ' ' + recipe.yield_unit} </h4>
             <h4> tags: {recipe.tags.map(t => <a> {t} </a>)} </h4>
           </div>
