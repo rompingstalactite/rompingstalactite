@@ -1,4 +1,4 @@
-require('isomorphic-fetch');
+import 'isomorphic-fetch';
 
 export const fetchRecipe = (recipeID, callback) => {
   fetch(`http://localhost:8080/api/v1/recipes/${recipeID}`, {
@@ -66,18 +66,3 @@ export const forkRecipe = (originalRecipeID, userID, callback) => {
     createRecipe(bindAuthorToNewRecipe(userID)(recipe), callback);
   });
 };
-
-// forkRecipe(1, 432, console.log);
-
-// FORKS
-
-// fetch current recipe
-// modify author and parent fields
-// grab rest of recipe data
-// create a new recipe in the database with data
-// forkRecipe(13, 789, console.log);
-
-
-// TODO
-// update recipe state to new recipe
-// redirect to new recipe page
