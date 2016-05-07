@@ -37,6 +37,7 @@ const render = function () {
             <Route path="/recipe" component={MainRecipe} />
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/search" component={SearchResults} />
+            <Route path="/*" component={Dashboard} />
           </Route>
         </Router>
       </div>

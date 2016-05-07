@@ -1,3 +1,4 @@
+import path from 'path';
 import uc from '../APIv1/users/userController.js';
 import rc from '../APIv1/recipes/recipeController.js';
 import sc from '../APIv1/search/searchController.js';
@@ -41,7 +42,6 @@ module.exports = (app, express) => {
    * Catch unspecified routes
    */
   app.get('*', (request, response) => {
-    // NOTE: this seems to conflict with /api/v1/users/ get
-    // response.redirect('/');
+    response.sendFile(path.resolve(__dirname, '../../client', 'index.html'));
   });
 };
