@@ -43,4 +43,66 @@ module.exports = {
       next();
     });
   },
+  addRecipeImage: (request, response, next) => {
+    const newQueryObj = {
+      name: 'add-recipe-image',
+      text: `UPDATE recipes 
+              SET 
+                images = array_append(images, $1) 
+              WHERE
+                id = $2`,
+      values: [request.body.newURL, request.body.id],
+    };
+
+    const newQueryObj2 = {
+      name: 'find-new-recipe-image',
+      text: `SELECT images
+              FROM recipes 
+                WHERE $1 = ANY(images)
+                AND id = $2`,
+      values: [request.body.newURL, request.body.id],
+    };
+    db.query(newQueryObj)
+    db.query(newQueryObj2)
+      .then((data) => {
+        // console.log('THE DATA',data)
+        response.status(201);
+        response.json(data);
+        next();
+       }).catch((error) => {
+        response.json(error);
+        next();
+    });
+  },
+
+  removeRecipeImage: (request, response, next) => {
+    const newQueryObj = {
+      name: 'remove-recipe-image',
+      text: `UPDATE recipes 
+              SET
+                images = array_remove(images, $1) 
+              WHERE
+                id = $2`,
+      values: [request.body.newURL, request.body.id],
+    };
+
+    const newQueryObj2 = {
+      name: 'find-new-recipe-image',
+      text: `SELECT images
+              FROM recipes 
+                WHERE $1 = ANY(images)
+                AND id = $2`,
+      values: [request.body.newURL, request.body.id],
+    };
+
+    db.query(newQueryObj);
+    db.query(newQueryObj2).then((data) => {
+      console.log('$$$$$$$$$$$THE DATA',data)
+      response.json(data);
+      next();
+    }).catch((error) => {
+      response.json(error);
+      next();
+    });
+  },
 };

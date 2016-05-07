@@ -13,6 +13,7 @@ import MainRecipe from './components/MainRecipe';
 import Profile from './components/Profile';
 import Dashboard from './components/Dashboard';
 import SearchResults from './components/SearchResults';
+import ImageUpload from './components/ImageUpload.js';
 
 import rootReducer from './reducers';
 
