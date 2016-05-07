@@ -1,11 +1,8 @@
-import request from 'supertest';
-
-import app from '../../server/server.js';
-
+import Promise from 'bluebird';
+import Stubs from './Stubs.js';
 const expect = require('chai').expect;
-import { fetchRecipe, createRecipe, forkRecipe } from '../../client/utils/utils';
-
 import fakeRecipe from '../components/fakeRecipe';
+import { fetchRecipe, createRecipe, forkRecipe } from '../../client/utils/utils';
 
 const copyRecipe = (recipe) => {
   const recipeCopy = {};
@@ -17,6 +14,46 @@ const copyRecipe = (recipe) => {
   return recipeCopy;
 }
 
+/** Create a version of the 'fetch' function that just returns the requested
+* value (for testing purposes only).
+*/
+const useModifiedFetch = (functionThatUsesFetch) => {
+  const modifiedFetch = (url, options, callback) => {
+    if (url === 'http://localhost:8080/api/v1/recipes/' && options.method === 'POST') {
+      const recipe = JSON.parse(options.body);
+      const response = new Stubs.response();
+      response.json(recipe);
+      return callback(null, response);
+    } else if (url === 'http://localhost:8080/api/v1/recipes/1' && options.method === 'GET') {
+      const recipe = {
+        id: 1,
+        title: 'Vegan Red Velvet Cupcakes',
+        parent: null,
+      }
+      const response = new Stubs.response();
+      response.json(recipe);
+      return callback(null, response);
+    } else {
+      return callback(new Error('Didn\'t recognize the request being tested.'));
+    }
+  };
+
+  // Promisify the function created above
+  fetch = (url, options) => {
+    return new Promise(function(resolve, reject) {
+      modifiedFetch(url, options, function(err, content) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(content);
+        }
+      });
+    });
+  };
+
+  return functionThatUsesFetch;
+};
+
 describe('Util tests', () => {
   it('should create a new recipe', (done) => {
     const cb = (createdRecipe) => {
@@ -24,7 +61,7 @@ describe('Util tests', () => {
       expect(createdRecipe.title).to.equal('Vegan Red Velvet Cupcakes');
       done();
     };
-    createRecipe(copyRecipe(fakeRecipe), cb);
+    useModifiedFetch(createRecipe)(copyRecipe(fakeRecipe), cb);
   });
 
   it('should fetch an existing recipe', (done) => {
@@ -33,8 +70,7 @@ describe('Util tests', () => {
       expect(recipe.title).to.equal('Vegan Red Velvet Cupcakes');
       done();
     };
-
-    fetchRecipe(1, cb);
+    useModifiedFetch(fetchRecipe)(1, cb);
   });
 
   it('should fork a recipe', (done) => {
@@ -47,7 +83,6 @@ describe('Util tests', () => {
       expect(recipe.title).to.equal('Vegan Red Velvet Cupcakes');
       done();
     };
-
-    forkRecipe(originalRecipeID, userID, cb);
+    useModifiedFetch(forkRecipe)(originalRecipeID, userID, cb);
   });
 });
