@@ -30,7 +30,7 @@ describe('Recipe Controller results', () => {
     it('Should remove newURL to recipe images array', (done) => {
       app.request.body = {};
       app.request.body.id = '1';
-      app.request.body.newURL = 'TESTURL.COM';
+      app.request.body.newURL = 'TEST.COM';
      
       const cb = () => {
         // done callback fails if comparison fails. WUT
