@@ -7,4 +7,7 @@ module.exports = {
   toggleEdit() {
     return { type: types.TOGGLE_EDIT };
   },
+  forkRecipe(newRecipe) {
+    return { type: types.FORK_RECIPE, newRecipe };
+  },
 };

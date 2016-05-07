@@ -1,7 +1,13 @@
-const recipe = {
+import * as types from '../constants/ActionTypes.js';
+
+// =====
+// SEED DATA FOR TESTING
+// =====
+
+const initialState = {
   id: 1,
+  author: 1,
   parent: null,
-  author: 1337,
   title: 'Vegan Red Velvet Cupcakes',
   images: [
     'http://40aprons.com/wp-content/uploads/2013/10/red_velvet_cupcakes+2+of+81.jpg',
@@ -64,4 +70,24 @@ const recipe = {
   ],
 };
 
-export default recipe;
+
+export default function recipe(state = initialState, action) {
+  switch (action.type) {
+    case types.FORK_RECIPE:
+      return action.newRecipe;
+    case types.SET_RECIPE:
+      return action.recipe;
+
+    // case types.EDIT_RECIPE:
+    // return state;
+
+    // case types.TOGGLE_EDIT:
+    // return state;
+    
+    default:
+      return state;
+  }
+}
+
+
+// AJAX call to set RECIPE initial state

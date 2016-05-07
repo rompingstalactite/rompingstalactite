@@ -1,4 +1,7 @@
 import { createStore, combineReducers } from 'redux';
+import fakeRecipe from './fakeRecipe';
+
+import toggleEdit from '../../client/reducers/toggleEdit';
 
 // Make fake initialStates
 const initialStateRecipes = [
@@ -11,18 +14,26 @@ const initialStateProfile = {
   username: 'USERNAME',
 };
 
+const initialStateRecipe = fakeRecipe;
+
 // Make fake reducers
 const profile = (state = initialStateProfile) => state;
 const recipesOwned = (state = initialStateRecipes) => state;
 const recipesFollowed = (state = initialStateRecipes) => state;
 const recipesFeatured = (state = initialStateRecipes) => state;
+const recipesSearched = (state = initialStateRecipes) => state;
 const recipesTop = (state = initialStateRecipes) => state;
+const recipe = (state = initialStateRecipe) => state;
+
 const fakeRootReducer = combineReducers({
   profile,
   recipesOwned,
   recipesFollowed,
   recipesTop,
   recipesFeatured,
+  recipesSearched,
+  recipe,
+  toggleEdit,
 });
 
 export default createStore(fakeRootReducer, initialStateProfile);
