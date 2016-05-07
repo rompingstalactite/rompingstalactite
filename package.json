@@ -14,7 +14,7 @@
     "db-setup": "./server/db/create_db.sh",
     "db-setup-travis": "./server/db/create_db_travis.sh",
     "build-css": "node-sass --include-path scss client/scss/app.scss client/css/app.css",
-    "test": "karma start && mocha ./test/server --compilers js:babel-register",
+    "test": "babel-node server/server.js --presets es2015 & karma start && mocha ./test/server --compilers js:babel-register",
     "test:client": "karma start",
     "test:server": "mocha ./test/server --watch --compilers js:babel-register",
     "start": "webpack -p && babel-node server/server.js --presets es2015",
