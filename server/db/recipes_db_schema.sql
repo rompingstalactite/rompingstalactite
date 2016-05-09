@@ -36,6 +36,7 @@ CREATE TABLE "recipes" (
   "cook_steps" TEXT[] NOT NULL,
   "finish_steps" TEXT[] NOT NULL,
   "tags" TEXT[] NOT NULL,
+  "forks" integer[],
 	CONSTRAINT recipes_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
