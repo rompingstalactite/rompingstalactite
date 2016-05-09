@@ -48,14 +48,6 @@ const recipe = (state = initialStateRecipe, action) => {
     case types.SET_RECIPE:
       return action.recipe;
     case types.EDIT_RECIPE:
-      // Object.assign is not a function in travis
-      // const editState = {};
-      // for (let each in state) {
-      //   editState[each] = state[each];
-      // }
-      // for (let each in action.change) {
-      //   editState[each] = action.change[each];
-      // }
       return objectAssign(state, action.change);
     case types.ADD_FIELD:
       const addState = objectAssign(state);
