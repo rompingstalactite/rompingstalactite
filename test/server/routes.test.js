@@ -12,7 +12,7 @@ describe('User APIv1 tests', () => {
         .expect(200, done);
     });
 
-    it('responds with a 201 (Created) when a valid user is sent', (done) => {
+    it('responds with a 302 (Found/Redirect) when a valid user is sent', (done) => {
       const newUser = {
         username: `FakeUser ${Math.random()}`,
         createdAt: new Date(),
@@ -22,7 +22,7 @@ describe('User APIv1 tests', () => {
       request(app)
         .post('/api/v1/users')
         .send(newUser)
-        .expect(201, done);
+        .expect(302, done);
     });
 
     it('returns 403 forbidden on GET "/api/users"', (done) => {
