@@ -13,7 +13,6 @@ import recipe from './recipe.js';
 
 const rootReducer = combineReducers({
   profile,
-  recipe: editRecipe,
   recipesFeatured,
   recipesFollowed,
   recipesOwned,
