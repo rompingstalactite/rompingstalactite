@@ -1,7 +1,7 @@
 import passport from 'passport';
 import { Strategy } from 'passport-google-oauth20';
-const googleClientId = process.env.GOOGLE_CLIENT_ID || require('../keys/googleAuth').CLIENT_ID;
-const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET || require('../keys/googleAuth').CLIENT_SECRET;
+const googleClientID = process.env.GOOGLE_CLIENT_ID || require('../keys/googleAuth').googleKeys.CLIENT_ID;
+const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET || require('../keys/googleAuth').googleKeys.CLIENT_SECRET;
 
 export const checkAuth = (req, res, next) => {
   if (req.session.passport ? req.session.passport.user : false) {
@@ -29,11 +29,11 @@ passport.deserializeUser((user, done) => {
 });
 
 passport.use(new Strategy({
-  clientID: googleClientId,
+  clientID: googleClientID,
   clientSecret: googleClientSecret,
   callbackURL: '/auth/google/callback',
 }, (accessToken, refreshToken, profile, done) => {
-  return done();
+  return done(null, profile);
   // User
   //   .findOrCreate({
   //     where: {

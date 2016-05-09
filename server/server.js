@@ -12,7 +12,6 @@ import express from 'express';
 import middleware from './config/middleware.js';
 import routes from './config/routes.js';
 
-
 const app = express();
 middleware(app, express);
 routes(app, express);
