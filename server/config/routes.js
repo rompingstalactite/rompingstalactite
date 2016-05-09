@@ -2,8 +2,28 @@ import path from 'path';
 import uc from '../APIv1/users/userController.js';
 import rc from '../APIv1/recipes/recipeController.js';
 import sc from '../APIv1/search/searchController.js';
+import auth from './auth';
 
 module.exports = (app, express) => {
+
+  /**
+  * Auth
+  */
+
+  app.get('/auth/google', auth.handleGoogleLogin);
+
+  app.get('/auth/google/callback', auth.authenticateGoogleLogin,
+    function(req, res) {
+      res.redirect('/home');
+    }
+  );
+
+  app.get('/auth/logout', function(req, res) {
+    req.session.destroy(function() {
+      res.redirect('/');
+    });
+  });
+
   /**
    * Users
    */
