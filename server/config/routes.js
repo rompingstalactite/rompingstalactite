@@ -9,7 +9,6 @@ module.exports = (app, express) => {
   /**
   * Auth
   */
-
   app.get('/auth/google', handleGoogleLogin);
 
   app.get('/auth/google/callback', authenticateGoogleLogin,
@@ -23,11 +22,29 @@ module.exports = (app, express) => {
   /**
    * Users
    */
+
+  app.get('/api/v1/user/', (req, res) => {
+    if (req.session.passport && req.session.passport.user) {
+      const user = req.session.passport.user;
+      const userObj = {
+        id: user.id,
+        displayName: user.displayName,
+        name: user.name,
+        photos: user.photos,
+        gender: user.gender,
+        provider: user.provider,
+      };
+      res.json(userObj);
+      return;
+    }
+    res.json({});
+  });
+
   app.post('/api/v1/users/', checkAuth, uc.createUser);
   app.get('/api/v1/users/:user_id', uc.getOneUser);
 
   // TODO: getAllUsers should be protected for only admins, eventually.
-  app.get('/api/v1/users/', checkAuth, uc.getAllUsers);
+  app.get('/api/v1/users/', uc.getAllUsers);
 
   // app.get('/api/v1/users/me', /* auth, */ getCurrentUser);
   // app.put('/api/v1/users/:user_id', /* auth, */ updateUser);
