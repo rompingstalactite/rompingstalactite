@@ -8,16 +8,23 @@ export class CreateRecipe extends Component {
   }
   // actions.editRecipe can accept an object whose prop name we modify in state
   // or just the name of a prop in state we want to add an empty entry to.
-  updateRecipe(event) {
-    const inputChange = {};
-    inputChange[event.target.name] = event.target.value;
+  updateRecipe(event, list) {
+    let inputChange = {};
+    // if a list is defined, we must modify an array position, not just reassign props.
+    if (list) {
+      const index = event.target.dataset.index;
+      inputChange = list;
+      inputChange[index] = event.target.value;
+    } else {
+      inputChange[event.target.name] = event.target.value;
+    }
     return actions.editRecipe(inputChange);
   }
-
   addField(property) {
     // modify the recipe state to render a new field.
     return actions.addField(property);
   }
+
 
   render() {
     const { dispatch, recipe, } = this.props;
@@ -48,23 +55,24 @@ export class CreateRecipe extends Component {
               value={recipe.yield_unit}
               onChange={(e) => dispatch(this.updateRecipe(e))}
             /><br />
-            ingredients:
-            {recipe.ingredients.map((ingredient, i) => {
-              <input
-                type="text"
-                name="ingredients"
-                key={i}
-                value={ingredient}
-                onChange={(e) => dispatch(this.addField(e))}
-              >
-              <br />
-              </input>
-            })}
+
+
+            <h1> Ingredients: </h1>
+            <h3> {recipe.ingredients.map((i, key) => 
+              <input 
+              type="text" 
+              value={i}
+              data-index={key}
+              onChange={(e) => dispatch(this.updateRecipe(e, recipe.ingredients))}>
+              </input>)} 
+            </h3>
             <button onClick={(e) => {
               e.stopPropagation();
               e.preventDefault();
               dispatch(this.addField('ingredients'));
-            }}> add step </button> <br />
+            }}> add ingredient </button> <br />
+
+
             prep_time:
             <input
               type="text"
@@ -72,14 +80,24 @@ export class CreateRecipe extends Component {
               value={recipe.prep_time}
               onChange={(e) => dispatch(this.updateRecipe(e))}
             /><br />
-            prep_steps:
-            <input
-              type="text"
-              name="prep_steps"
-              value={recipe.prep_steps}
-              onChange={(e) => dispatch(this.updateRecipe(e))}
-            /><br />
-            <button > add step </button> <br />
+
+            <h1> Prep Steps: </h1>
+            <h3> {recipe.prep_steps.map((i, key) => 
+              <input 
+              type="text" 
+              value={i}
+              data-index={key}
+              onChange={(e) => dispatch(this.updateRecipe(e, recipe.prep_steps))}>
+              </input>)} 
+            </h3>
+            <button onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+              dispatch(this.addField('prep_steps'));
+            }}> add Step </button> <br />
+
+
+
             cook_time:
             <input
               type="text"
@@ -87,29 +105,52 @@ export class CreateRecipe extends Component {
               value={recipe.cook_steps}
               onChange={(e) => dispatch(this.updateRecipe(e))}
             /><br />
-            cook_steps:
-            <input
-              type="text"
-              name="cook_steps"
-              value={recipe.cook_steps}
-              onChange={(e) => dispatch(this.updateRecipe(e))}
-            /><br />
-            <button > add step </button> <br />
-            finish_steps:
-            <input
-              type="text"
-              name="finish_steps"
-              value={recipe.finish_steps}
-              onChange={(e) => dispatch(this.updateRecipe(e))}
-            /><br />
-            <button > add step </button> <br />
-            tags:
-            <input
-              type="text"
-              name="tags"
-              value={recipe.tags}
-              onChange={(e) => dispatch(this.updateRecipe(e))}
-            /><br />
+
+            <h1> Cook Steps: </h1>
+            <h3> {recipe.cook_steps.map((i, key) => 
+              <input 
+              type="text" 
+              value={i}
+              data-index={key}
+              onChange={(e) => dispatch(this.updateRecipe(e, recipe.cook_steps))}>
+              </input>)} 
+            </h3>
+            <button onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+              dispatch(this.addField('cook_steps'));
+            }}> add Step </button> <br />
+
+
+            <h1> Finish Steps: </h1>
+            <h3> {recipe.finish_steps.map((i, key) => 
+              <input 
+              type="text" 
+              value={i}
+              data-index={key}
+              onChange={(e) => dispatch(this.updateRecipe(e, recipe.finish_steps))}>
+              </input>)} 
+            </h3>
+            <button onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+              dispatch(this.addField('finish_steps'));
+            }}> add Step </button> <br />
+
+            <h1> Tags: </h1>
+            <h3> {recipe.tags.map((i, key) => 
+              <input 
+              type="text" 
+              value={i}
+              data-index={key}
+              onChange={(e) => dispatch(this.updateRecipe(e, recipe.tags))}>
+              </input>)} 
+            </h3>
+            <button onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+              dispatch(this.addField('tags'));
+            }}> add Step </button> <br />
             <button> Submit </button> <br />
 
           </form>
@@ -127,3 +168,15 @@ export default connect(mapStateToProps)(CreateRecipe);
 
 // swap out the div on line 9 once state is added to redux store
 // <div contentEditable={props.editable}>
+// <div>
+//   <p> {ingredient} </p>
+//   <input
+//     type="text"
+//     name="ingredients"
+//     key={i}
+//     value={ingredient}
+//     onChange={(e) => dispatch(this.addField(e))}
+//   />
+// </div>
+
+// <h4> tags: {recipe.tags.map(t => <a> {t} </a>)} </h4>
