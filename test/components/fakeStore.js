@@ -5,12 +5,6 @@ import * as types from '../../client/constants/ActionTypes.js';
 import toggleEdit from '../../client/reducers/toggleEdit';
 
 // Make fake initialStates
-const initialRecipe = {
-  title: 'Pizza bagels!',
-  yield: 12,
-  cook_steps: ['cook em up!', 'eat em up!'],
-};
-
 const initialStateRecipes = [
   { name: 'Followed Recipe 1' },
   { name: 'Followed Recipe 2' },
