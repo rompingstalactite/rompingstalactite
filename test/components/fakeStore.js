@@ -23,6 +23,17 @@ const initialStateProfile = {
 
 const initialStateRecipe = fakeRecipe;
 
+const objectAssign = (...objects) => {
+  const newObj = {};
+  for (let each in objects) {
+    let obj = objects[each];
+    for (let prop in obj) {
+      newObj[prop] = obj[prop];
+    }
+  }
+  return newObj;
+}
+
 // Make fake reducers
 const profile = (state = initialStateProfile) => state;
 const recipesOwned = (state = initialStateRecipes) => state;
@@ -37,10 +48,17 @@ const recipe = (state = initialStateRecipe, action) => {
     case types.SET_RECIPE:
       return action.recipe;
     case types.EDIT_RECIPE:
-      const editState = Object.assign({}, state, action.change);
-      return editState;
+      // Object.assign is not a function in travis
+      // const editState = {};
+      // for (let each in state) {
+      //   editState[each] = state[each];
+      // }
+      // for (let each in action.change) {
+      //   editState[each] = action.change[each];
+      // }
+      return objectAssign(state, action.change);
     case types.ADD_FIELD:
-      const addState = Object.assign({}, state);
+      const addState = objectAssign(state);
       addState[action.change].push('');
       return addState;
     default:
