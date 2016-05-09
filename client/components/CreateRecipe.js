@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import actions from '../actions/index.js';
 import { createRecipe } from '../utils/utils.js';
 
-export class CreateRecipe extends Component {
+class CreateRecipe extends Component {
   constructor(props) {
     super(props);
   }
@@ -41,18 +41,21 @@ export class CreateRecipe extends Component {
 
             <h1> Ingredients: </h1>
             <h3> {recipe.ingredients.map((i, key) =>
-              <input 
-              type="text" 
-              value={i}
-              data-index={key}
-              onChange={(e) => updateRecipe(e, recipe.ingredients)}>
-              </input>)} 
+              <input
+                type="text"
+                value={i}
+                data-index={key}
+                onChange={(e) => updateRecipe(e, recipe.ingredients)}
+              >
+              </input>)}
             </h3>
-            <button onClick={(e) => {
-              e.stopPropagation();
-              e.preventDefault();
-              dispatch(this.addField('ingredients'));
-            }}> add ingredient </button> <br />
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                addField('ingredients');
+              }}
+            > add ingredient </button> <br />
 
 
             prep_time:
@@ -64,20 +67,22 @@ export class CreateRecipe extends Component {
             /><br />
 
             <h1> Prep Steps: </h1>
-            <h3> {recipe.prep_steps.map((i, key) => 
-              <input 
-              type="text" 
-              value={i}
-              data-index={key}
-              onChange={(e) => updateRecipe(e, recipe.prep_steps)}>
-              </input>)} 
+            <h3> {recipe.prep_steps.map((i, key) =>
+              <input
+                type="text"
+                value={i}
+                data-index={key}
+                onChange={(e) => updateRecipe(e, recipe.prep_steps)}
+              >
+              </input>)}
             </h3>
-            <button onClick={(e) => {
-              e.stopPropagation();
-              e.preventDefault();
-              dispatch(this.addField('prep_steps'));
-            }}> add Step </button> <br />
-
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                addField('prep_steps');
+              }}
+            > add Step </button> <br />
 
 
             cook_time:
@@ -89,50 +94,61 @@ export class CreateRecipe extends Component {
             /><br />
 
             <h1> Cook Steps: </h1>
-            <h3> {recipe.cook_steps.map((i, key) => 
-              <input 
-              type="text" 
-              value={i}
-              data-index={key}
-              onChange={(e) => updateRecipe(e, recipe.cook_steps)}>
-              </input>)} 
+            <h3> {recipe.cook_steps.map((i, key) =>
+              <input
+                type="text"
+                value={i}
+                data-index={key}
+                onChange={(e) => updateRecipe(e, recipe.cook_steps)}
+              >
+              </input>)}
             </h3>
-            <button onClick={(e) => {
-              e.stopPropagation();
-              e.preventDefault();
-              dispatch(this.addField('cook_steps'));
-            }}> add Step </button> <br />
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                addField('cook_steps');
+              }}
+            > add Step </button> <br />
 
 
             <h1> Finish Steps: </h1>
-            <h3> {recipe.finish_steps.map((i, key) => 
-              <input 
-              type="text" 
-              value={i}
-              data-index={key}
-              onChange={(e) => updateRecipe(e, recipe.finish_steps)}>
-              </input>)} 
+            <h3> {recipe.finish_steps.map((i, key) =>
+              <input
+                type="text"
+                value={i}
+                data-index={key}
+                onChange={
+                  (e) => updateRecipe(e, recipe.finish_steps)}
+              >
+              </input>
+            )}
             </h3>
-            <button onClick={(e) => {
-              e.stopPropagation();
-              e.preventDefault();
-              dispatch(this.addField('finish_steps'));
-            }}> add Step </button> <br />
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                addField('finish_steps');
+              }}
+            > add Step </button> <br />
 
             <h1> Tags: </h1>
-            <h3> {recipe.tags.map((i, key) => 
-              <input 
-              type="text" 
-              value={i}
-              data-index={key}
-              onChange={(e) => updateRecipe(e, recipe.tags)}>
-              </input>)} 
+            <h3> {recipe.tags.map((i, key) =>
+              <input
+                type="text"
+                value={i}
+                data-index={key}
+                onChange={(e) => updateRecipe(e, recipe.tags)}
+              >
+              </input>)}
             </h3>
-            <button onClick={(e) => {
-              e.stopPropagation();
-              e.preventDefault();
-              addField('tags');
-            }}> add Step </button> <br />
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                addField('tags');
+              }}
+            > add Step </button> <br />
 
             <button onClick={() => createRecipe(recipe, console.log)}> Submit </button>
 
