@@ -7,28 +7,9 @@ export class CreateRecipe extends Component {
   constructor(props) {
     super(props);
   }
-  // actions.editRecipe can accept an object whose prop name we modify in state
-  // or just the name of a prop in state we want to add an empty entry to.
-  updateRecipe(event, list) {
-    let inputChange = {};
-    // if a list is defined, we must modify an array position, not just reassign props.
-    if (list) {
-      const index = event.target.dataset.index;
-      inputChange = list;
-      inputChange[index] = event.target.value;
-    } else {
-      inputChange[event.target.name] = event.target.value;
-    }
-    return actions.editRecipe(inputChange);
-  }
-  addField(property) {
-    // modify the recipe state to render a new field.
-    return actions.addField(property);
-  }
-
 
   render() {
-    const { dispatch, recipe, } = this.props;
+    const { recipe, addField, updateRecipe } = this.props;
     return (
       <div>
         <div className="recipe-content">
@@ -38,7 +19,7 @@ export class CreateRecipe extends Component {
               type="text"
               name="title"
               value={recipe.title}
-              onChange={(e) => dispatch(this.updateRecipe(e))}
+              onChange={(e) => updateRecipe(e)}
             /><br />
             Images:
             <br />
@@ -47,24 +28,24 @@ export class CreateRecipe extends Component {
               type="text"
               name="yield"
               value={recipe.yield}
-              onChange={(e) => dispatch(this.updateRecipe(e))}
+              onChange={(e) => updateRecipe(e)}
             /><br />
             yield_unit:
             <input
               type="text"
               name="yield_unit"
               value={recipe.yield_unit}
-              onChange={(e) => dispatch(this.updateRecipe(e))}
+              onChange={(e) => updateRecipe(e)}
             /><br />
 
 
             <h1> Ingredients: </h1>
-            <h3> {recipe.ingredients.map((i, key) => 
+            <h3> {recipe.ingredients.map((i, key) =>
               <input 
               type="text" 
               value={i}
               data-index={key}
-              onChange={(e) => dispatch(this.updateRecipe(e, recipe.ingredients))}>
+              onChange={(e) => updateRecipe(e, recipe.ingredients)}>
               </input>)} 
             </h3>
             <button onClick={(e) => {
@@ -79,7 +60,7 @@ export class CreateRecipe extends Component {
               type="text"
               name="prep_time"
               value={recipe.prep_time}
-              onChange={(e) => dispatch(this.updateRecipe(e))}
+              onChange={(e) => updateRecipe(e)}
             /><br />
 
             <h1> Prep Steps: </h1>
@@ -88,7 +69,7 @@ export class CreateRecipe extends Component {
               type="text" 
               value={i}
               data-index={key}
-              onChange={(e) => dispatch(this.updateRecipe(e, recipe.prep_steps))}>
+              onChange={(e) => updateRecipe(e, recipe.prep_steps)}>
               </input>)} 
             </h3>
             <button onClick={(e) => {
@@ -104,7 +85,7 @@ export class CreateRecipe extends Component {
               type="text"
               name="cook_time"
               value={recipe.cook_steps}
-              onChange={(e) => dispatch(this.updateRecipe(e))}
+              onChange={(e) => updateRecipe(e)}
             /><br />
 
             <h1> Cook Steps: </h1>
@@ -113,7 +94,7 @@ export class CreateRecipe extends Component {
               type="text" 
               value={i}
               data-index={key}
-              onChange={(e) => dispatch(this.updateRecipe(e, recipe.cook_steps))}>
+              onChange={(e) => updateRecipe(e, recipe.cook_steps)}>
               </input>)} 
             </h3>
             <button onClick={(e) => {
@@ -129,7 +110,7 @@ export class CreateRecipe extends Component {
               type="text" 
               value={i}
               data-index={key}
-              onChange={(e) => dispatch(this.updateRecipe(e, recipe.finish_steps))}>
+              onChange={(e) => updateRecipe(e, recipe.finish_steps)}>
               </input>)} 
             </h3>
             <button onClick={(e) => {
@@ -144,15 +125,15 @@ export class CreateRecipe extends Component {
               type="text" 
               value={i}
               data-index={key}
-              onChange={(e) => dispatch(this.updateRecipe(e, recipe.tags))}>
+              onChange={(e) => updateRecipe(e, recipe.tags)}>
               </input>)} 
             </h3>
             <button onClick={(e) => {
               e.stopPropagation();
               e.preventDefault();
-              dispatch(this.addField('tags'));
+              addField('tags');
             }}> add Step </button> <br />
-            
+
             <button onClick={() => createRecipe(recipe, console.log)}> Submit </button>
 
           </form>
@@ -166,4 +147,28 @@ const mapStateToProps = (state) => {
   return { recipe: state.recipe };
 };
 
-export default connect(mapStateToProps)(CreateRecipe);
+const mapDispatchToProps = (dispatch) => {
+  const updateRecipe = (event, list) => {
+    let inputChange = {};
+    // if a list is defined, we must modify an array position, not just reassign props.
+    if (list) {
+      const index = event.target.dataset.index;
+      inputChange = list;
+      inputChange[index] = event.target.value;
+    } else {
+      inputChange[event.target.name] = event.target.value;
+    }
+    dispatch(actions.editRecipe(inputChange));
+  };
+  const addField = (property) => {
+    // modify the recipe state to render a new field.
+    dispatch(actions.addField(property));
+  };
+
+  return {
+    updateRecipe,
+    addField,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateRecipe);
