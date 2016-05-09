@@ -77,15 +77,20 @@ export default function recipe(state = initialState, action) {
       return action.newRecipe;
     case types.SET_RECIPE:
       return action.recipe;
-
+    case types.EDIT_RECIPE:
+      const editState = Object.assign({}, state, action.change);
+      return editState;
+    case types.ADD_FIELD:
+      const addState = Object.assign({}, state);
+      addState[action.change].push('');
+      return addState;
+    default:
+      return state;
     // case types.EDIT_RECIPE:
     // return state;
 
     // case types.TOGGLE_EDIT:
     // return state;
-    
-    default:
-      return state;
   }
 }
 

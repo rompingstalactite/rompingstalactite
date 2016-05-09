@@ -4,6 +4,12 @@ import fakeRecipe from './fakeRecipe';
 import toggleEdit from '../../client/reducers/toggleEdit';
 
 // Make fake initialStates
+const initialRecipe = {
+  title: 'Pizza bagels!',
+  yield: 12,
+  cook_steps: ['cook em up!', 'eat em up!'],
+};
+
 const initialStateRecipes = [
   { name: 'Followed Recipe 1' },
   { name: 'Followed Recipe 2' },
@@ -24,7 +30,14 @@ const recipesFeatured = (state = initialStateRecipes) => state;
 const recipesSearched = (state = initialStateRecipes) => state;
 const recipesTop = (state = initialStateRecipes) => state;
 const recipe = (state = initialStateRecipe) => state;
-
+const editRecipe = (state = initialRecipe, action) => {
+  switch (action.type) {
+    case 'EDIT_RECIPE':
+      return Object.assign({}, state, action.change);
+    default:
+      return state;
+  }
+};
 const fakeRootReducer = combineReducers({
   profile,
   recipesOwned,
@@ -34,6 +47,7 @@ const fakeRootReducer = combineReducers({
   recipesSearched,
   recipe,
   toggleEdit,
+  recipe: editRecipe,
 });
 
-export default createStore(fakeRootReducer, initialStateProfile);
+export default createStore(fakeRootReducer);

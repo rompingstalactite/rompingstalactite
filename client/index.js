@@ -14,6 +14,7 @@ import Profile from './components/Profile';
 import Dashboard from './components/Dashboard';
 import SearchResults from './components/SearchResults';
 import ImageUpload from './components/ImageUpload.js';
+import CreateRecipe from './components/CreateRecipe';
 
 import rootReducer from './reducers';
 
@@ -37,6 +38,7 @@ const render = function () {
             <Route path="/profile" component={Profile} />
             <Route path="/recipe" component={MainRecipe} />
             <Route path="/dashboard" component={Dashboard} />
+            <Route path="/create" component={CreateRecipe} />
             <Route path="/search" component={SearchResults} />
             <Route path="/*" component={Dashboard} />
           </Route>
