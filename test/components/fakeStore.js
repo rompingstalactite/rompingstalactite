@@ -1,5 +1,6 @@
 import { createStore, combineReducers } from 'redux';
 import fakeRecipe from './fakeRecipe';
+import * as types from '../../client/constants/ActionTypes.js';
 
 import toggleEdit from '../../client/reducers/toggleEdit';
 
@@ -16,6 +17,17 @@ const initialStateProfile = {
 
 const initialStateRecipe = fakeRecipe;
 
+const objectAssign = (...objects) => {
+  const newObj = {};
+  for (let each in objects) {
+    let obj = objects[each];
+    for (let prop in obj) {
+      newObj[prop] = obj[prop];
+    }
+  }
+  return newObj;
+}
+
 // Make fake reducers
 const profile = (state = initialStateProfile) => state;
 const recipesOwned = (state = initialStateRecipes) => state;
@@ -23,7 +35,22 @@ const recipesFollowed = (state = initialStateRecipes) => state;
 const recipesFeatured = (state = initialStateRecipes) => state;
 const recipesSearched = (state = initialStateRecipes) => state;
 const recipesTop = (state = initialStateRecipes) => state;
-const recipe = (state = initialStateRecipe) => state;
+const recipe = (state = initialStateRecipe, action) => {
+  switch (action.type) {
+    case types.FORK_RECIPE:
+      return action.newRecipe;
+    case types.SET_RECIPE:
+      return action.recipe;
+    case types.EDIT_RECIPE:
+      return objectAssign(state, action.change);
+    case types.ADD_FIELD:
+      const addState = objectAssign(state);
+      addState[action.change].push('');
+      return addState;
+    default:
+      return state;
+  }
+};
 
 const fakeRootReducer = combineReducers({
   profile,
@@ -36,4 +63,4 @@ const fakeRootReducer = combineReducers({
   toggleEdit,
 });
 
-export default createStore(fakeRootReducer, initialStateProfile);
+export default createStore(fakeRootReducer);

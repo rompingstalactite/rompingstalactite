@@ -10,4 +10,10 @@ module.exports = {
   forkRecipe(newRecipe) {
     return { type: types.FORK_RECIPE, newRecipe };
   },
+  editRecipe(recipeChange) {
+    return { type: types.EDIT_RECIPE, change: recipeChange };
+  },
+  addField(fieldChange) {
+    return { type: types.ADD_FIELD, change: fieldChange };
+  },
 };

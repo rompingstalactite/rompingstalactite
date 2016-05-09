@@ -12,7 +12,8 @@ class Nav extends Component {
         <Link to="/">Index</Link>{' '}
         <Link to="/profile">Profile</Link>{' '}
         <Link to="/recipe">Recipe</Link>{' '}
-        <Link to="/search">Search</Link>
+        <Link to="/search">Search</Link>{' '}
+        <Link to="/create">Create</Link>
       </div>
     );
   }
