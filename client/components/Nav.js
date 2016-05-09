@@ -7,8 +7,9 @@ class Nav extends Component {
       <div>
         <h1>Navigation</h1>
         <input placeholder="Search for recipes"></input>
-        <a href="/signin">Sign in</a>{' '}
-        <a href="/signout">Sign out</a>{' '}
+        <a href="/auth/google">Sign in with Google</a>{' '}
+        {/*<a href="/signin">Sign in with Facebook</a>{' '}*/}
+        <a href="/auth/signout">Sign out</a>{' '}
         <Link to="/">Index</Link>{' '}
         <Link to="/profile">Profile</Link>{' '}
         <Link to="/recipe">Recipe</Link>{' '}
