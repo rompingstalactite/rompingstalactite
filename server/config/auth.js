@@ -1,7 +1,11 @@
 import passport from 'passport';
-import { Strategy } from 'passport-google-oauth20';
+import { Strategy as GoogleStrategy }  from 'passport-google-oauth20';
 const googleClientID = process.env.GOOGLE_CLIENT_ID || require('../keys/googleAuth').googleKeys.CLIENT_ID;
 const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET || require('../keys/googleAuth').googleKeys.CLIENT_SECRET;
+import { postgresConnection as cn } from './helpers';
+const pgp = require('pg-promise')();
+
+const db = pgp(cn);
 
 export const checkAuth = (req, res, next) => {
   if (req.session.passport ? req.session.passport.user : false) {
@@ -28,27 +32,49 @@ passport.deserializeUser((user, done) => {
   done(null, user);
 });
 
-passport.use(new Strategy({
+// Find a user with a given Google user ID
+const findOne = (googleID, callback) => {
+  db.one({
+    name: 'find-user',
+    text: 'select * from users where google_id = $1',
+    values: [googleID],
+  })
+    .then(callback)
+    .catch(callback);
+};
+
+// Create a user with attributes inside the userObj, find a user if user already exists
+const findOrCreateUser = (userObj, callback) => {
+  const displayName = `${userObj.name.givenName} ${userObj.name.familyName}`;
+  const queryObj = {
+    name: 'insert-user',
+    text: 'insert into users(google_id, display_name) values ($1, $2) returning *',
+    values: [userObj.id, displayName],
+  };
+
+  db.one(queryObj)
+    .then(callback)
+    .catch((error) => {
+      if (error.code === '23505' || error.code === '23502') {
+        findOne(userObj.googleID, callback);
+      } else {
+        callback(new Error(`Error code: ${error.code}, Error message: ${error.detail}`));
+      }
+    });
+};
+
+const handleUserData = (error, user) => {
+  if (error) {
+    return error;
+  }
+  return user;
+};
+
+passport.use(new GoogleStrategy({
   clientID: googleClientID,
   clientSecret: googleClientSecret,
   callbackURL: '/auth/google/callback',
 }, (accessToken, refreshToken, profile, done) => {
+  findOrCreateUser(profile, handleUserData);
   return done(null, profile);
-  // User
-  //   .findOrCreate({
-  //     where: {
-  //       googleUserId: profile.id
-  //     },
-  //     defaults: {
-  //       firstName: profile.name.givenName,
-  //       lastName: profile.name.familyName
-  //     }
-  //   })
-  //   .spread(function(user, created) {
-  //     console.log('User data returned from User.findOrCreate: ', user.get({
-  //       plain: true
-  //     }));
-  //     console.log('New User Created? (t/f): ', created);
-  //   });
-  // return done(null, profile);
 }));
