@@ -6,15 +6,10 @@ import fakeStore from './fakeStore';
 
 import CreateRecipe from '../../client/components/CreateRecipe.js';
 
-const fakeProfile = {
-  avatar: 'http://www.carderator.com/assets/avatar_placeholder_small.png',
-  username: 'USERNAME',
-};
-
 describe('<CreateRecipe />', () => {
   let wrapper;
 
-  beforeEach('render Profile', () => {
+  before('render CreateRecipe', () => {
     wrapper = mount(
       <Provider store={fakeStore}>
         <CreateRecipe />

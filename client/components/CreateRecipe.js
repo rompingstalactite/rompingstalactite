@@ -168,18 +168,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(CreateRecipe);
-
-// swap out the div on line 9 once state is added to redux store
-// <div contentEditable={props.editable}>
-// <div>
-//   <p> {ingredient} </p>
-//   <input
-//     type="text"
-//     name="ingredients"
-//     key={i}
-//     value={ingredient}
-//     onChange={(e) => dispatch(this.addField(e))}
-//   />
-// </div>
-
-// <h4> tags: {recipe.tags.map(t => <a> {t} </a>)} </h4>
