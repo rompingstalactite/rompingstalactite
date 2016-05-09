@@ -45,11 +45,11 @@ const findOne = (googleID, callback) => {
 
 // Create a user with attributes inside the userObj, find a user if user already exists
 const findOrCreateUser = (userObj, callback) => {
-  const displayName = `${userObj.name.givenName} ${userObj.name.familyName}`;
+  const avatar = userObj.photos.length > 0 ? userObj.photos[0].value.slice(0, userObj.photos[0].value.length - 6) : '';
   const queryObj = {
     name: 'insert-user',
-    text: 'insert into users(google_id, display_name) values ($1, $2) returning *',
-    values: [userObj.id, displayName],
+    text: 'insert into users(google_id, display_name, avatar) values ($1, $2, $3) returning *',
+    values: [userObj.id, userObj.displayName, avatar],
   };
 
   db.one(queryObj)
