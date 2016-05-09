@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import actions from '../actions/index.js';
 import { createRecipe } from '../utils/utils.js';
-import $ from 'jquery';
 
 export class CreateRecipe extends Component {
   constructor(props) {
