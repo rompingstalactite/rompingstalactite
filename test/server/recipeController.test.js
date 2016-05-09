@@ -45,6 +45,4 @@ describe('Recipe Controller results', () => {
     });
 
   });
-
-
 });
