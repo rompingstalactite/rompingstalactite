@@ -4,7 +4,7 @@ import RecipeEntry from '../../client/components/RecipeEntry.js';
 
 const RecipeContainer = (props) => (
   <div className="recipe-container">
-    <h1>{props.type}</h1>
+    <h2>{props.type}</h2>
     {props.recipes.map((recipe) => <RecipeEntry recipe={recipe} />)}
   </div>
 );
