@@ -7,11 +7,6 @@ import fakeStore from './fakeStore';
 import Profile from '../../client/components/Profile.js';
 import RecipeContainer from '../../client/components/RecipeContainer.js';
 
-const fakeProfile = {
-  avatar: 'http://www.carderator.com/assets/avatar_placeholder_small.png',
-  username: 'USERNAME',
-};
-
 describe('<Profile />', () => {
   let wrapper;
 
@@ -27,11 +22,11 @@ describe('<Profile />', () => {
   });
 
   it('should display the correct username', () => {
-    expect(wrapper.find('.profile-username').text()).to.equal(fakeStore.getState().profile.username);
+    expect(wrapper.find('.profile-username').text()).to.equal(fakeStore.getState().user.displayName);
   });
 
   it('should display the correct avatar', () => {
-    expect(wrapper.find('.profile-avatar').html()).to.contain(fakeStore.getState().profile.avatar);
+    expect(wrapper.find('.profile-avatar').html()).to.contain(fakeStore.getState().user.photos[0].value);
   });
 
   it('should render two recipe containers', () => {
