@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import actions from '../actions/index.js';
 import { createRecipe } from '../utils/utils.js';
+import '../scss/_createRecipe.scss';
 
 class CreateRecipe extends Component {
   constructor(props) {
@@ -12,9 +13,9 @@ class CreateRecipe extends Component {
     const { recipe, addField, updateRecipe } = this.props;
     return (
       <div>
-        <div className="recipe-content">
+        <div className="edit-recipe-content">
           <form>
-            # of spots in ingredients: {recipe.ingredients.length}
+            <h3> Recipe Title: </h3>
             <input
               type="text"
               name="title"
@@ -39,7 +40,7 @@ class CreateRecipe extends Component {
             /><br />
 
 
-            <h1> Ingredients: </h1>
+            <h3> Ingredients: </h3>
             <h3> {recipe.ingredients.map((i, key) =>
               <input
                 type="text"
@@ -66,7 +67,7 @@ class CreateRecipe extends Component {
               onChange={(e) => updateRecipe(e)}
             /><br />
 
-            <h1> Prep Steps: </h1>
+            <h3> Prep Steps: </h3>
             <h3> {recipe.prep_steps.map((i, key) =>
               <input
                 type="text"
@@ -93,7 +94,7 @@ class CreateRecipe extends Component {
               onChange={(e) => updateRecipe(e)}
             /><br />
 
-            <h1> Cook Steps: </h1>
+            <h3> Cook Steps: </h3>
             <h3> {recipe.cook_steps.map((i, key) =>
               <input
                 type="text"
@@ -112,7 +113,7 @@ class CreateRecipe extends Component {
             > add Step </button> <br />
 
 
-            <h1> Finish Steps: </h1>
+            <h3> Finish Steps: </h3>
             <h3> {recipe.finish_steps.map((i, key) =>
               <input
                 type="text"
@@ -132,7 +133,7 @@ class CreateRecipe extends Component {
               }}
             > add Step </button> <br />
 
-            <h1> Tags: </h1>
+            <h3> Tags: </h3>
             <h3> {recipe.tags.map((i, key) =>
               <input
                 type="text"

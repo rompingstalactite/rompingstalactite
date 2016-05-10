@@ -7,9 +7,19 @@
 // =====
 
 const initialState = [
-  { name: 'Featured Recipe 1' },
-  { name: 'Featured Recipe 2' },
-  { name: 'Featured Recipe 3' }];
+  {
+    name: 'Red Velvet Cupcakes',
+    image: 'http://40aprons.com/wp-content/uploads/2013/10/red_velvet_cupcakes+2+of+81.jpg',
+  },
+  {
+    name: 'Best Steak Marinade in Existence',
+    image: 'http://images.media-allrecipes.com/userphotos/250x250/225844.jpg',
+  },
+  {
+    name: 'Couscous Primavera',
+    image: 'http://images.media-allrecipes.com/userphotos/720x405/3554842.jpg',
+  },
+];
 
 export default function recipesFeatured(state = initialState /*, action*/) {
   // switch (action.type) {

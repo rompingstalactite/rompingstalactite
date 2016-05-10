@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
+import '../scss/_nav.scss';
 
 class Nav extends Component {
   render() {
-    const { user } = this.props;
+    const { user, avatar} = this.props;
     let signInOut;
     if (!user.id) {
       signInOut = <a href="/auth/google">Sign in with Google</a>;
@@ -13,13 +14,19 @@ class Nav extends Component {
     }
     return (
       <div>
-        <h1>Navigation</h1>
-        <input placeholder="Search for recipes"></input>
-        {signInOut}{' '}
-        <Link to="/profile">Profile</Link>{' '}
-        <Link to="/recipe">Recipe</Link>{' '}
-        <Link to="/search">Search</Link>{' '}
-        <Link to="/create">Create</Link>
+        <div className="nav-bar">
+          <h3> GitCooking </h3>
+          <input placeholder="Search for recipes"></input>
+          {signInOut}
+          <Link to="/">Index</Link>
+          <Link to="/recipe">Recipe</Link>
+          <Link to="/search">Search</Link>
+          <Link to="/create">Create</Link>
+          <Link to="/profile">
+            <img className="avatar" src={avatar} alt="avatar">
+            </img>
+          </Link>
+        </div>
       </div>
     );
   }
@@ -28,6 +35,7 @@ class Nav extends Component {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
+    avatar: state.user.photos[0].value,
   };
 };
 

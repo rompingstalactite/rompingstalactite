@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import actions from '../actions/index.js';
 import { forkRecipe } from '../utils/utils';
+import '../scss/_mainRecipe.scss';
 
 class MainRecipe extends Component {
   constructor(props) {
@@ -12,25 +13,35 @@ class MainRecipe extends Component {
     const { toggleEdit, handleToggleEdit, recipe, onForkClick } = this.props;
     return (
       <div>
-        <button className="btn-toggle-edit" onClick={ handleToggleEdit }> Toggle Edit </button>
-
-        {/* hardcode userID to 1337 until authentication is implemented */}
-        <button className="btn-fork" onClick={ onForkClick.bind(null, recipe.id, 1337) }>Fork</button>
         <div className="recipe-content" contentEditable={toggleEdit}>
 
           <div className="header">
             <h2 className="recipe-title">{recipe.title}</h2>
-            {recipe.images.map((image) => <img src={image} />)}
+
+            <button className="btn-toggle-edit" onClick={ handleToggleEdit }> Toggle Edit </button>
+            <button className="btn-fork" onClick={ onForkClick.bind(null, recipe.id, 1337) }>Fork</button>
+            <div className="header-images">
+              <div className="recipe-images">
+                {recipe.images.map((image) => <img src={image} />)}
+              </div>
+              <div className="fork-history">
+                <p> - v.1.3 forked May 1st 2016</p>
+                <p> - v.1.2 forked March 12th 2016</p>
+                <p> - v.1.1 forked December 19th 2015</p>
+                <p> - v.1.0 forked December 5th 2015</p>
+              </div>
+            </div>
             <h4>Servings: {recipe.yield + ' ' + recipe.yield_unit} </h4>
             <h4> tags: {recipe.tags.map(t => <a> {t} </a>)} </h4>
           </div>
 
           <div className="instructions">
-
-            <ul className="ingredients">
-            <h4> Ingredients </h4>
-            {recipe.ingredients.map((i) => <li> {i} </li>)}
-            </ul>
+            <div className="ingredients">
+              <ul>
+                <h4> Ingredients </h4>
+                {recipe.ingredients.map((i) => <li> {i} </li>)}
+              </ul>
+            </div>
 
             <div className="prep">
               <h4> Prep | Time: {recipe.prep_time} </h4>
