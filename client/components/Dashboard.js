@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import RecipeContainer from '../../client/components/RecipeContainer.js';
+import '../scss/_dashboard.scss';
 
 const Dashboard = (props) => (
   <div className="dashboard">

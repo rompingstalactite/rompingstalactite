@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import actions from '../actions/index.js';
 import { createRecipe } from '../utils/utils.js';
+import '../scss/_createRecipe.scss';
 
 class CreateRecipe extends Component {
   constructor(props) {
@@ -12,9 +13,8 @@ class CreateRecipe extends Component {
     const { recipe, addField, updateRecipe } = this.props;
     return (
       <div>
-        <div className="recipe-content">
+        <div className="edit-recipe-content">
           <form>
-            # of spots in ingredients: {recipe.ingredients.length}
             <input
               type="text"
               name="title"
