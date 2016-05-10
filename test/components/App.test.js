@@ -18,7 +18,7 @@ describe('<App />', () => {
     expect(wrapper.find(Nav)).to.have.length(1);
   });
 
-  it('has an action called toggleEdit', () => {
+  it('has an action called setUser', () => {
     expect(actions.setUser).to.not.be.undefined;
     expect(actions.setUser().type).to.equal('SET_USER');
   });
