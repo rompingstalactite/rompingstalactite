@@ -9,6 +9,7 @@ import recipesSearched from './recipesSearched.js';
 import recipesTop from './recipesTop.js';
 import toggleEdit from './toggleEdit.js';
 import recipe from './recipe.js';
+import user from './user.js';
 
 const rootReducer = combineReducers({
   profile,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   recipesTop,
   toggleEdit,
   recipe,
+  user,
   routing: routerReducer,
 });
 

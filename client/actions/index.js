@@ -16,4 +16,7 @@ module.exports = {
   addField(fieldChange) {
     return { type: types.ADD_FIELD, change: fieldChange };
   },
+  setUser(user) {
+    return { type: types.SET_USER, user };
+  },
 };
