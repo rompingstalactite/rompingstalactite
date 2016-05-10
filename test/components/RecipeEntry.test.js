@@ -4,7 +4,7 @@ import { mount } from 'enzyme';
 
 import RecipeEntry from '../../client/components/RecipeEntry.js';
 
-const recipe = { name: 'Recipe Name' };
+const recipe = { title: 'Recipe Title' };
 
 describe('<RecipeEntry />', () => {
   it('should render without problems', () => {
@@ -14,6 +14,6 @@ describe('<RecipeEntry />', () => {
 
   it('should display the recipe name', () => {
     const wrapper = mount(<RecipeEntry recipe={recipe} />);
-    expect(wrapper.find('.recipe-name').text()).to.equal(recipe.name);
+    expect(wrapper.find('.recipe-title').text()).to.equal(recipe.title);
   });
 });

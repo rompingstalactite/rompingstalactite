@@ -6,9 +6,9 @@ import toggleEdit from '../../client/reducers/toggleEdit';
 
 // Make fake initialStates
 const initialStateRecipes = [
-  { name: 'Followed Recipe 1' },
-  { name: 'Followed Recipe 2' },
-  { name: 'Followed Recipe 3' }];
+  { title: 'Followed Recipe 1' },
+  { title: 'Followed Recipe 2' },
+  { title: 'Followed Recipe 3' }];
 
 const initialStateRecipe = fakeRecipe;
 
@@ -37,6 +37,7 @@ const recipesFollowed = (state = initialStateRecipes) => state;
 const recipesFeatured = (state = initialStateRecipes) => state;
 const recipesSearched = (state = initialStateRecipes) => state;
 const recipesTop = (state = initialStateRecipes) => state;
+const historyRecipes = (state = initialStateRecipes) => state;
 const user = (state = initialStateUser) => state;
 const recipe = (state = initialStateRecipe, action) => {
   switch (action.type) {
@@ -50,6 +51,11 @@ const recipe = (state = initialStateRecipe, action) => {
       const addState = objectAssign(state);
       addState[action.change].push('');
       return addState;
+    case types.SET_RECIPE_HISTORY:
+      const newHistory = {
+        historyRecipes: action.historyRecipes,
+      };
+      return Object.assign({}, state, newHistory);
     default:
       return state;
   }
