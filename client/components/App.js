@@ -1,11 +1,19 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import actions from '../actions/index.js';
+import { fetchUser } from '../utils/utils.js';
+
 // import '../scss/app.scss';
 
 import Nav from './Nav.js';
 
 class App extends Component {
+
+  componentDidMount() {
+    const { setUserData } = this.props;
+    setUserData();
+  }
+
   render() {
     const { children } = this.props;
     return (
@@ -24,11 +32,16 @@ const mapStateToProps = function (state) {
   };
 };
 
-// const mapDispatchToProps = function (dispatch) {
-//   return {
-//    // fill in any actions here
-//   };
-// };
+const mapDispatchToProps = function (dispatch) {
+  return {
+    setUserData: () => {
+      fetchUser((user) => {
+        console.log(user);
+        dispatch(actions.setUser(user));
+      });
+    },
+  };
+};
 
 App.propTypes = {
   recipesOwned: PropTypes.array.isRequired,
@@ -41,6 +54,6 @@ App.propTypes = {
 };
 
 export default connect(
-  mapStateToProps
-  // mapDispatchToProps,
+  mapStateToProps,
+  mapDispatchToProps
 )(App);
