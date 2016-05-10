@@ -6,7 +6,13 @@ import * as types from '../constants/ActionTypes.js';
 // SEED DATA FOR TESTING
 // =====
 
-const initialState = {};
+const initialState = {
+  id: null,
+  displayName: null,
+  photos: [{ value: 'http://www.carderator.com/assets/avatar_placeholder_small.png' }],
+  gender: null,
+  provider: null,
+};
 
 export default function user(state = initialState, action) {
   switch (action.type) {
