@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import actions from '../actions/index.js';
-<<<<<<< 0f87531593a471c3b45d650108d20016ce9981fb
-import { forkRecipe } from '../utils/utils';
-import '../scss/_mainRecipe.scss';
-=======
 import { forkRecipe, fetchRecipes } from '../utils/utils';
 import RecipeContainer from './RecipeContainer';
->>>>>>> Add set history action to MainRecipe component
+import '../scss/_mainRecipe.scss';
 
 class MainRecipe extends Component {
   componentDidMount() {
