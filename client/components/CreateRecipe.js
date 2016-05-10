@@ -15,6 +15,7 @@ class CreateRecipe extends Component {
       <div>
         <div className="edit-recipe-content">
           <form>
+            <h3> Recipe Title: </h3>
             <input
               type="text"
               name="title"
