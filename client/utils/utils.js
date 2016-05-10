@@ -7,6 +7,7 @@ export const fetchRecipe = (recipeID, callback) => {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
+    credentials: 'same-origin',
   })
   .then((response) => {
     if (response.status >= 400) {
@@ -44,6 +45,7 @@ export const createRecipe = (recipe, callback) => {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
+    credentials: 'same-origin',
     body: JSON.stringify(recipe),
   })
   .then((response) => {
