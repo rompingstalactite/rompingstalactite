@@ -1,8 +1,17 @@
 .recipe-entry {
   width: 250px;
   height: 350px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid;
+  padding: 5px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .recipe-entry img {
-  width: 100%;
+  object-fit: cover;
+  width: auto;
+  max-height: 70%;
 }
