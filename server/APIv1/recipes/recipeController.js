@@ -195,7 +195,7 @@ module.exports = {
                 yield,
                 yield_unit,
                 ingredients,
-                (array_append (fork_history, author)),
+                (SELECT array_append (fork_history, (SELECT author FROM recipes WHERE id= $2))),
                 prep_time,
                 prep_steps,
                 cook_time,

@@ -63,32 +63,9 @@ export const createRecipe = (recipe, callback) => {
   });
 };
 
-// export const forkRecipe = (originalRecipeID, userID, callback) => {
-//   fetchRecipe(originalRecipeID, (recipe) => {
-//     createRecipe(bindAuthorToNewRecipe(userID)(recipe), callback);
-//   });
-// };
-
 export const forkRecipe = (originalRecipeID, userID, callback) => {
-  fetch('/api/v1/recipes/fork', {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      user_id: userID,
-      recipe_id: originalRecipeID,
-    }),
-  })
-  .then(response => {
-    return response.json();
-  })
-  .then(response => {
-    console.log(response)
-    return fetchRecipe(response[0].id, function(response) {
-      console.log(response)
-    });
+  fetchRecipe(originalRecipeID, (recipe) => {
+    createRecipe(bindAuthorToNewRecipe(userID)(recipe), callback);
   });
 };
 
@@ -130,3 +107,26 @@ export const fetchRecipes = (recipeIDList, callback) => {
     return;
   });
 }
+
+// export const forkRecipe = (originalRecipeID, userID, callback) => {
+//   fetch('/api/v1/recipes/fork', {
+//     method: 'POST',
+//     headers: {
+//       Accept: 'application/json',
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify({
+//       user_id: userID,
+//       recipe_id: originalRecipeID,
+//     }),
+//   })
+//   .then(response => {
+//     return response.json();
+//   })
+//   .then(response => {
+//     console.log(response)
+//     return fetchRecipe(response[0].id, function(response) {
+//       console.log(response)
+//     });
+//   });
+// };

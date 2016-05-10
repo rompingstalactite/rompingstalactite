@@ -35,6 +35,7 @@ class MainRecipe extends Component {
         {editButton}
         {forkButton}
 
+
         <div className="recipe-content" contentEditable={toggleEdit}>
           <div className="header">
             <h2 className="recipe-main-title">{recipe.title}</h2>
