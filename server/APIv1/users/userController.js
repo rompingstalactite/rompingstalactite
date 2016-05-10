@@ -71,4 +71,26 @@ module.exports = {
         next();
       });
   },
+  getLoggedInUser: (request, response) => {
+    if (request.session.passport && request.session.passport.user) {
+      const user = request.session.passport.user;
+      const userObj = {
+        id: user.id,
+        displayName: user.displayName,
+        name: user.name,
+        photos: user.photos,
+        gender: user.gender,
+        provider: user.provider,
+      };
+      response.json(userObj);
+      return;
+    }
+    response.json({
+      id: null,
+      displayName: null,
+      photos: [{ value: 'http://www.carderator.com/assets/avatar_placeholder_small.png' }],
+      gender: null,
+      provider: null,
+    });
+  },
 };

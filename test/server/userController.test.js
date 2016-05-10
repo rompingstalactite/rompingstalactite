@@ -34,18 +34,15 @@ describe('(client)-[(router)-(helpers)-CONTROLLERS]-(database)', () => {
       Users.createUser(app.request, app.response, cb);
     });
 
-    it('Should return 202 if a user with the same name is already in the database', (done) => {
+    xit('Should return 202 if a user with the same name is already in the database', (done) => {
       app.request.json(app.existingUser);
       const cb = () => {
         expect(app.response.status()).to.equal(202);
         done();
       };
-
-      Users.createUser(app.request, app.response, () => {
-        // console.log('inserted first user');
-      });
       Users.createUser(app.request, app.response, cb);
     });
+
     it('Should get info for the current user');
     it('Should update the current user');
     it('Should delete a user');

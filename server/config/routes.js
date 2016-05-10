@@ -2,16 +2,34 @@ import path from 'path';
 import uc from '../APIv1/users/userController.js';
 import rc from '../APIv1/recipes/recipeController.js';
 import sc from '../APIv1/search/searchController.js';
+import { handleGoogleLogin, authenticateGoogleLogin, checkAuth } from './auth.js';
 
 module.exports = (app, express) => {
+
+  /**
+  * Auth
+  */
+  app.get('/auth/google', handleGoogleLogin);
+
+  app.get('/auth/google/callback', authenticateGoogleLogin,
+    (req, res) => { res.redirect('/'); }
+  );
+
+  app.get('/auth/signout', (req, res) => {
+    req.session.destroy(() => { res.redirect('/'); });
+  });
+
   /**
    * Users
    */
-  app.post('/api/v1/users/', /* auth, */ uc.createUser);
+
+  app.get('/api/v1/user/', uc.getLoggedInUser);
+
+  app.post('/api/v1/users/', checkAuth, uc.createUser);
   app.get('/api/v1/users/:user_id', uc.getOneUser);
 
   // TODO: getAllUsers should be protected for only admins, eventually.
-  app.get('/api/v1/users/', /* auth, */ uc.getAllUsers);
+  app.get('/api/v1/users/', uc.getAllUsers);
 
   // app.get('/api/v1/users/me', /* auth, */ getCurrentUser);
   // app.put('/api/v1/users/:user_id', /* auth, */ updateUser);
@@ -20,9 +38,9 @@ module.exports = (app, express) => {
   /**
    * Recipes
    */
-  app.post('/api/v1/recipes/', /* auth, */ rc.createRecipe);
+  app.post('/api/v1/recipes/', checkAuth, rc.createRecipe);
   // app.post('/api/v1/recipes/:recipe_id', /* auth, */ forkRecipe);
-  app.get('/api/v1/recipes/:recipe_id', rc.getOneRecipe);
+  app.get('/api/v1/recipes/:recipe_id', checkAuth, rc.getOneRecipe);
   // app.put('/api/v1/recipes/:recipe', /* auth, */ updateRecipe);
   // app.get('/api/v1/recipes/:user', /* auth, */ getUsersRecipes);
   // app.get('/api/v1/recipes/me', /* auth, */ namedFn);
