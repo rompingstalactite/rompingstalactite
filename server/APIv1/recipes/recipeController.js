@@ -62,17 +62,17 @@ module.exports = {
                 AND id = $2`,
       values: [request.body.newURL, request.body.id],
     };
-    db.query(newQueryObj)
+    db.query(newQueryObj);
     db.query(newQueryObj2)
       .then((data) => {
         // console.log('THE DATA',data)
         response.status(201);
         response.json(data);
         next();
-       }).catch((error) => {
+      }).catch((error) => {
         response.json(error);
         next();
-    });
+      });
   },
 
   removeRecipeImage: (request, response, next) => {
@@ -157,4 +157,69 @@ module.exports = {
       });
   },
 
+  forkRecipe: (request, response, next) => {
+    // 4 = current_user_id --> $1
+    // 3 = current_recipe_id --> $2
+    // **don't forget fork_history
+    //duplicate row
+
+    console.log('*****************************',request.body.user_id, request.body.recipe_id, request.body);
+    const newQueryObj = {
+      name: 'fork-recipe',
+      text: `INSERT INTO recipes (
+              created_at,
+              updated_at,
+              title,
+              author,
+              parent,
+              images,
+              yield,
+              yield_unit,
+              ingredients,
+              fork_history,
+              prep_time,
+              prep_steps,
+              cook_time,
+              cook_steps,
+              finish_steps,
+              tags,
+              followers
+            )
+              SELECT 
+                created_at,
+                updated_at,
+                title,
+                $1,
+                author,
+                images,
+                yield,
+                yield_unit,
+                ingredients,
+                (array_append (fork_history, author)),
+                prep_time,
+                prep_steps,
+                cook_time,
+                cook_steps,
+                finish_steps,
+                tags,
+                followers
+              FROM
+                recipes
+                WHERE
+                  id = $2
+              RETURNING
+                id;`,
+      values: [request.body.user_id, request.body.recipe_id],
+    };
+
+    db.query(newQueryObj)
+    .then((data) => {
+      console.log('$$$$$$$$$$$$$$$$$$$$$$$,',data);
+      response.json(data);
+      next();
+    }).catch((error) => {
+      response.json(error);
+      next();
+    });
+  },
 };

@@ -72,6 +72,11 @@ const initialState = {
   ],
   historyIDs: [1, 2, 3, 80],
   historyRecipes: [],
+  fork_history: [
+    22,
+    33,
+    44,
+  ],
 };
 
 

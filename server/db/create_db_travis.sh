@@ -41,7 +41,7 @@ function seedData {
     cook_time,
     cook_steps,
     finish_steps,
-    tags
+    tags,
   ) VALUES (
     'Vegan Red Velvet Cupcakes',
     ARRAY [
