@@ -7,9 +7,9 @@
 // =====
 
 const initialState = [
-  { name: 'Owned Recipe 1' },
-  { name: 'Owned Recipe 2' },
-  { name: 'Owned Recipe 3' }];
+  { title: 'Owned Recipe 1' },
+  { title: 'Owned Recipe 2' },
+  { title: 'Owned Recipe 3' }];
 
 export default function recipesOwned(state = initialState /*, action*/) {
   // switch (action.type) {

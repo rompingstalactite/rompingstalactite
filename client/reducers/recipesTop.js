@@ -7,9 +7,9 @@
 // =====
 
 const initialState = [
-  { name: 'Top Recipe 1' },
-  { name: 'Top Recipe 2' },
-  { name: 'Top Recipe 3' }];
+  { title: 'Top Recipe 1' },
+  { title: 'Top Recipe 2' },
+  { title: 'Top Recipe 3' }];
 
 export default function recipesTop(state = initialState /*, action*/) {
   // switch (action.type) {
