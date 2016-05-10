@@ -13,14 +13,15 @@ class MainRecipe extends Component {
     const { toggleEdit, handleToggleEdit, recipe, onForkClick } = this.props;
     return (
       <div>
-        <button className="btn-toggle-edit" onClick={ handleToggleEdit }> Toggle Edit </button>
-
-        {/* hardcode userID to 1337 until authentication is implemented */}
-        <button className="btn-fork" onClick={ onForkClick.bind(null, recipe.id, 1337) }>Fork</button>
         <div className="recipe-content" contentEditable={toggleEdit}>
 
           <div className="header">
             <h2 className="recipe-title">{recipe.title}</h2>
+
+            <button className="btn-toggle-edit" onClick={ handleToggleEdit }> Toggle Edit </button>
+            {/* hardcode userID to 1337 until authentication is implemented */}
+            <button className="btn-fork" onClick={ onForkClick.bind(null, recipe.id, 1337) }>Fork</button>
+
             <div className="recipe-images">
               {recipe.images.map((image) => <img src={image} />)}
             </div>
