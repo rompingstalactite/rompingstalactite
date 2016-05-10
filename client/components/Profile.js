@@ -5,10 +5,8 @@ import RecipeContainer from './RecipeContainer.js';
 
 const Profile = (props) => (
   <div className="profile">
-    <img className="profile-avatar" src={props.profile.avatar} alt="avatar"></img>
-    <img className="profile-picture" src={props.user.photos[0].value} alt="avatar"></img>
-    <p className="profile-username">{props.profile.username}</p>
-    <p className="profile-displayname">{props.user.displayName}</p>
+    <img className="profile-avatar" src={props.avatar} alt="avatar"></img>
+    <p className="profile-username">{props.user.displayName}</p>
     <RecipeContainer
       className="recipes-owned"
       type="My Owned Recipes"
@@ -24,8 +22,8 @@ const Profile = (props) => (
 
 const mapStateToProps = (state) => {
   return {
-    profile: state.profile,
     user: state.user,
+    avatar: state.user.photos[0].value,
     recipesOwned: state.recipesOwned,
     recipesFollowed: state.recipesFollowed,
   };

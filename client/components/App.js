@@ -36,7 +36,6 @@ const mapDispatchToProps = function (dispatch) {
   return {
     setUserData: () => {
       fetchUser((user) => {
-        console.log(user);
         dispatch(actions.setUser(user));
       });
     },
