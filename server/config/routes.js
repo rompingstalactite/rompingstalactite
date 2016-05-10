@@ -23,22 +23,7 @@ module.exports = (app, express) => {
    * Users
    */
 
-  app.get('/api/v1/user/', (req, res) => {
-    if (req.session.passport && req.session.passport.user) {
-      const user = req.session.passport.user;
-      const userObj = {
-        id: user.id,
-        displayName: user.displayName,
-        name: user.name,
-        photos: user.photos,
-        gender: user.gender,
-        provider: user.provider,
-      };
-      res.json(userObj);
-      return;
-    }
-    res.json({});
-  });
+  app.get('/api/v1/user/', uc.getLoggedInUser);
 
   app.post('/api/v1/users/', checkAuth, uc.createUser);
   app.get('/api/v1/users/:user_id', uc.getOneUser);
