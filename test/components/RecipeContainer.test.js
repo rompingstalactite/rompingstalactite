@@ -22,7 +22,7 @@ describe('<RecipeContainer />', () => {
 
   it('should render the recipe container title', () => {
     const wrapper = mount(<RecipeContainer type={fakeTitle} recipes={fakeRecipes} />);
-    expect(wrapper.find('h1').text()).to.equal(fakeTitle);
+    expect(wrapper.find('h2').text()).to.equal(fakeTitle);
   });
 
   it('should render all <RecipeEntry /> child components', () => {
