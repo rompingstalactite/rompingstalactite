@@ -75,14 +75,28 @@ module.exports = {
     if (request.session.passport && request.session.passport.user) {
       const user = request.session.passport.user;
       const userObj = {
-        id: user.id,
         displayName: user.displayName,
         name: user.name,
         photos: user.photos,
         gender: user.gender,
         provider: user.provider,
       };
-      response.json(userObj);
+      db.one({
+        name: 'find-user-with-id',
+        text: 'select * from users where google_id = $1',
+        values: [user.id],
+      })
+        .then((data) => {
+          userObj.id = data.id;
+          response.json(userObj);
+          return;
+        })
+        .catch((error) => {
+          response.json({
+            error: `Error code: ${error.code}, Error message: ${error.detail}`,
+          });
+          return;
+        });
       return;
     }
     response.json({
