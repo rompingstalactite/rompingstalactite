@@ -68,6 +68,8 @@ const initialState = {
     'vegetarian',
     'dairy-free',
   ],
+  historyIDs: [1, 2, 3, 80],
+  historyRecipes: [],
 };
 
 
@@ -84,6 +86,11 @@ export default function recipe(state = initialState, action) {
       const addState = Object.assign({}, state);
       addState[action.change].push('');
       return addState;
+    case types.SET_RECIPE_HISTORY:
+      const newHistory = {
+        historyRecipes: action.historyRecipes,
+      };
+      return Object.assign({}, state, newHistory);
     default:
       return state;
     // case types.EDIT_RECIPE:

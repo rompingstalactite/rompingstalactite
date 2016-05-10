@@ -1,25 +1,47 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import actions from '../actions/index.js';
+<<<<<<< 0f87531593a471c3b45d650108d20016ce9981fb
 import { forkRecipe } from '../utils/utils';
 import '../scss/_mainRecipe.scss';
+=======
+import { forkRecipe, fetchRecipes } from '../utils/utils';
+import RecipeContainer from './RecipeContainer';
+>>>>>>> Add set history action to MainRecipe component
 
 class MainRecipe extends Component {
-  constructor(props) {
-    super(props);
+  componentDidMount() {
+    const { getHistory, historyIDs } = this.props;
+    getHistory(historyIDs);
   }
 
   render() {
-    const { toggleEdit, handleToggleEdit, recipe, onForkClick } = this.props;
+    const { user, toggleEdit, handleToggleEdit, recipe, onForkClick, historyRecipes } = this.props;
+    console.log('THIS IS historyRecipes', historyRecipes);
+    let forkButton;
+    if (user.id) {
+      forkButton = <button className="btn-fork" onClick={ onForkClick.bind(null, recipe.id, user.id) }>Fork</button>;
+    } else {
+      forkButton = <button className="btn-fork" disabled>Fork</button>;
+    }
+
+    let editButton;
+    if (user.id === recipe.author && user.id !== null) {
+      editButton = <button className="btn-toggle-edit" onClick={ handleToggleEdit }>Toggle Edit</button>;
+    } else {
+      editButton = <button className="btn-toggle-edit" disabled>Toggle Edit</button>
+    }
+
     return (
       <div>
+        {/*<h1>THIS IS THE USER: {user.displayName}</h1>
+        <h1>THIS IS THE RECIPE AUTHOR: {recipe.author}</h1>
+        <h1>THIS IS THE RECIPE PARENT: {recipe.parent}</h1>*/}
         <div className="recipe-content" contentEditable={toggleEdit}>
-
           <div className="header">
             <h2 className="recipe-title">{recipe.title}</h2>
-
-            <button className="btn-toggle-edit" onClick={ handleToggleEdit }> Toggle Edit </button>
-            <button className="btn-fork" onClick={ onForkClick.bind(null, recipe.id, 1337) }>Fork</button>
+            {editButton}
+            {forkButton}
             <div className="header-images">
               <div className="recipe-images">
                 {recipe.images.map((image) => <img src={image} />)}
@@ -70,6 +92,13 @@ class MainRecipe extends Component {
           </div>
 
         </div>
+        <div>
+          <RecipeContainer
+            className="recipe-history"
+            type="Recipe History"
+            recipes={historyRecipes}
+          />
+        </div>
       </div>
     );
   }
@@ -78,8 +107,10 @@ class MainRecipe extends Component {
 const mapStateToProps = (state) => {
   return {
     toggleEdit: state.toggleEdit,
-    // userID: state.user.id || 1337,
+    user: state.user,
     recipe: state.recipe,
+    historyIDs: state.recipe.historyIDs,
+    historyRecipes: state.recipe.historyRecipes,
   };
 };
 
@@ -91,6 +122,12 @@ const mapDispatchToProps = (dispatch) => {
       });
     },
     handleToggleEdit: () => dispatch(actions.toggleEdit()),
+    getHistory: (recipeIDList) => {
+      fetchRecipes(recipeIDList, (recipes) => {
+        console.log(recipes);
+        dispatch(actions.setRecipeHistory(recipes));
+      });
+    },
   };
 };
 
