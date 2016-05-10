@@ -1,12 +1,14 @@
 import passport from 'passport';
 import { Strategy as GoogleStrategy }  from 'passport-google-oauth20';
 
-let googleClientID;
-let googleClientSecret;
+let googleClientID = process.env.GOOGLE_CLIENT_ID;
+let googleClientSecret = process.env.GOOGLE_CLIENT_SECRET;
+
 if (!process.env.TRAVIS) {
-  googleClientID = process.env.GOOGLE_CLIENT_ID || require('../keys/googleAuth').googleKeys.CLIENT_ID;
-  googleClientSecret = process.env.GOOGLE_CLIENT_SECRET || require('../keys/googleAuth').googleKeys.CLIENT_SECRET;
+  googleClientID = require('../keys/googleAuth').googleKeys.CLIENT_ID;
+  googleClientSecret = require('../keys/googleAuth').googleKeys.CLIENT_SECRET;
 }
+
 import { postgresConnection as cn } from './helpers';
 const pgp = require('pg-promise')();
 
