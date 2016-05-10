@@ -17,7 +17,6 @@ class MainRecipe extends Component {
 
   render() {
     const { user, toggleEdit, handleToggleEdit, recipe, onForkClick, historyRecipes } = this.props;
-    console.log('THIS IS historyRecipes', historyRecipes);
     let forkButton;
     if (user.id) {
       forkButton = <button className="btn-fork" onClick={ onForkClick.bind(null, recipe.id, user.id) }>Fork</button>;
@@ -39,7 +38,7 @@ class MainRecipe extends Component {
         <h1>THIS IS THE RECIPE PARENT: {recipe.parent}</h1>*/}
         <div className="recipe-content" contentEditable={toggleEdit}>
           <div className="header">
-            <h2 className="recipe-title">{recipe.title}</h2>
+            <h2 className="recipe-main-title">{recipe.title}</h2>
             {editButton}
             {forkButton}
             <div className="header-images">
@@ -124,7 +123,6 @@ const mapDispatchToProps = (dispatch) => {
     handleToggleEdit: () => dispatch(actions.toggleEdit()),
     getHistory: (recipeIDList) => {
       fetchRecipes(recipeIDList, (recipes) => {
-        console.log(recipes);
         dispatch(actions.setRecipeHistory(recipes));
       });
     },
