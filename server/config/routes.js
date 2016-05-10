@@ -16,7 +16,7 @@ module.exports = (app, express) => {
   );
 
   app.get('/auth/signout', (req, res) => {
-    req.session.destroy(() => { res.redirect('/signin'); });
+    req.session.destroy(() => { res.redirect('/'); });
   });
 
   /**
