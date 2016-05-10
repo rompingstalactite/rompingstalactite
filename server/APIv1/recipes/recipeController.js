@@ -214,10 +214,11 @@ module.exports = {
 
     db.query(newQueryObj)
     .then((data) => {
-      console.log('$$$$$$$$$$$$$$$$$$$$$$$,',data);
+      response.status(201);
       response.json(data);
       next();
     }).catch((error) => {
+      response.status(500);
       response.json(error);
       next();
     });

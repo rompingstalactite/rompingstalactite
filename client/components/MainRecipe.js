@@ -29,11 +29,12 @@ class MainRecipe extends Component {
 
     return (
       <div>
-        {/*<h1>THIS IS THE USER: {user.displayName}</h1>
+        <h1>THIS IS THE USER: {user.displayName}</h1>
         <h1>THIS IS THE RECIPE AUTHOR: {recipe.author}</h1>
-        <h1>THIS IS THE RECIPE PARENT: {recipe.parent}</h1>*/}
+        <h1>THIS IS THE RECIPE PARENT: {recipe.parent}</h1>
         {editButton}
         {forkButton}
+
         <div className="recipe-content" contentEditable={toggleEdit}>
           <div className="header">
             <h2 className="recipe-main-title">{recipe.title}</h2>
@@ -41,12 +42,12 @@ class MainRecipe extends Component {
               <div className="recipe-images">
                 {recipe.images.map((image) => <img src={image} />)}
               </div>
-              {/*<div className="fork-history">
+              <div className="fork-history">
                 <p> - v.1.3 forked May 1st 2016</p>
                 <p> - v.1.2 forked March 12th 2016</p>
                 <p> - v.1.1 forked December 19th 2015</p>
                 <p> - v.1.0 forked December 5th 2015</p>
-              </div>*/}
+              </div>
               <div>
                 <RecipeContainer
                   className="fork-history"

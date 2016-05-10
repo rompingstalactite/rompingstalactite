@@ -79,8 +79,17 @@ export const forkRecipe = (originalRecipeID, userID, callback) => {
     body: JSON.stringify({
       user_id: userID,
       recipe_id: originalRecipeID,
-    })
-  }).then(response => {return response.json()} ).then(response => {console.log(response)});
+    }),
+  })
+  .then(response => {
+    return response.json();
+  })
+  .then(response => {
+    console.log(response)
+    return fetchRecipe(response[0].id, function(response) {
+      console.log(response)
+    });
+  });
 };
 
 export const fetchUser = (callback) => {
