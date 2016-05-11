@@ -64,10 +64,10 @@ CREATE TABLE "images" (
 
 
 
-CREATE TABLE "favorites_recipes_users" (
+CREATE TABLE "likes_recipes_users" (
 	"recipe_id" integer NOT NULL,
 	"user_id" integer NOT NULL,
-	"favorite_date" TIMESTAMP NOT NULL
+	"like_date" TIMESTAMP NOT NULL DEFAULT current_timestamp,
 ) WITH (
   OIDS=FALSE
 );
@@ -88,8 +88,9 @@ ALTER TABLE "recipes" ADD CONSTRAINT "recipes_fk1" FOREIGN KEY ("author") REFERE
 ALTER TABLE "images_recipes" ADD CONSTRAINT "images_recipes_fk0" FOREIGN KEY ("image_id") REFERENCES "images"("id");
 ALTER TABLE "images_recipes" ADD CONSTRAINT "images_recipes_fk1" FOREIGN KEY ("recipe_id") REFERENCES "recipes"("id");
 
-ALTER TABLE "favorites_recipes_users" ADD CONSTRAINT "favorites_recipes_users_fk0" FOREIGN KEY ("recipe_id") REFERENCES "recipes"("id");
-ALTER TABLE "favorites_recipes_users" ADD CONSTRAINT "favorites_recipes_users_fk1" FOREIGN KEY ("user_id") REFERENCES "users"("id");
+ALTER TABLE "likes_recipes_users" ADD CONSTRAINT "likes_recipes_users_fk0" FOREIGN KEY ("recipe_id") REFERENCES "recipes"("id");
+ALTER TABLE "likes_recipes_users" ADD CONSTRAINT "likes_recipes_users_fk1" FOREIGN KEY ("user_id") REFERENCES "users"("id");
+ALTER TABLE "likes_recipes_users" ADD CONSTRAINT "likes_users_users_pk0" PRIMARY KEY ("user_id", "recipe_id");
 
 ALTER TABLE "followers_users_users" ADD CONSTRAINT "followers_users_users_fk0" FOREIGN KEY ("user") REFERENCES "users"("id");
 ALTER TABLE "followers_users_users" ADD CONSTRAINT "followers_users_users_fk1" FOREIGN KEY ("target") REFERENCES "users"("id");
