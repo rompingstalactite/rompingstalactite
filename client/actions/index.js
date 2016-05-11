@@ -22,4 +22,7 @@ module.exports = {
   setRecipeHistory(historyRecipes) {
     return { type: types.SET_RECIPE_HISTORY, historyRecipes };
   },
+  toggleLike(toggleLike, likeCount) {
+    return { type: types.TOGGLE_LIKE, change: toggleLike };
+  },
 };

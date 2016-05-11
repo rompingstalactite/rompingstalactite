@@ -6,3 +6,4 @@ export const EDIT_RECIPE = 'EDIT_RECIPE';
 export const ADD_FIELD = 'ADD_FIELD';
 export const SET_USER = 'SET_USER';
 export const SET_RECIPE_HISTORY = 'SET_RECIPE_HISTORY';
+export const TOGGLE_LIKE = 'TOGGLE_LIKE';
