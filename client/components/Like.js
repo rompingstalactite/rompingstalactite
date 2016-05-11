@@ -10,7 +10,60 @@ class Like extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    const { userID, recipeID, handleGetLikeState } = this.props;
+    handleGetLikeState(userID, recipeID);
+  }
+
+  render() {
+    const { userID, recipeID, toggleLike, handleToggleLike, dispatch } = this.props;
+
+    const likedClass = classNames({
+      'btn': true,
+      'btn-like': true,
+      'btn-active': toggleLike.toggleLike,
+    });
+
+    return (
+      <div className="like-button" onClick={handleToggleLike.bind(null, userID, recipeID, toggleLike.toggleLike)}>
+        <span className={likedClass}> {toggleLike.likeCount} </span>
+      </div>
+    );
+  }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    toggleLike: state.toggleLike,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleGetLikeState: (userID, recipeID) => {
+      const userId = userID || -1;
+      getLikeState({ userId, recipeID })
+        .then(response => {
+          dispatch(actions.toggleLike({
+            likeCount: response.likecount,
+            toggleLike: response.togglelike,
+          }));
+        });
+    },
+    handleToggleLike: (userID, recipeID, toggleLike) => {
+      if (!!userID) {
+        updateLike({ recipeID, userID, toggleLike })
+          .then((response) => {
+              dispatch(actions.toggleLike({
+                likeCount: response.likecount,
+                toggleLike: response.togglelike,
+              }));
+          });
+      }
+    },
+  };
+};
+
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Like);
