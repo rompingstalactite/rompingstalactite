@@ -44,6 +44,9 @@ module.exports = (app, express) => {
   app.get('/api/v1/recipes/', rc.getMultipleRecipes);
 
 
+  //ADD CHECKAUTH BACK TO THIS*********************************************************
+  app.get('/api/v1/recipes/:recipe_id', rc.getOneRecipe);
+
   app.get('/api/v1/recipes/:recipe_id', rc.getOneRecipe);
   app.post('/api/v1/recipes/fork', rc.forkRecipe);
   app.get('/api/v1/recipes/fork', rc.forkRecipe);

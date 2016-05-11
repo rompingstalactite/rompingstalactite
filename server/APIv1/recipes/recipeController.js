@@ -4,6 +4,7 @@ const db = pgp(cn);
 
 module.exports = {
   getOneRecipe: (request, response, next) => {
+    console.log('**************************CALLED W/', request.params.recipe_id );
     const newQueryObj = {
       name: 'get-one-recipe',
       text: `SELECT
