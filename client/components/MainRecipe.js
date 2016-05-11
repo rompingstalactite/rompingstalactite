@@ -108,8 +108,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onForkClick: (recipeID, userID) => {
       forkRecipe(recipeID, userID, (newRecipe) => {
-        console.log('USER ID:', userID);
-        console.log('REC ID:', recipeID);
         dispatch(actions.forkRecipe(newRecipe));
       });
     },
