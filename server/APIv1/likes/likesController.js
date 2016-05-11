@@ -4,7 +4,13 @@ const db = pgp(cn);
 
 
 module.exports = {
-
+  addOrDeleteRecipeLike: (request, response, next) => {
+    if (request.body.toggleLike) {
+      module.exports.deleteLikedRecipe(request, response, next);
+    } else {
+      module.exports.addLikedRecipe(request, response, next);
+    }
+  },
   getLikeState: (request, response, next) => {
     const userID = request.query.userID || request.body.userID;
     const recipeID = request.query.recipeID || request.body.recipeID;
