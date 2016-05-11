@@ -1,0 +1,19 @@
+$primary-base: #F4F4F4;
+$secondary-base: #C0B283;
+$primary-detail: #DCD0D0;
+$secondary-detail: #874C62;
+$flair: #193441;
+
+body { 
+  margin: 0; 
+  background-color: $primary-base; 
+  font-family: sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+div {
+  /*border: 1px solid;*/
+}

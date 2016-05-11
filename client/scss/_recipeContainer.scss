@@ -1,0 +1,18 @@
+.recipe-container {
+  display: flex;
+  justify-content: center;
+}
+
+.fork-history {
+  width: 50%;
+  height: 50%;
+
+}
+
+.fork-history .recipe-container img {
+  display: none;
+}
+
+.fork-history .recipe-container .recipe-entry {
+  height: 100px;
+}
