@@ -16,8 +16,16 @@ class MainRecipe extends Component {
     }
   }
 
+  componentWillUpdate(nextProps) {
+    const currId = this.props.id;
+    const { getRecipe, id } = nextProps;
+    if (currId !== id) {
+      getRecipe(id);
+    }
+  }
+
   render() {
-    const { user, toggleEdit, handleToggleEdit, recipe, onForkClick, historyRecipes } = this.props;
+    const { user, toggleEdit, handleToggleEdit, recipe, onForkClick, historyRecipes, } = this.props;
     let forkButton;
     if (user.id) {
       forkButton = <button className="btn-fork" onClick={ onForkClick.bind(null, recipe.id, user.id) }>Fork</button>;
