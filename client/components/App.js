@@ -25,7 +25,7 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = function (state) {
+const mapStateToProps = (state) => {
   return {
     recipesOwned: state.recipesOwned,
     recipesFollowed: state.recipesFollowed,
