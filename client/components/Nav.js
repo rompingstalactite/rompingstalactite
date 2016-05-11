@@ -15,10 +15,9 @@ class Nav extends Component {
     return (
       <div>
         <div className="nav-bar">
-          <h3> GitCooking </h3>
+          <Link to="/">GitCooking</Link>
           <input placeholder="Search for recipes"></input>
           {signInOut}
-          <Link to="/">Index</Link>
           <Link to="/recipe">Recipe</Link>
           <Link to="/search">Search</Link>
           <Link to="/create">Create</Link>

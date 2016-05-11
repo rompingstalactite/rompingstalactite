@@ -32,7 +32,7 @@ module.exports = {
                    recipes
                  WHERE
                    id = ANY($1)`,
-      values: [request.body._queryResultIds],
+      values: [request.query.recipes],
     };
 
     db.query(newQueryObj).then((data) => {
@@ -46,9 +46,9 @@ module.exports = {
   addRecipeImage: (request, response, next) => {
     const newQueryObj = {
       name: 'add-recipe-image',
-      text: `UPDATE recipes 
-              SET 
-                images = array_append(images, $1) 
+      text: `UPDATE recipes
+              SET
+                images = array_append(images, $1)
               WHERE
                 id = $2`,
       values: [request.body.newURL, request.body.id],
@@ -57,7 +57,7 @@ module.exports = {
     const newQueryObj2 = {
       name: 'find-new-recipe-image',
       text: `SELECT images
-              FROM recipes 
+              FROM recipes
                 WHERE $1 = ANY(images)
                 AND id = $2`,
       values: [request.body.newURL, request.body.id],
@@ -78,9 +78,9 @@ module.exports = {
   removeRecipeImage: (request, response, next) => {
     const newQueryObj = {
       name: 'remove-recipe-image',
-      text: `UPDATE recipes 
+      text: `UPDATE recipes
               SET
-                images = array_remove(images, $1) 
+                images = array_remove(images, $1)
               WHERE
                 id = $2`,
       values: [request.body.newURL, request.body.id],
@@ -89,7 +89,7 @@ module.exports = {
     const newQueryObj2 = {
       name: 'find-new-recipe-image',
       text: `SELECT images
-              FROM recipes 
+              FROM recipes
                 WHERE $1 = ANY(images)
                 AND id = $2`,
       values: [request.body.newURL, request.body.id],

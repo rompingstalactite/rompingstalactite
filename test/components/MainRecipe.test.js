@@ -30,10 +30,10 @@ describe('<MainRecipe />', () => {
     expect(actions.toggleEdit().type).to.equal('TOGGLE_EDIT');
   });
 
-  it('toggles "contentEditable" field on button click', () => {
+  it('does not toggle "contentEditable" field on button click when not logged in', () => {
     expect(wrapper.find('.btn-toggle-edit')).to.not.be.undefined;
     wrapper.find('.btn-toggle-edit').simulate('click');
-    expect(wrapper.find('.recipe-content').prop('contentEditable')).to.equal(true);
+    expect(wrapper.find('.recipe-content').prop('contentEditable')).to.equal(false);
     wrapper.find('.btn-toggle-edit').simulate('click');
     expect(wrapper.find('.recipe-content').prop('contentEditable')).to.equal(false);
   });
@@ -44,7 +44,7 @@ describe('<MainRecipe />', () => {
   });
 
   it('displays the recipe title', () => {
-    expect(wrapper.find('.recipe-title').html()).to.contain(fakeStore.getState().recipe.title);
+    expect(wrapper.find('.recipe-main-title').html()).to.contain(fakeStore.getState().recipe.title);
   });
 
   it('displays the recipe procedures', () => {

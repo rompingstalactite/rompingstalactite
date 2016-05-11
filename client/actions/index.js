@@ -19,4 +19,7 @@ module.exports = {
   setUser(user) {
     return { type: types.SET_USER, user };
   },
+  setRecipeHistory(historyRecipes) {
+    return { type: types.SET_RECIPE_HISTORY, historyRecipes };
+  },
 };

@@ -7,6 +7,7 @@ export const fetchRecipe = (recipeID, callback) => {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
+    credentials: 'same-origin',
   })
   .then((response) => {
     if (response.status >= 400) {
@@ -44,6 +45,7 @@ export const createRecipe = (recipe, callback) => {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
+    credentials: 'same-origin',
     body: JSON.stringify(recipe),
   })
   .then((response) => {
@@ -69,6 +71,26 @@ export const forkRecipe = (originalRecipeID, userID, callback) => {
 
 export const fetchUser = (callback) => {
   fetch('http://localhost:8080/api/v1/user/', {
+    credentials: 'same-origin',
+  })
+  .then((response) => {
+    if (response.status >= 400) {
+      throw new Error('Bad response from server');
+    }
+    return response.json();
+  })
+  .then((data) => {
+    callback(data);
+  })
+  .catch((error) => {
+    console.log('Error:', error);
+    return;
+  });
+};
+
+export const fetchRecipes = (recipeIDList, callback) => {
+  const formattedQuery = JSON.stringify(recipeIDList).replace('[','{').replace(']','}');
+  fetch(`http://localhost:8080/api/v1/recipes/?recipes=${formattedQuery}`, {
     credentials: 'same-origin',
   })
   .then((response) => {

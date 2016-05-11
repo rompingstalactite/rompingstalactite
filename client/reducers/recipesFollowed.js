@@ -7,9 +7,9 @@
 // =====
 
 const initialState = [
-  { name: 'Followed Recipe 1' },
-  { name: 'Followed Recipe 2' },
-  { name: 'Followed Recipe 3' }];
+  { title: 'Followed Recipe 1' },
+  { title: 'Followed Recipe 2' },
+  { title: 'Followed Recipe 3' }];
 
 export default function recipesFollowed(state = initialState /*, action*/) {
   // switch (action.type) {

@@ -8,15 +8,15 @@
 
 const initialState = [
   {
-    name: 'Red Velvet Cupcakes',
+    title: 'Red Velvet Cupcakes',
     image: 'http://40aprons.com/wp-content/uploads/2013/10/red_velvet_cupcakes+2+of+81.jpg',
   },
   {
-    name: 'Best Steak Marinade in Existence',
+    title: 'Best Steak Marinade in Existence',
     image: 'http://images.media-allrecipes.com/userphotos/250x250/225844.jpg',
   },
   {
-    name: 'Couscous Primavera',
+    title: 'Couscous Primavera',
     image: 'http://images.media-allrecipes.com/userphotos/720x405/3554842.jpg',
   },
 ];

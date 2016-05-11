@@ -7,9 +7,9 @@
 // =====
 
 const initialState = [
-  { name: 'Searched Recipe 1' },
-  { name: 'Searched Recipe 2' },
-  { name: 'Searched Recipe 3' }];
+  { title: 'Searched Recipe 1' },
+  { title: 'Searched Recipe 2' },
+  { title: 'Searched Recipe 3' }];
 
 export default function recipesSearched(state = initialState /*, action*/) {
   // switch (action.type) {

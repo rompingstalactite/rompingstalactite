@@ -8,6 +8,8 @@ const initialState = {
   id: 1,
   author: 1,
   parent: null,
+  created_at: new Date(),
+  updated_at: new Date(),
   title: 'Vegan Red Velvet Cupcakes',
   images: [
     'http://40aprons.com/wp-content/uploads/2013/10/red_velvet_cupcakes+2+of+81.jpg',
@@ -68,6 +70,8 @@ const initialState = {
     'vegetarian',
     'dairy-free',
   ],
+  historyIDs: [1, 2, 3, 80],
+  historyRecipes: [],
 };
 
 
@@ -84,6 +88,11 @@ export default function recipe(state = initialState, action) {
       const addState = Object.assign({}, state);
       addState[action.change].push('');
       return addState;
+    case types.SET_RECIPE_HISTORY:
+      const newHistory = {
+        historyRecipes: action.historyRecipes,
+      };
+      return Object.assign({}, state, newHistory);
     default:
       return state;
     // case types.EDIT_RECIPE:

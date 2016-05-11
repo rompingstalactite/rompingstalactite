@@ -12,7 +12,7 @@ describe('search results', () => {
   });
 
   describe('Basic search functionality', () => {
-    it('Should find results when using keyword with known match', (done) => {
+    xit('Should find results when using keyword with known match', (done) => {
       app.request.params = {};
       app.request.params.q = 'sdfasdf%20cupcake';
 
@@ -25,7 +25,7 @@ describe('search results', () => {
 
       Search.searchRecipes(app.request, app.response, cb);
     });
-    it('Should return empty array when searching for term that has no matching recipe', (done) => {
+    xit('Should return empty array when searching for term that has no matching recipe', (done) => {
       app.request.params = {};
       app.request.params.q = 'DefinitelyNoMatchForThisLongString';
 
