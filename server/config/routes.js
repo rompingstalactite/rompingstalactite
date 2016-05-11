@@ -3,6 +3,7 @@ import uc from '../APIv1/users/userController.js';
 import rc from '../APIv1/recipes/recipeController.js';
 import sc from '../APIv1/search/searchController.js';
 import { handleGoogleLogin, authenticateGoogleLogin, checkAuth } from './auth.js';
+import lc from '../APIv1/likes/likesController.js';
 
 module.exports = (app, express) => {
 
@@ -53,9 +54,11 @@ module.exports = (app, express) => {
   // app.get('/api/v1/recipes/me', /* auth, */ namedFn);
 
   /**
-   * Favorites
+   * Likes
    */
-  // app.get('/api/v1/favorites/:user', /* auth, */ getUserFavorites);
+  app.get('/api/v1/likes', lc.getLikeState);
+  app.post('/api/v1/likes', checkAuth, lc.addOrDeleteRecipeLike);
+  app.get('/api/v1/likes/:user', checkAuth, lc.getAllLikedRecipes);
   // app.get('/api/v1/favorites/:user/count', /* auth, */ getUserFavoritesCount);
 
   /**
