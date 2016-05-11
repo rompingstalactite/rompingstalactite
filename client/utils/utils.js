@@ -24,6 +24,22 @@ export const fetchRecipe = (recipeID, callback) => {
   });
 };
 
+export const updateLike = (likeObj) => {
+  return fetch('http://localhost:8080/api/v1/likes/', {
+    credentials: 'same-origin',
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(likeObj),
+  }).then(response => {
+    if (response.status >= 400) {
+      throw new Error('Bad response from server');
+    }
+    return response.json();
+  });
+};
 const assignAuthorToNewRecipe = (author, recipe) => {
   const recipeCopy = {};
   Object.keys(recipe).forEach((k) => {
