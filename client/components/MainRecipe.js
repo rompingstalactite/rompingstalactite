@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import actions from '../actions/index.js';
-import { forkRecipe, fetchRecipes } from '../utils/utils';
+import { forkRecipe, fetchRecipes, fetchRecipe } from '../utils/utils';
 import RecipeContainer from './RecipeContainer';
 import '../scss/_main.scss';
 import '../scss/_mainRecipe.scss';
+import { Link } from 'react-router';
 
 import Like from './Like.js';
 class MainRecipe extends Component {
   componentDidMount() {
-    const { getHistory, historyIDs } = this.props;
-    getHistory(historyIDs);
+    const { getRecipe, id } = this.props;
+    if (id) {
+      getRecipe(id);
+    }
   }
 
   render() {
@@ -35,6 +38,7 @@ class MainRecipe extends Component {
         <h1>THIS IS THE RECIPE AUTHOR: {recipe.author}</h1>
         <h1>THIS IS THE RECIPE PARENT: {recipe.parent}</h1>
         <h1>THIS IS THE RECIPE HISTORY: {recipe.fork_history}</h1>
+        <h1>THIS IS THE RECIPE ID: {recipe.id}</h1>
         {editButton}
         {forkButton}
         <Like recipeID={recipe.id} userID={user.id} />
@@ -45,13 +49,7 @@ class MainRecipe extends Component {
               <div className="recipe-images">
                 {recipe.images.map((image) => <div className="recipe-image"><img src={image} /></div>)}
               </div>
-              {/*<div className="fork-history">
-                <p> - v.1.3 forked May 1st 2016</p>
-                <p> - v.1.2 forked March 12th 2016</p>
-                <p> - v.1.1 forked December 19th 2015</p>
-                <p> - v.1.0 forked December 5th 2015</p>
-              </div>*/}
-              <div className="fork-history">
+              <div>
                 <RecipeContainer
                   className="fork-history"
                   type="Recipe History"
@@ -103,13 +101,14 @@ class MainRecipe extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
     toggleEdit: state.toggleEdit,
     user: state.user,
     recipe: state.recipe,
     historyIDs: state.recipe.historyIDs,
     historyRecipes: state.recipe.historyRecipes,
+    id: ownProps.params.id,
   };
 };
 
@@ -121,9 +120,12 @@ const mapDispatchToProps = (dispatch) => {
       });
     },
     handleToggleEdit: () => dispatch(actions.toggleEdit()),
-    getHistory: (recipeIDList) => {
-      fetchRecipes(recipeIDList, (recipes) => {
-        dispatch(actions.setRecipeHistory(recipes));
+    getRecipe: (recipeID) => {
+      fetchRecipe(recipeID, (recipe) => {
+        dispatch(actions.setRecipe(recipe));
+        fetchRecipes(recipe.fork_history, (recipes) => {
+          dispatch(actions.setRecipeHistory(recipes));
+        });
       });
     },
   };
