@@ -1,4 +1,7 @@
+@import '_main';
+
 .recipe-entry {
+  background-color: $primary-detail;
   width: 250px;
   height: 350px;
   overflow: hidden;

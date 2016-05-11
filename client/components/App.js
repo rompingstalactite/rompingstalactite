@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import actions from '../actions/index.js';
 import { fetchUser } from '../utils/utils.js';
 import '../scss/simple-grid.scss';
+import '../scss/_main.scss';
 import '../scss/_app.scss';
 
 import Nav from './Nav.js';
