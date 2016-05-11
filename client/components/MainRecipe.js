@@ -49,7 +49,7 @@ class MainRecipe extends Component {
                 <p> - v.1.1 forked December 19th 2015</p>
                 <p> - v.1.0 forked December 5th 2015</p>
               </div>*/}
-              <div>
+              <div className="fork-history">
                 <RecipeContainer
                   className="fork-history"
                   type="Recipe History"
