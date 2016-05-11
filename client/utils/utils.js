@@ -54,7 +54,7 @@ export const createRecipe = (recipe, callback) => {
   })
   .then((response) => {
     if (response.status >= 400) {
-      callback(new Error('Bad response from server'));
+      throw new Error('Bad response from server');
     }
     return response.json();
   })
