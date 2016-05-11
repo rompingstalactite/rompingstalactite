@@ -4,7 +4,6 @@ const db = pgp(cn);
 
 module.exports = {
   getOneRecipe: (request, response, next) => {
-    console.log('**************************CALLED W/', request.params.recipe_id );
     const newQueryObj = {
       name: 'get-one-recipe',
       text: `SELECT
@@ -18,7 +17,6 @@ module.exports = {
 
     db.one(newQueryObj)
       .then((data) => {
-        console.log('THIS IS WHAT"S COMING OUT OF GET1RECIPE',data);
         response.json(data);
         next();
       }).catch((error) => {
@@ -67,7 +65,6 @@ module.exports = {
     db.query(newQueryObj);
     db.query(newQueryObj2)
       .then((data) => {
-        // console.log('THE DATA',data)
         response.status(201);
         response.json(data);
         next();

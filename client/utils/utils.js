@@ -34,10 +34,9 @@ const assignAuthorToNewRecipe = (author, recipe) => {
   recipeCopy.parent = recipe.id;
   recipeCopy.author = author;
 
-  console.log('INITIAL', recipe);
   recipeCopy.historyIDs = recipe.fork_history || [];
   recipeCopy.historyIDs.push(recipe.id);
-  console.log(recipeCopy);
+
   return recipeCopy;
 };
 
@@ -69,7 +68,6 @@ export const createRecipe = (recipe, callback) => {
 };
 
 export const forkRecipe = (originalRecipeID, userID, callback) => {
-  console.log(originalRecipeID, userID, callback);
   fetchRecipe(originalRecipeID, (recipe) => {
     createRecipe(bindAuthorToNewRecipe(userID)(recipe), callback);
   });
