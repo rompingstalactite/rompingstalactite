@@ -40,7 +40,6 @@ class MainRecipe extends Component {
         <div className="recipe-content" contentEditable={toggleEdit}>
           <div className="header">
             <h2 className="recipe-main-title">{recipe.title}</h2>
-
             <div className="header-images">
               <div className="recipe-images">
                 {recipe.images.map((image) => <img src={image} />)}
