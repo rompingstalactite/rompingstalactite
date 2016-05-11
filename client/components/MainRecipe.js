@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import actions from '../actions/index.js';
 import { forkRecipe, fetchRecipes } from '../utils/utils';
 import RecipeContainer from './RecipeContainer';
+import '../scss/_main.scss';
 import '../scss/_mainRecipe.scss';
 
 class MainRecipe extends Component {
@@ -39,7 +40,7 @@ class MainRecipe extends Component {
             <h2 className="recipe-main-title">{recipe.title}</h2>
             <div className="header-images">
               <div className="recipe-images">
-                {recipe.images.map((image) => <img src={image} />)}
+                {recipe.images.map((image) => <div className="recipe-image"><img src={image} /></div>)}
               </div>
               {/*<div className="fork-history">
                 <p> - v.1.3 forked May 1st 2016</p>
@@ -59,7 +60,7 @@ class MainRecipe extends Component {
             <h4> tags: {recipe.tags.map(t => <a> {t} </a>)} </h4>
           </div>
 
-          <div className="instructions">
+          <div className="recipe-instructions">
             <div className="ingredients">
               <ul>
                 <h4> Ingredients </h4>
