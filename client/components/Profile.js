@@ -6,7 +6,7 @@ import RecipeContainer from './RecipeContainer.js';
 const Profile = (props) => (
   <div className="profile-content">
     <div className="col-1-4">
-      <img className="profile-avatar" src={props.avatar.slice(0, props.avatar.length-6)} alt="avatar"></img>
+      <img className="profile-avatar" src={props.avatar/*props.avatar.slice(0, props.avatar.length-6)*/} alt="avatar"></img>
       <p className="profile-username">{props.user.displayName}</p>
     </div>
     <div className="profile-recipe-containers col-3-4">
