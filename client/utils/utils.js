@@ -40,6 +40,18 @@ export const updateLike = (likeObj) => {
     return response.json();
   });
 };
+
+export const getLikeState = (getLikeObj) => {
+  return fetch(`http://localhost:8080/api/v1/likes/?userID=${getLikeObj.userID}&recipeID=${getLikeObj.recipeID}`, {
+    credentials: 'same-origin',
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  }).then(response => response.json());
+};
+
 const assignAuthorToNewRecipe = (author, recipe) => {
   const recipeCopy = {};
   Object.keys(recipe).forEach((k) => {
