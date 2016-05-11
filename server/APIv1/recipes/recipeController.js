@@ -99,7 +99,6 @@ module.exports = {
 
     db.query(newQueryObj);
     db.query(newQueryObj2).then((data) => {
-      console.log('$$$$$$$$$$$THE DATA',data)
       response.json(data);
       next();
     }).catch((error) => {
@@ -112,7 +111,6 @@ module.exports = {
     let queryObj;
 
     if (request.body.historyIDs) {
-      console.log('MADE TO THE CORRECT CONDITIONAL');
       queryObj = {
       name: 'create-recipe',
       text: `insert into recipes(
@@ -151,7 +149,6 @@ module.exports = {
       ],
       };
     } else {
-      console.log('MADE TO THE WROOOOOOOONG CONDITIONAL');
       queryObj = {
         name: 'create-recipe',
         text: `insert into recipes(
@@ -189,7 +186,6 @@ module.exports = {
       };
     }
 
-    console.log('OMNOMNOMNOMNOMOMNOM%#*&)(#@&%*@#%U#U$%#$', queryObj);
     db.one(queryObj)
       .then((data) => {
         response.status(201);
@@ -209,7 +205,6 @@ module.exports = {
 
   forkRecipe: (request, response, next) => {
 
-    console.log('*****************************',request.body.user_id, request.body.recipe_id, request.body);
     const newQueryObj = {
       name: 'fork-recipe',
       text: `INSERT INTO recipes (
