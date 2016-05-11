@@ -26,7 +26,7 @@ CREATE TABLE "recipes" (
   "author" integer,
   "parent" integer,
   "images" TEXT[] NOT NULL,
-  "followers" TEXT[] NOT NULL,
+  "followers" TEXT[],
   "yield" integer NOT NULL,
   "yield_unit" TEXT NOT NULL,
   "ingredients" TEXT[] NOT NULL,
@@ -36,6 +36,7 @@ CREATE TABLE "recipes" (
   "cook_steps" TEXT[] NOT NULL,
   "finish_steps" TEXT[] NOT NULL,
   "tags" TEXT[] NOT NULL,
+  "fork_history" integer[],
 	CONSTRAINT recipes_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
