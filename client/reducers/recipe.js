@@ -8,6 +8,8 @@ const initialState = {
   id: 1,
   author: 1,
   parent: null,
+  created_at: new Date(),
+  updated_at: new Date(),
   title: 'Vegan Red Velvet Cupcakes',
   images: [
     'http://40aprons.com/wp-content/uploads/2013/10/red_velvet_cupcakes+2+of+81.jpg',
