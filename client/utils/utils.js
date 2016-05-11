@@ -138,25 +138,3 @@ export const fetchRecipes = (recipeIDList, callback) => {
     return;
   });
 }
-
-// export const forkRecipe = (originalRecipeID, userID, callback) => {
-//   fetch('/api/v1/recipes/fork', {
-//     method: 'POST',
-//     headers: {
-//       Accept: 'application/json',
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify({
-//       user_id: userID,
-//       recipe_id: originalRecipeID,
-//     }),
-//   })
-//   .then(response => {
-//     return response.json();
-//   })
-//   .then(response => {
-//     return fetchRecipe(response[0].id, function(response) {
-//       callback(response);
-//     });
-//   });
-// };
