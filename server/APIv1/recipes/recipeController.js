@@ -18,6 +18,7 @@ module.exports = {
 
     db.one(newQueryObj)
       .then((data) => {
+        console.log('THIS IS WHAT"S COMING OUT OF GET1RECIPE',data);
         response.json(data);
         next();
       }).catch((error) => {
@@ -106,8 +107,13 @@ module.exports = {
       next();
     });
   },
+
   createRecipe: (request, response, next) => {
-    const queryObj = {
+    let queryObj;
+
+    if (request.body.historyIDs) {
+      console.log('MADE TO THE CORRECT CONDITIONAL');
+      queryObj = {
       name: 'create-recipe',
       text: `insert into recipes(
         title,
@@ -123,8 +129,9 @@ module.exports = {
         finish_steps,
         tags,
         parent,
-        author
-      ) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) returning *`,
+        author,
+        fork_history
+      ) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) returning *`,
       values: [
         request.body.title,
         request.body.images,
@@ -140,9 +147,49 @@ module.exports = {
         request.body.tags,
         request.body.parent,
         request.body.author,
+        request.body.historyIDs,
       ],
-    };
+      };
+    } else {
+      console.log('MADE TO THE WROOOOOOOONG CONDITIONAL');
+      queryObj = {
+        name: 'create-recipe',
+        text: `insert into recipes(
+          title,
+          images,
+          followers,
+          yield,
+          yield_unit,
+          ingredients,
+          prep_time,
+          prep_steps,
+          cook_time,
+          cook_steps,
+          finish_steps,
+          tags,
+          parent,
+          author,
+        ) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) returning *`,
+        values: [
+          request.body.title,
+          request.body.images,
+          request.body.followers,
+          request.body.yield,
+          request.body.yield_unit,
+          request.body.ingredients,
+          request.body.prep_time,
+          request.body.prep_steps,
+          request.body.cook_time,
+          request.body.cook_steps,
+          request.body.finish_steps,
+          request.body.tags,
+          request.body.parent,
+          request.body.author,
+        ],
+      };
+    }
 
+    console.log('OMNOMNOMNOMNOMOMNOM%#*&)(#@&%*@#%U#U$%#$', queryObj);
     db.one(queryObj)
       .then((data) => {
         response.status(201);
@@ -158,11 +205,9 @@ module.exports = {
       });
   },
 
+  
+
   forkRecipe: (request, response, next) => {
-    // 4 = current_user_id --> $1
-    // 3 = current_recipe_id --> $2
-    // **don't forget fork_history
-    //duplicate row
 
     console.log('*****************************',request.body.user_id, request.body.recipe_id, request.body);
     const newQueryObj = {
@@ -196,7 +241,7 @@ module.exports = {
                 yield,
                 yield_unit,
                 ingredients,
-                (SELECT array_append (fork_history, (SELECT author FROM recipes WHERE id= $2))),
+                (SELECT array_append (fork_history, $2)),
                 prep_time,
                 prep_steps,
                 cook_time,
