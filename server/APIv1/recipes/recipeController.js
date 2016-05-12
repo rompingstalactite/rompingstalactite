@@ -199,7 +199,6 @@ module.exports = {
   },
 
   trendingRecipes: (request, response, next) => {
-    console.log('****************************START OF TRENDING');
     const interval = request.body.interval || '1 day';
     const limit = request.body.limit || 10;
 
