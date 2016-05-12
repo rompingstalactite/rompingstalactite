@@ -117,7 +117,7 @@ const mapStateToProps = (state, ownProps) => {
     toggleEdit: state.toggleEdit,
     user: state.user,
     recipe: state.recipe,
-    fork_history: state.recipe.fork_history,
+    fork_history: state.recipe.fork_history || [],
     historyRecipes: state.recipe.historyRecipes,
     id: ownProps.params.id,
   };

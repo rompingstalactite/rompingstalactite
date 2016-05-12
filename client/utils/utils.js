@@ -124,7 +124,8 @@ export const fetchUser = (callback) => {
 };
 
 export const fetchRecipes = (recipeIDList, callback) => {
-  const formattedQuery = JSON.stringify(recipeIDList).replace('[','{').replace(']','}');
+  const list = (!recipeIDList || recipeIDList.length === 0) ? [] : recipeIDList;
+  const formattedQuery = JSON.stringify(list).replace('[','{').replace(']','}');
   fetch(`${localServerURL}/api/v1/recipes/?recipes=${formattedQuery}`, {
     credentials: 'same-origin',
   })
