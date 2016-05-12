@@ -1,10 +1,4 @@
-// import * as types from '../constants/ActionTypes.js';
-
-// const initialState = [];
-
-// =====
-// SEED DATA FOR TESTING
-// =====
+import * as types from '../constants/ActionTypes.js';
 
 const initialState = [
   {
@@ -21,11 +15,11 @@ const initialState = [
   },
 ];
 
-export default function recipesSearched(state = initialState /*, action*/) {
-  // switch (action.type) {
-  // case types.UPDATE_RECIPES:
-  //   return state.concat(action.recipes);
-  // default:
-  return state;
-  // }
+export default function recipesSearched(state = initialState, action) {
+  switch (action.type) {
+    case types.SET_RECIPE_LIST:
+      return action.change;
+    default:
+      return state;
+  }
 }
