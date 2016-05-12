@@ -25,6 +25,8 @@ module.exports = {
       });
   },
   getMultipleRecipes: (request, response, next) => {
+    // left over from searchController
+    // console.log(request.body._queryResultIds);
     const newQueryObj = {
       name: 'get-multiple-recipes',
       text: `SELECT *
@@ -32,7 +34,7 @@ module.exports = {
                    recipes
                  WHERE
                    id = ANY($1)`,
-      values: [request.query.recipes],
+      values: [request.query.recipes || request.body.recipes],
     };
 
     db.query(newQueryObj).then((data) => {
