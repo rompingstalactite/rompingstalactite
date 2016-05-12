@@ -43,10 +43,10 @@ module.exports = {
     db.query(queryObj)
       .then((data) => {
         response.status(201);
-
-        request.body._queryResultIds = data.map((val) => {
+        request.body.recipes = data.map((val) => {
           return parseInt(val.document.match(/(?:'1':)(\d+)(?=[,\s])/)[1], 10);
         });
+        // console.log(request.body._queryResultIds);
 
         return getMultipleRecipes(request, response, next);
       })
