@@ -198,63 +198,49 @@ module.exports = {
       });
   },
 
-  forkRecipe: (request, response, next) => {
+  trendingRecipes: (request, response, next) => {
+    const interval = request.body.interval || '1 day';
+    const limit = request.body.limit || 10;
 
     const newQueryObj = {
-      name: 'fork-recipe',
-      text: `INSERT INTO recipes (
-              created_at,
-              updated_at,
-              title,
-              author,
-              parent,
-              images,
-              yield,
-              yield_unit,
-              ingredients,
-              fork_history,
-              prep_time,
-              prep_steps,
-              cook_time,
-              cook_steps,
-              finish_steps,
-              tags,
-              followers
-            )
-              SELECT
-                created_at,
-                updated_at,
-                title,
-                $1,
-                author,
-                images,
-                yield,
-                yield_unit,
-                ingredients,
-                (SELECT array_append (fork_history, $2)),
-                prep_time,
-                prep_steps,
-                cook_time,
-                cook_steps,
-                finish_steps,
-                tags,
-                followers
+      name: 'get-one-recipe',
+        text: `SELECT
+                parent,
+                COUNT (parent)
               FROM
                 recipes
-                WHERE
-                  id = $2
-              RETURNING
-                id;`,
-      values: [request.body.user_id, request.body.recipe_id],
+              WHERE
+                created_at > CURRENT_TIMESTAMP - INTERVAL '1 day'
+              AND
+                parent is not null
+              GROUP BY
+                parent
+              ORDER BY
+                COUNT (parent) DESC 
+              LIMIT $1`,
+      values: [limit],
     };
 
-    db.query(newQueryObj)
+    db.query(newQueryObj).then((data) => {
+      let trendingIds = data.map((element) => {
+        return element.parent;
+      });
+      return trendingIds;
+    }).then((trendingIds) => {
+      const newQueryObj2 = {
+        name: 'get-multiple-recipes',
+        text: `SELECT *
+                   FROM
+                     recipes
+                   WHERE
+                     id = ANY($1)`,
+        values: [trendingIds],
+      };
+      return db.query(newQueryObj2)})
     .then((data) => {
-      response.status(201);
       response.json(data);
-      next();
+      // next();
     }).catch((error) => {
-      response.status(500);
       response.json(error);
       next();
     });

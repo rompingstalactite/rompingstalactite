@@ -147,6 +147,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(MainRecipe);
-
-// swap out the div on line 9 once state is added to redux store
-// <div contentEditable={props.editable}>

@@ -137,26 +137,28 @@ export const fetchRecipes = (recipeIDList, callback) => {
     console.log('Error:', error);
     return;
   });
-}
+};
 
-// export const forkRecipe = (originalRecipeID, userID, callback) => {
-//   fetch('/api/v1/recipes/fork', {
-//     method: 'POST',
-//     headers: {
-//       Accept: 'application/json',
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify({
-//       user_id: userID,
-//       recipe_id: originalRecipeID,
-//     }),
-//   })
-//   .then(response => {
-//     return response.json();
-//   })
-//   .then(response => {
-//     return fetchRecipe(response[0].id, function(response) {
-//       callback(response);
-//     });
-//   });
-// };
+export const fetchTrending = (callback) => {
+  fetch(`http://localhost:8080/api/v1/recipes/trending`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    credentials: 'same-origin',
+  })
+  .then((response) => {
+    if (response.status >= 400) {
+      throw new Error('Bad response from server');
+    }
+    return response.json();
+  })
+  .then((data) => {
+    callback(data);
+  })
+  .catch((error) => {
+    console.log('Error:', error);
+    return;
+  });
+};
