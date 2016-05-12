@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
+import { searchRecipes } from '../utils/utils.js';
+import actions from '../actions/index.js';
+import { push } from 'react-router-redux';
 import '../scss/_nav.scss';
 
 class Nav extends Component {
   render() {
-    const { user, avatar, recipeID, } = this.props;
+    const { user, avatar, search, recipeID, } = this.props;
+    let { searchString } = this.props;
     let signInOut;
     if (!user.id) {
       signInOut = <a href="/auth/google">Sign in with Google</a>;
@@ -16,7 +20,20 @@ class Nav extends Component {
       <div>
         <div className="nav-bar">
           <Link to="/">GitCooking</Link>
-          <input placeholder="Search for recipes"></input>
+          <input
+            className="search-bar"
+            placeholder="Search for recipes"
+            onChange={(e) => { searchString = e.target.value; }}
+          ></input>
+          <button
+            onClick={
+              (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                search(searchString);
+              }
+            }
+          > Search </button>
           {signInOut}
           <Link to={`/recipe/${recipeID}`}>Recipe</Link>
           <Link to="/search">Search</Link>
@@ -36,7 +53,20 @@ const mapStateToProps = (state) => {
     user: state.user,
     avatar: state.user.photos[0].value,
     recipeID: state.recipe.id,
+    // map a local variable to props
+    searchString: '',
   };
 };
 
-export default connect(mapStateToProps)(Nav);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    search: (query) => {
+      searchRecipes(query, (recipeArray) => {
+        dispatch(actions.setRecipeList(recipeArray));
+        dispatch(push('/search'));
+      });
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Nav);
