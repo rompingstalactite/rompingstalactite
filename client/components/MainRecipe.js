@@ -5,6 +5,7 @@ import { forkRecipe, fetchRecipes } from '../utils/utils';
 import RecipeContainer from './RecipeContainer';
 import '../scss/_mainRecipe.scss';
 
+import Like from './Like.js';
 class MainRecipe extends Component {
   componentDidMount() {
     const { getHistory, historyIDs } = this.props;
@@ -35,6 +36,7 @@ class MainRecipe extends Component {
         <h1>THIS IS THE RECIPE HISTORY: {recipe.fork_history}</h1>
         {editButton}
         {forkButton}
+        <Like recipeID={recipe.id} userID={user.id} />
         <div className="recipe-content" contentEditable={toggleEdit}>
           <div className="header">
             <h2 className="recipe-main-title">{recipe.title}</h2>
