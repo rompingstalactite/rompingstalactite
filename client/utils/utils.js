@@ -139,6 +139,27 @@ export const fetchRecipes = (recipeIDList, callback) => {
   });
 };
 
+export const searchRecipes = (query, callback) => {
+  const formattedQuery = JSON.stringify(query).replace('[','{').replace(']','}');
+  console.log(formattedQuery);
+  fetch(`http://localhost:8080/api/v1/search/${query}`, {
+    credentials: 'same-origin',
+  })
+  .then((response) => {
+    if (response.status >= 400) {
+      throw new Error('Bad response from server');
+    }
+    return response.json();
+  })
+  .then((data) => {
+    callback(data);
+  })
+  .catch((error) => {
+    console.log('Error:', error);
+    return;
+  });
+};
+
 export const fetchTrending = (callback) => {
   fetch(`http://localhost:8080/api/v1/recipes/trending`, {
     method: 'GET',
