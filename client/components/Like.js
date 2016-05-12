@@ -40,9 +40,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleGetLikeState: (userID, recipeID) => {
-      const userId = userID || -1;
-      getLikeState({ userId, recipeID })
+    handleGetLikeState: (userIDparam, recipeID) => {
+      const userID = userIDparam || -1;
+      getLikeState({ userID, recipeID })
         .then(response => {
           dispatch(actions.toggleLike({
             likeCount: response.likecount,
