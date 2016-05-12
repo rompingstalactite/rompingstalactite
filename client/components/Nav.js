@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { searchRecipes } from '../utils/utils.js';
+import actions from '../actions/index.js';
+import { push } from 'react-router-redux';
 import '../scss/_nav.scss';
 
 class Nav extends Component {
@@ -51,6 +53,7 @@ const mapStateToProps = (state) => {
     user: state.user,
     avatar: state.user.photos[0].value,
     recipeID: state.recipe.id,
+    // map a local variable to props
     searchString: '',
   };
 };
@@ -58,8 +61,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     search: (query) => {
-      searchRecipes(query, (results) => {
-        console.log(results);
+      searchRecipes(query, (recipeArray) => {
+        dispatch(actions.setRecipeList(recipeArray));
+        dispatch(push('/search'));
       });
     },
   };
