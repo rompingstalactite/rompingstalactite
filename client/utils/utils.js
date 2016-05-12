@@ -61,8 +61,8 @@ const assignAuthorToNewRecipe = (author, recipe) => {
   recipeCopy.parent = recipe.id;
   recipeCopy.author = author;
 
-  recipeCopy.historyIDs = recipe.fork_history || [];
-  recipeCopy.historyIDs.push(recipe.id);
+  recipeCopy.fork_history = recipe.fork_history || [];
+  recipeCopy.fork_history.push(recipe.id);
 
   return recipeCopy;
 };
