@@ -199,30 +199,26 @@ module.exports = {
   },
 
   trendingRecipes: (request, response, next) => {
+    console.log('****************************START OF TRENDING');
     const interval = request.body.interval || '1 day';
     const limit = request.body.limit || 10;
 
-    // console.log("MADE IT!", ("'"+interval+"'"), limit);
     const newQueryObj = {
-      name: 'get-trending-recipes',
-      text: `SELECT 
-              *
-              FROM (
-                SELECT
-                  parent,
-                  COUNT (parent)
-                FROM
-                  recipes
-                WHERE
-                  created_at > CURRENT_TIMESTAMP - INTERVAL '1 day'
-                AND
-                  parent is not null
-                GROUP BY
-                  parent
-                ORDER BY
-                  COUNT (parent) DESC 
-                LIMIT $1
-              ) trends`,
+      name: 'get-one-recipe',
+        text: `SELECT
+                parent,
+                COUNT (parent)
+              FROM
+                recipes
+              WHERE
+                created_at > CURRENT_TIMESTAMP - INTERVAL '1 day'
+              AND
+                parent is not null
+              GROUP BY
+                parent
+              ORDER BY
+                COUNT (parent) DESC 
+              LIMIT $1`,
       values: [limit],
     };
 
@@ -234,7 +230,7 @@ module.exports = {
     }).then((trendingIds) => {
       const newQueryObj2 = {
         name: 'get-multiple-recipes',
-        text: `SELECT title
+        text: `SELECT *
                    FROM
                      recipes
                    WHERE
@@ -244,7 +240,7 @@ module.exports = {
       return db.query(newQueryObj2)})
     .then((data) => {
       response.json(data);
-      next();
+      // next();
     }).catch((error) => {
       response.json(error);
       next();

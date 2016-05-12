@@ -137,4 +137,28 @@ export const fetchRecipes = (recipeIDList, callback) => {
     console.log('Error:', error);
     return;
   });
-}
+};
+
+export const fetchTrending = (callback) => {
+  fetch(`http://localhost:8080/api/v1/recipes/trending`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    credentials: 'same-origin',
+  })
+  .then((response) => {
+    if (response.status >= 400) {
+      throw new Error('Bad response from server');
+    }
+    return response.json();
+  })
+  .then((data) => {
+    callback(data);
+  })
+  .catch((error) => {
+    console.log('Error:', error);
+    return;
+  });
+};
