@@ -27,8 +27,4 @@ describe('<Nav />', () => {
     expect(wrapper.find({ to: '/create' })).to.exist;
     expect(wrapper.find('.avatar')).to.exist;
   });
-
-  it('dispatches changes to state on search', () => {
-    wrapper.find('button').simulate('click');
-  });
 });
