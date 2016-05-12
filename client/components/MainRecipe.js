@@ -44,15 +44,15 @@ class MainRecipe extends Component {
 
     return (
       <div>
-        <h1>THIS IS THE USER: {user.displayName}</h1>
+        {/*<h1>THIS IS THE USER: {user.displayName}</h1>
         <h1>THIS IS THE RECIPE AUTHOR: {recipe.author}</h1>
         <h1>THIS IS THE RECIPE PARENT: {recipe.parent}</h1>
         <h1>THIS IS THE RECIPE HISTORY: {recipe.fork_history}</h1>
-        <h1>THIS IS THE RECIPE ID: {recipe.id}</h1>
+        <h1>THIS IS THE RECIPE ID: {recipe.id}</h1>*/}
         {editButton}
         {forkButton}
         <Like recipeID={recipe.id} userID={user.id} />
-        <Link to="/recipe/15">GO TO RECIPE 15</Link>
+        {/*<Link to="/recipe/15">GO TO RECIPE 15</Link>*/}
         <div className="recipe-content" contentEditable={toggleEdit}>
           <div className="header">
             <h2 className="recipe-main-title">{recipe.title}</h2>
