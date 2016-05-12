@@ -7,7 +7,6 @@ export const fetchRecipe = (recipeID, callback) => {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
-    credentials: 'same-origin',
   })
   .then((response) => {
     if (response.status >= 400) {
@@ -62,8 +61,8 @@ const assignAuthorToNewRecipe = (author, recipe) => {
   recipeCopy.parent = recipe.id;
   recipeCopy.author = author;
 
-  recipeCopy.historyIDs = recipe.fork_history || [];
-  recipeCopy.historyIDs.push(recipe.id);
+  recipeCopy.fork_history = recipe.fork_history || [];
+  recipeCopy.fork_history.push(recipe.id);
 
   return recipeCopy;
 };

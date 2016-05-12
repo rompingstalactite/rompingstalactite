@@ -107,7 +107,7 @@ module.exports = {
   createRecipe: (request, response, next) => {
     let queryObj;
 
-    if (request.body.historyIDs) {
+    if (request.body.fork_history) {
       queryObj = {
       name: 'create-recipe',
       text: `insert into recipes(
@@ -142,7 +142,7 @@ module.exports = {
         request.body.tags,
         request.body.parent,
         request.body.author,
-        request.body.historyIDs,
+        request.body.fork_history,
       ],
       };
     } else {
@@ -198,8 +198,6 @@ module.exports = {
       });
   },
 
-  
-
   forkRecipe: (request, response, next) => {
 
     const newQueryObj = {
@@ -223,7 +221,7 @@ module.exports = {
               tags,
               followers
             )
-              SELECT 
+              SELECT
                 created_at,
                 updated_at,
                 title,

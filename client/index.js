@@ -1,12 +1,9 @@
-// this is the main entry point for the app
-// it renders the App component after wrapping it in the Provider from Redux
-
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, combineReducers } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux';
 
 import App from './components/App';
 import MainRecipe from './components/MainRecipe';
@@ -18,13 +15,10 @@ import CreateRecipe from './components/CreateRecipe';
 
 import rootReducer from './reducers';
 
-// Grab the state from a global injected into server-generated HTML
-const initialState = window.__INITIAL_STATE__;
+const middleware = routerMiddleware(browserHistory);
 
-// Create Redux store with initial state
-// the store manages the state of our app
 // createStore accepts a single reducer or a collection of reducers
-const store = createStore(rootReducer, initialState);
+const store = createStore(rootReducer, applyMiddleware(middleware));
 
 const history = syncHistoryWithStore(browserHistory, store);
 
@@ -36,7 +30,6 @@ const render = function () {
           <Route path="/" component={App}>
             <IndexRoute component={Dashboard} />
             <Route path="/profile" component={Profile} />
-            <Route path="/recipe" component={MainRecipe} />
             <Route path="/recipe/:id" component={MainRecipe} />
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/create" component={CreateRecipe} />

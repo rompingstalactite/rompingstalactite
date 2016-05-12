@@ -70,7 +70,7 @@ const initialState = {
     'vegetarian',
     'dairy-free',
   ],
-  historyIDs: [1, 2, 3, 80],
+  fork_history: [1, 2, 3, 80],
   historyRecipes: [],
 };
 

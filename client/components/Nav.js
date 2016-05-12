@@ -5,7 +5,7 @@ import '../scss/_nav.scss';
 
 class Nav extends Component {
   render() {
-    const { user, avatar} = this.props;
+    const { user, avatar, recipeID, } = this.props;
     let signInOut;
     if (!user.id) {
       signInOut = <a href="/auth/google">Sign in with Google</a>;
@@ -18,7 +18,7 @@ class Nav extends Component {
           <Link to="/">GitCooking</Link>
           <input placeholder="Search for recipes"></input>
           {signInOut}
-          <Link to="/recipe">Recipe</Link>
+          <Link to={`/recipe/${recipeID}`}>Recipe</Link>
           <Link to="/search">Search</Link>
           <Link to="/create">Create</Link>
           <Link to="/profile">
@@ -35,6 +35,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     avatar: state.user.photos[0].value,
+    recipeID: state.recipe.id,
   };
 };
 

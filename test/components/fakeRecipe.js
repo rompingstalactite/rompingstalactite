@@ -62,7 +62,7 @@ const recipe = {
     'vegetarian',
     'dairy-free',
   ],
-  historyIDs: [],
+  fork_history: [],
   historyRecipes: [{id: 1, title: 'hello'}, {id: 2, title: 'recipe-title'}],
 };
 

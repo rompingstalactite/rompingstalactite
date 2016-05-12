@@ -15,7 +15,7 @@ describe('<MainRecipe />', () => {
   beforeEach('render recipe', () => {
     wrapper = mount(
       <Provider store={fakeStore}>
-        <MainRecipe />
+        <MainRecipe params={{id: 1}}/>
       </Provider>
     );
   });
