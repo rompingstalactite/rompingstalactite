@@ -141,7 +141,6 @@ export const fetchRecipes = (recipeIDList, callback) => {
 
 export const searchRecipes = (query, callback) => {
   const formattedQuery = JSON.stringify(query).replace('[','{').replace(']','}');
-  console.log(formattedQuery);
   fetch(`http://localhost:8080/api/v1/search/${query}`, {
     credentials: 'same-origin',
   })

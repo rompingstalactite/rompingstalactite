@@ -20,10 +20,6 @@ module.exports = (app, express) => {
     req.session.destroy(() => { res.redirect('/'); });
   });
 
-  /**
-   * Search
-   */
-  app.get('/api/v1/search/:q', sc.searchRecipes);
 
   /**
    * Users
@@ -57,6 +53,11 @@ module.exports = (app, express) => {
   // app.get('/api/v1/recipes/:user', /* auth, */ getUsersRecipes);
   // app.get('/api/v1/recipes/me', /* auth, */ namedFn);
   // app.get('/api/v1/recipes/me', /* auth, */ namedFn);
+  
+  /**
+   * Search
+   */
+  app.get('/api/v1/search/:q', sc.searchRecipes);
 
   /**
    * Likes
