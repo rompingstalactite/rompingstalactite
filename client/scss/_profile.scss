@@ -1,0 +1,15 @@
+.profile-recipe-containers {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-content {
+  margin-top: 10px;
+}
+
+img.profile-avatar {
+  width: 250px;
+  height: 250px;
+  border-radius: 10px;
+  margin-top: 30px;
+}

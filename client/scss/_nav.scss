@@ -1,4 +1,7 @@
+@import '_main';
+
 .nav-bar {
+  background-color: $secondary-base;
   display: flex;
   justify-content: center;
   align-items: center;

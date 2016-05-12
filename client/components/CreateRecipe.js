@@ -22,7 +22,7 @@ class CreateRecipe extends Component {
               value={recipe.title}
               onChange={(e) => updateRecipe(e)}
             /><br />
-            Images:
+            <h3> Images: </h3>
             <br />
             yield:
             <input
@@ -59,14 +59,6 @@ class CreateRecipe extends Component {
             > add ingredient </button> <br />
 
 
-            prep_time:
-            <input
-              type="text"
-              name="prep_time"
-              value={recipe.prep_time}
-              onChange={(e) => updateRecipe(e)}
-            /><br />
-
             <h3> Prep Steps: </h3>
             <h3> {recipe.prep_steps.map((i, key) =>
               <input
@@ -84,15 +76,14 @@ class CreateRecipe extends Component {
                 addField('prep_steps');
               }}
             > add Step </button> <br />
-
-
-            cook_time:
+            Prep Time:
             <input
               type="text"
-              name="cook_time"
-              value={recipe.cook_steps}
+              name="prep_time"
+              value={recipe.prep_time}
               onChange={(e) => updateRecipe(e)}
             /><br />
+
 
             <h3> Cook Steps: </h3>
             <h3> {recipe.cook_steps.map((i, key) =>
@@ -111,6 +102,13 @@ class CreateRecipe extends Component {
                 addField('cook_steps');
               }}
             > add Step </button> <br />
+            Cook Time:
+            <input
+              type="text"
+              name="cook_time"
+              value={recipe.cook_steps}
+              onChange={(e) => updateRecipe(e)}
+            /><br />
 
 
             <h3> Finish Steps: </h3>

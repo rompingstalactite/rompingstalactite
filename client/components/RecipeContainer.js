@@ -1,11 +1,14 @@
 import React from 'react';
+import '../scss/_recipeContainer.scss';
 
 import RecipeEntry from '../../client/components/RecipeEntry.js';
 
 const RecipeContainer = (props) => (
-  <div className="recipe-container">
+  <div>
     <h2>{props.type}</h2>
-    {props.recipes.map((recipe) => <RecipeEntry recipe={recipe} />)}
+    <div className="recipe-container">
+      {props.recipes.map((recipe) => <RecipeEntry recipe={recipe} />)}
+    </div>
   </div>
 );
 

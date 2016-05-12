@@ -1,14 +1,30 @@
-.recipe-images > img {
+@import '_main';
+
+.recipe-images img {
+  object-fit: cover;
   width: 100%;
-  max-width: 250px;
+  height: 100%;
+}
+
+.recipe-images {
+  display: flex;
+  overflow: hidden;
+}
+
+.recipe-image {
+  width: 200px;
+  height: 200px;
 }
 
 .header-images {
   display: flex;
 }
 
-.instructions {
+.recipe-instructions {
   display: flex;
+  background-color: $secondary-detail;
+  border: 1px solid;
+  border-radius: 5px;
 }
 
 .prep, .cook, .finish {
@@ -25,6 +41,11 @@
 }
 .finish {
   order: 3;
+}
+.fork-history {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid;
 }
 
 .ingredients {
