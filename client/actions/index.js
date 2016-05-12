@@ -24,6 +24,7 @@ module.exports = {
   },
   toggleLike(toggleLike, likeCount) {
     return { type: types.TOGGLE_LIKE, change: toggleLike };
+  },
   recipesTop(trendingRecipeChange) {
     return { type: types.RECIPES_TOP, change: trendingRecipeChange };
   },
