@@ -50,11 +50,8 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     avatar: state.user.photos[0].value,
-<<<<<<< 8670c084483f46b26f42a9833befd4882a476e65
     recipeID: state.recipe.id,
-=======
     searchString: '',
->>>>>>> allow searchbar to return a list of objects which match the query
   };
 };
 
