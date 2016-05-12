@@ -20,6 +20,11 @@ const initialStateUser = {
   provider: null,
 };
 
+const initialStateLike = {
+  toggleLike: false,
+  likeCount: 0,
+};
+
 const objectAssign = (...objects) => {
   const newObj = {};
   for (let each in objects) {
@@ -39,6 +44,7 @@ const recipesSearched = (state = initialStateRecipes) => state;
 const recipesTop = (state = initialStateRecipes) => state;
 const historyRecipes = (state = initialStateRecipes) => state;
 const user = (state = initialStateUser) => state;
+const toggleLike = (state = initialStateLike) => state;
 const recipe = (state = initialStateRecipe, action) => {
   switch (action.type) {
     case types.FORK_RECIPE:
@@ -70,6 +76,7 @@ const fakeRootReducer = combineReducers({
   recipe,
   toggleEdit,
   user,
+  toggleLike,
 });
 
 export default createStore(fakeRootReducer);
