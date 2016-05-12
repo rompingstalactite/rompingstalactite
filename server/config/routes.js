@@ -21,6 +21,11 @@ module.exports = (app, express) => {
   });
 
   /**
+   * Search
+   */
+  app.get('/api/v1/search/:q', sc.searchRecipes);
+
+  /**
    * Users
    */
 
@@ -61,10 +66,6 @@ module.exports = (app, express) => {
   app.get('/api/v1/likes/:user', checkAuth, lc.getAllLikedRecipes);
   // app.get('/api/v1/favorites/:user/count', /* auth, */ getUserFavoritesCount);
 
-  /**
-   * Search
-   */
-  app.get('/api/v1/recipes/search/:q', sc.searchRecipes);
 
   /**
    * Catch unspecified routes
