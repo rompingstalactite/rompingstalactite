@@ -5,7 +5,8 @@ if (!process.env.TRAVIS && window.location) {
 }
 
 export const fetchRecipe = (recipeID, callback) => {
-  fetch(`${localServerURL}/api/v1/recipes/${recipeID}`, {
+  let id = recipeID ? recipeID : 1;
+  fetch(`${localServerURL}/api/v1/recipes/${id}`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
