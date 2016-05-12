@@ -24,6 +24,7 @@ module.exports = {
   },
   toggleLike(toggleLike, likeCount) {
     return { type: types.TOGGLE_LIKE, change: toggleLike };
+  },
   setRecipe(recipe) {
     return { type: types.SET_RECIPE, recipe };
   },
