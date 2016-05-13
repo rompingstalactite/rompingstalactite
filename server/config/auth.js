@@ -4,7 +4,7 @@ import { Strategy as GoogleStrategy }  from 'passport-google-oauth20';
 let googleClientID = process.env.GOOGLE_CLIENT_ID;
 let googleClientSecret = process.env.GOOGLE_CLIENT_SECRET;
 
-if (!process.env.TRAVIS) {
+if (!process.env.TRAVIS && !process.env.HEROKU) {
   googleClientID = require('../keys/googleAuth').googleKeys.CLIENT_ID;
   googleClientSecret = require('../keys/googleAuth').googleKeys.CLIENT_SECRET;
 }
