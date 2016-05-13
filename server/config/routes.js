@@ -43,6 +43,7 @@ module.exports = (app, express) => {
   app.get('/api/v1/trending', rc.trendingRecipes);
 
   app.post('/api/v1/recipes/', checkAuth, rc.createRecipe);
+  app.put('/api/v1/recipes/', rc.editRecipe);
   // app.post('/api/v1/recipes/:recipe_id', /* auth, */ forkRecipe);
   app.get('/api/v1/recipes/', rc.getMultipleRecipes);
   app.get('/api/v1/recipes/:recipe_id', rc.getOneRecipe);
