@@ -82,13 +82,14 @@ module.exports = (app, express) => {
   /**
    * Follows
    */
-  app.get('/api/v1/follows/user', fc.getUserFollowState);
-  app.get('/api/v1/follows/recipe', fc.getRecipeFollowState);
+  app.get('/api/v1/follows/users', fc.getUserFollowState);
+  app.post('/api/v1/follows/users/', /* checkAuth,*/ fc.addOrRemoveRecipeFollow);
+  app.get('/api/v1/follows/users/:user', /* checkAuth,*/ fc.getAllFollowedUsers);
 
+  app.get('/api/v1/follows/recipes', fc.getRecipeFollowState);
+  app.post('/api/v1/follows/recipes/', /* checkAuth,*/ fc.addOrRemoveUserFollow);
+  app.get('/api/v1/follows/users/:recipe', /* checkAuth,*/ fc.getAllFollowedRecipes);
 
-
-  app.post('/api/v1/follows/user/:recipe', /*checkAuth,*/ fc.addUserFollow);
-  app.post('/api/v1/follows/:currentUser/:user', checkAuth, fc.addOrRemoveRecipeFollow);
   /**
    * Catch unspecified routes
    */
