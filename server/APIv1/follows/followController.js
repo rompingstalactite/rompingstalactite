@@ -1,7 +1,32 @@
-import * as pg from 'pg-promise';
+import { postgresConnection as cn } from '../../config/helpers.js';
+const pgp = require('pg-promise')();
+const db = pgp(cn);
+
+// get user follows count for any user
+export const getUserFollowCount = (request, response) => {};
+// get recipe follows count for any recipe
+export const getRecipeFollowCount = (request, response) => {};
+
+// get user follows count and user follow status for logged in user
+export const getUserFollowState = () => {};
+// get recipe follows count and recipe follow status for logged in user
+export const getRecipeFollowState = () => {};
+
+// add new user follow for logged in user
+export const addUserFollow = (request, response) => {};
+// add new recipe follow for logged in user
+export const addRecipeFollow = (request, response) => {};
+
+// remove user follow for logged in user
+export const removeUserFollow = (request, response) => {};
+// remove recipe follow for logged in user
+export const removeRecipeFollow = (request, response) => {};
+
+
+// decide whether to add or remove user follow, based on user intent
+export const addOrRemoveUserFollow = (request, response) => {};
+// decide whether to add or remove recipe follow, based on user intent
+export const addOrRemoveRecipeFollow = (request, response) => {};
 
 
 
-  // findFollowers: function () {
-  //   return true;
-  // }
