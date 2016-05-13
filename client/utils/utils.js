@@ -125,8 +125,7 @@ export const fetchCurrentUser = (callback) => {
 };
 
 export const fetchUser = (userID, callback) => {
-  let id = userID ? userID : 5;
-  console.log('THE ID IS', id);
+  let id = userID ? userID : 1;
   fetch(`http://localhost:8080/api/v1/users/${id}`)
   .then((response) => {
     if (response.status >= 400) {
