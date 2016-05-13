@@ -10,7 +10,7 @@ class CreateRecipe extends Component {
   }
 
   render() {
-    const { recipe, addField, updateRecipe } = this.props;
+    const { recipe, addField, removeField, updateRecipe } = this.props;
     return (
       <div>
         <div className="edit-recipe-content">
@@ -23,7 +23,7 @@ class CreateRecipe extends Component {
               onChange={(e) => updateRecipe(e)}
             /><br />
             <h3> Images: </h3>
-            <br />
+            <br /> 
             yield:
             <input
               type="text"
@@ -56,7 +56,14 @@ class CreateRecipe extends Component {
                 e.preventDefault();
                 addField('ingredients');
               }}
-            > add ingredient </button> <br />
+            > add ingredient </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                removeField('ingredients');
+              }}
+            > remove ingredient </button> <br />
 
 
             <h3> Prep Steps: </h3>
@@ -178,6 +185,10 @@ const mapDispatchToProps = (dispatch) => {
   const addField = (property) => {
     // modify the recipe state to render a new field.
     dispatch(actions.addField(property));
+  };
+  const removeField = (property) => {
+    // modify the recipe state to render a new field.
+    dispatch(actions.removeField(property));
   };
 
   return {
