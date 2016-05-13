@@ -139,7 +139,7 @@ const mapDispatchToProps = (dispatch) => {
     },
 
     navToEdit: (user) => {
-      dispatch(push('/search'));
+      dispatch(push('/create'));
     },
 
     getRecipe: (recipeID) => {
