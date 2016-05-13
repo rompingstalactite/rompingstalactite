@@ -34,4 +34,7 @@ module.exports = {
   setRecipeList(recipeArr) {
     return { type: types.SET_RECIPE_LIST, change: recipeArr };
   },
+  setProfileUser(profileUser) {
+    return { type: types.SET_PROFILE_USER, user: profileUser };
+  },
 };
