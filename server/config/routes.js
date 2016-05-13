@@ -31,7 +31,7 @@ module.exports = (app, express) => {
   app.get('/api/v1/users/:user_id', uc.getOneUser);
 
   // TODO: getAllUsers should be protected for only admins, eventually.
-  app.get('/api/v1/users/', uc.getAllUsers);
+  // app.get('/api/v1/users/', uc.getAllUsers);
 
   // app.get('/api/v1/users/me', /* auth, */ getCurrentUser);
   // app.put('/api/v1/users/:user_id', /* auth, */ updateUser);

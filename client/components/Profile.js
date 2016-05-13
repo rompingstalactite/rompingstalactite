@@ -9,19 +9,13 @@ class Profile extends Component {
 
   componentDidMount() {
     const { updateProfile, id } = this.props;
-    // console.log('MOUNTING ID', id);
     updateProfile(+id);
   }
 
   componentWillUpdate(nextProps) {
     const currId = this.props.id;
     const { updateProfile, id } = nextProps;
-    // console.log('currID is', currId, typeof +currId);
-    // console.log('id is', id, typeof +id);
     if (+currId !== +id) {
-      // console.log('changing');
-      // console.log('inside currID is', currId);
-      // console.log('inside id is', id);
       updateProfile(+id);
     }
   }
@@ -70,8 +64,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     updateProfile: (userID) => {
-      fetchUser(userID, (profileUser) => {
-        dispatch(actions.setProfileUser(profileUser));
+      fetchUser(userID, (user) => {
+        dispatch(actions.setProfileUser(user));
       });
       // fetchRecipesOwned(userID), (recipesOwned) => {
       //   dispatch(action.SET_PROFILE_RECIPES_OWNED(recipesOwned));
