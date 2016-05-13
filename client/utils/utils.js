@@ -105,10 +105,29 @@ export const forkRecipe = (originalRecipeID, userID, callback) => {
   });
 };
 
-export const fetchUser = (callback) => {
+export const fetchCurrentUser = (callback) => {
   fetch(`${localServerURL}/api/v1/user/`, {
     credentials: 'same-origin',
   })
+  .then((response) => {
+    if (response.status >= 400) {
+      throw new Error('Bad response from server');
+    }
+    return response.json();
+  })
+  .then((data) => {
+    callback(data);
+  })
+  .catch((error) => {
+    console.log('Error:', error);
+    return;
+  });
+};
+
+export const fetchUser = (userID, callback) => {
+  let id = userID ? userID : 5;
+  console.log('THE ID IS', id);
+  fetch(`http://localhost:8080/api/v1/users/${id}`)
   .then((response) => {
     if (response.status >= 400) {
       throw new Error('Bad response from server');

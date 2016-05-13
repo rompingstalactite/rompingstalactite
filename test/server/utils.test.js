@@ -2,7 +2,7 @@ import Promise from 'bluebird';
 import Stubs from './Stubs.js';
 const expect = require('chai').expect;
 import fakeRecipe from '../components/fakeRecipe';
-import { fetchRecipe, createRecipe, forkRecipe, fetchUser } from '../../client/utils/utils';
+import { fetchRecipe, createRecipe, forkRecipe, fetchCurrentUser } from '../../client/utils/utils';
 
 const copyRecipe = (recipe) => {
   const recipeCopy = {};
@@ -90,7 +90,7 @@ describe('Util tests', () => {
       expect(user.photos[0].value).to.equal('http://www.carderator.com/assets/avatar_placeholder_small.png');
       done();
     };
-    useModifiedFetch(fetchUser)(cb);
+    useModifiedFetch(fetchCurrentUser)(cb);
   });
 
   it('should fork a recipe', (done) => {
