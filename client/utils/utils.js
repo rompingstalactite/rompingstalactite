@@ -1,5 +1,4 @@
 import 'isomorphic-fetch';
-
 let localServerURL;
 try {
   localServerURL = location.origin; // dev or prod environment
