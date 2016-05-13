@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import actions from '../actions/index.js';
 import { createRecipe } from '../utils/utils.js';
 import '../scss/_createRecipe.scss';
@@ -10,7 +11,7 @@ class CreateRecipe extends Component {
   }
 
   render() {
-    const { recipe, addField, removeField, updateRecipe } = this.props;
+    const { recipe, addField, removeField, updateRecipe, submitRecipe } = this.props;
     return (
       <div>
         <div className="edit-recipe-content">
@@ -87,9 +88,9 @@ class CreateRecipe extends Component {
               onClick={(e) => {
                 e.stopPropagation();
                 e.preventDefault();
-                removeField('ingredients');
+                removeField('prep_steps');
               }}
-            > remove ingredient </button>
+            > remove Step </button>
             <br />
             Prep Time:
             <input
@@ -121,9 +122,9 @@ class CreateRecipe extends Component {
               onClick={(e) => {
                 e.stopPropagation();
                 e.preventDefault();
-                removeField('ingredients');
+                removeField('cook_steps');
               }}
-            > remove ingredient </button>
+            > remove Step </button>
             <br />
             Cook Time:
             <input
@@ -157,9 +158,9 @@ class CreateRecipe extends Component {
               onClick={(e) => {
                 e.stopPropagation();
                 e.preventDefault();
-                removeField('ingredients');
+                removeField('finish_steps');
               }}
-            > remove ingredient </button>
+            > remove Step </button>
             <br />
 
             <h3> Tags: </h3>
@@ -183,12 +184,18 @@ class CreateRecipe extends Component {
               onClick={(e) => {
                 e.stopPropagation();
                 e.preventDefault();
-                removeField('ingredients');
+                removeField('tags');
               }}
-            > remove ingredient </button>
+            > remove Tag </button>
             <br />
 
-            <button onClick={() => createRecipe(recipe, console.log)}> Submit </button>
+            <button 
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                submitRecipe(recipe);
+              }}
+            > Submit </button>
 
           </form>
         </div>
@@ -222,11 +229,19 @@ const mapDispatchToProps = (dispatch) => {
     // modify the recipe state to render a new field.
     dispatch(actions.removeField(property));
   };
+  // will add or submit edits to a given recipe
+  const submitRecipe = (recipe) => {
+    createRecipe(recipe, (submittedRecipe) => {
+      dispatch(actions.setRecipe(submittedRecipe));
+      dispatch(push(`/recipe/${submittedRecipe.id}`));
+    });
+  };
 
   return {
     updateRecipe,
     addField,
     removeField,
+    submitRecipe,
   };
 };
 
