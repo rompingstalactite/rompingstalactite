@@ -165,7 +165,7 @@ export const searchRecipes = (query, callback) => {
 };
 
 export const fetchTrending = (callback) => {
-  fetch(`${localServerURL}/api/v1/trending`, {
+  fetch(`${localServerURL}/api/v1/trending`, { //
     method: 'GET',
     headers: {
       Accept: 'application/json',
