@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import actions from '../actions/index.js';
-import { createRecipe } from '../utils/utils.js';
+import { createRecipe, editRecipe } from '../utils/utils.js';
 import '../scss/_createRecipe.scss';
 
 class CreateRecipe extends Component {
@@ -231,19 +231,18 @@ const mapDispatchToProps = (dispatch) => {
   };
   // will add or submit edits to a given recipe
   const submitRecipe = (recipe) => {
-    // if there is a recipe ID currently assigned, send update to an existing recipe
-    if (recipe.id) {
-      
-    } else {
+    if (recipe.id) { // if there is a recipe ID currently assigned, send update to an existing recipe
+      editRecipe(recipe, (updatedRecipe) => {
+        dispatch(actions.setRecipe(updatedRecipe));
+        dispatch(push(`/recipe/${updatedRecipe.id}`));
+      });
+    } else { // else create a new recipe
       createRecipe(recipe, (submittedRecipe) => {
         dispatch(actions.setRecipe(submittedRecipe));
         dispatch(push(`/recipe/${submittedRecipe.id}`));
       });
     }
-    // else create a new recipe
-
   };
-
   return {
     updateRecipe,
     addField,
