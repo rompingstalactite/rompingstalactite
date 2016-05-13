@@ -1,9 +1,7 @@
 import 'isomorphic-fetch';
-let localServerURL;
-if (window && window.location) {
+let localServerURL = 'http://localhost:8080';
+if (!process.env.TRAVIS && window.location) {
   localServerURL = location.origin;
-} else {
-  localServerURL = 'http://localhost:8080';
 }
 
 export const fetchRecipe = (recipeID, callback) => {
