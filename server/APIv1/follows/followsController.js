@@ -34,7 +34,13 @@ export const getUserFollowState = (request, response) => {
     .catch(data => {response.json(data); return;})
 };
 // get recipe follows count and recipe follow status for logged in user
-export const getRecipeFollowState = () => {};
+export const getRecipeFollowState = (request, response, next) => {
+  console.log(request.query);
+  // in params: .user_id, .recipe_id
+  db.query(sql('/getRecipeFollowState.sql'), request.query)
+    .then(data => {response.json(data); next()})
+    .catch(data => {response.json(data); return;})
+};
 
 // add new user follow for logged in user
 export const addUserFollow = (request, response) => {};
