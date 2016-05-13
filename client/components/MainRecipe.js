@@ -27,7 +27,7 @@ class MainRecipe extends Component {
   }
 
   render() {
-    const { user, toggleEdit, handleToggleEdit, recipe, onForkClick, historyRecipes, } = this.props;
+    const { user, navToEdit, recipe, onForkClick, historyRecipes, } = this.props;
     let forkButton;
     if (user.id) {
       forkButton = <button className="btn-fork" onClick={ onForkClick.bind(null, recipe.id, user.id) }>Fork</button>;
@@ -37,9 +37,15 @@ class MainRecipe extends Component {
 
     let editButton;
     if (user.id === recipe.author && user.id !== null) {
-      editButton = <button className="btn-toggle-edit" onClick={ handleToggleEdit }>Toggle Edit</button>;
+      editButton = <button 
+      className="btn-toggle-edit" 
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        navToEdit(user);
+      }}>Edit Recipe</button>;
     } else {
-      editButton = <button className="btn-toggle-edit" disabled>Toggle Edit</button>
+      editButton = <button className="btn-toggle-edit" disabled>Edit Recipe</button>
     }
 
     return (
@@ -53,7 +59,7 @@ class MainRecipe extends Component {
         {forkButton}
         <Like recipeID={recipe.id} userID={user.id} />
         {/*<Link to="/recipe/15">GO TO RECIPE 15</Link>*/}
-        <div className="recipe-content" contentEditable={toggleEdit}>
+        <div className="recipe-content">
           <div className="header">
             <h2 className="recipe-main-title">{recipe.title}</h2>
             <div className="header-images">
@@ -114,7 +120,7 @@ class MainRecipe extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    toggleEdit: state.toggleEdit,
+
     user: state.user,
     recipe: state.recipe,
     fork_history: state.recipe.fork_history || [],
@@ -131,7 +137,11 @@ const mapDispatchToProps = (dispatch) => {
         dispatch(push(`/recipe/${newRecipe.id}`));
       });
     },
-    handleToggleEdit: () => dispatch(actions.toggleEdit()),
+
+    navToEdit: (user) => {
+      dispatch(push('/search'));
+    },
+
     getRecipe: (recipeID) => {
       fetchRecipe(recipeID, (recipe) => {
         dispatch(actions.setRecipe(recipe));
