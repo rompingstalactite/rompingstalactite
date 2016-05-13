@@ -231,10 +231,17 @@ const mapDispatchToProps = (dispatch) => {
   };
   // will add or submit edits to a given recipe
   const submitRecipe = (recipe) => {
-    createRecipe(recipe, (submittedRecipe) => {
-      dispatch(actions.setRecipe(submittedRecipe));
-      dispatch(push(`/recipe/${submittedRecipe.id}`));
-    });
+    // if there is a recipe ID currently assigned, send update to an existing recipe
+    if (recipe.id) {
+      
+    } else {
+      createRecipe(recipe, (submittedRecipe) => {
+        dispatch(actions.setRecipe(submittedRecipe));
+        dispatch(push(`/recipe/${submittedRecipe.id}`));
+      });
+    }
+    // else create a new recipe
+
   };
 
   return {
