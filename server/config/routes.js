@@ -5,6 +5,7 @@ import sc from '../APIv1/search/searchController.js';
 import { handleGoogleLogin, authenticateGoogleLogin, checkAuth } from './auth.js';
 import lc from '../APIv1/likes/likesController.js';
 import fp from '../keys/getFPKey.js';
+import * as fc from '../APIv1/follows/followsController.js';
 
 module.exports = (app, express) => {
 
@@ -78,6 +79,16 @@ module.exports = (app, express) => {
    */
   app.get('/api/v1/FPKey', fp.getFPKey);
 
+  /**
+   * Follows
+   */
+  app.get('/api/v1/follows/user', fc.getUserFollowState);
+  app.get('/api/v1/follows/recipe', fc.getRecipeFollowState);
+
+
+
+  app.post('/api/v1/follows/user/:recipe', /*checkAuth,*/ fc.addUserFollow);
+  app.post('/api/v1/follows/:currentUser/:user', checkAuth, fc.addOrRemoveRecipeFollow);
   /**
    * Catch unspecified routes
    */
