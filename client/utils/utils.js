@@ -1,5 +1,5 @@
 import 'isomorphic-fetch';
-const localServerURL = location.origin;
+const localServerURL = location.origin || 'http://localhost:8080';
 
 export const fetchRecipe = (recipeID, callback) => {
   fetch(`${localServerURL}/api/v1/recipes/${recipeID}`, {
