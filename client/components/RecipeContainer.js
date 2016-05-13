@@ -5,8 +5,8 @@ import RecipeEntry from '../../client/components/RecipeEntry.js';
 
 const RecipeContainer = (props) => {
   let childRecipes;
-  if (!props.recipes) {
-    childRecipes = <p>No history available for this recipe yet.</p>;
+  if (!props.recipes || props.recipes.length === 0) {
+    childRecipes = <p>No recipes to show.</p>;
   } else {
     childRecipes = props.recipes.map((recipe) => <RecipeEntry recipe={recipe} />);
   }

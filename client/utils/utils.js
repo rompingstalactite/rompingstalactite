@@ -5,7 +5,8 @@ if (!process.env.TRAVIS && window.location) {
 }
 
 export const fetchRecipe = (recipeID, callback) => {
-  fetch(`${localServerURL}/api/v1/recipes/${recipeID}`, {
+  let id = recipeID ? recipeID : 1;
+  fetch(`${localServerURL}/api/v1/recipes/${id}`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
@@ -124,7 +125,8 @@ export const fetchUser = (callback) => {
 };
 
 export const fetchRecipes = (recipeIDList, callback) => {
-  const formattedQuery = JSON.stringify(recipeIDList).replace('[','{').replace(']','}');
+  const list = (!recipeIDList || recipeIDList.length === 0) ? [] : recipeIDList;
+  const formattedQuery = JSON.stringify(list).replace('[','{').replace(']','}');
   fetch(`${localServerURL}/api/v1/recipes/?recipes=${formattedQuery}`, {
     credentials: 'same-origin',
   })
@@ -163,13 +165,12 @@ export const searchRecipes = (query, callback) => {
 };
 
 export const fetchTrending = (callback) => {
-  fetch(`${localServerURL}/api/v1/recipes/trending`, {
+  fetch(`${localServerURL}/api/v1/trending`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
-    credentials: 'same-origin',
   })
   .then((response) => {
     if (response.status >= 400) {

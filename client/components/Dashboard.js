@@ -9,12 +9,12 @@ import '../scss/_dashboard.scss';
 
 class Dashboard extends Component {
   componentDidMount() {
-    const { recipesFeatured, recipesTop, handleRecipesTop } = this.props;
+    const { handleRecipesTop } = this.props;
     handleRecipesTop();
   }
 
   render() {
-    const { recipesFeatured, recipesTop, handleRecipesTop } = this.props;
+    const { recipesFeatured, recipesTop } = this.props;
 
     return (
       <div className="dashboard">

@@ -29,7 +29,7 @@ describe('<Profile />', () => {
     expect(wrapper.find('.profile-avatar').html()).to.contain(fakeStore.getState().user.photos[0].value);
   });
 
-  it('should render two recipe containers', () => {
-    expect(wrapper.find(RecipeContainer)).to.have.length(2);
+  it('should render three recipe containers', () => {
+    expect(wrapper.find(RecipeContainer)).to.have.length(3);
   })
 });
