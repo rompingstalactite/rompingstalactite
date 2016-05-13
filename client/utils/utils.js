@@ -1,8 +1,8 @@
 import 'isomorphic-fetch';
-const dbURL = 'postgres://jzjrxbgiddtony:LCWyxG1KnBQCnPsGSLi9OsQuSx@ec2-107-20-174-127.compute-1.amazonaws.com:5432/d3cfpv8im8tih' || 'http://localhost:8080';
+const localServerURL = location.origin;
 
 export const fetchRecipe = (recipeID, callback) => {
-  fetch(`${dbURL}/api/v1/recipes/${recipeID}`, {
+  fetch(`${localServerURL}/api/v1/recipes/${recipeID}`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
@@ -25,7 +25,7 @@ export const fetchRecipe = (recipeID, callback) => {
 };
 
 export const updateLike = (likeObj) => {
-  return fetch(`${dbURL}/api/v1/likes/`, {
+  return fetch(`${localServerURL}/api/v1/likes/`, {
     credentials: 'same-origin',
     method: 'POST',
     headers: {
@@ -42,7 +42,7 @@ export const updateLike = (likeObj) => {
 };
 
 export const getLikeState = (getLikeObj) => {
-  return fetch(`${dbURL}/api/v1/likes/?userID=${getLikeObj.userID}&recipeID=${getLikeObj.recipeID}`, {
+  return fetch(`${localServerURL}/api/v1/likes/?userID=${getLikeObj.userID}&recipeID=${getLikeObj.recipeID}`, {
     credentials: 'same-origin',
     method: 'GET',
     headers: {
@@ -71,7 +71,7 @@ const assignAuthorToNewRecipe = (author, recipe) => {
 const bindAuthorToNewRecipe = (author) => assignAuthorToNewRecipe.bind(null, author);
 
 export const createRecipe = (recipe, callback) => {
-  fetch(`${dbURL}/api/v1/recipes/`, {
+  fetch(`${localServerURL}/api/v1/recipes/`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -102,7 +102,7 @@ export const forkRecipe = (originalRecipeID, userID, callback) => {
 };
 
 export const fetchUser = (callback) => {
-  fetch(`${dbURL}/api/v1/user/`, {
+  fetch(`${localServerURL}/api/v1/user/`, {
     credentials: 'same-origin',
   })
   .then((response) => {
@@ -122,7 +122,7 @@ export const fetchUser = (callback) => {
 
 export const fetchRecipes = (recipeIDList, callback) => {
   const formattedQuery = JSON.stringify(recipeIDList).replace('[','{').replace(']','}');
-  fetch(`${dbURL}/api/v1/recipes/?recipes=${formattedQuery}`, {
+  fetch(`${localServerURL}/api/v1/recipes/?recipes=${formattedQuery}`, {
     credentials: 'same-origin',
   })
   .then((response) => {
@@ -141,9 +141,7 @@ export const fetchRecipes = (recipeIDList, callback) => {
 };
 
 export const searchRecipes = (query, callback) => {
-  console.log(process.env.DATABASE_URL);
-  console.log(`${dbURL}/api/v1/search/${query}`);
-  fetch(`${dbURL}/api/v1/search/${query}`, {
+  fetch(`${localServerURL}/api/v1/search/${query}`, {
     credentials: 'same-origin',
   })
   .then((response) => {
@@ -162,8 +160,7 @@ export const searchRecipes = (query, callback) => {
 };
 
 export const fetchTrending = (callback) => {
-  console.log(`${dbURL}/api/v1/recipes/trending`);
-  fetch(`${dbURL}/api/v1/recipes/trending`, {
+  fetch(`${localServerURL}/api/v1/recipes/trending`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
