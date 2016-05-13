@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ImageUpload from './ImageUpload.js';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import actions from '../actions/index.js';
@@ -24,6 +25,9 @@ class CreateRecipe extends Component {
               onChange={(e) => updateRecipe(e)}
             /><br />
             <h3> Images: </h3>
+
+            <ImageUpload />
+
             <br />
             yield:
             <input
@@ -47,7 +51,7 @@ class CreateRecipe extends Component {
                 type="text"
                 value={i}
                 data-index={key}
-                onChange={(e) => updateRecipe(e, recipe.ingredients)}
+                onChange={(e) => updateRecipe(e, { ingredients: recipe.ingredients })}
               >
               </input>)}
             </h3>
@@ -73,7 +77,7 @@ class CreateRecipe extends Component {
                 type="text"
                 value={i}
                 data-index={key}
-                onChange={(e) => updateRecipe(e, recipe.prep_steps)}
+                onChange={(e) => updateRecipe(e, { prep_steps: recipe.prep_steps })}
               >
               </input>)}
             </h3>
@@ -107,7 +111,7 @@ class CreateRecipe extends Component {
                 type="text"
                 value={i}
                 data-index={key}
-                onChange={(e) => updateRecipe(e, recipe.cook_steps)}
+                onChange={(e) => updateRecipe(e, { cook_steps: recipe.cook_steps })}
               >
               </input>)}
             </h3>
@@ -142,7 +146,7 @@ class CreateRecipe extends Component {
                 value={i}
                 data-index={key}
                 onChange={
-                  (e) => updateRecipe(e, recipe.finish_steps)}
+                  (e) => updateRecipe(e, { finish_steps: recipe.finish_steps })}
               >
               </input>
             )}
@@ -169,7 +173,7 @@ class CreateRecipe extends Component {
                 type="text"
                 value={i}
                 data-index={key}
-                onChange={(e) => updateRecipe(e, recipe.tags)}
+                onChange={(e) => updateRecipe(e, { tags: recipe.tags })}
               >
               </input>)}
             </h3>
@@ -218,7 +222,9 @@ const mapDispatchToProps = (dispatch) => {
     if (list) {
       const index = event.target.dataset.index;
       inputChange = list;
-      inputChange[index] = event.target.value;
+      for (let each in inputChange) {
+        inputChange[each][index] = event.target.value;
+      }
     } else {
       inputChange[event.target.name] = event.target.value;
     }
@@ -241,7 +247,6 @@ const mapDispatchToProps = (dispatch) => {
       });
     } else { // else create a new recipe
       const newRecipe = Object.assign({}, recipe, { author: userID });
-      console.log(newRecipe);
       createRecipe(newRecipe, (submittedRecipe) => {
         dispatch(actions.setRecipe(submittedRecipe));
         dispatch(push(`/recipe/${submittedRecipe.id}`));
