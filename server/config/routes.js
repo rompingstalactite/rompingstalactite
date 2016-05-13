@@ -63,7 +63,7 @@ module.exports = (app, express) => {
    */
   app.get('/api/v1/likes', lc.getLikeState);
   app.post('/api/v1/likes', checkAuth, lc.addOrDeleteRecipeLike);
-  app.get('/api/v1/likes/:user', checkAuth, lc.getAllLikedRecipes);
+  app.get('/api/v1/likes/:user', lc.getAllLikedRecipes);
   // app.get('/api/v1/favorites/:user/count', /* auth, */ getUserFavoritesCount);
 
 

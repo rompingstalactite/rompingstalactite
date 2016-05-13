@@ -9,14 +9,20 @@ class Profile extends Component {
 
   componentDidMount() {
     const { updateProfile, id } = this.props;
-    updateProfile(id);
+    // console.log('MOUNTING ID', id);
+    updateProfile(+id);
   }
 
   componentWillUpdate(nextProps) {
-    const currId = this.props.user.id;
+    const currId = this.props.id;
     const { updateProfile, id } = nextProps;
+    // console.log('currID is', currId, typeof +currId);
+    // console.log('id is', id, typeof +id);
     if (+currId !== +id) {
-      updateProfile(id);
+      // console.log('changing');
+      // console.log('inside currID is', currId);
+      // console.log('inside id is', id);
+      updateProfile(+id);
     }
   }
 

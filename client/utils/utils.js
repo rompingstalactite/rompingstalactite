@@ -125,8 +125,7 @@ export const fetchCurrentUser = (callback) => {
 };
 
 export const fetchUser = (userID, callback) => {
-  let id = userID ? userID : 1;
-  fetch(`${localServerURL}/api/v1/users/${id}`)
+  fetch(`${localServerURL}/api/v1/users/${userID}`)
   .then((response) => {
     if (response.status >= 400) {
       throw new Error('Bad response from server');
@@ -134,7 +133,25 @@ export const fetchUser = (userID, callback) => {
     return response.json();
   })
   .then((data) => {
-    callback(data);
+    let userData;
+    if (data.error) {
+      userData = {
+        'id': null,
+        'username': 'username',
+        'facebook_id': null,
+        'google_id': null,
+        'created_at': '',
+        'updated_at': '',
+        'display_name': 'First Last',
+        'avatar': 'http://www.carderator.com/assets/avatar_placeholder_small.png',
+        'email': 'email@example.com',
+        'google_access_token': null,
+        'active': true,
+      };
+    } else {
+      userData = data;
+    }
+    callback(userData);
   })
   .catch((error) => {
     console.log('Error:', error);

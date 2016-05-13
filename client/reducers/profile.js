@@ -3,8 +3,8 @@ import * as types from '../constants/ActionTypes.js';
 const initialState = {
   user: {
     id: null,
-    avatar: null,
-    displayName: 'Display Name'
+    avatar: 'http://www.carderator.com/assets/avatar_placeholder_small.png',
+    displayName: 'First Last'
   },
   recipesOwned: [],
   recipesFollowed: [],
