@@ -11,7 +11,7 @@ class CreateRecipe extends Component {
   }
 
   render() {
-    const { recipe, addField, removeField, updateRecipe, submitRecipe } = this.props;
+    const { user, recipe, addField, removeField, updateRecipe, submitRecipe } = this.props;
     return (
       <div>
         <div className="edit-recipe-content">
@@ -193,7 +193,7 @@ class CreateRecipe extends Component {
               onClick={(e) => {
                 e.stopPropagation();
                 e.preventDefault();
-                submitRecipe(recipe);
+                submitRecipe(recipe, user.id);
               }}
             > Submit </button>
 
@@ -205,7 +205,10 @@ class CreateRecipe extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { recipe: state.recipe };
+  return {
+    recipe: state.recipe,
+    user: state.user,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -230,14 +233,16 @@ const mapDispatchToProps = (dispatch) => {
     dispatch(actions.removeField(property));
   };
   // will add or submit edits to a given recipe
-  const submitRecipe = (recipe) => {
+  const submitRecipe = (recipe, userID) => {
     if (recipe.id) { // if there is a recipe ID currently assigned, send update to an existing recipe
       editRecipe(recipe, (updatedRecipe) => {
         dispatch(actions.setRecipe(updatedRecipe));
         dispatch(push(`/recipe/${updatedRecipe.id}`));
       });
     } else { // else create a new recipe
-      createRecipe(recipe, (submittedRecipe) => {
+      const newRecipe = Object.assign({}, recipe, { author: userID });
+      console.log(newRecipe);
+      createRecipe(newRecipe, (submittedRecipe) => {
         dispatch(actions.setRecipe(submittedRecipe));
         dispatch(push(`/recipe/${submittedRecipe.id}`));
       });
