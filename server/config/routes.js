@@ -33,7 +33,7 @@ module.exports = (app, express) => {
   app.get('/api/v1/users/:user_id', uc.getOneUser);
 
   // TODO: getAllUsers should be protected for only admins, eventually.
-  app.get('/api/v1/users/', uc.getAllUsers);
+  // app.get('/api/v1/users/', uc.getAllUsers);
 
   // app.get('/api/v1/users/me', /* auth, */ getCurrentUser);
   // app.put('/api/v1/users/:user_id', /* auth, */ updateUser);
@@ -83,11 +83,11 @@ module.exports = (app, express) => {
    * Follows
    */
   app.get('/api/v1/follows/users', fc.getUserFollowState);
-  app.post('/api/v1/follows/users/', /* checkAuth,*/ fc.addOrRemoveRecipeFollow);
+  app.post('/api/v1/follows/users/', /* checkAuth,*/ fc.addOrRemoveUserFollow);
   app.get('/api/v1/follows/users/:user', /* checkAuth,*/ fc.getAllFollowedUsers);
 
   app.get('/api/v1/follows/recipes', fc.getRecipeFollowState);
-  app.post('/api/v1/follows/recipes/', /* checkAuth,*/ fc.addOrRemoveUserFollow);
+  app.post('/api/v1/follows/recipes/', /* checkAuth,*/ fc.addOrRemoveRecipeFollow);
   app.get('/api/v1/follows/users/:recipe', /* checkAuth,*/ fc.getAllFollowedRecipes);
 
   /**
