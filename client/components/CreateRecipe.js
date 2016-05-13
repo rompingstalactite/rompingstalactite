@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import actions from '../actions/index.js';
-import { createRecipe } from '../utils/utils.js';
+import { createRecipe, editRecipe } from '../utils/utils.js';
 import '../scss/_createRecipe.scss';
 
 class CreateRecipe extends Component {
@@ -10,7 +11,7 @@ class CreateRecipe extends Component {
   }
 
   render() {
-    const { recipe, addField, updateRecipe } = this.props;
+    const { user, recipe, addField, removeField, updateRecipe, submitRecipe } = this.props;
     return (
       <div>
         <div className="edit-recipe-content">
@@ -56,7 +57,14 @@ class CreateRecipe extends Component {
                 e.preventDefault();
                 addField('ingredients');
               }}
-            > add ingredient </button> <br />
+            > add ingredient </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                removeField('ingredients');
+              }}
+            > remove ingredient </button> <br />
 
 
             <h3> Prep Steps: </h3>
@@ -75,7 +83,15 @@ class CreateRecipe extends Component {
                 e.preventDefault();
                 addField('prep_steps');
               }}
-            > add Step </button> <br />
+            > add Step </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                removeField('prep_steps');
+              }}
+            > remove Step </button>
+            <br />
             Prep Time:
             <input
               type="text"
@@ -101,7 +117,15 @@ class CreateRecipe extends Component {
                 e.preventDefault();
                 addField('cook_steps');
               }}
-            > add Step </button> <br />
+            > add Step </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                removeField('cook_steps');
+              }}
+            > remove Step </button>
+            <br />
             Cook Time:
             <input
               type="text"
@@ -129,7 +153,15 @@ class CreateRecipe extends Component {
                 e.preventDefault();
                 addField('finish_steps');
               }}
-            > add Step </button> <br />
+            > add Step </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                removeField('finish_steps');
+              }}
+            > remove Step </button>
+            <br />
 
             <h3> Tags: </h3>
             <h3> {recipe.tags.map((i, key) =>
@@ -147,9 +179,23 @@ class CreateRecipe extends Component {
                 e.preventDefault();
                 addField('tags');
               }}
-            > add Step </button> <br />
+            > add Tag </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                removeField('tags');
+              }}
+            > remove Tag </button>
+            <br />
 
-            <button onClick={() => createRecipe(recipe, console.log)}> Submit </button>
+            <button 
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                submitRecipe(recipe, user.id);
+              }}
+            > Submit </button>
 
           </form>
         </div>
@@ -159,7 +205,10 @@ class CreateRecipe extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { recipe: state.recipe };
+  return {
+    recipe: state.recipe,
+    user: state.user,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -179,10 +228,31 @@ const mapDispatchToProps = (dispatch) => {
     // modify the recipe state to render a new field.
     dispatch(actions.addField(property));
   };
-
+  const removeField = (property) => {
+    // modify the recipe state to render a new field.
+    dispatch(actions.removeField(property));
+  };
+  // will add or submit edits to a given recipe
+  const submitRecipe = (recipe, userID) => {
+    if (recipe.id) { // if there is a recipe ID currently assigned, send update to an existing recipe
+      editRecipe(recipe, (updatedRecipe) => {
+        dispatch(actions.setRecipe(updatedRecipe));
+        dispatch(push(`/recipe/${updatedRecipe.id}`));
+      });
+    } else { // else create a new recipe
+      const newRecipe = Object.assign({}, recipe, { author: userID });
+      console.log(newRecipe);
+      createRecipe(newRecipe, (submittedRecipe) => {
+        dispatch(actions.setRecipe(submittedRecipe));
+        dispatch(push(`/recipe/${submittedRecipe.id}`));
+      });
+    }
+  };
   return {
     updateRecipe,
     addField,
+    removeField,
+    submitRecipe,
   };
 };
 

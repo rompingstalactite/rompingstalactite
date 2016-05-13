@@ -88,6 +88,10 @@ export default function recipe(state = initialState, action) {
       const addState = Object.assign({}, state);
       addState[action.change].push('');
       return addState;
+    case types.REMOVE_FIELD:
+      const removedState = Object.assign({}, state);
+      removedState[action.change].pop();
+      return removedState;
     case types.SET_RECIPE_HISTORY:
       const newHistory = {
         historyRecipes: action.historyRecipes,
