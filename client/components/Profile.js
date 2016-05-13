@@ -15,10 +15,11 @@ class Profile extends Component {
 
   render() {
     const { avatar, user, recipesOwned, recipesFollowed, recipesLiked } = this.props;
+    const avatarLarge = avatar.slice(0, avatar.length-6);
     return (
       <div className="profile-content">
         <div className="col-1-4">
-          <img className="profile-avatar" src={avatar/*props.avatar.slice(0, props.avatar.length-6)*/} alt="avatar"></img>
+          <img className="profile-avatar" src={avatarLarge} alt="avatar"></img>
           <p className="profile-username">{user.displayName}</p>
         </div>
         <div className="profile-recipe-containers col-3-4">
