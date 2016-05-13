@@ -126,7 +126,7 @@ export const fetchCurrentUser = (callback) => {
 
 export const fetchUser = (userID, callback) => {
   let id = userID ? userID : 1;
-  fetch(`http://localhost:8080/api/v1/users/${id}`)
+  fetch(`${localServerURL}/api/v1/users/${id}`)
   .then((response) => {
     if (response.status >= 400) {
       throw new Error('Bad response from server');
