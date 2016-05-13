@@ -102,6 +102,34 @@ export const createRecipe = (recipe, callback) => {
   });
 };
 
+export const editRecipe = (recipe, callback) => {
+  console.log(localServerURL);
+  console.log(recipe);
+  fetch(`${localServerURL}/api/v1/recipes/`, {
+    method: 'PUT',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    credentials: 'same-origin',
+    body: JSON.stringify(recipe),
+  })
+  .then((response) => {
+    if (response.status >= 400) {
+      throw new Error('Bad response from server');
+    }
+    return response.json();
+  })
+  .then((data) => {
+    callback(data);
+  })
+  .catch((error) => {
+    console.log('Error:', error);
+    return;
+  });
+};
+
+
 export const forkRecipe = (originalRecipeID, userID, callback) => {
   fetchRecipe(originalRecipeID, (recipe) => {
     createRecipe(bindAuthorToNewRecipe(userID)(recipe), callback);
