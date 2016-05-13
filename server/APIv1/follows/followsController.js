@@ -1,9 +1,22 @@
 import { postgresConnection as cn } from '../../config/helpers.js';
+import { QueryFile } from 'pg-promise';
 const pgp = require('pg-promise')();
 const db = pgp(cn);
 
+function sql(file) {
+  return new QueryFile(__dirname + file, { minify: true });
+}
+
+
 // get user follows count for any user
-export const getUserFollowCount = (request, response) => {};
+export const getUserFollowCount = (request, response) => {
+  console.log(request.params);
+  // expects '''.user
+  db.query(sql('/getUserFollowCount.sql'), request.params)
+    .then(data => {response.json(data); return;})
+    .catch(data => {response.json(data); return;})
+};
+
 // get recipe follows count for any recipe
 export const getRecipeFollowCount = (request, response) => {};
 
