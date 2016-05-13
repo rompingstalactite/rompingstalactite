@@ -4,11 +4,12 @@ import { connect } from 'react-redux';
 import { searchRecipes } from '../utils/utils.js';
 import actions from '../actions/index.js';
 import { push } from 'react-router-redux';
+import { EMPTY_RECIPE } from '../constants/EmptyRecipe.js';
 import '../scss/_nav.scss';
 
 class Nav extends Component {
   render() {
-    const { user, avatar, search, recipeID, } = this.props;
+    const { user, avatar, search, recipeID, navToCreate } = this.props;
     let { searchString } = this.props;
     let signInOut;
     if (!user.id) {
@@ -37,7 +38,13 @@ class Nav extends Component {
           {signInOut}
           <Link to={`/recipe/${recipeID}`}>Recipe</Link>
           <Link to="/search">Search</Link>
-          <Link to="/create">Create</Link>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              navToCreate();
+            }}> Create
+          </button>
           <Link to="/profile">
             <img className="avatar" src={avatar} alt="avatar">
             </img>
@@ -65,6 +72,10 @@ const mapDispatchToProps = (dispatch) => {
         dispatch(actions.setRecipeList(recipeArray));
         dispatch(push('/search'));
       });
+    },
+    navToCreate: () => {
+      dispatch(actions.setRecipe(EMPTY_RECIPE));
+      dispatch(push('/create'));
     },
   };
 };
