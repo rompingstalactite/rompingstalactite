@@ -10,11 +10,15 @@ class Nav extends Component {
   render() {
     const { user, avatar, search, recipeID, } = this.props;
     let { searchString } = this.props;
-    let signInOut;
+    let signInOut, linkToProfile;
     if (!user.id) {
       signInOut = <a href="/auth/google">Sign in with Google</a>;
     } else {
       signInOut = <a href="/auth/signout">Sign out</a>;
+      linkToProfile = (
+        <Link to={`/profile/${user.id}`}>
+          <img className="avatar" src={avatar} alt="avatar"></img>
+        </Link>);
     }
     return (
       <div>
@@ -34,14 +38,11 @@ class Nav extends Component {
               }
             }
           > Search </button>
-          {signInOut}
           <Link to={`/recipe/${recipeID}`}>Recipe</Link>
           <Link to="/search">Search</Link>
           <Link to="/create">Create</Link>
-          <Link to="/profile">
-            <img className="avatar" src={avatar} alt="avatar">
-            </img>
-          </Link>
+          {signInOut}
+          {linkToProfile}
         </div>
       </div>
     );

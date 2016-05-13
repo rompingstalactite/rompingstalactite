@@ -29,7 +29,7 @@ const render = function () {
         <Router history={history}>
           <Route path="/" component={App}>
             <IndexRoute component={Dashboard} />
-            <Route path="/profile" component={Profile} />
+            <Route path="/profile/:user_id" component={Profile} />
             <Route path="/recipe/:id" component={MainRecipe} />
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/create" component={CreateRecipe} />
