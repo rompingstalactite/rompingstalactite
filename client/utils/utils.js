@@ -1,6 +1,6 @@
 import 'isomorphic-fetch';
 let localServerURL;
-if (window.location) {
+if (window && window.location) {
   localServerURL = location.origin;
 } else {
   localServerURL = 'http://localhost:8080';
