@@ -165,13 +165,12 @@ export const searchRecipes = (query, callback) => {
 };
 
 export const fetchTrending = (callback) => {
-  fetch(`${localServerURL}/api/v1/recipes/trending`, {
+  fetch(`${localServerURL}/api/v1/trending`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
-    credentials: 'same-origin',
   })
   .then((response) => {
     if (response.status >= 400) {

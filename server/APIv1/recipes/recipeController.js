@@ -57,7 +57,7 @@ module.exports = {
     };
 
     const newQueryObj2 = {
-      name: 'find-new-recipe-image',
+      name: 'find-new-recipe-image-after-adding',
       text: `SELECT images
               FROM recipes
                 WHERE $1 = ANY(images)
@@ -88,7 +88,7 @@ module.exports = {
     };
 
     const newQueryObj2 = {
-      name: 'find-new-recipe-image',
+      name: 'find-new-recipe-image-after-removing',
       text: `SELECT images
               FROM recipes
                 WHERE $1 = ANY(images)
@@ -111,7 +111,7 @@ module.exports = {
 
     if (request.body.fork_history) {
       queryObj = {
-      name: 'create-recipe',
+      name: 'create-recipe-with-fork',
       text: `insert into recipes(
         title,
         images,
@@ -149,7 +149,7 @@ module.exports = {
       };
     } else {
       queryObj = {
-        name: 'create-recipe',
+        name: 'create-recipe-from-scratch',
         text: `insert into recipes(
           title,
           images,
@@ -203,12 +203,10 @@ module.exports = {
   trendingRecipes: (request, response, next) => {
     const interval = request.body.interval || '1 day';
     const limit = request.body.limit || 10;
-
     const newQueryObj = {
-      name: 'get-one-recipe',
+      name: 'trending-recipes',
         text: `SELECT
-                parent,
-                COUNT (parent)
+                parent, COUNT(parent)
               FROM
                 recipes
               WHERE
@@ -216,9 +214,9 @@ module.exports = {
               AND
                 parent is not null
               GROUP BY
-                parent
+                parent, id
               ORDER BY
-                COUNT (parent) DESC 
+                COUNT (parent) DESC
               LIMIT $1`,
       values: [limit],
     };
@@ -230,7 +228,7 @@ module.exports = {
       return trendingIds;
     }).then((trendingIds) => {
       const newQueryObj2 = {
-        name: 'get-multiple-recipes',
+        name: 'get-multiple-trending-recipes',
         text: `SELECT *
                    FROM
                      recipes
@@ -241,7 +239,7 @@ module.exports = {
       return db.query(newQueryObj2)})
     .then((data) => {
       response.json(data);
-      // next();
+      next();
     }).catch((error) => {
       response.json(error);
       next();
