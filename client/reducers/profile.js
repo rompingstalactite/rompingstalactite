@@ -20,7 +20,7 @@ export default function profile(state = initialState, action) {
     case types.SET_PROFILE_RECIPES_FOLLOWED:
       return action.profile;
     case types.SET_PROFILE_RECIPES_LIKED:
-      return action.profile;
+      return Object.assign({}, state, { recipesLiked: action.recipesLiked });
     default:
       return state;
   }

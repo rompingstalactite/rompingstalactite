@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../scss/_profile.scss';
 import RecipeContainer from './RecipeContainer.js';
-import { fetchUser } from '../utils/utils';
+import { fetchUser, fetchRecipesLiked } from '../utils/utils';
 import actions from '../actions/index.js';
 
 class Profile extends Component {
@@ -67,15 +67,15 @@ const mapDispatchToProps = (dispatch) => {
       fetchUser(userID, (user) => {
         dispatch(actions.setProfileUser(user));
       });
-      // fetchRecipesOwned(userID), (recipesOwned) => {
-      //   dispatch(action.SET_PROFILE_RECIPES_OWNED(recipesOwned));
+      // fetchRecipesOwned(userID, (recipesOwned) => {
+      //   dispatch(actions.SET_PROFILE_RECIPES_OWNED(recipesOwned));
       // });
-      // fetchRecipesFollowed(userID), (recipesFollowed) => {
-      //   dispatch(action.SET_PROFILE_RECIPES_FOLLOWED(recipesFollowed));
+      // fetchRecipesFollowed(userID, (recipesFollowed) => {
+      //   dispatch(actions.SET_PROFILE_RECIPES_FOLLOWED(recipesFollowed));
       // });
-      // fetchRecipesLiked(userID), (recipesLiked) => {
-      //   dispatch(action.SET_PROFILE_RECIPES_LIKED(recipesLiked));
-      // });
+      fetchRecipesLiked(userID, (recipesLiked) => {
+        dispatch(actions.setProfileRecipesLiked(recipesLiked));
+      });
     },
   };
 }

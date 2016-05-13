@@ -37,4 +37,7 @@ module.exports = {
   setProfileUser(user) {
     return { type: types.SET_PROFILE_USER, user };
   },
+  setProfileRecipesLiked(recipesLiked) {
+    return { type: types.SET_PROFILE_RECIPES_LIKED, recipesLiked };
+  },
 };

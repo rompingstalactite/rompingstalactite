@@ -159,6 +159,35 @@ export const fetchUser = (userID, callback) => {
   });
 };
 
+export const fetchRecipesLiked = (userID, callback) => {
+  fetch(`${localServerURL}/api/v1/likes/${userID}`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  })
+  .then((response) => {
+    if (response.status >= 400) {
+      throw new Error('Bad response from server');
+    }
+    return response.json();
+  })
+  .then((data) => {
+    let likeData;
+    if (data.error) {
+      likeData = [];
+    } else {
+      likeData = data;
+    }
+    callback(likeData);
+  })
+  .catch((error) => {
+    console.log('Error:', error);
+    return;
+  });
+};
+
 export const fetchRecipes = (recipeIDList, callback) => {
   const list = (!recipeIDList || recipeIDList.length === 0) ? [] : recipeIDList;
   const formattedQuery = JSON.stringify(list).replace('[','{').replace(']','}');
