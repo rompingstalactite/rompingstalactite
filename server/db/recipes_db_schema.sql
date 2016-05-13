@@ -78,7 +78,18 @@ CREATE TABLE "likes_recipes_users" (
 
 CREATE TABLE "followers_users_users" (
 	"user" integer NOT NULL,
-	"target" integer NOT NULL
+	"target" integer NOT NULL,
+	"follow_date" TIMESTAMP NOT NULL DEFAULT current_timestamp
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "followers_users_recipes" (
+	"user_id" integer NOT NULL,
+	"recipe_id" integer NOT NULL,
+	"follow_date" TIMESTAMP NOT NULL DEFAULT current_timestamp
 ) WITH (
   OIDS=FALSE
 );
@@ -96,3 +107,7 @@ ALTER TABLE "likes_recipes_users" ADD CONSTRAINT "likes_users_users_pk0" PRIMARY
 
 ALTER TABLE "followers_users_users" ADD CONSTRAINT "followers_users_users_fk0" FOREIGN KEY ("user") REFERENCES "users"("id");
 ALTER TABLE "followers_users_users" ADD CONSTRAINT "followers_users_users_fk1" FOREIGN KEY ("target") REFERENCES "users"("id");
+
+ALTER TABLE "followers_users_recipes" ADD CONSTRAINT "followers_users_recipes_fk0" FOREIGN KEY ("user_id") REFERENCES "users"("id");
+ALTER TABLE "followers_users_recipes" ADD CONSTRAINT "followers_users_recipes_fk1" FOREIGN KEY ("recipe_id") REFERENCES "recipes"("id");
+
