@@ -1,5 +1,4 @@
 import 'isomorphic-fetch';
-
 let localServerURL = 'http://localhost:8080';
 if (!process.env.TRAVIS && window.location) {
   localServerURL = location.origin;
