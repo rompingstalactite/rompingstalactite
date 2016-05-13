@@ -23,7 +23,7 @@ class CreateRecipe extends Component {
               onChange={(e) => updateRecipe(e)}
             /><br />
             <h3> Images: </h3>
-            <br /> 
+            <br />
             yield:
             <input
               type="text"
@@ -82,7 +82,15 @@ class CreateRecipe extends Component {
                 e.preventDefault();
                 addField('prep_steps');
               }}
-            > add Step </button> <br />
+            > add Step </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                removeField('ingredients');
+              }}
+            > remove ingredient </button>
+            <br />
             Prep Time:
             <input
               type="text"
@@ -108,7 +116,15 @@ class CreateRecipe extends Component {
                 e.preventDefault();
                 addField('cook_steps');
               }}
-            > add Step </button> <br />
+            > add Step </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                removeField('ingredients');
+              }}
+            > remove ingredient </button>
+            <br />
             Cook Time:
             <input
               type="text"
@@ -136,7 +152,15 @@ class CreateRecipe extends Component {
                 e.preventDefault();
                 addField('finish_steps');
               }}
-            > add Step </button> <br />
+            > add Step </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                removeField('ingredients');
+              }}
+            > remove ingredient </button>
+            <br />
 
             <h3> Tags: </h3>
             <h3> {recipe.tags.map((i, key) =>
@@ -154,7 +178,15 @@ class CreateRecipe extends Component {
                 e.preventDefault();
                 addField('tags');
               }}
-            > add Step </button> <br />
+            > add Tag </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                removeField('ingredients');
+              }}
+            > remove ingredient </button>
+            <br />
 
             <button onClick={() => createRecipe(recipe, console.log)}> Submit </button>
 
@@ -194,6 +226,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     updateRecipe,
     addField,
+    removeField,
   };
 };
 
