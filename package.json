@@ -17,7 +17,7 @@
     "test": "karma start && mocha ./test/server --compilers js:babel-register",
     "test:client": "karma start",
     "test:server": "mocha ./test/server --watch --compilers js:babel-register",
-    "start": "webpack -p && babel-node server/server.js --presets es2015",
+    "start": "NODE_ENV=\"production\" webpack -p --progress && babel-node server/server.js --presets es2015",
     "dev-start": "webpack -d --watch --progress & nodemon server/server.js --exec babel-node --presets es2015"
   },
   "repository": {
