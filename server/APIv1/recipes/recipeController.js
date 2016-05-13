@@ -164,7 +164,7 @@ module.exports = {
           finish_steps,
           tags,
           parent,
-          author,
+          author
         ) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) returning *`,
         values: [
           request.body.title,
@@ -218,9 +218,9 @@ module.exports = {
                 finish_steps,
                 tags,
                 parent,
-                author,) 
+                author) 
               = ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
-              WHERE id = $15`,
+              WHERE id = $15 returning *`,
       values: [
         request.body.title,
         request.body.images,
