@@ -108,4 +108,14 @@ export const addOrRemoveRecipeFollow = (request, response) => {
   }
 };
 
+// get a list of every user the current user follows
+// HTTP GET
+export const getAllFollowedUsers = (request, response) {
+  // TODO: pagination
+  console.log(request.query);
+  // in query: .user_id
+  db.query('getAllFollowedUsers.sql', request.query)
+    .then(data => { response.json(data); })
+    .catch(error => { response.data(error); });
+};
 
