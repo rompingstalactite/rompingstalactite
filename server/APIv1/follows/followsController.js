@@ -4,24 +4,24 @@ const pgp = require('pg-promise')();
 const db = pgp(cn);
 
 function sql(file) {
-  return new QueryFile(__dirname + file, { minify: true });
+  return new QueryFile(__dirname + "/" + file, { minify: true });
 }
 
 
 // get user follows count for any user
 export const getUserFollowCount = (request, response) => {
-  console.log(request.params);
-  // expects '''.user
-  db.query(sql('/getUserFollowCount.sql'), request.params)
+  console.log(request.query);
+  // in query: .user
+  db.query(sql('getUserFollowCount.sql'), request.query)
     .then(data => { response.json(data); })
     .catch(data => { response.json(data); });
 };
 
 // get recipe follows count for any recipe
 export const getRecipeFollowCount = (request, response) => {
-  console.log(request.params);
-  // expects '''.recipe_id
-  db.query(sql('/getRecipeFollowCount.sql'), request.params)
+  console.log(request.query);
+  // in params: .recipe_id
+  db.query(sql('getRecipeFollowCount.sql'), request.params)
     .then(data => { response.json(data); })
     .catch(data => { response.json(data); });
 };
@@ -29,15 +29,17 @@ export const getRecipeFollowCount = (request, response) => {
 // get user follows count and user follow status for logged in user
 export const getUserFollowState = (request, response) => {
   console.log(request.query);
-  db.query(sql('/getUserFollowState.sql'), request.query)
+  // in query: .follower, .target
+  db.query(sql('getUserFollowState.sql'), request.query)
     .then(data => { response.json(data); })
     .catch(data => { response.json(data); });
 };
+
 // get recipe follows count and recipe follow status for logged in user
 export const getRecipeFollowState = (request, response, next) => {
   console.log(request.query);
-  // in params: .user_id, .recipe_id
-  db.query(sql('/getRecipeFollowState.sql'), request.query)
+  // in query: .user_id, .recipe_id
+  db.query(sql('getRecipeFollowState.sql'), request.query)
     .then(data => { response.json(data); })
     .catch(data => { response.json(data); });
 };
