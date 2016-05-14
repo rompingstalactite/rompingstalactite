@@ -22,33 +22,32 @@ module.exports = (app, express) => {
     req.session.destroy(() => { res.redirect('/'); });
   });
 
-
   /**
    * Users
    */
+  app.get('/api/v1/user', uc.getLoggedInUser); // getLoggedInUser
 
-  app.get('/api/v1/user/', uc.getLoggedInUser);
-
+  app.get('/api/v1/users/', uc.getMultipleUsers);
   app.post('/api/v1/users/', checkAuth, uc.createUser);
+
   app.get('/api/v1/users/:user_id', uc.getOneUser);
-
-  // TODO: getAllUsers should be protected for only admins, eventually.
-  app.get('/api/v1/users/', uc.getAllUsers);
-
-  // app.get('/api/v1/users/me', /* auth, */ getCurrentUser);
-  // app.put('/api/v1/users/:user_id', /* auth, */ updateUser);
-  // app.get('/api/v1/users/followers/:user_id', findFollowers);
 
   /**
    * Recipes
    */
-  app.get('/api/v1/trending', rc.trendingRecipes);
+
 
   app.post('/api/v1/recipes/', checkAuth, rc.createRecipe);
   app.put('/api/v1/recipes/', rc.editRecipe);
   // app.post('/api/v1/recipes/:recipe_id', /* auth, */ forkRecipe);
+
   app.get('/api/v1/recipes/', rc.getMultipleRecipes);
+  app.post('/api/v1/recipes/', checkAuth, rc.createRecipe);
+
+  app.get('/api/v1/recipes/trending', rc.trendingRecipes);
+
   app.get('/api/v1/recipes/:recipe_id', rc.getOneRecipe);
+  // app.post('/api/v1/recipes/:recipe_id', /* auth, */ forkRecipe);
 
   // app.put('/api/v1/recipes/:recipe', /* auth, */ updateRecipe);
   // app.get('/api/v1/recipes/:user', /* auth, */ getUsersRecipes);
@@ -71,8 +70,7 @@ module.exports = (app, express) => {
    */
   app.get('/api/v1/likes', lc.getLikeState);
   app.post('/api/v1/likes', checkAuth, lc.addOrDeleteRecipeLike);
-  app.get('/api/v1/likes/:user', lc.getAllLikedRecipes);
-  // app.get('/api/v1/favorites/:user/count', /* auth, */ getUserFavoritesCount);
+  app.get('/api/v1/likes/:user', checkAuth, lc.getAllLikedRecipes);
 
    /**
    * FPKey
