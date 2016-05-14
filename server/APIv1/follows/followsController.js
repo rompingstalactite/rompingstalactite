@@ -4,7 +4,7 @@ const pgp = require('pg-promise')();
 const db = pgp(cn);
 
 function sql(file) {
-  return new QueryFile(__dirname + "/" + file, { minify: true });
+  return new QueryFile(`${__dirname}/${file}`, { minify: true });
 }
 
 
@@ -40,7 +40,7 @@ export const getUserFollowState = (request, response) => {
 
 // get recipe follows count and recipe follow status for logged in user
 // HTTP GET
-export const getRecipeFollowState = (request, response, next) => {
+export const getRecipeFollowState = (request, response) => {
   console.log(request.query);
   // in query: .user_id, .recipe_id
   db.query(sql('getRecipeFollowState.sql'), request.query)
@@ -110,7 +110,7 @@ export const addOrRemoveRecipeFollow = (request, response) => {
 
 // get a list of every user the current user follows
 // HTTP GET
-export const getAllFollowedUsers = (request, response) {
+export const getAllFollowedUsers = (request, response) => {
   // TODO: pagination
   console.log(request.query);
   // in query: .user_id
@@ -119,7 +119,7 @@ export const getAllFollowedUsers = (request, response) {
     .catch(error => { response.data(error); });
 };
 
-export const getAllFollowedRecipes = (request, response) {
+export const getAllFollowedRecipes = (request, response) => {
   console.log(request.query);
   // in query: .user_id
   db.query('getAllFollowedRecipes.sql', request.query)
