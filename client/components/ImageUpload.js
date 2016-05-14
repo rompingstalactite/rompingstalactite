@@ -11,7 +11,7 @@ if (process.env.TRAVIS) {
   console.log('fetching key from process.env...');
   FILE_PICKER_KEY = fetchFPKey(console.log);
 } else {
-  FILE_PICKER_KEY = require('../../server/keys/filePicker.js').FILE_PICKER_KEY;
+  // FILE_PICKER_KEY = require('../../server/keys/filePicker.js').FILE_PICKER_KEY;
 }
 console.log('FILE_PICKER_KEY', FILE_PICKER_KEY);
 
