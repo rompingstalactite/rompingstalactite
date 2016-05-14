@@ -35,7 +35,7 @@ export const getUserFollowState = (request, response) => {
   // in query: .follower, .target
   db.query(sql('getUserFollowState.sql'), request.query)
     .then(data => { response.json(data); })
-    .catch(data => { response.json(data); });
+    .catch(error => { response.json(error); });
 };
 
 // get recipe follows count and recipe follow status for logged in user
@@ -45,7 +45,7 @@ export const getRecipeFollowState = (request, response, next) => {
   // in query: .user_id, .recipe_id
   db.query(sql('getRecipeFollowState.sql'), request.query)
     .then(data => { response.json(data); })
-    .catch(data => { response.json(data); });
+    .catch(error => { response.json(error); });
 };
 
 // add new user follow for logged in user
