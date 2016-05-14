@@ -56,7 +56,13 @@ export const removeUserFollow = (request, response) => {
     .catch(error => { response.json(error); });
 };
 // remove recipe follow for logged in user
-export const removeRecipeFollow = (request, response) => {};
+export const removeRecipeFollow = (request, response) => {
+  console.log(request.query)
+  // in query: .user_id, .recipe_id
+  db.query(sql('removeRecipeFollow.sql'), request.query)
+    .then(data => { response.json(data); })
+    .catch(error => { response.json(error); });
+};
 
 
 // decide whether to add or remove user follow, based on user intent
