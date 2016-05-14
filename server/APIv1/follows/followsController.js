@@ -49,7 +49,17 @@ export const getRecipeFollowState = (request, response, next) => {
 };
 
 // add new user follow for logged in user
-export const addUserFollow = (request, response) => {};
+// HTTP POST
+export const addUserFollow = (request, response) => {
+  // does not verify that both users exist before
+  // inserting a new follow
+  console.log(request.body);
+  // body: .follower, .target
+  db.query(sql('addUserFollow.sql'), request.body)
+    .then(data => { response.json(data); })
+    .catch(error => { response.json(error); });
+};
+
 // add new recipe follow for logged in user
 export const addRecipeFollow = (request, response) => {};
 
