@@ -92,7 +92,13 @@ export const removeRecipeFollow = (request, response) => {
 
 
 // decide whether to add or remove user follow, based on user intent
-export const addOrRemoveUserFollow = (request, response) => {};
+export const addOrRemoveUserFollow = (request, response) => {
+  if (request.query.followState) {
+    removeUserFollow(request, response);
+  } else {
+    addUserFollow(request, response);
+  }
+};
 // decide whether to add or remove recipe follow, based on user intent
 export const addOrRemoveRecipeFollow = (request, response) => {};
 
