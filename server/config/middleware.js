@@ -8,8 +8,8 @@ let expressSessionSecret = process.env.EXPRESS_SESSION_SECRET;
 let cookieParserSecret = process.env.COOKIE_PARSER_SECRET;
 
 if (!process.env.TRAVIS && !process.env.HEROKU) {
-  expressSessionSecret = require('../keys/expressSecrets').expressSecret.EXPRESS_SESSION_SECRET;
-  cookieParserSecret = require('../keys/expressSecrets').expressSecret.COOKIE_PARSER_SECRET;
+  expressSessionSecret = require('../keys/expressSecrets').expressSecrets.EXPRESS_SESSION_SECRET;
+  cookieParserSecret = require('../keys/expressSecrets').expressSecrets.COOKIE_PARSER_SECRET;
 }
 
 module.exports = (app, express) => {
