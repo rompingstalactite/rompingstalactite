@@ -10,7 +10,11 @@ module.exports = (app, express) => {
   app.use(bodyParser.json());
   app.use(cookieParser('githubForRecipes'));
   app.use(passport.initialize());
-  app.use(session());
+  app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true,
+  }));
   app.use(passport.session());
   app.use(express.static(`${__dirname}/../../client`));
 };
