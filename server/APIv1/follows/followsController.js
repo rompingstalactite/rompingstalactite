@@ -50,7 +50,7 @@ export const getRecipeFollowState = (request, response, next) => {
 
 // add new user follow for logged in user
 // HTTP POST
-export const addUserFollow = (request, response) => {
+const addUserFollow = (request, response) => {
   // does not verify that both users exist before
   // inserting a new follow
   console.log(request.body);
@@ -62,7 +62,7 @@ export const addUserFollow = (request, response) => {
 
 // add new recipe follow for logged in user
 // HTTP POST
-export const addRecipeFollow = (request, response) => {
+const addRecipeFollow = (request, response) => {
   // does not verify that a user or a recipe exists before
   // inserting a new follow
   console.log(request.body);
@@ -73,7 +73,7 @@ export const addRecipeFollow = (request, response) => {
 };
 
 // remove user follow for logged in user
-export const removeUserFollow = (request, response) => {
+const removeUserFollow = (request, response) => {
   console.log(request.query);
   // in query: .follower, .target
   db.query(sql('removeUserFollow.sql'), request.query)
@@ -82,14 +82,13 @@ export const removeUserFollow = (request, response) => {
 };
 
 // remove recipe follow for logged in user
-export const removeRecipeFollow = (request, response) => {
+const removeRecipeFollow = (request, response) => {
   console.log(request.query);
   // in query: .user_id, .recipe_id
   db.query(sql('removeRecipeFollow.sql'), request.query)
     .then(data => { response.json(data); })
     .catch(error => { response.json(error); });
 };
-
 
 // decide whether to add or remove user follow, based on user intent
 export const addOrRemoveUserFollow = (request, response) => {
@@ -99,6 +98,7 @@ export const addOrRemoveUserFollow = (request, response) => {
     addUserFollow(request, response);
   }
 };
+
 // decide whether to add or remove recipe follow, based on user intent
 export const addOrRemoveRecipeFollow = (request, response) => {
   if (request.query.followState) {
@@ -107,6 +107,5 @@ export const addOrRemoveRecipeFollow = (request, response) => {
     addRecipeFollow(request, response);
   }
 };
-
 
 
