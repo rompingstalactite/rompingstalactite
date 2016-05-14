@@ -61,7 +61,16 @@ export const addUserFollow = (request, response) => {
 };
 
 // add new recipe follow for logged in user
-export const addRecipeFollow = (request, response) => {};
+// HTTP POST
+export const addRecipeFollow = (request, response) => {
+  // does not verify that a user or a recipe exists before
+  // inserting a new follow
+  console.log(request.body);
+  // body: .user_id, .recipe_id
+  db.query(sql('addRecipeFollow.sql'), request.body)
+    .then(data => { console.log('data', data); response.json(data); })
+    .catch(error => { response.json(error); });
+};
 
 // remove user follow for logged in user
 export const removeUserFollow = (request, response) => {
