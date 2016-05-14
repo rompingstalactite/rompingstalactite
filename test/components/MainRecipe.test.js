@@ -20,22 +20,10 @@ describe('<MainRecipe />', () => {
     );
   });
 
-  it('initially renders in non-editable state', () => {
-    expect(wrapper).to.not.be.undefined;
-    expect(wrapper.find('.recipe-content').prop('contentEditable')).to.equal(false);
-  });
 
   it('has an action called toggleEdit', () => {
     expect(actions.toggleEdit).to.not.be.undefined;
     expect(actions.toggleEdit().type).to.equal('TOGGLE_EDIT');
-  });
-
-  it('does not toggle "contentEditable" field on button click when not logged in', () => {
-    expect(wrapper.find('.btn-toggle-edit')).to.not.be.undefined;
-    wrapper.find('.btn-toggle-edit').simulate('click');
-    expect(wrapper.find('.recipe-content').prop('contentEditable')).to.equal(false);
-    wrapper.find('.btn-toggle-edit').simulate('click');
-    expect(wrapper.find('.recipe-content').prop('contentEditable')).to.equal(false);
   });
 
   it('has an action called forkRecipe', () => {

@@ -1,0 +1,20 @@
+export const EMPTY_RECIPE = {
+  id: null,
+  author: null,
+  parent: null,
+  title: '',
+  images: [],
+  followers: [],
+  yield: 0,
+  yield_unit: '',
+  ingredients: [],
+  prep_time: 0,
+  prep_steps: [],
+  cook_time: 0,
+  cook_steps: [],
+  finish_steps: [],
+  tags: [],
+  fork_history: [],
+  historyRecipes: [],
+};
+

@@ -4,6 +4,7 @@ import rc from '../APIv1/recipes/recipeController.js';
 import sc from '../APIv1/search/searchController.js';
 import { handleGoogleLogin, authenticateGoogleLogin, checkAuth } from './auth.js';
 import lc from '../APIv1/likes/likesController.js';
+import fp from '../keys/getFPKey.js';
 
 module.exports = (app, express) => {
 
@@ -43,6 +44,7 @@ module.exports = (app, express) => {
   app.get('/api/v1/trending', rc.trendingRecipes);
 
   app.post('/api/v1/recipes/', checkAuth, rc.createRecipe);
+  app.put('/api/v1/recipes/', rc.editRecipe);
   // app.post('/api/v1/recipes/:recipe_id', /* auth, */ forkRecipe);
   app.get('/api/v1/recipes/', rc.getMultipleRecipes);
   app.get('/api/v1/recipes/:recipe_id', rc.getOneRecipe);
@@ -71,6 +73,10 @@ module.exports = (app, express) => {
   app.get('/api/v1/likes/:user', lc.getAllLikedRecipes);
   // app.get('/api/v1/favorites/:user/count', /* auth, */ getUserFavoritesCount);
 
+   /**
+   * FPKey
+   */
+  app.get('/api/v1/FPKey', fp.getFPKey);
 
   /**
    * Catch unspecified routes

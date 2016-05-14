@@ -30,3 +30,4 @@ bower_components/
 client/bundle.js
 client/bundle.js.map
 server/keys/googleAuth.js
+server/keys/filePicker.js

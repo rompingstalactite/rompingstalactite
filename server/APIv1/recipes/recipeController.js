@@ -164,7 +164,7 @@ module.exports = {
           finish_steps,
           tags,
           parent,
-          author,
+          author
         ) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) returning *`,
         values: [
           request.body.title,
@@ -185,6 +185,60 @@ module.exports = {
       };
     }
 
+    db.one(queryObj)
+      .then((data) => {
+        response.status(201);
+        response.json(data);
+        next();
+      })
+      .catch((error) => {
+        response.status(500);
+        response.json({
+          error: `Error code: ${error.code}, Error message: ${error.detail}`,
+        });
+        next();
+      });
+  },
+
+  editRecipe: (request, response, next) => {
+    const queryObj = {
+      name: 'edit-recipe',
+      text: `UPDATE recipes
+              SET
+                (title,
+                images,
+                followers,
+                yield,
+                yield_unit,
+                ingredients,
+                prep_time,
+                prep_steps,
+                cook_time,
+                cook_steps,
+                finish_steps,
+                tags,
+                parent,
+                author) 
+              = ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
+              WHERE id = $15 returning *`,
+      values: [
+        request.body.title,
+        request.body.images,
+        request.body.followers,
+        request.body.yield,
+        request.body.yield_unit,
+        request.body.ingredients,
+        request.body.prep_time,
+        request.body.prep_steps,
+        request.body.cook_time,
+        request.body.cook_steps,
+        request.body.finish_steps,
+        request.body.tags,
+        request.body.parent,
+        request.body.author,
+        request.body.id,
+      ],
+    };
     db.one(queryObj)
       .then((data) => {
         response.status(201);

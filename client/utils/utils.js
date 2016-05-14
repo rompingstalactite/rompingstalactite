@@ -1,7 +1,6 @@
 import 'isomorphic-fetch';
 
 let localServerURL;
-
 try {
   localServerURL = location.origin; // dev or prod environment
 } catch (e) {
@@ -102,6 +101,32 @@ export const createRecipe = (recipe, callback) => {
     return;
   });
 };
+
+export const editRecipe = (recipe, callback) => {
+  fetch(`${localServerURL}/api/v1/recipes/`, {
+    method: 'PUT',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    credentials: 'same-origin',
+    body: JSON.stringify(recipe),
+  })
+  .then((response) => {
+    if (response.status >= 400) {
+      throw new Error('Bad response from server');
+    }
+    return response.json();
+  })
+  .then((data) => {
+    callback(data);
+  })
+  .catch((error) => {
+    console.log('Error:', error);
+    return;
+  });
+};
+
 
 export const forkRecipe = (originalRecipeID, userID, callback) => {
   fetchRecipe(originalRecipeID, (recipe) => {
@@ -233,7 +258,8 @@ export const searchRecipes = (query, callback) => {
 };
 
 export const fetchTrending = (callback) => {
-  fetch(`${localServerURL}/api/v1/trending`, { //
+
+  fetch(`${localServerURL}/api/v1/trending`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
@@ -277,6 +303,29 @@ export const fetchRecipesCreated = (userID, callback) => {
       createdData = data;
     }
     callback(createdData);
+  })
+  .catch((error) => {
+    console.log('Error:', error);
+    return;
+  });
+};
+
+export const fetchFPKey = (callback) => {
+  fetch(`${localServerURL}/api/v1/FPKey`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  })
+  .then((response) => {
+    if (response.status >= 400) {
+      throw new Error('Bad response from server');
+    }
+    return response.json();
+  })
+  .then((data) => {
+    callback(data.key);
   })
   .catch((error) => {
     console.log('Error:', error);
