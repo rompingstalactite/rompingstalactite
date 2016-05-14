@@ -310,7 +310,7 @@ export const fetchRecipesCreated = (userID, callback) => {
   });
 };
 
-export const fetchFPKey = () => {
+export const fetchFPKey = (callback) => {
   fetch(`${localServerURL}/api/v1/FPKey`, {
     method: 'GET',
     headers: {
@@ -322,8 +322,10 @@ export const fetchFPKey = () => {
     if (response.status >= 400) {
       throw new Error('Bad response from server');
     }
-    console.log(response);
     return response.json();
+  })
+  .then((data) => {
+    callback(data.key);
   })
   .catch((error) => {
     console.log('Error:', error);
