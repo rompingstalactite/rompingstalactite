@@ -42,7 +42,7 @@ passport.deserializeUser((user, done) => {
 // Find a user with a given Google user ID
 const findOne = (googleID, callback) => {
   db.one({
-    name: 'find-user',
+    name: 'find-user-using-google-id',
     text: 'select * from users where google_id = $1',
     values: [googleID],
   })

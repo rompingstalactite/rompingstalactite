@@ -26,7 +26,7 @@ class Like extends Component {
 
     return (
       <div className="like-button" onClick={handleToggleLike.bind(null, userID, recipeID, toggleLike.toggleLike)}>
-        <span className={likedClass}> {toggleLike.likeCount} </span>
+        <span className={likedClass}>Likes: {toggleLike.likeCount} </span>
       </div>
     );
   }

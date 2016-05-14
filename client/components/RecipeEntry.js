@@ -14,7 +14,7 @@ const RecipeEntry = (props) => {
   return (
     <div className="recipe-entry">
       <img className="recipe-image" src={image} />
-      <Link to={`/recipe/${props.recipe.id || 1}`} className="recipe-title">{props.recipe.title}</Link>
+      <Link to={`/recipe/${props.recipe.recipe_id || props.recipe.id || 1}`} className="recipe-title">{props.recipe.title}</Link>
       <p className="recipe-create-date" >Created at {props.recipe.created_at}</p>
     </div>
   );

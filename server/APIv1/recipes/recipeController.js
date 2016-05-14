@@ -245,4 +245,29 @@ module.exports = {
       next();
     });
   },
+  getAllCreatedRecipes: (request, response, next) => {
+    const newQueryObj = {
+      name: 'get-my-created-recipes',
+      text: `SELECT
+              *
+            FROM
+              recipes r
+            WHERE
+              r.author = $1;`,
+      values: [
+        request.params.user,
+      ],
+    }
+
+    db.query(newQueryObj)
+      .then((data) => {
+        response.status(200);
+        response.json(data);
+        next();
+      })
+      .catch((error) => {
+        console.log(error);
+        next();
+      });
+  },
 };

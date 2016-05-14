@@ -2,32 +2,40 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../scss/_profile.scss';
 import RecipeContainer from './RecipeContainer.js';
+import { fetchUser, fetchRecipesLiked, fetchRecipesCreated } from '../utils/utils';
+import actions from '../actions/index.js';
 
 class Profile extends Component {
 
   componentDidMount() {
-
+    const { updateProfile, id } = this.props;
+    updateProfile(+id);
   }
 
   componentWillUpdate(nextProps) {
-
+    const currId = this.props.id;
+    const { updateProfile, id } = nextProps;
+    if (+currId !== +id) {
+      updateProfile(+id);
+    }
   }
 
   render() {
-    const { avatar, user, recipesOwned, recipesFollowed, recipesLiked } = this.props;
+    const { user, recipesCreated, recipesFollowed, recipesLiked } = this.props;
+    // const avatarLarge = avatar.slice(0, user.avatar.length - 6); // slice off ?sz=50 from Google's avatar url
     return (
       <div className="profile-content">
         <div className="col-1-4">
-          <img className="profile-avatar" src={avatar/*props.avatar.slice(0, props.avatar.length-6)*/} alt="avatar"></img>
-          <p className="profile-username">{user.displayName}</p>
+          <img className="profile-avatar" src={user.avatar} alt="avatar"></img>
+          <p className="profile-username">{user.display_name}</p>
         </div>
         <div className="profile-recipe-containers col-3-4">
           <RecipeContainer
-            className="recipes-owned"
+            className="recipes-created"
             type="My Recipes"
-            recipes={recipesOwned}
+            recipes={recipesCreated}
           />
-            <RecipeContainer
+          <RecipeContainer
             className="recipes-followed"
             type="Followed Recipes"
             recipes={recipesFollowed}
@@ -43,14 +51,33 @@ class Profile extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
-    user: state.user,
-    avatar: state.user.photos[0].value,
-    recipesOwned: state.recipesOwned,
-    recipesFollowed: state.recipesFollowed,
-    recipesLiked: state.recipesLiked,
+    user: state.profile.user,
+    recipesCreated: state.profile.recipesCreated,
+    recipesFollowed: state.profile.recipesFollowed,
+    recipesLiked: state.profile.recipesLiked,
+    id: ownProps.params.user_id,
   };
 };
 
-export default connect(mapStateToProps)(Profile);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateProfile: (userID) => {
+      fetchUser(userID, (user) => {
+        dispatch(actions.setProfileUser(user));
+      });
+      fetchRecipesCreated(userID, (recipesCreated) => {
+        dispatch(actions.setProfileRecipesCreated(recipesCreated));
+      });
+      // fetchRecipesFollowed(userID, (recipesFollowed) => {
+      //   dispatch(actions.setProfileRecipesFollowed(recipesFollowed));
+      // });
+      fetchRecipesLiked(userID, (recipesLiked) => {
+        dispatch(actions.setProfileRecipesLiked(recipesLiked));
+      });
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

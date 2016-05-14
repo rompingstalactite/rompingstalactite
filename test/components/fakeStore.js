@@ -14,7 +14,7 @@ const initialStateRecipe = fakeRecipe;
 
 const initialStateUser = {
   id: null,
-  displayName: 'DISPLAY NAME',
+  display_name: 'First Last',
   photos: [{ value: 'http://www.carderator.com/assets/avatar_placeholder_small.png' }],
   gender: null,
   provider: null,
@@ -23,6 +23,17 @@ const initialStateUser = {
 const initialStateLike = {
   toggleLike: false,
   likeCount: 0,
+};
+
+const initialStateProfile = {
+  user: {
+    id: null,
+    avatar: 'http://www.carderator.com/assets/avatar_placeholder_small.png',
+    display_name: 'First Last'
+  },
+  recipesCreated: [],
+  recipesFollowed: [],
+  recipesLiked: [],
 };
 
 const objectAssign = (...objects) => {
@@ -37,14 +48,13 @@ const objectAssign = (...objects) => {
 }
 
 // Make fake reducers
-const recipesOwned = (state = initialStateRecipes) => state;
-const recipesFollowed = (state = initialStateRecipes) => state;
 const recipesFeatured = (state = initialStateRecipes) => state;
 const recipesSearched = (state = initialStateRecipes) => state;
 const recipesTop = (state = initialStateRecipes) => state;
 const historyRecipes = (state = initialStateRecipes) => state;
 const user = (state = initialStateUser) => state;
 const toggleLike = (state = initialStateLike) => state;
+const profile = (state = initialStateProfile) => state;
 const recipe = (state = initialStateRecipe, action) => {
   switch (action.type) {
     case types.FORK_RECIPE:
@@ -68,8 +78,6 @@ const recipe = (state = initialStateRecipe, action) => {
 };
 
 const fakeRootReducer = combineReducers({
-  recipesOwned,
-  recipesFollowed,
   recipesTop,
   recipesFeatured,
   recipesSearched,
@@ -77,6 +85,7 @@ const fakeRootReducer = combineReducers({
   toggleEdit,
   user,
   toggleLike,
+  profile,
 });
 
 export default createStore(fakeRootReducer);

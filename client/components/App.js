@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import actions from '../actions/index.js';
-import { fetchUser } from '../utils/utils.js';
+import { fetchCurrentUser } from '../utils/utils.js';
 import '../scss/simple-grid.scss';
 import '../scss/_main.scss';
 import '../scss/_app.scss';
@@ -36,7 +36,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = function (dispatch) {
   return {
     setUserData: () => {
-      fetchUser((user) => {
+      fetchCurrentUser((user) => {
         dispatch(actions.setUser(user));
       });
     },

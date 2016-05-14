@@ -1,7 +1,11 @@
 import 'isomorphic-fetch';
-let localServerURL = 'http://localhost:8080';
-if (!process.env.TRAVIS && window.location) {
-  localServerURL = location.origin;
+
+let localServerURL;
+
+try {
+  localServerURL = location.origin; // dev or prod environment
+} catch (e) {
+  localServerURL = 'http://localhost:8080'; // no 'location' Travis/test environment
 }
 
 export const fetchRecipe = (recipeID, callback) => {
@@ -105,7 +109,7 @@ export const forkRecipe = (originalRecipeID, userID, callback) => {
   });
 };
 
-export const fetchUser = (callback) => {
+export const fetchCurrentUser = (callback) => {
   fetch(`${localServerURL}/api/v1/user/`, {
     credentials: 'same-origin',
   })
@@ -124,10 +128,74 @@ export const fetchUser = (callback) => {
   });
 };
 
+export const fetchUser = (userID, callback) => {
+  fetch(`${localServerURL}/api/v1/users/${userID}`)
+  .then((response) => {
+    if (response.status >= 400) {
+      throw new Error('Bad response from server');
+    }
+    return response.json();
+  })
+  .then((data) => {
+    let userData;
+    if (data.error) {
+      userData = {
+        'id': null,
+        'username': 'username',
+        'facebook_id': null,
+        'google_id': null,
+        'created_at': '',
+        'updated_at': '',
+        'display_name': 'First Last',
+        'avatar': 'http://www.carderator.com/assets/avatar_placeholder_small.png',
+        'email': 'email@example.com',
+        'google_access_token': null,
+        'active': true,
+      };
+    } else {
+      userData = data;
+    }
+    callback(userData);
+  })
+  .catch((error) => {
+    console.log('Error:', error);
+    return;
+  });
+};
+
+export const fetchRecipesLiked = (userID, callback) => {
+  fetch(`${localServerURL}/api/v1/likes/${userID}`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  })
+  .then((response) => {
+    if (response.status >= 400) {
+      throw new Error('Bad response from server');
+    }
+    return response.json();
+  })
+  .then((data) => {
+    let likeData;
+    if (data.error) {
+      likeData = [];
+    } else {
+      likeData = data;
+    }
+    callback(likeData);
+  })
+  .catch((error) => {
+    console.log('Error:', error);
+    return;
+  });
+};
+
 export const fetchRecipes = (recipeIDList, callback) => {
   const list = (!recipeIDList || recipeIDList.length === 0) ? [] : recipeIDList;
   const formattedQuery = JSON.stringify(list).replace('[','{').replace(']','}');
-  fetch(`${localServerURL}/api/v1/recipes/?recipes=${formattedQuery}`, {
+  fetch(`${localServerURL}/api/v1/recipes/?recipes=${formattedQuery}`, { //
     credentials: 'same-origin',
   })
   .then((response) => {
@@ -165,7 +233,7 @@ export const searchRecipes = (query, callback) => {
 };
 
 export const fetchTrending = (callback) => {
-  fetch(`${localServerURL}/api/v1/trending`, {
+  fetch(`${localServerURL}/api/v1/trending`, { //
     method: 'GET',
     headers: {
       Accept: 'application/json',
@@ -180,6 +248,35 @@ export const fetchTrending = (callback) => {
   })
   .then((data) => {
     callback(data);
+  })
+  .catch((error) => {
+    console.log('Error:', error);
+    return;
+  });
+};
+
+export const fetchRecipesCreated = (userID, callback) => {
+  fetch(`${localServerURL}/api/v1/created/${userID}`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  })
+  .then((response) => {
+    if (response.status >= 400) {
+      throw new Error('Bad response from server');
+    }
+    return response.json();
+  })
+  .then((data) => {
+    let createdData;
+    if (data.error) {
+      created = [];
+    } else {
+      createdData = data;
+    }
+    callback(createdData);
   })
   .catch((error) => {
     console.log('Error:', error);

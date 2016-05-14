@@ -47,11 +47,16 @@ module.exports = (app, express) => {
   app.get('/api/v1/recipes/', rc.getMultipleRecipes);
   app.get('/api/v1/recipes/:recipe_id', rc.getOneRecipe);
 
-
   // app.put('/api/v1/recipes/:recipe', /* auth, */ updateRecipe);
   // app.get('/api/v1/recipes/:user', /* auth, */ getUsersRecipes);
   // app.get('/api/v1/recipes/me', /* auth, */ namedFn);
   // app.get('/api/v1/recipes/me', /* auth, */ namedFn);
+
+  /**
+   * Created
+   */
+
+  app.get('/api/v1/created/:user', rc.getAllCreatedRecipes);
 
   /**
    * Search
@@ -63,7 +68,7 @@ module.exports = (app, express) => {
    */
   app.get('/api/v1/likes', lc.getLikeState);
   app.post('/api/v1/likes', checkAuth, lc.addOrDeleteRecipeLike);
-  app.get('/api/v1/likes/:user', checkAuth, lc.getAllLikedRecipes);
+  app.get('/api/v1/likes/:user', lc.getAllLikedRecipes);
   // app.get('/api/v1/favorites/:user/count', /* auth, */ getUserFavoritesCount);
 
 

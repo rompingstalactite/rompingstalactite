@@ -13,7 +13,7 @@ describe('<Profile />', () => {
   beforeEach('render Profile', () => {
     wrapper = mount(
       <Provider store={fakeStore}>
-        <Profile />
+        <Profile params={{id: 1}} />
       </Provider>);
   });
 
@@ -22,11 +22,11 @@ describe('<Profile />', () => {
   });
 
   it('should display the correct username', () => {
-    expect(wrapper.find('.profile-username').text()).to.equal(fakeStore.getState().user.displayName);
+    expect(wrapper.find('.profile-username').text()).to.equal(fakeStore.getState().profile.user.display_name);
   });
 
   it('should display the correct avatar', () => {
-    expect(wrapper.find('.profile-avatar').html()).to.contain(fakeStore.getState().user.photos[0].value);
+    expect(wrapper.find('.profile-avatar').html()).to.contain(fakeStore.getState().profile.user.avatar);
   });
 
   it('should render three recipe containers', () => {

@@ -21,7 +21,7 @@ class MainRecipe extends Component {
   componentWillUpdate(nextProps) {
     const currId = this.props.id;
     const { getRecipe, id } = nextProps;
-    if (currId !== id) {
+    if (+currId !== +id) {
       getRecipe(id);
     }
   }

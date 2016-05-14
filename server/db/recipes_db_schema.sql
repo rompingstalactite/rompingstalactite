@@ -67,7 +67,7 @@ CREATE TABLE "images" (
 CREATE TABLE "likes_recipes_users" (
 	"recipe_id" integer NOT NULL,
 	"user_id" integer NOT NULL,
-	"like_date" TIMESTAMP NOT NULL DEFAULT current_timestamp,
+	"like_date" TIMESTAMP NOT NULL DEFAULT current_timestamp
 ) WITH (
   OIDS=FALSE
 );
@@ -94,4 +94,3 @@ ALTER TABLE "likes_recipes_users" ADD CONSTRAINT "likes_users_users_pk0" PRIMARY
 
 ALTER TABLE "followers_users_users" ADD CONSTRAINT "followers_users_users_fk0" FOREIGN KEY ("user") REFERENCES "users"("id");
 ALTER TABLE "followers_users_users" ADD CONSTRAINT "followers_users_users_fk1" FOREIGN KEY ("target") REFERENCES "users"("id");
-
