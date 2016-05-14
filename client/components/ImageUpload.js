@@ -6,28 +6,11 @@ const filepicker = require('filepicker-js');
 
 
 class ImageUpload extends Component {
-  filePick() {
-    filepicker.setKey(FILE_PICKER_KEY);
-    filepicker.pick(
-      {
-        mimetype: 'image/*',
-        container: 'window',
-      },
-      function(data){
-        console.log(JSON.stringify(data));
-        // uploadURL = data.url;
-      },
-      function(error){
-        console.log(error);
-      }
-    );
-  }
-
   render() {
-    const { recipe } = this.props;
+    const { recipe, uploadPicture } = this.props;
     return (
       <div>
-        <button onClick={this.filePick}>Add Pics</button>
+        <button onClick={() => uploadPicture(recipe)}>Add Pics</button>
       </div>
     );
   }
@@ -41,10 +24,21 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    uploadPicture: (imgURLs, add) => {
-      const newSet = Object.assign({}, imgURLs);
-      newSet.push(add);
-      dispatch(actions.editRecipe());
+    uploadPicture: (recipe) => {
+      filepicker.setKey(FILE_PICKER_KEY);
+      filepicker.pick(
+        {
+          mimetype: 'image/*',
+          container: 'window',
+        },
+        (data) => {
+          const newSet = { images: recipe.images };
+          newSet.images.push(data.url);
+          console.log(newSet);
+          dispatch(actions.editRecipe(newSet));
+        },
+        (error) => console.log(error)
+      );
     },
   };
 };
