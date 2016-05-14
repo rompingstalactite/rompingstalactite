@@ -2,7 +2,14 @@ import Promise from 'bluebird';
 import Stubs from './Stubs.js';
 const expect = require('chai').expect;
 import fakeRecipe from '../components/fakeRecipe';
-import { fetchRecipe, createRecipe, forkRecipe, fetchCurrentUser } from '../../client/utils/utils';
+import {
+  fetchRecipe,
+  createRecipe,
+  forkRecipe,
+  fetchCurrentUser,
+  fetchRecipesLiked,
+  fetchRecipesCreated,
+} from '../../client/utils/utils';
 
 const copyRecipe = (recipe) => {
   const recipeCopy = {};
@@ -19,12 +26,15 @@ const copyRecipe = (recipe) => {
 */
 const useModifiedFetch = (functionThatUsesFetch) => {
   const modifiedFetch = (url, options, callback) => {
-    if (url === 'http://localhost:8080/api/v1/recipes/' && options.method === 'POST') {
+    // createRecipe / forkRecipe
+    if (url.indexOf('/api/v1/recipes/') > -1  && options.method === 'POST') {
       const recipe = JSON.parse(options.body);
       const response = new Stubs.response();
       response.json(recipe);
       return callback(null, response);
-    } else if (url === 'http://localhost:8080/api/v1/recipes/1' && options.method === 'GET') {
+
+    // fetchRecipe / forkRecipe
+    } else if (url.indexOf('/api/v1/recipes/1') > -1 && options.method === 'GET') {
       const recipe = {
         id: 1,
         title: 'Vegan Red Velvet Cupcakes',
@@ -33,7 +43,9 @@ const useModifiedFetch = (functionThatUsesFetch) => {
       const response = new Stubs.response();
       response.json(recipe);
       return callback(null, response);
-    } else if (url === 'http://localhost:8080/api/v1/user/' && options.method === undefined || options.method === 'GET') {
+
+    // fetchCurrentUser
+    } else if (url.indexOf('/api/v1/user/') > -1 && (options.method === undefined || options.method === 'GET')) {
       const user = {
         id: null,
         displayName: null,
@@ -43,6 +55,33 @@ const useModifiedFetch = (functionThatUsesFetch) => {
       };
       const response = new Stubs.response();
       response.json(user);
+      return callback(null, response);
+
+    // fetchRecipesLiked
+  } else if (url.indexOf('/api/v1/likes/1') > -1 && (options.method === undefined || options.method === 'GET')) {
+      const recipes = [{
+        id: 1,
+        title: 'Vegan Red Velvet Cupcakes',
+        parent: null,
+        recipe_id: 2,
+        user_id: 1,
+      }];
+
+      const response = new Stubs.response();
+      response.json(recipes);
+      return callback(null, response);
+
+    // fetchRecipesCreated
+    } else if (url.indexOf('/api/v1/created/1') > -1 && (options.method === undefined || options.method === 'GET')) {
+      const recipes = [{
+        id: 3,
+        title: 'Steak',
+        parent: null,
+        author: 1,
+      }];
+
+      const response = new Stubs.response();
+      response.json(recipes);
       return callback(null, response);
     } else {
       return callback(new Error('Didn\'t recognize the request being tested.'));
@@ -104,5 +143,27 @@ describe('Util tests', () => {
       done();
     };
     useModifiedFetch(forkRecipe)(originalRecipeID, userID, cb);
+  });
+
+  it('should fetch a user\'s liked recipes', (done) => {
+    const userID = 1;
+    const cb = (recipes) => {
+      expect(recipes).to.not.be.undefined;
+      expect(Array.isArray(recipes)).to.be.true;
+      expect(recipes[0].user_id).to.be.equal(userID);
+      done();
+    };
+    useModifiedFetch(fetchRecipesLiked)(userID, cb);
+  });
+
+  it('should fetch a user\'s created recipes', (done) => {
+    const userID = 1;
+    const cb = (recipes) => {
+      expect(recipes).to.not.be.undefined;
+      expect(Array.isArray(recipes)).to.be.true;
+      expect(recipes[0].author).to.be.equal(userID);
+      done();
+    };
+    useModifiedFetch(fetchRecipesCreated)(userID, cb);
   });
 });

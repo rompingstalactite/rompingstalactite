@@ -1,6 +1,7 @@
 import 'isomorphic-fetch';
 let localServerURL = 'http://localhost:8080';
-if (!process.env.TRAVIS && window.location) {
+let window = undefined || window;
+if (!process.env.TRAVIS && window && window.location) {
   localServerURL = location.origin;
 }
 
