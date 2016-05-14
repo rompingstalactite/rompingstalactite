@@ -1,6 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router';
+import moment from 'moment';
 import '../scss/_recipeEntry.scss';
+
+import Fork from './Fork';
+import Like from './Like';
+
+moment().format();
 
 const RecipeEntry = (props) => {
   let image;
@@ -11,11 +17,12 @@ const RecipeEntry = (props) => {
   } else {
     image = null;
   }
+  const createdTime = moment(props.recipe.created_at).fromNow();
   return (
     <div className="recipe-entry-container">
       <div className="recipe-entry">
         <img className="recipe-entry-img" src={image} />
-        <span className="date">Created: {props.recipe.created_at} </span>
+        <span className="date" >Created {createdTime}</span>
         <div>
           <Link to={`/recipe/${props.recipe.recipe_id || props.recipe.id || 1}`}
           className="recipe-entry-title">
@@ -28,6 +35,9 @@ const RecipeEntry = (props) => {
             <span>⤿</span>
             <span>⑂</span>
             <span>⟲</span>
+            <Fork recipe={props.recipe.recipe_id || props.recipe.id} />
+            <Like recipe={props.recipe.recipe_id || props.recipe.id} />
+            <button disabled>Edit</button>
           </div>
 
         </div>
