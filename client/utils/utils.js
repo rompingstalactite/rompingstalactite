@@ -309,3 +309,24 @@ export const fetchRecipesCreated = (userID, callback) => {
     return;
   });
 };
+
+export const fetchFPKey = () => {
+  fetch(`${localServerURL}/api/v1/FPKey`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  })
+  .then((response) => {
+    if (response.status >= 400) {
+      throw new Error('Bad response from server');
+    }
+    console.log(response);
+    return response.json();
+  })
+  .catch((error) => {
+    console.log('Error:', error);
+    return;
+  });
+};
