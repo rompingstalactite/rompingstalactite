@@ -74,15 +74,16 @@ export const addRecipeFollow = (request, response) => {
 
 // remove user follow for logged in user
 export const removeUserFollow = (request, response) => {
-  console.log(request.query)
+  console.log(request.query);
   // in query: .follower, .target
   db.query(sql('removeUserFollow.sql'), request.query)
     .then(data => { response.json(data); })
     .catch(error => { response.json(error); });
 };
+
 // remove recipe follow for logged in user
 export const removeRecipeFollow = (request, response) => {
-  console.log(request.query)
+  console.log(request.query);
   // in query: .user_id, .recipe_id
   db.query(sql('removeRecipeFollow.sql'), request.query)
     .then(data => { response.json(data); })
