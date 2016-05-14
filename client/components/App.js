@@ -27,10 +27,7 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {
-    recipesOwned: state.recipesOwned,
-    recipesFollowed: state.recipesFollowed,
-  };
+  return {};
 };
 
 const mapDispatchToProps = function (dispatch) {
@@ -41,16 +38,6 @@ const mapDispatchToProps = function (dispatch) {
       });
     },
   };
-};
-
-App.propTypes = {
-  recipesOwned: PropTypes.array.isRequired,
-  recipesFollowed: PropTypes.array.isRequired,
-  // profile: PropTypes.shape({
-  //   avatar: PropTypes.string,
-  //   username: PropTypes.string,
-  // }).isRequired,
-  // toggleEdit: PropTypes.bool.isRequired,
 };
 
 export default connect(
