@@ -103,8 +103,6 @@ export const createRecipe = (recipe, callback) => {
 };
 
 export const editRecipe = (recipe, callback) => {
-  console.log(localServerURL);
-  console.log(recipe);
   fetch(`${localServerURL}/api/v1/recipes/`, {
     method: 'PUT',
     headers: {

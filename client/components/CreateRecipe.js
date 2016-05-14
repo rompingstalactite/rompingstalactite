@@ -25,6 +25,9 @@ class CreateRecipe extends Component {
               onChange={(e) => updateRecipe(e)}
             /><br />
             <h3> Images: </h3>
+            {recipe.images.map((i, key) =>
+              <img src={i} data-index={key} />
+            )}
 
             <ImageUpload />
 

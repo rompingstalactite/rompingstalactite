@@ -34,7 +34,6 @@ const mapDispatchToProps = (dispatch) => {
         (data) => {
           const newSet = { images: recipe.images };
           newSet.images.push(data.url);
-          console.log(newSet);
           dispatch(actions.editRecipe(newSet));
         },
         (error) => console.log(error)
