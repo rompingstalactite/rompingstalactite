@@ -6,6 +6,7 @@ import { push } from 'react-router-redux';
 import actions from '../actions/index.js';
 import { forkRecipe, fetchRecipes, fetchRecipe, fetchUser } from '../utils/utils';
 import RecipeContainer from './RecipeContainer';
+import Fork from './Fork';
 import '../scss/_main.scss';
 import '../scss/_mainRecipe.scss';
 
@@ -114,6 +115,9 @@ class MainRecipe extends Component {
 
     return (
       <div>
+        {editButton}
+        <Fork recipeID={recipe.id} />
+        <Like recipeID={recipe.id} userID={user.id} />
         <div className="recipe-content">
           <div className="recipe-content-header">
             <div className="recipe-header-meta">
@@ -129,7 +133,6 @@ class MainRecipe extends Component {
                 <div className="recipe-header-main-image">
                   <img src={mainRecipeImage} />
                   {recipeImages}
-                  </div>
                 </div>
               </div>
               <div className="recipe-header-fork-history">

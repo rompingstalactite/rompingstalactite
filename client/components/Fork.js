@@ -17,7 +17,9 @@ const Fork = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    userID: state.user.id,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
