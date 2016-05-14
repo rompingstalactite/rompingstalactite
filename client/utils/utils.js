@@ -1,8 +1,11 @@
 import 'isomorphic-fetch';
-let localServerURL = 'http://localhost:8080';
-let window = undefined || window;
-if (!process.env.TRAVIS && window && window.location) {
-  localServerURL = location.origin;
+
+let localServerURL;
+
+try {
+  localServerURL = location.origin; // dev or prod environment
+} catch (e) {
+  localServerURL = 'http://localhost:8080'; // no 'location' Travis/test environment
 }
 
 export const fetchRecipe = (recipeID, callback) => {
