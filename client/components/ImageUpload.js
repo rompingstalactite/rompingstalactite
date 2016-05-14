@@ -5,8 +5,8 @@ import { fetchFPKey } from '../utils/utils';
 const filepicker = require('filepicker-js');
 
 let FILE_PICKER_KEY;
-if (process.env.TRAVIS) {
-  FILE_PICKER_KEY = 'no key';
+if (process.env.FILE_PICKER_KEY) {
+  FILE_PICKER_KEY = process.env.FILE_PICKER_KEY;
 } else if (process.env.HEROKU) {
   console.log('fetching key from process.env...');
   FILE_PICKER_KEY = fetchFPKey(console.log);
