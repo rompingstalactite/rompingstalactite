@@ -4,15 +4,18 @@ import actions from '../actions/index.js';
 import { fetchFPKey } from '../utils/utils';
 const filepicker = require('filepicker-js');
 
-let FILE_PICKER_KEY;
-if (process.env.FILE_PICKER_KEY) {
-  FILE_PICKER_KEY = process.env.FILE_PICKER_KEY;
-} else if (process.env.HEROKU) {
-  console.log('fetching key from process.env...');
-  FILE_PICKER_KEY = fetchFPKey(console.log);
-} else if (!process.env.TRAVIS && !process.env.HEROKU) {
-  FILE_PICKER_KEY = require('../../server/keys/filePicker.js').FILE_PICKER_KEY;
-}
+const FILE_PICKER_KEY = fetchFPKey(console.log);
+// const FILE_PICKER_KEY = require('../../server/keys/filePicker.js').FILE_PICKER_KEY;
+
+// let FILE_PICKER_KEY;
+// if (process.env.TRAVIS) {
+//   FILE_PICKER_KEY = 'no key';
+// } else if (process.env.HEROKU) {
+//   console.log('fetching key from process.env...');
+//   FILE_PICKER_KEY = fetchFPKey(console.log);
+// } else if (!process.env.TRAVIS && !process.env.HEROKU) {
+// }
+
 console.log('FILE_PICKER_KEY', FILE_PICKER_KEY);
 
 class ImageUpload extends Component {
