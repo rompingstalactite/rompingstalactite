@@ -13,8 +13,8 @@ export const getUserFollowCount = (request, response) => {
   console.log(request.params);
   // expects '''.user
   db.query(sql('/getUserFollowCount.sql'), request.params)
-    .then(data => {response.json(data); return;})
-    .catch(data => {response.json(data); return;})
+    .then(data => { response.json(data); })
+    .catch(data => { response.json(data); });
 };
 
 // get recipe follows count for any recipe
@@ -22,24 +22,24 @@ export const getRecipeFollowCount = (request, response) => {
   console.log(request.params);
   // expects '''.recipe_id
   db.query(sql('/getRecipeFollowCount.sql'), request.params)
-    .then(data => {response.json(data); return;})
-    .catch(data => {response.json(data); return;})
+    .then(data => { response.json(data); })
+    .catch(data => { response.json(data); });
 };
 
 // get user follows count and user follow status for logged in user
 export const getUserFollowState = (request, response) => {
   console.log(request.query);
   db.query(sql('/getUserFollowState.sql'), request.query)
-    .then(data => {response.json(data); return;})
-    .catch(data => {response.json(data); return;})
+    .then(data => { response.json(data); })
+    .catch(data => { response.json(data); });
 };
 // get recipe follows count and recipe follow status for logged in user
 export const getRecipeFollowState = (request, response, next) => {
   console.log(request.query);
   // in params: .user_id, .recipe_id
   db.query(sql('/getRecipeFollowState.sql'), request.query)
-    .then(data => {response.json(data); next()})
-    .catch(data => {response.json(data); return;})
+    .then(data => { response.json(data); })
+    .catch(data => { response.json(data); });
 };
 
 // add new user follow for logged in user
