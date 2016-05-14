@@ -4,7 +4,7 @@ import actions from '../actions/index.js';
 import { fetchFPKey } from '../utils/utils';
 const filepicker = require('filepicker-js');
 
-const FILE_PICKER_KEY = fetchFPKey(console.log);
+const FILE_PICKER_KEY = fetchFPKey();
 // const FILE_PICKER_KEY = require('../../server/keys/filePicker.js').FILE_PICKER_KEY;
 
 // let FILE_PICKER_KEY;
