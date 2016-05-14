@@ -119,3 +119,10 @@ export const getAllFollowedUsers = (request, response) {
     .catch(error => { response.data(error); });
 };
 
+export const getAllFollowedRecipes = (request, response) {
+  console.log(request.query);
+  // in query: .user_id
+  db.query('getAllFollowedRecipes.sql', request.query)
+    .then(data => { response.json(data); })
+    .catch(error => { response.data(error); });
+};
