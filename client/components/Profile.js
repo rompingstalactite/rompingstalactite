@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../scss/_profile.scss';
 import RecipeContainer from './RecipeContainer.js';
-import { fetchUser, fetchRecipesLiked } from '../utils/utils';
+import { fetchUser, fetchRecipesLiked, fetchRecipesCreated } from '../utils/utils';
 import actions from '../actions/index.js';
 
 class Profile extends Component {
@@ -21,7 +21,7 @@ class Profile extends Component {
   }
 
   render() {
-    const { user, recipesOwned, recipesFollowed, recipesLiked } = this.props;
+    const { user, recipesCreated, recipesFollowed, recipesLiked } = this.props;
     // const avatarLarge = avatar.slice(0, user.avatar.length - 6); // slice off ?sz=50 from Google's avatar url
     return (
       <div className="profile-content">
@@ -31,9 +31,9 @@ class Profile extends Component {
         </div>
         <div className="profile-recipe-containers col-3-4">
           <RecipeContainer
-            className="recipes-owned"
+            className="recipes-created"
             type="My Recipes"
-            recipes={recipesOwned}
+            recipes={recipesCreated}
           />
           <RecipeContainer
             className="recipes-followed"
@@ -54,7 +54,7 @@ class Profile extends Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     user: state.profile.user,
-    recipesOwned: state.profile.recipesOwned,
+    recipesCreated: state.profile.recipesCreated,
     recipesFollowed: state.profile.recipesFollowed,
     recipesLiked: state.profile.recipesLiked,
     id: ownProps.params.user_id,
@@ -67,11 +67,11 @@ const mapDispatchToProps = (dispatch) => {
       fetchUser(userID, (user) => {
         dispatch(actions.setProfileUser(user));
       });
-      // fetchRecipesOwned(userID, (recipesOwned) => {
-      //   dispatch(actions.SET_PROFILE_RECIPES_OWNED(recipesOwned));
-      // });
+      fetchRecipesCreated(userID, (recipesCreated) => {
+        dispatch(actions.setProfileRecipesCreated(recipesCreated));
+      });
       // fetchRecipesFollowed(userID, (recipesFollowed) => {
-      //   dispatch(actions.SET_PROFILE_RECIPES_FOLLOWED(recipesFollowed));
+      //   dispatch(actions.setProfileRecipesFollowed(recipesFollowed));
       // });
       fetchRecipesLiked(userID, (recipesLiked) => {
         dispatch(actions.setProfileRecipesLiked(recipesLiked));

@@ -40,4 +40,7 @@ module.exports = {
   setProfileRecipesLiked(recipesLiked) {
     return { type: types.SET_PROFILE_RECIPES_LIKED, recipesLiked };
   },
+  setProfileRecipesCreated(recipesCreated) {
+    return { type: types.SET_PROFILE_RECIPES_CREATED, recipesCreated };
+  },
 };

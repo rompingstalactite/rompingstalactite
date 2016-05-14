@@ -250,3 +250,32 @@ export const fetchTrending = (callback) => {
     return;
   });
 };
+
+export const fetchRecipesCreated = (userID, callback) => {
+  fetch(`${localServerURL}/api/v1/created/${userID}`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  })
+  .then((response) => {
+    if (response.status >= 400) {
+      throw new Error('Bad response from server');
+    }
+    return response.json();
+  })
+  .then((data) => {
+    let createdData;
+    if (data.error) {
+      created = [];
+    } else {
+      createdData = data;
+    }
+    callback(createdData);
+  })
+  .catch((error) => {
+    console.log('Error:', error);
+    return;
+  });
+};
