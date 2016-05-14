@@ -35,6 +35,7 @@ class Like extends Component {
 const mapStateToProps = (state) => {
   return {
     toggleLike: state.toggleLike,
+    userID: state.user.id,
   };
 };
 

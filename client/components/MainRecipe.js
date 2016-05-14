@@ -29,6 +29,7 @@ class MainRecipe extends Component {
 
   render() {
     const { user, navToEdit, navToProfile, recipe, onForkClick, historyRecipes, setMainRecipeImage, mainRecipeImage, recipeOwner } = this.props;
+
     let forkButton;
     if (user.id) {
       forkButton = <button className="btn-fork" onClick={ onForkClick.bind(null, recipe.id, user.id) }>Fork</button>;
@@ -117,7 +118,7 @@ class MainRecipe extends Component {
       <div>
         {editButton}
         <Fork recipeID={recipe.id} />
-        <Like recipeID={recipe.id} userID={user.id} />
+        <Like recipeID={recipe.id} />
         <div className="recipe-content">
           <div className="recipe-content-header">
             <div className="recipe-header-meta">
