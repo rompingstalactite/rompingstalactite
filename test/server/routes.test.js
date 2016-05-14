@@ -137,9 +137,10 @@ describe('APIv1 Tests', () => {
     });
     });
 
-  xdescribe('/api/v1/follows', () => {
-    it('should send status code 200 for GET', (done) => {
-      request(app).get('/api/v1/follows').expect(200, done);
+
+  describe('/api/v1/follows', () => {
+    it('should send status code 403 for GET', (done) => {
+      request(app).get('/api/v1/follows').expect(403, done);
     });
 
     it('should send status code 404 for POST', (done) => {

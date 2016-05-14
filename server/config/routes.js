@@ -80,6 +80,9 @@ module.exports = (app, express) => {
   /**
    * Follows
    */
+  // need to specify that the parent endpoint ../follows/ is not a real endpoint
+  app.get('/api/v1/follows/', (req, res) => { res.status(403); res.send('forbidden'); });
+
   app.get('/api/v1/follows/users', fc.getUserFollowState);
   app.post('/api/v1/follows/users', /* checkAuth,*/ fc.addOrRemoveUserFollow);
   app.get('/api/v1/follows/users/:user', /* checkAuth,*/ fc.getAllFollowedUsers);
