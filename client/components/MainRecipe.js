@@ -55,14 +55,14 @@ class MainRecipe extends Component {
         <h1>THIS IS THE RECIPE PARENT: {recipe.parent}</h1>
         <h1>THIS IS THE RECIPE HISTORY: {recipe.fork_history}</h1>
         <h1>THIS IS THE RECIPE ID: {recipe.id}</h1>*/}
-        {editButton}
-        {forkButton}
-        <Like recipeID={recipe.id} userID={user.id} />
         {/*<Link to="/recipe/15">GO TO RECIPE 15</Link>*/}
         <div className="recipe-content">
           <div className="header">
             <h2 className="recipe-main-title">{recipe.title}</h2>
-            <div className="header-images">
+            {editButton}
+            {forkButton}
+            <Like recipeID={recipe.id} userID={user.id} />
+            <div className="header-container">
               <div className="recipe-images">
                 {recipe.images.map((image) => <div className="recipe-image"><img src={image} /></div>)}
               </div>

@@ -1,8 +1,13 @@
-$primary-base: #F4F4F4;
-$secondary-base: #C0B283;
-$primary-detail: #DCD0D0;
-$secondary-detail: #874C62;
-$flair: #193441;
+/* default base for site */
+$primary-base: #FFFEFC;
+/* default base color for cards */
+$secondary-base: #E0E4E5;
+/* base color for nav */
+$primary-detail: #F8F8F6;
+$secondary-detail: #E2E3DF;
+$flair: #BE0031;
+/* border bottom detail for nav */
+$border-detail: #E2E3DF;
 
 body { 
   margin: 0; 

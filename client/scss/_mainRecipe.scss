@@ -1,5 +1,10 @@
 @import '_main';
 
+.recipe-content {
+  margin: 0 auto;
+  width: 80%;
+}
+
 .recipe-images img {
   object-fit: cover;
   width: 100%;
@@ -16,12 +21,13 @@
   height: 200px;
 }
 
-.header-images {
+.header-container {
   display: flex;
 }
 
 .recipe-instructions {
   display: flex;
+  flex-direction: column;
   background-color: $secondary-detail;
   border: 1px solid;
   border-radius: 5px;
