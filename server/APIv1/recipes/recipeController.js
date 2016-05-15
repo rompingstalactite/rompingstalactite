@@ -6,12 +6,12 @@ module.exports = {
   getOneRecipe: (request, response, next) => {
     const newQueryObj = {
       name: 'get-one-recipe',
-      text: `SELECT
-               *
-             FROM
-               recipes
-             WHERE
-               id = $1`,
+      text: `
+          SELECT recipes.*, users.display_name
+          FROM recipes
+          INNER JOIN users on recipes.author = users.id
+          WHERE recipes.id = $1
+          `,
       values: [request.params.recipe_id],
     };
 
@@ -29,11 +29,12 @@ module.exports = {
     // console.log(request.body._queryResultIds);
     const newQueryObj = {
       name: 'get-multiple-recipes',
-      text: `SELECT *
-                 FROM
-                   recipes
-                 WHERE
-                   id = ANY($1)`,
+      text: `
+          SELECT recipes.*, users.display_name
+          FROM recipes
+          INNER JOIN users on recipes.author = users.id
+          WHERE recipes.id = ANY($1)
+          `,
       values: [request.query.recipes || request.body.recipes],
     };
 
