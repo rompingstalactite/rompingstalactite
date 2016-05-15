@@ -23,6 +23,7 @@ const RecipeEntry = (props) => {
       <div className="recipe-entry">
         <img className="recipe-entry-img" src={image} />
         <span className="date" >Created {createdTime}</span>
+        <p className="recipe-author" >Created by {props.recipe.display_name}</p>
         <div>
           <Link to={`/recipe/${props.recipe.recipe_id || props.recipe.id || 1}`}
           className="recipe-entry-title">

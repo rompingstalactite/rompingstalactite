@@ -7,6 +7,7 @@ import * as types from '../constants/ActionTypes.js';
 const initialState = {
   id: 1,
   author: 1,
+  display_name: null,
   parent: null,
   created_at: new Date(),
   updated_at: new Date(),

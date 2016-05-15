@@ -304,11 +304,12 @@ module.exports = {
     const newQueryObj = {
       name: 'get-my-created-recipes',
       text: `SELECT
-              *
+              recipes.*, users.display_name
             FROM
-              recipes r
+              recipes
+            INNER JOIN users on recipes.author = users.id
             WHERE
-              r.author = $1;`,
+              recipes.author = $1;`,
       values: [
         request.params.user,
       ],
