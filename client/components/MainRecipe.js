@@ -50,22 +50,30 @@ class MainRecipe extends Component {
 
     return (
       <div>
-        {/*<h1>THIS IS THE USER: {user.displayName}</h1>
-        <h1>THIS IS THE RECIPE AUTHOR: {recipe.author}</h1>
-        <h1>THIS IS THE RECIPE PARENT: {recipe.parent}</h1>
-        <h1>THIS IS THE RECIPE HISTORY: {recipe.fork_history}</h1>
-        <h1>THIS IS THE RECIPE ID: {recipe.id}</h1>*/}
-        {/*<Link to="/recipe/15">GO TO RECIPE 15</Link>*/}
         <div className="recipe-content">
-          <div className="header">
+          <div className="recipe-content-header">
             <h2 className="recipe-main-title">{recipe.title}</h2>
             {editButton}
             {forkButton}
             <Like recipeID={recipe.id} userID={user.id} />
-            <div className="header-container">
-              <div className="recipe-images">
-                {recipe.images.map((image) => <div className="recipe-image"><img src={image} /></div>)}
+            <div className="recipe-header-container">
+
+
+              <div className="recipe-header-images">
+                <div className="recipe-header-card">
+                  <div className="recipe-header-main-image"><img src="http://placehold.it/350x150"/>
+                    <div className="recipe-header-thumbs">
+                      {recipe.images.map((image) => <div onClick={() => console.log('image clicked!')} className="recipe-header-thumb"><img className="recipe-header-thumbs-image" src={image} /></div>)}
+                      
+                      {/*<a href="http://google.com" className="recipe-header-thumb"><img src="http://placehold.it/50x50"/></a>
+                      <a href="http://google.com" className="recipe-header-thumb"><img src="http://placehold.it/50x50"/></a>
+                      <a href="http://google.com" className="recipe-header-thumb"><img src="http://placehold.it/50x50"/></a> */}
+                    </div>
+                  </div>
+                </div>
               </div>
+
+
               <div>
                 <RecipeContainer
                   className="fork-history"
