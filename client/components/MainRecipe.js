@@ -12,9 +12,9 @@ import '../scss/_mainRecipe.scss';
 import Like from './Like.js';
 class MainRecipe extends Component {
   componentDidMount() {
-    const { getRecipe, id } = this.props;
+    const { getRecipe, id, setMainRecipeImage, recipe} = this.props;
     if (id) {
-      getRecipe(id);
+      getRecipe(id, setMainRecipeImage);
     }
   }
 
@@ -27,7 +27,7 @@ class MainRecipe extends Component {
   }
 
   render() {
-    const { user, navToEdit, recipe, onForkClick, historyRecipes, } = this.props;
+    const { user, navToEdit, recipe, onForkClick, historyRecipes, setMainRecipeImage, mainRecipeImage } = this.props;
     let forkButton;
     if (user.id) {
       forkButton = <button className="btn-fork" onClick={ onForkClick.bind(null, recipe.id, user.id) }>Fork</button>;
@@ -61,9 +61,9 @@ class MainRecipe extends Component {
 
               <div className="recipe-header-images">
                 <div className="recipe-header-card">
-                  <div className="recipe-header-main-image"><img src="http://placehold.it/350x150"/>
+                  <div className="recipe-header-main-image"><img src={mainRecipeImage}/>
                     <div className="recipe-header-thumbs">
-                      {recipe.images.map((image) => <div onClick={() => console.log('image clicked!')} className="recipe-header-thumb"><img className="recipe-header-thumbs-image" src={image} /></div>)}
+                      {recipe.images.map((image) => <div onClick={() => setMainRecipeImage(image)} className="recipe-header-thumb"><img className="recipe-header-thumbs-image" src={image} /></div>)}
                       
                       {/*<a href="http://google.com" className="recipe-header-thumb"><img src="http://placehold.it/50x50"/></a>
                       <a href="http://google.com" className="recipe-header-thumb"><img src="http://placehold.it/50x50"/></a>
@@ -128,9 +128,9 @@ class MainRecipe extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-
     user: state.user,
     recipe: state.recipe,
+    mainRecipeImage: state.mainRecipeImage,
     fork_history: state.recipe.fork_history || [],
     historyRecipes: state.recipe.historyRecipes,
     id: ownProps.params.id,
@@ -150,9 +150,14 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(push('/create'));
     },
 
-    getRecipe: (recipeID) => {
+    setMainRecipeImage: (imageURL) => {
+      dispatch(actions.setMainRecipeImage(imageURL));
+    },
+
+    getRecipe: (recipeID, setRecipeImage) => {
       fetchRecipe(recipeID, (recipe) => {
         dispatch(actions.setRecipe(recipe));
+        setRecipeImage(recipe.images[0]);
         fetchRecipes(recipe.fork_history, (recipes) => {
           dispatch(actions.setRecipeHistory(recipes));
         });
