@@ -19,6 +19,9 @@ module.exports = {
   removeField(fieldChange) {
     return { type: types.REMOVE_FIELD, change: fieldChange };
   },
+  setMainRecipeImage(imageChange) {
+    return { type: types.SET_MAIN_RECIPE_IMAGE, change: imageChange };
+  },
   setUser(user) {
     return { type: types.SET_USER, user };
   },
