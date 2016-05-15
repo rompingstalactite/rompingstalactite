@@ -9,7 +9,7 @@ module.exports = {
   getAllUsers: (request, response, next) => {
     response.status(403);
     response.json({data: 'forbidden'});
-    next();
+    // next();
   },
   createUser: (request, response, next) => {
     const queryObj = {
@@ -22,7 +22,7 @@ module.exports = {
       .then((data) => {
         response.status(201);
         response.json(data);
-        next();
+        // next();
       })
       .catch((error) => {
         if (error.code === '23505' || error.code === '23502') {
@@ -31,13 +31,13 @@ module.exports = {
             usualError: 'user exists, please try another username',
             actualError: `Error code: ${error.code}, Error message: ${error.detail}`,
           });
-          next();
+          // next();
         } else {
           response.status(500);
           response.json({
             error: `Error code: ${error.code}, Error message: ${error.detail}`,
           });
-          next();
+          // next();
         }
       });
   },
@@ -62,13 +62,13 @@ module.exports = {
     })
       .then((data) => {
         response.json(data);
-        next();
+        // next();
       })
       .catch((error) => {
         response.json({
           error: `Error code: ${error.code}, Error message: ${error.detail}`,
         });
-        next();
+        // next();
       });
   },
   getLoggedInUser: (request, response) => {

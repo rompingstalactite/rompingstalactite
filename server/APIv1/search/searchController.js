@@ -21,6 +21,7 @@ module.exports = {
         return getMultipleRecipes(request, response, next);
       })
       .catch((error) => {
+        
         response.status(500);
         response.json({
           error: `Error code: ${error.code}, Error message: ${error.detail}`,
