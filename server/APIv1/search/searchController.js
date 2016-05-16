@@ -7,10 +7,11 @@ module.exports = {
   searchRecipes: (request, response, next) => {
     const queryObj = {
       name: 'search-recipes',
-      text: 'SELECT id FROM recipes WHERE exists (SELECT TITLE FROM (SELECT UNNEST(recipes.ingredients)) x(recipe) where x.recipe like '%cup%')',
+      text: 'SELECT id FROM recipes WHERE title ~* 'vegan';',
       values: [request.body.title, request.body.prep_steps, request.body.cook_steps],
     };
 
+SELECT id FROM recipes WHERE title ~* 'vegan';
     console.log('REQUEST.BODY****************',request.body)
     db.one(queryObj)
       .then((data) => {
