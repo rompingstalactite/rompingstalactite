@@ -4,6 +4,7 @@ const pgp = require('pg-promise')();
 const db = pgp(cn);
 
 module.exports = {
+
   searchRecipes: (request, response, next) => {
     const queryObj = {
       name: 'search-recipe-title',
