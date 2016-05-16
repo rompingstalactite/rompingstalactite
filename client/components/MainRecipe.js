@@ -28,7 +28,7 @@ class MainRecipe extends Component {
   }
 
   render() {
-    const { user, navToEdit, navToProfile, recipe, onForkClick, historyRecipes, setMainRecipeImage, mainRecipeImage, recipeOwner } = this.props;
+    const { user, navToEdit, navToProfile, recipe, historyRecipes, setMainRecipeImage, mainRecipeImage, recipeOwner } = this.props;
 
     let editButton;
     if (user.id === recipe.author && user.id !== null) {
@@ -170,12 +170,6 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onForkClick: (recipeID, userID) => {
-      forkRecipe(recipeID, userID, (newRecipe) => {
-        dispatch(actions.forkRecipe(newRecipe));
-        dispatch(push(`/recipe/${newRecipe.id}`));
-      });
-    },
 
     navToEdit: () => {
       dispatch(push('/create'));
