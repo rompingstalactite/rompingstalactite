@@ -21,9 +21,9 @@ class MainRecipe extends Component {
 
   componentWillUpdate(nextProps) {
     const currId = this.props.id;
-    const { getRecipe, id, setMainRecipeImage } = nextProps;
+    const { getRecipe, id, setMainRecipeImage, setRecipeOwner } = nextProps;
     if (+currId !== +id) {
-      getRecipe(id, setMainRecipeImage);
+      getRecipe(id, setMainRecipeImage, setRecipeOwner);
     }
   }
 
