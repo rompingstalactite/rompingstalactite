@@ -4,14 +4,15 @@ const pgp = require('pg-promise')();
 const db = pgp(cn);
 
 module.exports = {
+  // const vegan = 'vegan';
   searchRecipes: (request, response, next) => {
     const queryObj = {
-      name: 'search-recipes',
-      text: 'SELECT id FROM recipes WHERE title ~* 'vegan';',
-      // values: [request.body.title, request.body.prep_steps, request.body.cook_steps],
+      name: 'search-recipe-title',
+      text: 'SELECT id FROM recipes WHERE title ~* "vegan"',
+      // values: [vegan],
     };
 
-    console.log('REQUEST.BODY****************',request.body)
+    // console.log('REQUEST.BODY****************',request.body)
     db.one(queryObj)
       .then((data) => {
         response.status(200);
