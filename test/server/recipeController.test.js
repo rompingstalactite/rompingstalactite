@@ -30,7 +30,7 @@ describe('Recipe Controller results', () => {
 
     it('Should remove newURL to recipe images array', (done) => {
       app.request.body = {};
-      app.request.body.id = 11;
+      app.request.body.id = 1;
       app.request.body.newURL = 'testURLs.COM';
 
       const cb = () => {
