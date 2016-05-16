@@ -21,6 +21,6 @@ describe('<Search />', () => {
   });
 
   it('should display searched recipes from state', () => {
-    expect(wrapper.find('.recipe-title')).to.have.length(3);
+    expect(wrapper.find('.recipe-entry-title')).to.have.length(3);
   });
 });

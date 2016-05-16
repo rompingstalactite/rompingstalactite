@@ -11,9 +11,11 @@ const RecipeContainer = (props) => {
     childRecipes = props.recipes.map((recipe) => <RecipeEntry recipe={recipe} />);
   }
   return (
-    <div className="recipe-container">
+    <div>
       <h2>{props.type}</h2>
-      {childRecipes}
+      <div className="recipe-container">
+        {childRecipes}
+      </div>
     </div>
   );
 };

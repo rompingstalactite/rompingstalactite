@@ -14,6 +14,6 @@ describe('<RecipeEntry />', () => {
 
   it('should display the recipe name', () => {
     const wrapper = mount(<RecipeEntry recipe={recipe} />);
-    expect(wrapper.find('.recipe-title').text()).to.equal(recipe.title);
+    expect(wrapper.find('.recipe-entry-title').text()).to.equal(recipe.title);
   });
 });

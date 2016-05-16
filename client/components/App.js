@@ -18,7 +18,7 @@ class App extends Component {
   render() {
     const { children } = this.props;
     return (
-      <div className="grid grid-pad">
+      <div>
         <Nav />
         <div>{ children }</div>
       </div>

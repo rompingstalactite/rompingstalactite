@@ -12,9 +12,9 @@ import '../scss/_mainRecipe.scss';
 import Like from './Like.js';
 class MainRecipe extends Component {
   componentDidMount() {
-    const { getRecipe, id } = this.props;
+    const { getRecipe, id, setMainRecipeImage, recipe} = this.props;
     if (id) {
-      getRecipe(id);
+      getRecipe(id, setMainRecipeImage);
     }
   }
 
@@ -27,7 +27,7 @@ class MainRecipe extends Component {
   }
 
   render() {
-    const { user, navToEdit, recipe, onForkClick, historyRecipes, } = this.props;
+    const { user, navToEdit, recipe, onForkClick, historyRecipes, setMainRecipeImage, mainRecipeImage } = this.props;
     let forkButton;
     if (user.id) {
       forkButton = <button className="btn-fork" onClick={ onForkClick.bind(null, recipe.id, user.id) }>Fork</button>;
@@ -50,23 +50,26 @@ class MainRecipe extends Component {
 
     return (
       <div>
-        {/*<h1>THIS IS THE USER: {user.displayName}</h1>
-        <h1>THIS IS THE RECIPE AUTHOR: {recipe.author}</h1>
-        <h1>THIS IS THE RECIPE PARENT: {recipe.parent}</h1>
-        <h1>THIS IS THE RECIPE HISTORY: {recipe.fork_history}</h1>
-        <h1>THIS IS THE RECIPE ID: {recipe.id}</h1>*/}
-        {editButton}
-        {forkButton}
-        <Like recipeID={recipe.id} userID={user.id} />
-        {/*<Link to="/recipe/15">GO TO RECIPE 15</Link>*/}
         <div className="recipe-content">
-          <div className="header">
-            <h2 className="recipe-main-title">{recipe.title}</h2>
-            <div className="header-images">
-              <div className="recipe-images">
-                {recipe.images.map((image) => <div className="recipe-image"><img src={image} /></div>)}
+          <div className="recipe-content-header">
+            <div className="recipe-header-container">
+              <div className="recipe-header-meta">
+                <h2 className="recipe-main-title">{recipe.title}</h2>
+                {editButton}
+                {forkButton}
+                <Like recipeID={recipe.id} userID={user.id} />
+                <div className="recipe-header-card">
+                  <div className="recipe-header-main-image"><img src={mainRecipeImage}/>
+                    <div className="recipe-header-thumbs">
+                      {recipe.images.map((image) => 
+                        <div onClick={() => setMainRecipeImage(image)} className="recipe-header-thumb">
+                          <img className="recipe-header-thumbs-image" src={image} />
+                        </div>)}
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div>
+              <div className="recipe-header-fork-history">
                 <RecipeContainer
                   className="fork-history"
                   type="Recipe History"
@@ -120,9 +123,9 @@ class MainRecipe extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-
     user: state.user,
     recipe: state.recipe,
+    mainRecipeImage: state.mainRecipeImage,
     fork_history: state.recipe.fork_history || [],
     historyRecipes: state.recipe.historyRecipes,
     id: ownProps.params.id,
@@ -142,9 +145,14 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(push('/create'));
     },
 
-    getRecipe: (recipeID) => {
+    setMainRecipeImage: (imageURL) => {
+      dispatch(actions.setMainRecipeImage(imageURL));
+    },
+
+    getRecipe: (recipeID, setRecipeImage) => {
       fetchRecipe(recipeID, (recipe) => {
         dispatch(actions.setRecipe(recipe));
+        setRecipeImage(recipe.images[0]);
         fetchRecipes(recipe.fork_history, (recipes) => {
           dispatch(actions.setRecipeHistory(recipes));
         });

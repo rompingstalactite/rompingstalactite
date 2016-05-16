@@ -41,9 +41,6 @@ class Nav extends Component {
           > Search </button>
           <Link to={`/recipe/${recipeID}`}>Recipe</Link>
           <Link to="/search">Search</Link>
-          <Link to="/create">Create</Link>
-          {signInOut}
-          {linkToProfile}
           <button
             onClick={(e) => {
               e.preventDefault();
@@ -51,10 +48,8 @@ class Nav extends Component {
               navToCreate();
             }}> Create
           </button>
-          <Link to="/profile">
-            <img className="avatar" src={avatar} alt="avatar">
-            </img>
-          </Link>
+          {signInOut}
+          {linkToProfile}
         </div>
       </div>
     );

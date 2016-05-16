@@ -12,10 +12,26 @@ const RecipeEntry = (props) => {
     image = null;
   }
   return (
-    <div className="recipe-entry">
-      <img className="recipe-image" src={image} />
-      <Link to={`/recipe/${props.recipe.recipe_id || props.recipe.id || 1}`} className="recipe-title">{props.recipe.title}</Link>
-      <p className="recipe-create-date" >Created at {props.recipe.created_at}</p>
+    <div className="recipe-entry-container">
+      <div className="recipe-entry">
+        <img className="recipe-entry-img" src={image} />
+        <span className="date">Created: {props.recipe.created_at} </span>
+        <div>
+          <Link to={`/recipe/${props.recipe.recipe_id || props.recipe.id || 1}`}
+          className="recipe-entry-title">
+          {props.recipe.title}
+          </Link>
+          <p className="recipe-entry-description">... some description to come</p>
+
+          <div className="action-buttons">
+            <span>♥</span>
+            <span>⤿</span>
+            <span>⑂</span>
+            <span>⟲</span>
+          </div>
+
+        </div>
+      </div>
     </div>
   );
 };

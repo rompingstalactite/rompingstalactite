@@ -1,16 +1,76 @@
 @import '_main';
 
+.recipe-entry-container {
+  display: flex;
+}
+
 .recipe-entry {
   background-color: $primary-detail;
   width: 250px;
-  height: 350px;
   overflow: hidden;
   position: relative;
   /*border: 1px solid;*/
-  padding: 5px;
+  padding: 6px 6px 12px 6px;
   margin: 10px;
   display: flex;
   flex-direction: column;
+}
+
+.recipe-entry-div {
+  margin: 0 15px;
+}
+
+.recipe-entry-title {
+  font-size: 18px;
+  font-style: bold;
+}
+
+.recipe-entry-img {
+  object-fit: cover;
+  width: auto;
+  height: 200px;
+}
+
+.recipe-entry-title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: $primary-text;
+  margin: 8px 0px;
+}
+
+.recipe-entry-description {
+  font-size: 10px;
+  color: $primary-text;
+}
+
+.date {
+  margin-top: 5px;
+  font-weight: bold;
+  font-size: 10px;
+  color: lighten($primary-text, 30%);
+}
+
+.action-buttons {
+  display: flex;
+}
+
+.action-buttons > span {
+  display: inline-block;
+  margin: 8px 5px 0px 5px;
+  padding: 10px;
+  color: lighten($primary-text, 20%);
+  flex-grow: 1;
+  text-align: center;
+  background-color: lighten($primary-text, 90%);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 200ms;
+}
+
+.action-buttons > span:hover {
+  color: $primary-text;
+  background-color: lighten($primary-text, 60%);
 }
 
 .recipe-entry img {
