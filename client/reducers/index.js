@@ -9,12 +9,14 @@ import user from './user.js';
 import profile from './profile.js';
 import toggleLike from './toggleLike.js';
 import mainRecipeImage from './mainRecipeImage.js';
+import recipeOwner from './recipeOwner.js';
 
 const rootReducer = combineReducers({
   recipesFeatured,
   recipesSearched,
   recipesTop,
   mainRecipeImage,
+  recipeOwner,
   recipe,
   user,
   toggleLike,
