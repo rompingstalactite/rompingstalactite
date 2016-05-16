@@ -18,7 +18,6 @@ describe('search results', () => {
 
       const cb = () => {
         // done callback fails if comparison fails. WUT
-        // expect(app.response.json().length).to.equal(2);
         expect(app.response.json()[0]).to.have.property('title');
         done();
       };
@@ -31,7 +30,6 @@ describe('search results', () => {
 
       const cb = () => {
         // done callback fails if comparison fails. WUT
-        // expect(app.response.json().length).to.equal(2);
         expect(app.response.json().length).to.equal(0);
         done();
       };
