@@ -36,15 +36,12 @@ module.exports = (app, express) => {
    * Recipes
    */
 
-
   app.post('/api/v1/recipes/', checkAuth, rc.createRecipe);
   app.put('/api/v1/recipes/', rc.editRecipe);
   // app.post('/api/v1/recipes/:recipe_id', /* auth, */ forkRecipe);
 
   app.get('/api/v1/recipes/', rc.getMultipleRecipes);
   app.post('/api/v1/recipes/', checkAuth, rc.createRecipe);
-
-  app.get('/api/v1/recipes/trending', rc.trendingRecipes);
 
   app.get('/api/v1/recipes/:recipe_id', rc.getOneRecipe);
   // app.post('/api/v1/recipes/:recipe_id', /* auth, */ forkRecipe);
@@ -53,6 +50,10 @@ module.exports = (app, express) => {
   // app.get('/api/v1/recipes/:user', /* auth, */ getUsersRecipes);
   // app.get('/api/v1/recipes/me', /* auth, */ namedFn);
   // app.get('/api/v1/recipes/me', /* auth, */ namedFn);
+  /**
+   * Trending
+   */
+  app.get('/api/v1/trending', rc.trendingRecipes);
 
   /**
    * Created
