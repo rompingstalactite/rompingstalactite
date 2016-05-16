@@ -117,23 +117,15 @@ class MainRecipe extends Component {
               <p className="recipe-main-title"> {recipe.title}</p>
               {editButton}
               {forkButton}
+              <Fork recipeID={recipe.id} />
+              <Like recipeID={recipe.id} />
               <Like className="recipe-main-likes" recipeID={recipe.id} userID={user.id} />
             </div>
             <div className="recipe-header-container">
-<<<<<<< f44abde8a2789272fffa0573a7969508c66cb230
               <div className="recipe-header-card">
                 <div className="recipe-header-main-image">
                   <img src={mainRecipeImage} />
-=======
-              <div className="recipe-header-meta">
-                <h2 className="recipe-main-title">{recipe.title}</h2>
-                <h2 className="recipe-author">{recipe.display_name}</h2>
-                {editButton}
-                <Fork recipeID={recipe.id} />
-                <Like recipeID={recipe.id} />
-                <div className="recipe-header-card">
-                  <div className="recipe-header-main-image"><img src={mainRecipeImage}/>
->>>>>>> Merge MainRecipe with upstream changes
+
                   {recipeImages}
                 </div>
               </div>
