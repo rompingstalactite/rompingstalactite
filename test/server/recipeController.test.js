@@ -16,7 +16,7 @@ describe('Recipe Controller results', () => {
       app.request.body = {};
       app.request.body.id = 1;
       app.request.body.newURL = 'testURLs.COM';
-     
+
       const cb = () => {
         // console.log('*****ADD RESP*****',app.response.json())
         // done callback fails if comparison fails. WUT
@@ -32,7 +32,7 @@ describe('Recipe Controller results', () => {
       app.request.body = {};
       app.request.body.id = 11;
       app.request.body.newURL = 'testURLs.COM';
-     
+
       const cb = () => {
 
         // done callback fails if comparison fails. WUT
