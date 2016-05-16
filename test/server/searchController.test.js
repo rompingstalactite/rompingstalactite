@@ -12,9 +12,9 @@ describe('search results', () => {
   });
 
   describe('Basic search functionality', () => {
-    xit('Should find results when using keyword with known match', (done) => {
+    it('Should find results when using keyword with known match', (done) => {
       app.request.params = {};
-      app.request.params.q = 'sdfasdf%20cupcake';
+      app.request.params.q = 'cajun';
 
       const cb = () => {
         // done callback fails if comparison fails. WUT
@@ -25,7 +25,7 @@ describe('search results', () => {
 
       Search.searchRecipes(app.request, app.response, cb);
     });
-    xit('Should return empty array when searching for term that has no matching recipe', (done) => {
+    it('Should return empty array when searching for term that has no matching recipe', (done) => {
       app.request.params = {};
       app.request.params.q = 'DefinitelyNoMatchForThisLongString';
 
