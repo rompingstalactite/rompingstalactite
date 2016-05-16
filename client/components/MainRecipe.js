@@ -21,21 +21,14 @@ class MainRecipe extends Component {
 
   componentWillUpdate(nextProps) {
     const currId = this.props.id;
-    const { getRecipe, id } = nextProps;
+    const { getRecipe, id, setMainRecipeImage } = nextProps;
     if (+currId !== +id) {
-      getRecipe(id);
+      getRecipe(id, setMainRecipeImage);
     }
   }
 
   render() {
     const { user, navToEdit, navToProfile, recipe, onForkClick, historyRecipes, setMainRecipeImage, mainRecipeImage, recipeOwner } = this.props;
-
-    let forkButton;
-    if (user.id) {
-      forkButton = <button className="btn-fork" onClick={ onForkClick.bind(null, recipe.id, user.id) }>Fork</button>;
-    } else {
-      forkButton = <button className="btn-fork" disabled>Fork</button>;
-    }
 
     let editButton;
     if (user.id === recipe.author && user.id !== null) {
@@ -116,9 +109,6 @@ class MainRecipe extends Component {
 
     return (
       <div>
-        {editButton}
-        <Fork recipeID={recipe.id} />
-        <Like recipeID={recipe.id} />
         <div className="recipe-content">
           <div className="recipe-content-header">
             <div className="recipe-header-meta">
@@ -130,9 +120,20 @@ class MainRecipe extends Component {
               <Like className="recipe-main-likes" recipeID={recipe.id} userID={user.id} />
             </div>
             <div className="recipe-header-container">
+<<<<<<< f44abde8a2789272fffa0573a7969508c66cb230
               <div className="recipe-header-card">
                 <div className="recipe-header-main-image">
                   <img src={mainRecipeImage} />
+=======
+              <div className="recipe-header-meta">
+                <h2 className="recipe-main-title">{recipe.title}</h2>
+                <h2 className="recipe-author">{recipe.display_name}</h2>
+                {editButton}
+                <Fork recipeID={recipe.id} />
+                <Like recipeID={recipe.id} />
+                <div className="recipe-header-card">
+                  <div className="recipe-header-main-image"><img src={mainRecipeImage}/>
+>>>>>>> Merge MainRecipe with upstream changes
                   {recipeImages}
                 </div>
               </div>
