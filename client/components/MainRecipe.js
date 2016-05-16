@@ -52,29 +52,24 @@ class MainRecipe extends Component {
       <div>
         <div className="recipe-content">
           <div className="recipe-content-header">
-            <h2 className="recipe-main-title">{recipe.title}</h2>
-            {editButton}
-            {forkButton}
-            <Like recipeID={recipe.id} userID={user.id} />
             <div className="recipe-header-container">
-
-
-              <div className="recipe-header-images">
+              <div className="recipe-header-meta">
+                <h2 className="recipe-main-title">{recipe.title}</h2>
+                {editButton}
+                {forkButton}
+                <Like recipeID={recipe.id} userID={user.id} />
                 <div className="recipe-header-card">
                   <div className="recipe-header-main-image"><img src={mainRecipeImage}/>
                     <div className="recipe-header-thumbs">
-                      {recipe.images.map((image) => <div onClick={() => setMainRecipeImage(image)} className="recipe-header-thumb"><img className="recipe-header-thumbs-image" src={image} /></div>)}
-                      
-                      {/*<a href="http://google.com" className="recipe-header-thumb"><img src="http://placehold.it/50x50"/></a>
-                      <a href="http://google.com" className="recipe-header-thumb"><img src="http://placehold.it/50x50"/></a>
-                      <a href="http://google.com" className="recipe-header-thumb"><img src="http://placehold.it/50x50"/></a> */}
+                      {recipe.images.map((image) => 
+                        <div onClick={() => setMainRecipeImage(image)} className="recipe-header-thumb">
+                          <img className="recipe-header-thumbs-image" src={image} />
+                        </div>)}
                     </div>
                   </div>
                 </div>
               </div>
-
-
-              <div>
+              <div className="recipe-header-fork-history">
                 <RecipeContainer
                   className="fork-history"
                   type="Recipe History"
