@@ -25,9 +25,13 @@ class Like extends Component {
     });
 
     return (
-      <div className="like-button" onClick={handleToggleLike.bind(null, userID, recipeID, toggleLike.toggleLike)}>
-        <span className={likedClass}>Likes: {toggleLike.likeCount} </span>
-      </div>
+      <button
+        className="like-button"
+        disabled={!userID}
+        onClick={handleToggleLike.bind(null, userID, recipeID, toggleLike.toggleLike)}
+      >
+        <span className={likedClass}>Likes: {toggleLike.likeCount || '0'} </span>
+      </button>
     );
   }
 }
@@ -35,6 +39,7 @@ class Like extends Component {
 const mapStateToProps = (state) => {
   return {
     toggleLike: state.toggleLike,
+    userID: state.user.id,
   };
 };
 

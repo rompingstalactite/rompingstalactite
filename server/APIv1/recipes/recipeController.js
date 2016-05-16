@@ -6,22 +6,20 @@ module.exports = {
   getOneRecipe: (request, response, next) => {
     const newQueryObj = {
       name: 'get-one-recipe',
-      text: `SELECT
-               *
-             FROM
-               recipes
-             WHERE
-               id = $1`,
+      text: `
+          SELECT recipes.*, users.display_name
+          FROM recipes
+          INNER JOIN users on recipes.author = users.id
+          WHERE recipes.id = $1
+          `,
       values: [request.params.recipe_id],
     };
 
     db.one(newQueryObj)
       .then((data) => {
         response.json(data);
-        next();
       }).catch((error) => {
         response.json(error);
-        next();
       });
   },
   getMultipleRecipes: (request, response, next) => {
@@ -29,20 +27,19 @@ module.exports = {
     // console.log(request.body._queryResultIds);
     const newQueryObj = {
       name: 'get-multiple-recipes',
-      text: `SELECT *
-                 FROM
-                   recipes
-                 WHERE
-                   id = ANY($1)`,
+      text: `
+          SELECT recipes.*, users.display_name
+          FROM recipes
+          INNER JOIN users on recipes.author = users.id
+          WHERE recipes.id = ANY($1)
+          `,
       values: [request.query.recipes || request.body.recipes],
     };
 
     db.query(newQueryObj).then((data) => {
       response.json(data);
-      next();
     }).catch((error) => {
       response.json(error);
-      next();
     });
   },
   addRecipeImage: (request, response, next) => {
@@ -189,14 +186,12 @@ module.exports = {
       .then((data) => {
         response.status(201);
         response.json(data);
-        next();
       })
       .catch((error) => {
         response.status(500);
         response.json({
           error: `Error code: ${error.code}, Error message: ${error.detail}`,
         });
-        next();
       });
   },
 
@@ -218,7 +213,7 @@ module.exports = {
                 finish_steps,
                 tags,
                 parent,
-                author) 
+                author)
               = ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
               WHERE id = $15 returning *`,
       values: [
@@ -243,14 +238,12 @@ module.exports = {
       .then((data) => {
         response.status(201);
         response.json(data);
-        next();
       })
       .catch((error) => {
         response.status(500);
         response.json({
           error: `Error code: ${error.code}, Error message: ${error.detail}`,
         });
-        next();
       });
   },
 
@@ -293,10 +286,8 @@ module.exports = {
       return db.query(newQueryObj2)})
     .then((data) => {
       response.json(data);
-      next();
     }).catch((error) => {
       response.json(error);
-      next();
     });
   },
   getAllCreatedRecipes: (request, response, next) => {
@@ -317,11 +308,9 @@ module.exports = {
       .then((data) => {
         response.status(200);
         response.json(data);
-        next();
       })
       .catch((error) => {
-        console.log(error);
-        next();
+        response.json(error);
       });
   },
 };

@@ -40,10 +40,10 @@ module.exports = {
     };
     db.one(newQueryObj).then(data => {
       response.json(data);
-      next();
+      // next();
     }).catch((error) => {
       response.json(error);
-      next();
+      // next();
     });
   },
   addLikedRecipe: (request, response, next) => {
@@ -102,7 +102,7 @@ module.exports = {
       // user does not exist
       // both recipe and user do not exist
       // query failed
-      next();
+      // next();
     });
   },
 
@@ -152,10 +152,11 @@ module.exports = {
       module.exports.getLikeState(request, response, next);
       // next();
     }).catch((error) => {
-      console.log(error);
+      response.json(error);
+      // console.log(error);
       // possible errors:
       // query failed for unknown reason
-      next();
+      // next();
     });
   },
 
@@ -181,11 +182,12 @@ module.exports = {
       .then((data) => {
         response.status(200);
         response.json(data);
-        next();
+        // next();
       })
       .catch((error) => {
-        console.log(error);
-        next();
+        response.json(error);
+        // console.log(error);
+        // next();
       });
   }
 };

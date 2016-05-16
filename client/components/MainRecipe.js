@@ -6,6 +6,7 @@ import { push } from 'react-router-redux';
 import actions from '../actions/index.js';
 import { forkRecipe, fetchRecipes, fetchRecipe, fetchUser } from '../utils/utils';
 import RecipeContainer from './RecipeContainer';
+import Fork from './Fork';
 import '../scss/_main.scss';
 import '../scss/_mainRecipe.scss';
 
@@ -20,20 +21,14 @@ class MainRecipe extends Component {
 
   componentWillUpdate(nextProps) {
     const currId = this.props.id;
-    const { getRecipe, id } = nextProps;
+    const { getRecipe, id, setMainRecipeImage, setRecipeOwner } = nextProps;
     if (+currId !== +id) {
-      getRecipe(id);
+      getRecipe(id, setMainRecipeImage, setRecipeOwner);
     }
   }
 
   render() {
-    const { user, navToEdit, navToProfile, recipe, onForkClick, historyRecipes, setMainRecipeImage, mainRecipeImage, recipeOwner } = this.props;
-    let forkButton;
-    if (user.id) {
-      forkButton = <button className="btn-fork" onClick={ onForkClick.bind(null, recipe.id, user.id) }>Fork</button>;
-    } else {
-      forkButton = <button className="btn-fork" disabled>Fork</button>;
-    }
+    const { user, navToEdit, navToProfile, recipe, historyRecipes, setMainRecipeImage, mainRecipeImage, recipeOwner } = this.props;
 
     let editButton;
     if (user.id === recipe.author && user.id !== null) {
@@ -48,6 +43,70 @@ class MainRecipe extends Component {
       editButton = <button className="btn-toggle-edit" disabled>Edit Recipe</button>
     }
 
+    let recipeImages;
+    if (recipe.images) {
+      recipeImages = (
+        <div className="recipe-header-thumbs">
+          {recipe.images.map((image) =>
+            <div onClick={() => setMainRecipeImage(image)} className="recipe-header-thumb">
+              <img className="recipe-header-thumbs-image" src={image} />
+            </div>)}
+        </div>);
+    }
+
+    let recipeTags;
+    if (recipe.tags) {
+      recipeTags = <h4> tags: {recipe.tags.map(t => <a> {t} </a>) } </h4>;
+    }
+
+    let recipeIngredients;
+    if (recipe.ingredients) {
+      recipeIngredients = (
+        <div className="ingredients">
+          <h4>Ingredients</h4>
+          <ul>
+            {recipe.ingredients.map((i) => <li> {i} </li>)}
+          </ul>
+        </div>
+      );
+    }
+
+    let recipePrep;
+    if (recipe.prep_steps) {
+      recipePrep = (
+        <div className="prep">
+          <h4> Prep | Time: {recipe.prep_time} </h4>
+          <ol>
+            {recipe.prep_steps.map((s) => <li> {s} </li>)}
+          </ol>
+        </div>
+      );
+    }
+
+    let recipeCook;
+    if (recipe.cook_steps) {
+      recipeCook = (
+        <div className="cook">
+          <h4> Cook | Time: {recipe.cook_time} </h4>
+          <ol>
+          { recipe.cook_steps.map((s) => <li> {s} </li>)}
+          </ol>
+        </div>
+      );
+    }
+
+    let recipeFinish;
+    if (recipe.finish_steps) {
+      recipeFinish = (
+        <div className="finish">
+          <h4> Finish </h4>
+          <ol>
+          { recipe.finish_steps.map((s) => <li> {s} </li>)}
+          </ol>
+        </div>
+      );
+    }
+
     return (
       <div>
         <div className="recipe-content">
@@ -57,19 +116,15 @@ class MainRecipe extends Component {
               <p className="recipe-main-split">/</p>
               <p className="recipe-main-title"> {recipe.title}</p>
               {editButton}
-              {forkButton}
-              <Like className="recipe-main-likes" recipeID={recipe.id} userID={user.id} />
+              <Fork recipeID={recipe.id} />
+              <Like className="recipe-main-likes" recipeID={recipe.id} />
             </div>
             <div className="recipe-header-container">
               <div className="recipe-header-card">
                 <div className="recipe-header-main-image">
                   <img src={mainRecipeImage} />
-                  <div className="recipe-header-thumbs">
-                    {recipe.images.map((image) =>
-                      <div onClick={() => setMainRecipeImage(image)} className="recipe-header-thumb">
-                        <img className="recipe-header-thumbs-image" src={image} />
-                      </div>)}
-                  </div>
+
+                  {recipeImages}
                 </div>
               </div>
               <div className="recipe-header-fork-history">
@@ -81,37 +136,14 @@ class MainRecipe extends Component {
               </div>
             </div>
             <h4>Servings: {recipe.yield + ' ' + recipe.yield_unit} </h4>
-            <h4> tags: {recipe.tags.map(t => <a> {t} </a>)} </h4>
+            {recipeTags}
           </div>
 
           <div className="recipe-instructions">
-            <div className="ingredients">
-              <ul>
-                <h4> Ingredients </h4>
-                {recipe.ingredients.map((i) => <li> {i} </li>)}
-              </ul>
-            </div>
-
-            <div className="prep">
-              <h4> Prep | Time: {recipe.prep_time} </h4>
-              <ol>
-              {recipe.prep_steps.map((s) => <li> {s} </li>)}
-              </ol>
-            </div>
-
-            <div className="cook">
-              <h4> Cook | Time: {recipe.cook_time} </h4>
-              <ol>
-              {recipe.cook_steps.map((s) => <li> {s} </li>)}
-              </ol>
-            </div>
-
-            <div className="finish">
-              <h4> Finish </h4>
-              <ol>
-              {recipe.finish_steps.map((s) => <li> {s} </li>)}
-              </ol>
-            </div>
+            {recipeIngredients}
+            {recipePrep}
+            {recipeCook}
+            {recipeFinish}
           </div>
 
           <div className="documentation">
@@ -138,12 +170,6 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onForkClick: (recipeID, userID) => {
-      forkRecipe(recipeID, userID, (newRecipe) => {
-        dispatch(actions.forkRecipe(newRecipe));
-        dispatch(push(`/recipe/${newRecipe.id}`));
-      });
-    },
 
     navToEdit: () => {
       dispatch(push('/create'));

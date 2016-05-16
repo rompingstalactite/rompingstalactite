@@ -3,22 +3,22 @@ node_js:
 - '5.8'
 services:
 - postgresql
-apt addons: 
+apt addons:
 before_install:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
 before_script:
 - npm run db-setup-travis
-script: 
-after_success: 
-after_failure: 
-before_deploy: 
-after_deploy: 
-after_script: 
+script:
+after_success:
+after_failure:
+before_deploy:
+after_deploy:
+after_script:
 deploy:
   provider: heroku
   api_key:
-    - secure: lTSMR+LXx64NL4VgNMyGVj6HCCaBsMZpMvua+jjnBtikQHRO15gvuMRs/Zksy60GMkUNXbZkVLICt+HAm1i8nXRJW8jFlCyHa5PrWHJEzlOPD3N5Fd8kbR2gz9t4prY5fBT9Tf6DhE01cvyax68B9SBV5Ztjj7xtMF6DZpcvmxaDSpEninHgBoaf9OB3FAzetdNj3G6B9mgHpL76CCYQdWEtZ7d/evg6nqQk8aWLuk/QtKpmHBLP6jYMMi+/ppIZlN0YylpIDpdqCRB6A5CganEnQQIeUs28d2OSWz4xJ210+Sqs1UcuoCBe4YOQfasxPf8aJBEWM6w1/APS1EV+l1jAC6PR8+FQas/zHbMhOMW6zYpKmrPHURMBeHckIAyaOkI0WvBmH2RrvCf1/AGlrr4FZfKUeBkhWNqNIn5F95KaDXyreIU+nOYnDNRNGiceupPUk5GiwMKZqbAcqU65yFOWTqMJNOCnvrfigk1VIeBgDz7R5aL1Th6Ji7BnXhaobdYvzomEQN2eehOCouGbE4r6vdZIxDIuQYT+Qtab2ekmSibOmCb06eOYagWvNbS/Umk2iI2yf+wO07NMTtD7BWRGfi20bCWHxY2LO3NP/89uKwpU/ehoWIcHm0ZfPPFlR1kow8VkcR8hXmdWTYDlqO0TgS9SkUg0msu5HuUbcas=
+    secure: EopNKm9dXZ6FOtSLBmKmexOYCMjw8KL2zn0T7fSaGAEE5dxa4Rf5mUjSLef7CngAjt6fC0uznoBTzsCZ4X3K+ApC3c9obcks6w52IbJTxhGHB0C0y+Feo/cJAhHzSkKCNYtboA+7n7He15PIdXOs74FhS6LvTBy0zXToSdMdRIekqF4MQS0zvoQ4cgkfBkCkT6Qk6DnKq7Fa+FeFOcwisa6xHLsh44Zf//z2zMON6tQaNbv8Oftb92iG0zPEugmYHEXdFA+VBzeaoLUYr2Z5FH5TiUZeFSo15vLtNWs2XCvZMa4UQ01TY98GdfHOj8B/S5lIXiDzCBW7EBLLK5rF69Snr0mI90hYan7+/DwmOQNFk+SbnznCsXdL5ovssMWhUubFpWppxvLJ0BJe6K5TMxdQ5I8A/2YCawXOVJvbG7oULzzZeyb25ErMp3WvcJZjTiyVpqUiHzMHJFkedk7h7nCFF3qnL/+wEYJMC9oYao+VlhsG+YYlOWnknGyX2zaR/CFhcdDRMl/TH66aaY4YxTaZAJzYqlMRN56uRa9mVdHPWliBYGC/FNGND+J17V5mn2qOL7tJWKhEOtxGFExxeyZEejSr/VD3hXYj1bnj0CDq1wg+lfwZzZVeIlzBHmBV3xjPtn7uf7EVBTyjvTiD2joU5ZGiPRcP+HQTtrO3dhM=
   app: kitchengalactica
   on:
     repo: rompingstalactite/rompingstalactite
