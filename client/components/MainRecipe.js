@@ -116,10 +116,8 @@ class MainRecipe extends Component {
               <p className="recipe-main-split">/</p>
               <p className="recipe-main-title"> {recipe.title}</p>
               {editButton}
-              {forkButton}
               <Fork recipeID={recipe.id} />
-              <Like recipeID={recipe.id} />
-              <Like className="recipe-main-likes" recipeID={recipe.id} userID={user.id} />
+              <Like className="recipe-main-likes" recipeID={recipe.id} />
             </div>
             <div className="recipe-header-container">
               <div className="recipe-header-card">
