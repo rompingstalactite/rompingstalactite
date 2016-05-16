@@ -10,21 +10,18 @@ module.exports = {
       text: 'SELECT id FROM recipes WHERE title ~* 'vegan';',
       values: [request.body.title, request.body.prep_steps, request.body.cook_steps],
     };
-
-SELECT id FROM recipes WHERE title ~* 'vegan';
     console.log('REQUEST.BODY****************',request.body)
+
     db.one(queryObj)
       .then((data) => {
         response.status(200);
         response.json(data);
-        next();
       })
       .catch((error) => {
         response.status(500);
         response.json({
           error: `Error code: ${error.code}, Error message: ${error.detail}`,
         });
-        next();
       });
   },
 
