@@ -20,12 +20,6 @@ describe('<MainRecipe />', () => {
     );
   });
 
-
-  it('has an action called toggleEdit', () => {
-    expect(actions.toggleEdit).to.not.be.undefined;
-    expect(actions.toggleEdit().type).to.equal('TOGGLE_EDIT');
-  });
-
   it('has an action called forkRecipe', () => {
     expect(actions.forkRecipe).to.not.be.undefined;
     expect(actions.forkRecipe().type).to.equal('FORK_RECIPE');
