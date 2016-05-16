@@ -14,15 +14,11 @@ module.exports = {
 
     db.query(queryObj)
       .then((data) => {
-        console.log(data)
         response.status(200);
         request.body.recipes = data.map((val) => {
           return val.id;
         });
-        console.log(request.body);
-
         return getMultipleRecipes(request, response, next);
-        // response.json(data);
       })
       .catch((error) => {
         response.status(500);
