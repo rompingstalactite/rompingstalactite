@@ -36,7 +36,6 @@ describe('Recipe Controller results', () => {
 
         // done callback fails if comparison fails. WUT
         // expect(app.response.json().length).to.equal(2);
-        console.log('RESPONSE*********', app.response.json())
         expect(app.response.json().length).to.equal(1);
         done();
       };
