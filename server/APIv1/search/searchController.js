@@ -6,6 +6,7 @@ const db = pgp(cn);
 module.exports = {
 
   searchRecipes: (request, response, next) => {
+    console.log('CALLED SEARCH RECIPES',request.params.q)
     const queryObj = {
       name: 'search-recipe-title',
       text: `SELECT id FROM recipes WHERE title ~* $1`,
@@ -15,6 +16,8 @@ module.exports = {
     db.query(queryObj)
       .then((data) => {
         response.status(200);
+        request.body = request.body || {};
+        request.body.recipes = request.body.recipes || [];
         request.body.recipes = data.map((val) => {
           return val.id;
         });
