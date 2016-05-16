@@ -22,6 +22,9 @@ module.exports = {
   setMainRecipeImage(imageChange) {
     return { type: types.SET_MAIN_RECIPE_IMAGE, change: imageChange };
   },
+  setRecipeOwner(author) {
+    return { type: types.SET_RECIPE_OWNER, change: author };
+  },
   setUser(user) {
     return { type: types.SET_USER, user };
   },

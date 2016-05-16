@@ -1,8 +1,5 @@
 @import '_main';
 
-.container {
-
-}
 .recipe-header-card {
   width: 450px;
   padding: 0;
@@ -48,17 +45,29 @@
   padding: 3px;
 }
 
-
-
 .recipe-content {
   margin: 0 auto;
   width: 80%;
 }
 
 .recipe-header-meta {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+  display: inline;
+  .recipe-main-split {
+    display: inline-block;
+    color: blue;
+    font-size: 25px;
+    padding: 0 5px;
+  }
+  .recipe-main-author, .recipe-main-title {
+    display: inline-block;
+    color: blue;
+    font-size: 25px;
+    padding: 0 5px;
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
 }
 
 .recipe-image {
