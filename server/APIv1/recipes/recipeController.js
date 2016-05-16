@@ -18,10 +18,10 @@ module.exports = {
     db.one(newQueryObj)
       .then((data) => {
         response.json(data);
-        next();
+        // next();
       }).catch((error) => {
         response.json(error);
-        next();
+        // next();
       });
   },
   getMultipleRecipes: (request, response, next) => {
@@ -40,10 +40,10 @@ module.exports = {
 
     db.query(newQueryObj).then((data) => {
       response.json(data);
-      next();
+      // next();
     }).catch((error) => {
       response.json(error);
-      next();
+      // next();
     });
   },
   addRecipeImage: (request, response, next) => {
@@ -70,10 +70,10 @@ module.exports = {
       .then((data) => {
         response.status(201);
         response.json(data);
-        next();
+        // next();
       }).catch((error) => {
         response.json(error);
-        next();
+        // next();
       });
   },
 
@@ -100,10 +100,10 @@ module.exports = {
     db.query(newQueryObj);
     db.query(newQueryObj2).then((data) => {
       response.json(data);
-      next();
+      // next();
     }).catch((error) => {
       response.json(error);
-      next();
+      // next();
     });
   },
 
@@ -190,14 +190,14 @@ module.exports = {
       .then((data) => {
         response.status(201);
         response.json(data);
-        next();
+        // next();
       })
       .catch((error) => {
         response.status(500);
         response.json({
           error: `Error code: ${error.code}, Error message: ${error.detail}`,
         });
-        next();
+        // next();
       });
   },
 
@@ -294,22 +294,21 @@ module.exports = {
       return db.query(newQueryObj2)})
     .then((data) => {
       response.json(data);
-      next();
+      // next();
     }).catch((error) => {
       response.json(error);
-      next();
+      // next();
     });
   },
   getAllCreatedRecipes: (request, response, next) => {
     const newQueryObj = {
       name: 'get-my-created-recipes',
       text: `SELECT
-              recipes.*, users.display_name
+              *
             FROM
-              recipes
-            INNER JOIN users on recipes.author = users.id
+              recipes r
             WHERE
-              recipes.author = $1;`,
+              r.author = $1;`,
       values: [
         request.params.user,
       ],
@@ -319,11 +318,11 @@ module.exports = {
       .then((data) => {
         response.status(200);
         response.json(data);
-        next();
+        // next();
       })
       .catch((error) => {
-        console.log(error);
-        next();
+        response.json(error);
+        // next();
       });
   },
 };
