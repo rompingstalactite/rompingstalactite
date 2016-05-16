@@ -55,8 +55,9 @@
   width: 80%;
 }
 
-.recipe-header-images {
+.recipe-header-meta {
   display: flex;
+  flex-direction: column;
   overflow: hidden;
 }
 
