@@ -33,7 +33,6 @@ describe('Recipe Controller results', () => {
       app.request.body.newURL = 'testURLs.COM';
 
       const cb = () => {
-        console.log(app.response.json())
         // done callback fails if comparison fails. WUT
         // expect(app.response.json().length).to.equal(2);
         expect(app.response.json().length).to.equal(1);
