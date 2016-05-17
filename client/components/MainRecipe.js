@@ -122,7 +122,7 @@ class MainRecipe extends Component {
           <div className="ingredients">
             <h4>Ingredients</h4>
             <ul>
-              {recipe.parentRecipe.ingredients.map((i) => <li> {i} </li>)}
+              {recipe.parentRecipe.ingredients.map((ingredient, i) => recipe.ingredients[i] === ingredient ?  <li> {ingredient} </li> :  <li> CHANGED {ingredient} </li>)}
             </ul>
           </div>
         );
