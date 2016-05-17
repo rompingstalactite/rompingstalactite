@@ -109,6 +109,67 @@ class MainRecipe extends Component {
       );
     }
 
+    //PARENT RECIPE LOGIC
+    let parentRecipeIngredients;
+    if (recipe.parentRecipe.ingredients) {
+      parentRecipeIngredients = (
+        <div className="ingredients">
+          <h4>Ingredients</h4>
+          <ul>
+            {recipe.parentRecipe.ingredients.map((i) => <li> {i} </li>)}
+          </ul>
+        </div>
+      );
+    }
+
+    let parentRecipePrep;
+    if (recipe.parentRecipe.prep_steps) {
+      parentRecipePrep = (
+        <div className="prep">
+          <h4> Prep | Time: {recipe.parentRecipe.prep_time} </h4>
+          <ol>
+            {recipe.parentRecipe.prep_steps.map((s) => <li> {s} </li>)}
+          </ol>
+        </div>
+      );
+    }
+
+    let parentRecipeCook;
+    if (recipe.parentRecipe.cook_steps) {
+      parentRecipeCook = (
+        <div className="cook">
+          <h4> Cook | Time: {recipe.parentRecipe.cook_time} </h4>
+          <ol>
+          { recipe.parentRecipe.cook_steps.map((s) => <li> {s} </li>)}
+          </ol>
+        </div>
+      );
+    }
+
+    let parentRecipeFinish;
+    if (recipe.parentRecipe.finish_steps) {
+      parentRecipeFinish = (
+        <div className="finish">
+          <h4> Finish </h4>
+          <ol>
+          { recipe.parentRecipe.finish_steps.map((s) => <li> {s} </li>)}
+          </ol>
+        </div>
+      );
+    }
+
+    let parentSteps;
+    if (recipe.showParentSteps) {
+      parentSteps = (
+        <div className="parent-recipe-instructions">
+          {parentRecipeIngredients}
+          {parentRecipePrep}
+          {parentRecipeCook}
+          {parentRecipeFinish}
+        </div>
+      )
+    }
+
     return (
       <div>
         <div className="recipe-content">
@@ -148,6 +209,7 @@ class MainRecipe extends Component {
 
           <div className="recipe-instructions-parent">
             RECIPE INSTRUCTIONS PARENT
+            {parentSteps}
             {recipe.parentRecipe ? recipe.parentRecipe.id : 'NO PARENT'}
           </div>
 
