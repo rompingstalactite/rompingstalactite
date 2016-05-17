@@ -59,6 +59,6 @@ module.exports = {
     return { type: types.SET_PARENT_RECIPE, parentRecipe };
   },
   toggleParentSteps() {
-    return {types: types.TOGGLE_PARENT_STEPS}
+    return {type: types.TOGGLE_PARENT_STEPS}
   },
 };
