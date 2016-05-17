@@ -6,6 +6,7 @@ import actions from '../actions/index.js';
 import { createRecipe, editRecipe } from '../utils/utils.js';
 import '../scss/_createRecipe.scss';
 
+
 class CreateRecipe extends Component {
   constructor(props) {
     super(props);
@@ -13,6 +14,25 @@ class CreateRecipe extends Component {
 
   render() {
     const { user, recipe, addField, removeField, updateRecipe, submitRecipe } = this.props;
+
+    let recipeTags;
+    if (recipe.tags) {
+      recipeTags = (
+        <div>
+          <h3> Tags: </h3>
+          <h3> {recipe.tags.map((i, key) =>
+            <input
+            type="text"
+            value={i}
+            data-index={key}
+            onChange={(e) => updateRecipe(e, { tags: recipe.tags })}
+            >
+            </input>)}
+            </h3>
+          </div>
+        );
+     }
+
     return (
       <div>
         <div className="edit-recipe-content">
@@ -170,16 +190,7 @@ class CreateRecipe extends Component {
             > remove Step </button>
             <br />
 
-            <h3> Tags: </h3>
-            <h3> {recipe.tags.map((i, key) =>
-              <input
-                type="text"
-                value={i}
-                data-index={key}
-                onChange={(e) => updateRecipe(e, { tags: recipe.tags })}
-              >
-              </input>)}
-            </h3>
+            {recipeTags}
             <button
               onClick={(e) => {
                 e.stopPropagation();
@@ -196,7 +207,7 @@ class CreateRecipe extends Component {
             > remove Tag </button>
             <br />
 
-            <button 
+            <button
               onClick={(e) => {
                 e.stopPropagation();
                 e.preventDefault();
