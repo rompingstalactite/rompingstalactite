@@ -7,6 +7,7 @@ import actions from '../actions/index.js';
 import { forkRecipe, fetchRecipes, fetchRecipe, fetchUser } from '../utils/utils';
 import RecipeContainer from './RecipeContainer';
 import Fork from './Fork';
+import ForkHistoryVis from './ForkHistoryVis';
 import '../scss/_main.scss';
 import '../scss/_mainRecipe.scss';
 
@@ -130,6 +131,7 @@ class MainRecipe extends Component {
                 </div>
               </div>
               <div className="recipe-header-fork-history">
+                <ForkHistoryVis history={historyRecipes} />
                 <RecipeContainer
                   className="fork-history"
                   type="Recipe History"
