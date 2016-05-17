@@ -55,4 +55,7 @@ module.exports = {
   setProfileRecipesCreated(recipesCreated) {
     return { type: types.SET_PROFILE_RECIPES_CREATED, recipesCreated };
   },
+  setParentRecipe(parentRecipe) {
+    return { type: types.SET_PARENT_RECIPE, parentRecipe };
+  }
 };

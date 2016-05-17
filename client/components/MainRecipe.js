@@ -119,6 +119,9 @@ class MainRecipe extends Component {
               <p className="recipe-main-title"> {recipe.title}</p>
               {editButton}
               <Fork recipeID={recipe.id} />
+
+              <button>Compare Parent</button>
+
               <Like className="recipe-main-likes" recipeID={recipe.id} />
               <Follow parent={recipe} />
             </div>
@@ -141,6 +144,10 @@ class MainRecipe extends Component {
             </div>
             <h4>Servings: {recipe.yield + ' ' + recipe.yield_unit} </h4>
             {recipeTags}
+          </div>
+
+          <div className="recipe-instructions-parent">
+            RECIPE INSTRUCTIONS PARENT
           </div>
 
           <div className="recipe-instructions">
@@ -200,6 +207,11 @@ const mapDispatchToProps = (dispatch) => {
     getRecipe: (recipeID, setRecipeImage, setRecipeOwner) => {
       fetchRecipe(recipeID, (recipe) => {
         dispatch(actions.setRecipe(recipe));
+        if (recipe.parent) {
+          fetchRecipe(recipe.parent, (parentRecipe) => {
+            dispatch(actions.setParentRecipe(parentRecipe));
+          });
+        }
         setRecipeImage(recipe.images[0]);
         setRecipeOwner(recipe.author);
         fetchRecipes(recipe.fork_history, (recipes) => {

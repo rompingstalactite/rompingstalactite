@@ -98,6 +98,11 @@ export default function recipe(state = initialState, action) {
         historyRecipes: action.historyRecipes,
       };
       return Object.assign({}, state, newHistory);
+    case types.SET_PARENT_RECIPE:
+      const newParent = {
+        parentRecipe: action.parentRecipe,
+      }
+      return Object.assign({}, state, newParent);
     default:
       return state;
     // case types.EDIT_RECIPE:

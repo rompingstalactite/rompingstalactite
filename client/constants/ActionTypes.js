@@ -7,6 +7,7 @@ export const REMOVE_FIELD = 'REMOVE_FIELD';
 export const SET_RECIPE_HISTORY = 'SET_RECIPE_HISTORY';
 export const SET_MAIN_RECIPE_IMAGE = 'SET_MAIN_RECIPE_IMAGE';
 export const SET_RECIPE_OWNER = 'SET_RECIPE_OWNER';
+export const SET_PARENT_RECIPE = 'SET_PARENT_RECIPE';
 
 // user
 export const SET_USER = 'SET_USER';
