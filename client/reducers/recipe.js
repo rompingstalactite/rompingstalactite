@@ -74,6 +74,7 @@ const initialState = {
   fork_history: [1, 2, 3, 80],
   historyRecipes: [],
   showParentSteps: false,
+  parentRecipe: {},
 };
 
 
