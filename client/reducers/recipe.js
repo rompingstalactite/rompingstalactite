@@ -107,7 +107,6 @@ export default function recipe(state = initialState, action) {
     case types.TOGGLE_PARENT_STEPS:
       const showParentSteps = state.showParentSteps;
       return Object.assign({}, state, {showParentSteps: !showParentSteps})
-
     default:
       return state;
     // case types.EDIT_RECIPE:
