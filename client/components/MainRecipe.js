@@ -30,7 +30,7 @@ class MainRecipe extends Component {
   }
 
   render() {
-    const { user, navToEdit, navToProfile, recipe, historyRecipes, setMainRecipeImage, mainRecipeImage, recipeOwner } = this.props;
+    const { user, navToEdit, navToProfile, recipe, historyRecipes, setMainRecipeImage, mainRecipeImage, recipeOwner, toggleParentSteps } = this.props;
 
     let editButton;
     if (user.id === recipe.author && user.id !== null) {
@@ -120,7 +120,7 @@ class MainRecipe extends Component {
               {editButton}
               <Fork recipeID={recipe.id} />
 
-              <button>Compare Parent</button>
+              <button onClick={toggleParentSteps}>Compare Parent</button>
 
               <Like className="recipe-main-likes" recipeID={recipe.id} />
               <Follow parent={recipe} />
@@ -148,6 +148,7 @@ class MainRecipe extends Component {
 
           <div className="recipe-instructions-parent">
             RECIPE INSTRUCTIONS PARENT
+            {recipe.parentRecipe ? recipe.parentRecipe.id : 'NO PARENT'}
           </div>
 
           <div className="recipe-instructions">
@@ -202,6 +203,10 @@ const mapDispatchToProps = (dispatch) => {
       fetchUser(authorID, (user) => {
         dispatch(actions.setRecipeOwner(user.display_name));
       });
+    },
+
+    toggleParentSteps: () => {
+      dispatch(actions.toggleParentSteps());
     },
 
     getRecipe: (recipeID, setRecipeImage, setRecipeOwner) => {

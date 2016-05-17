@@ -73,6 +73,7 @@ const initialState = {
   ],
   fork_history: [1, 2, 3, 80],
   historyRecipes: [],
+  showParentSteps: false,
 };
 
 
@@ -103,6 +104,10 @@ export default function recipe(state = initialState, action) {
         parentRecipe: action.parentRecipe,
       }
       return Object.assign({}, state, newParent);
+    case types.TOGGLE_PARENT_STEPS:
+      const showParentSteps = state.showParentSteps;
+      return Object.assign({}, state, {showParentSteps: !showParentSteps})
+
     default:
       return state;
     // case types.EDIT_RECIPE:
