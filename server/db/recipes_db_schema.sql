@@ -30,13 +30,15 @@ CREATE TABLE "recipes" (
   "yield" integer NOT NULL,
   "yield_unit" TEXT NOT NULL,
   "ingredients" TEXT[] NOT NULL,
-  "prep_time" integer NOT NULL,
-  "prep_steps" TEXT[] NOT NULL,
-  "cook_time" integer NOT NULL,
+  "prep_time" integer,
+  "prep_steps" TEXT[],
+  "cook_time" integer,
   "cook_steps" TEXT[] NOT NULL,
-  "finish_steps" TEXT[] NOT NULL,
-  "tags" TEXT[] NOT NULL,
+  "finish_steps" TEXT[],
+  "tags" TEXT[],
   "fork_history" integer[],
+  "description" TEXT,
+  "source" TEXT,
 	CONSTRAINT recipes_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
