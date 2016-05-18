@@ -1,3 +1,4 @@
+import compress from 'compression';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
@@ -14,6 +15,7 @@ if (!process.env.TRAVIS && !process.env.HEROKU) {
 
 module.exports = (app, express) => {
   app.use(morgan('dev'));
+  app.use(compress());
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
   app.use(cookieParser(cookieParserSecret));
