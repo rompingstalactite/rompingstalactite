@@ -25,6 +25,11 @@ const initialStateLike = {
   likeCount: 0,
 };
 
+const initialStateFollow = {
+  toggleFollow: false,
+  followCount: 0,
+};
+
 const initialStateProfile = {
   user: {
     id: null,
@@ -54,6 +59,7 @@ const recipesTop = (state = initialStateRecipes) => state;
 const historyRecipes = (state = initialStateRecipes) => state;
 const user = (state = initialStateUser) => state;
 const toggleLike = (state = initialStateLike) => state;
+const toggleFollow = (state = initialStateFollow) => state;
 const profile = (state = initialStateProfile) => state;
 const recipe = (state = initialStateRecipe, action) => {
   switch (action.type) {
@@ -85,6 +91,7 @@ const fakeRootReducer = combineReducers({
   toggleEdit,
   user,
   toggleLike,
+  toggleFollow,
   profile,
 });
 
