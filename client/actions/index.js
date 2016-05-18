@@ -34,6 +34,9 @@ module.exports = {
   toggleLike(toggleLike) {
     return { type: types.TOGGLE_LIKE, change: toggleLike };
   },
+  toggleFollow(toggleFollow) {
+    return { type: types.TOGGLE_FOLLOW, change: toggleFollow };
+  },
   recipesTop(trendingRecipeChange) {
     return { type: types.RECIPES_TOP, change: trendingRecipeChange };
   },

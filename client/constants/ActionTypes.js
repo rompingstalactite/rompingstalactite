@@ -21,6 +21,9 @@ export const SET_PROFILE_RECIPES_LIKED = 'SET_PROFILE_RECIPES_LIKED';
 // toggleLike
 export const TOGGLE_LIKE = 'TOGGLE_LIKE';
 
+// toggleFollow
+export const TOGGLE_FOLLOW = 'TOGGLE_FOLLOW';
+
 // recipesTop
 export const RECIPES_TOP = 'RECIPES_TOP';
 

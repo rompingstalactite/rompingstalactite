@@ -19,7 +19,7 @@
     "test:client": "karma start",
     "test:server": "mocha ./test/server --watch --compilers js:babel-register",
     "start": "NODE_ENV=\"production\" webpack -p --progress && babel-node server/server.js --presets es2015",
-    "dev-start": "webpack -d --watch --progress & nodemon server/server.js --exec babel-node --presets es2015"
+    "dev-start": "webpack -d --watch --progress & nodemon server/server.js --exec babel-node --debug --presets es2015"
   },
   "repository": {
     "type": "git",
@@ -44,6 +44,7 @@
     "body-parser": "^1.15.0",
     "chai": "^3.5.0",
     "classnames": "^2.2.5",
+    "compression": "^1.6.2",
     "cookie-parser": "^1.4.1",
     "css-loader": "^0.23.1",
     "enzyme": "^2.2.0",

@@ -105,24 +105,23 @@ module.exports = {
       photos: [{ value: 'http://www.carderator.com/assets/avatar_placeholder_small.png' }],
       gender: null,
       provider: null,
+    });
+  },
+  getMultipleUsers: (request, response) => {
+    const newQueryObj = {
+      name: 'get-multiple-users',
+      text: `SELECT *
+                 FROM
+                   users
+                 WHERE
+                   id = ANY($1)`,
+      values: [request.body._queryResultIds],
+    };
 
-  // getMultipleUsers: (request, response, next) => {
-  //   const newQueryObj = {
-  //     name: 'get-multiple-users',
-  //     text: `SELECT *
-  //                FROM
-  //                  users
-  //                WHERE
-  //                  id = ANY($1)`,
-  //     values: [request.body._queryResultIds],
-  //   };
-
-  //   db.query(newQueryObj).then((data) => {
-  //     response.json(data);
-  //     next();
-  //   }).catch((error) => {
-  //     response.json(error);
-  //     next();
+    db.query(newQueryObj).then((data) => {
+      response.json(data);
+    }).catch((error) => {
+      response.json(error);
     });
   },
 };
