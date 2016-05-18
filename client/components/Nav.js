@@ -13,7 +13,7 @@ class Nav extends Component {
     let { searchString } = this.props;
     let signInOut, linkToProfile;
     if (!user.id) {
-      signInOut = <button onClick={dispatch(push('/auth/google/'))}> Sign In </button>
+      signInOut = <a href="/auth/google">Sign In</a>;
     } else {
       signInOut = <a href="/auth/signout">Sign out</a>;
       linkToProfile = (
@@ -38,16 +38,17 @@ class Nav extends Component {
                 search(searchString);
               }}
             > Search </button>
-            <a> Discover </a>
-          </div>
-          <div className="nav-bar-right">
             <button
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 navToCreate();
-              }}> +
+              }}> Create
             </button>
+            <a> Discover </a>
+            <a> About </a>
+          </div>
+          <div className="nav-bar-right">
             {signInOut}
             {linkToProfile}
           </div>

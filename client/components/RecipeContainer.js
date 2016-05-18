@@ -8,13 +8,13 @@ const RecipeContainer = (props) => {
   let childRecipes;
   if (!props.recipes || props.recipes.length === 0) {
     childRecipes = <p>No recipes to show.</p>;
-  } else if (props.type === 'Recipe History' || props.type === 'Search Results') {
+  } else if (props.type === 'Recipe History') {
     childRecipes = props.recipes.map((recipe) => <RecipeListEntry recipe={recipe} />);
   } else {
     childRecipes = props.recipes.map((recipe) => <RecipeEntry recipe={recipe} />);
   }
   return (
-    <div>
+    <div className={props.className}>
       <h2>{props.type}</h2>
       <div className="recipe-container">
         {childRecipes}

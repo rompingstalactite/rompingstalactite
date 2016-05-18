@@ -1,12 +1,48 @@
 .recipe-container {
   display: flex;
-  justify-content: center;
 }
 
 .fork-history {
   width: 50%;
   height: 50%;
 
+}
+
+/*.recipe-header-thumbs {
+}
+
+.recipe-header-thumb {
+  margin-top: 6px;
+  margin-right: 6px;
+  margin-bottom: 6px; 
+  margin-left: 6px;
+  display: inline-block;
+  &:hover {
+    background-color: #ccc;
+  }
+}*/
+
+.recipes-featured {
+  position: absolute;
+  right: 25px;
+  left: 25px;
+  .recipe-container {
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+  }
+}
+
+.recipes-top {
+  position: absolute;
+  top: 650px;
+  right: 25px;
+  left: 25px;
+  .recipe-container {
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+  }
 }
 
 .fork-history .recipe-container img {

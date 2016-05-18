@@ -22,13 +22,13 @@ const RecipeEntry = (props) => {
     <div className="recipe-entry-container">
       <div className="recipe-entry">
         <img className="recipe-entry-img" src={image} />
+        <Link to={`/recipe/${props.recipe.recipe_id || props.recipe.id || 1}`}
+        className="recipe-entry-title">
+        {props.recipe.title}
+        </Link>
+        <p className="recipe-entry-author" >Created by {props.recipe.display_name}</p>
         <span className="date" >Created {createdTime}</span>
-        <p className="recipe-author" >Created by {props.recipe.display_name}</p>
         <div>
-          <Link to={`/recipe/${props.recipe.recipe_id || props.recipe.id || 1}`}
-          className="recipe-entry-title">
-          {props.recipe.title}
-          </Link>
           <p className="recipe-entry-description">... some description to come</p>
 
           <div className="action-buttons">
