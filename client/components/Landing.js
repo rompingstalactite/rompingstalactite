@@ -34,8 +34,8 @@ const Landing = () => (
           <img style={{display: 'block', margin: 'auto'}} className="landing-content-image" src="http://placehold.it/200x200"></img>
         </div>
         <div style={{marginTop: '48px'}} className="hero-content-text">
-          <h2 style={{color: 'white', marginBottom: '0px'}} className="hero-tagline col-2-3">Cook. Iterate. Repeat.</h2>
-          <h3 style={{color: 'white', marginTop: '8px', fontWeight: 'normal'}} className="hero-tagline col-2-3">Forkful helps you perfect your next meal by tracking different iterations of recipes.</h3>
+          <h1 style={{color: 'white', marginBottom: '0px'}} className="hero-tagline col-2-3">Cook. Iterate. Repeat.</h1>
+          <h3 style={{color: 'white', marginTop: '8px', fontWeight: 'lighter'}} className="hero-tagline col-2-3">Forkful helps you perfect your next meal by tracking different iterations of recipes.</h3>
         </div>
         <div style={{margin: '40px 10px', textAlign: 'center'}} className="hero-content-signin col-1-1">
           <a href="/auth/google" style={{color: 'white'}}>
@@ -43,7 +43,7 @@ const Landing = () => (
             <div id="google-signin"/>
           </a>
           <a href="/dashboard">
-            <h3 id="link-continue" style={{textAlign: 'center'}}>or, continue without signing in</h3>
+            <h4 id="link-continue" style={{textAlign: 'center'}}>or, continue without signing in</h4>
           </a>
         </div>
       </div>
@@ -51,22 +51,22 @@ const Landing = () => (
     <div className="grid grid-pad landing-content">
       <div style={{marginBottom: '48px'}} className="col-1-3 landing-content-blurb">
         <h3 style={{textAlign: 'center'}} className="landing-content-title">Fork Recipes</h3>
-        <p style={{height: '24px', textAlign: 'center', marginBottom: '8px'}} className="landing-content-text">"Fork" a recipe to modify it and make it your own.</p>
+        <p style={{height: '32px', textAlign: 'center', marginBottom: '16px', color: '#687F72'}} className="landing-content-text">"Fork" a recipe to modify it and make it your own.</p>
         <img style={{width: '150px', display: 'block', margin: 'auto'}} className="landing-content-image" src="../assets/fork.png"></img>
       </div>
       <div style={{marginBottom: '48px'}} className="col-1-3 landing-content-blurb">
         <h3 style={{textAlign: 'center'}} className="landing-content-title">Recipe History</h3>
-        <p style={{height: '24px', textAlign: 'center', marginBottom: '8px'}} className="landing-content-text">See how recipes have changed over time.</p>
+        <p style={{height: '32px', textAlign: 'center', marginBottom: '16px', color: '#687F72'}} className="landing-content-text">See how recipes have changed over time.</p>
         <img style={{width: '150px', display: 'block', margin: 'auto'}} className="landing-content-image" src="../assets/history.png"></img>
       </div>
       <div style={{marginBottom: '48px'}} className="col-1-3 landing-content-blurb">
         <h3 style={{textAlign: 'center'}} className="landing-content-title">Explore</h3>
-        <p style={{height: '24px', textAlign: 'center', marginBottom: '8px'}} className="landing-content-text">Browse our most popular recipes and get cooking!</p>
+        <p style={{height: '32px', textAlign: 'center', marginBottom: '16px', color: '#687F72'}} className="landing-content-text">Browse our most popular recipes and get cooking!</p>
         <img style={{width: '150px', display: 'block', margin: 'auto'}} className="landing-content-image" src="../assets/explore.png"></img>
       </div>
     </div>
     <div className="footer">
-      <p style={{textAlign: 'center'}}>Made by Andrew, Dylan, Nemo, and Thomas.</p>
+      <p style={{textAlign: 'center', color: '#687F72'}}>Made by Andrew, Dylan, Nemo, and Thomas.</p>
     </div>
   </div>
 );
