@@ -4,14 +4,13 @@
 
 .nav-bar {
   background-color: $primary-detail;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  // display: flex;
+  width: 100%;
+  //align-items: center;
   height: 50px;
   padding: 10px 0;
   border-bottom: 1px solid $border-detail;
   position: fixed;
-  width: 100%;
   font-family: 'Muli', sans-serif;
   z-index:1;
   margin-top: -32px;
@@ -23,16 +22,18 @@
 }
 
 .nav-bar-left {
-  display: flex;
-  align-items: left;
+  // display: flex;
+  float:left;
+  align-items: center;
   * {
     margin: 0 5px;
   }
 }
 
 .nav-bar-right {
-  display: flex;
-  align-items: right;
+  float: right;
+  // display: flex;
+  align-items: center;
   * {
     margin: 0 5px;
   }
@@ -45,7 +46,8 @@
 }
 
 .search-bar {
-  height: 30px;
+  height: 24px;
+  width: 72px;
   padding-left: 10px;
   margin: 0 5px;
   border-radius: 3px;
