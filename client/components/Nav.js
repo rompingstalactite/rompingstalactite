@@ -22,7 +22,6 @@ class Nav extends Component {
         </Link>);
     }
     return (
-      <div>
         <div className="nav-bar">
           <div className="nav-bar-left">
             <Link to="/">GitCooking</Link>
@@ -49,12 +48,11 @@ class Nav extends Component {
             <a> About </a>
           </div>
           <div className="nav-bar-right">
-            {signInOut}
-            {linkToProfile}
+              {signInOut}
+              {linkToProfile}
           </div>
           {/* <Link to={`/recipe/${recipeID}`}>Recipe</Link>*/}
         </div>
-      </div>
     );
   }
 }
