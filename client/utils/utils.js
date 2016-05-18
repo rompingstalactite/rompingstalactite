@@ -59,6 +59,17 @@ export const getLikeState = (getLikeObj) => {
   }).then(response => response.json());
 };
 
+export const getFollowState = (userID, targetID, followType) => {
+  return fetch(`${localServerURL}/api/v1/follows/${followType}/?userID=${userID}&targetID=${targetID}`, {
+    credentials: 'same-origin',
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  }).then(response => (response.json()));
+};
+
 const assignAuthorToNewRecipe = (author, recipe) => {
   const recipeCopy = {};
   Object.keys(recipe).forEach((k) => {
