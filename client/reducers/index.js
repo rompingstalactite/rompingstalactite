@@ -10,6 +10,7 @@ import profile from './profile.js';
 import toggleLike from './toggleLike.js';
 import mainRecipeImage from './mainRecipeImage.js';
 import recipeOwner from './recipeOwner.js';
+import toggleFollow from './toggleFollow.js';
 
 const rootReducer = combineReducers({
   recipesFeatured,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   recipe,
   user,
   toggleLike,
+  toggleFollow,
   profile,
   routing: routerReducer,
 });
