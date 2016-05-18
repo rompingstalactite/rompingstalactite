@@ -8,6 +8,9 @@
     "Nemo Baker",
     "Thomas Ingalls"
   ],
+  "engines": {
+    "node": "5.7.0"
+  },
   "main": "server.js",
   "scripts": {
     "lint": "eslint client",
