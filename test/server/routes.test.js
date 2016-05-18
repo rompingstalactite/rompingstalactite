@@ -3,6 +3,7 @@ import request from 'supertest';
 
 import app from '../../server/server.js';
 
+// TODO: dependency injection for preventing full calls to the database
 
 describe('APIv1 Tests', () => {
   describe('/', () => {
@@ -72,11 +73,11 @@ describe('APIv1 Tests', () => {
   });
 
   describe('/api/v1/users', () => {
-      const newUser = {
-        username: `FakeUser ${Math.random()}`,
-        createdAt: new Date(),
-        avatar: 'nonsense',
-      };
+    const newUser = {
+      username: `FakeUser ${Math.random()}`,
+      createdAt: new Date(),
+      avatar: 'nonsense',
+    };
 
     it('should send status code 200 for GET', (done) => {
       request(app).get('/api/v1/users').expect(200, done);
@@ -117,7 +118,7 @@ describe('APIv1 Tests', () => {
     it('should send status code 404 for DELETE', (done) => {
       request(app).delete('/api/v1/recipes').expect(404, done);
     });
-    });
+  });
 
   xdescribe('/api/v1/likes', () => {
     it('should send status code 200 for GET', (done) => {
@@ -135,7 +136,7 @@ describe('APIv1 Tests', () => {
     it('should send status code 404 for DELETE', (done) => {
       request(app).delete('/api/v1/likes').expect(404, done);
     });
-    });
+  });
 
 
   describe('/api/v1/follows', () => {
@@ -156,4 +157,51 @@ describe('APIv1 Tests', () => {
     });
   });
 
+  describe.only('/api/v1/follows/users', () => {
+    it('should send status code 200 for GET', (done) => {
+      request(app).get('/api/v1/follows/users').expect(200, done);
+    });
+
+    // TODO: needs mock session info:
+    xit('should send status code 201 for POST that results in create', (done) => {
+      request(app).post('/api/v1/follows/users').expect(201, done);
+    });
+
+    // TODO: needs mock session info:
+    xit('should send status code 200 for POST that results in delete', (done) => {
+      request(app).post('/api/v1/follows/users').expect(200, done);
+    });
+
+    it('should send status code 404 for PUT', (done) => {
+      request(app).put('/api/v1/follows/users').expect(404, done);
+    });
+
+    it('should send status code 404 for DELETE', (done) => {
+      request(app).delete('/api/v1/follows/users').expect(404, done);
+    });
+  });
+
+  describe.only('/api/v1/follows/recipes', () => {
+    it('should send status code 200 for GET', (done) => {
+      request(app).get('/api/v1/follows/recipes').expect(200, done);
+    });
+
+    // TODO: needs mock session info:
+    xit('should send status code 201 for POST that results in create', (done) => {
+      request(app).post('/api/v1/follows/recipes').expect(201, done);
+    });
+
+    // TODO: needs mock session info:
+    xit('should send status code 200 for POST that results in delete', (done) => {
+      request(app).post('/api/v1/follows/recipes').expect(200, done);
+    });
+
+    it('should send status code 404 for PUT', (done) => {
+      request(app).put('/api/v1/follows/recipes').expect(404, done);
+    });
+
+    it('should send status code 404 for DELETE', (done) => {
+      request(app).delete('/api/v1/follows/recipes').expect(404, done);
+    });
+  });
 });
