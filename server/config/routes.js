@@ -15,7 +15,7 @@ module.exports = (app, express) => {
   app.get('/auth/google', handleGoogleLogin);
 
   app.get('/auth/google/callback', authenticateGoogleLogin,
-    (req, res) => { res.redirect('/'); }
+    (req, res) => { res.redirect('/dashboard'); }
   );
 
   app.get('/auth/signout', (req, res) => {
