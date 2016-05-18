@@ -7,33 +7,13 @@ function sql(file) {
   return new QueryFile(`${__dirname}/${file}`, { minify: true });
 }
 
-
-// get user follows count for any user
-// UNUSED
-// const getUserFollowCount = (request, response) => {
-//   console.log(request.query);
-//   // in query: .user
-//   db.query(sql('getUserFollowCount.sql'), request.query)
-//     .then(data => { response.json(data); })
-//     .catch(data => { response.json(data); });
-// };
-
-// get recipe follows count for any recipe
-// UNUSED
-// const getRecipeFollowCount = (request, response) => {
-//   console.log(request.query);
-//   // in params: .recipe_id
-//   db.query(sql('getRecipeFollowCount.sql'), request.params)
-//     .then(data => { response.json(data); })
-//     .catch(data => { response.json(data); });
-// };
-
 // get user follows count and user follow status for logged in user
 // HTTP GET
 export const getUserFollowState = (request, response) => {
   console.log(request.query);
-  // in query: .follower, .target
-  db.query(sql('getUserFollowState.sql'), request.query)
+  // in query: .userID, .targetID
+  // or in body: .userID, .targetID
+  db.query(sql('getUserFollowState.sql'), request.query || request.body)
     .then(data => { response.json(data); })
     .catch(error => { response.json(error); });
 };
@@ -41,9 +21,13 @@ export const getUserFollowState = (request, response) => {
 // get recipe follows count and recipe follow status for logged in user
 // HTTP GET
 export const getRecipeFollowState = (request, response) => {
-  console.log(request.query);
-  // in query: .user_id, .recipe_id
-  db.query(sql('getRecipeFollowState.sql'), request.query)
+  // in query: .userID, .targetID
+  // or in body: .userID, .targetID
+  const queryObj = Object.keys(request.query).length !== 0 ? request.query : request.body;
+  console.log('query', request.query,' or body', request.body);
+  console.log('queryobj', queryObj);
+
+  db.query(sql('getRecipeFollowState.sql'), queryObj)
     .then(data => { response.json(data); })
     .catch(error => { response.json(error); });
 };
@@ -54,9 +38,9 @@ const addUserFollow = (request, response) => {
   // TODO: does not verify that both users exist before
   //       inserting a new user follow
   console.log(request.body);
-  // body: .follower, .target
+  // body: .userID, .targetID
   db.query(sql('addUserFollow.sql'), request.body)
-    .then(data => { response.json(data); })
+    .then(data => { getUserFollowState(request, response); })
     .catch(error => { response.json(error); });
 };
 
@@ -65,10 +49,9 @@ const addUserFollow = (request, response) => {
 const addRecipeFollow = (request, response) => {
   // TODO: does not verify that a user or a recipe exists before
   //       inserting a new recipe follow
-  console.log(request.body);
   // body: .user_id, .recipe_id
   db.query(sql('addRecipeFollow.sql'), request.body)
-    .then(data => { response.json(data); })
+    .then(data => { getRecipeFollowState(request, response); })
     .catch(error => { response.json(error); });
 };
 
@@ -76,17 +59,20 @@ const addRecipeFollow = (request, response) => {
 const removeUserFollow = (request, response) => {
   console.log(request.query);
   // in query: .follower, .target
-  db.query(sql('removeUserFollow.sql'), request.query)
-    .then(data => { response.json(data); })
+  // or in body: .userID, .targetID
+  const queryObj = Object.keys(request.query).length !== 0 ? request.query : request.body;
+  db.query(sql('removeUserFollow.sql'), queryObj)
+    .then(data => { getUserFollowState(request, response); })
     .catch(error => { response.json(error); });
 };
 
 // remove recipe follow for logged in user
 const removeRecipeFollow = (request, response) => {
-  console.log(request.query);
   // in query: .user_id, .recipe_id
-  db.query(sql('removeRecipeFollow.sql'), request.query)
-    .then(data => { response.json(data); })
+  // or in body: ., .targetID
+  const queryObj = Object.keys(request.query).length !== 0 ? request.query : request.body;
+  db.query(sql('removeRecipeFollow.sql'), queryObj)
+    .then(data => { getRecipeFollowState(request, response); })
     .catch(error => { response.json(error); });
 };
 
@@ -101,7 +87,7 @@ export const addOrRemoveUserFollow = (request, response) => {
 
 // decide whether to add or remove recipe follow, based on user intent
 export const addOrRemoveRecipeFollow = (request, response) => {
-  if (request.query.followState) {
+  if (request.body.toggleFollow) {
     removeRecipeFollow(request, response);
   } else {
     addRecipeFollow(request, response);
@@ -112,7 +98,6 @@ export const addOrRemoveRecipeFollow = (request, response) => {
 // HTTP GET
 export const getAllFollowedUsers = (request, response) => {
   // TODO: pagination
-  console.log(request.query);
   // in query: .user_id
   db.query('getAllFollowedUsers.sql', request.query)
     .then(data => { response.json(data); })
@@ -120,7 +105,7 @@ export const getAllFollowedUsers = (request, response) => {
 };
 
 export const getAllFollowedRecipes = (request, response) => {
-  console.log(request.query);
+  // TODO: pagination
   // in query: .user_id
   db.query('getAllFollowedRecipes.sql', request.query)
     .then(data => { response.json(data); })
