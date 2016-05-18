@@ -1,4 +1,6 @@
 @import '_main';
+@import url(https://fonts.googleapis.com/css?family=Muli);
+
 
 .nav-bar {
   background-color: $primary-detail;
@@ -8,6 +10,9 @@
   height: 50px;
   padding: 10px 0;
   border-bottom: 1px solid $border-detail;
+  position: fixed;
+  width: 100%;
+  font-family: 'Muli', sans-serif;
 }
 
 .nav-bar > * {
@@ -17,9 +22,10 @@
 
 .nav-bar-right {
   display: flex;
-  align-items: center;
-  * {  
+  align-items: left;
+  * {
     margin: 0 5px;
+    padding-left: 36px
   }
 }
 
