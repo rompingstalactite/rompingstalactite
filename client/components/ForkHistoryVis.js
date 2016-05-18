@@ -5,8 +5,9 @@ import { fetchFPKey } from '../utils/utils';
 import '../scss/_forkHistoryVis.scss';
 
 
-const ForkHistoryVis = () => {
-  // const { history } = this.props;
+const ForkHistoryVis = (props) => {
+  const history = props.history;
+  const recipe = props.recipe;
   return (
     <div className="history-vis">
       <div className="history-vis-node"> </div>
