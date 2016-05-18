@@ -77,7 +77,7 @@ CREATE TABLE "likes_recipes_users" (
 
 
 CREATE TABLE "followers_users_users" (
-	"user" integer NOT NULL,
+	"follower" integer NOT NULL,
 	"target" integer NOT NULL,
 	"follow_date" TIMESTAMP NOT NULL DEFAULT current_timestamp
 ) WITH (
@@ -105,9 +105,10 @@ ALTER TABLE "likes_recipes_users" ADD CONSTRAINT "likes_recipes_users_fk0" FOREI
 ALTER TABLE "likes_recipes_users" ADD CONSTRAINT "likes_recipes_users_fk1" FOREIGN KEY ("user_id") REFERENCES "users"("id");
 ALTER TABLE "likes_recipes_users" ADD CONSTRAINT "likes_users_users_pk0" PRIMARY KEY ("user_id", "recipe_id");
 
-ALTER TABLE "followers_users_users" ADD CONSTRAINT "followers_users_users_fk0" FOREIGN KEY ("user") REFERENCES "users"("id");
+ALTER TABLE "followers_users_users" ADD CONSTRAINT "followers_users_users_fk0" FOREIGN KEY ("follower") REFERENCES "users"("id");
 ALTER TABLE "followers_users_users" ADD CONSTRAINT "followers_users_users_fk1" FOREIGN KEY ("target") REFERENCES "users"("id");
+ALTER TABLE "followers_users_users" ADD CONSTRAINT "followers_users_users_pk0" PRIMARY KEY ("follower", "target");
 
 ALTER TABLE "followers_users_recipes" ADD CONSTRAINT "followers_users_recipes_fk0" FOREIGN KEY ("user_id") REFERENCES "users"("id");
 ALTER TABLE "followers_users_recipes" ADD CONSTRAINT "followers_users_recipes_fk1" FOREIGN KEY ("recipe_id") REFERENCES "recipes"("id");
-
+ALTER TABLE "followers_users_recipes" ADD CONSTRAINT "followers_users_recipes_pk0" PRIMARY KEY ("user_id", "recipe_id");
