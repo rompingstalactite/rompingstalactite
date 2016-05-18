@@ -59,6 +59,7 @@
     "eslint-plugin-react": "^5.0.1",
     "express": "^4.4.5",
     "express-session": "^1.13.0",
+    "file-loader": "^0.8.5",
     "filepicker-js": "^2.4.10",
     "imports-loader": "^0.6.5",
     "isomorphic-fetch": "^2.2.1",
@@ -88,6 +89,7 @@
     "sass-loader": "^3.2.0",
     "style-loader": "^0.13.1",
     "supertest": "^1.2.0",
+    "url-loader": "^0.5.7",
     "webpack": "^1.13.0"
   },
   "devDependencies": {
