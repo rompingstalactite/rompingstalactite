@@ -5,7 +5,8 @@
 .nav-bar {
   background-color: $primary-detail;
   width: 100%;
-  justify-content:center;
+  align-items: center;
+  justify-content: center;
   height: 48px;
   padding: 10px 0;
   border-bottom: 1px solid $border-detail;
@@ -18,11 +19,11 @@
 .nav-bar > * {
   margin: 0;
   padding: 8px 8px;
+  transform: translate(0%, -16%);
 }
 
 .nav-bar-left {
   float:left;
-  align-items: center;
   padding-left: 96px;
   align-items: center;
   * {
@@ -32,7 +33,6 @@
 
 .nav-bar-right {
   float: right;
-  align-items: center;
   * {
     margin: 0 8px;
   }
