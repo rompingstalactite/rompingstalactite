@@ -30,7 +30,7 @@ class MainRecipe extends Component {
   }
 
   render() {
-    const { user, navToEdit, navToProfile, recipe, historyRecipes, setMainRecipeImage, mainRecipeImage, recipeOwner } = this.props;
+    const { user, navToEdit, navToProfile, recipe, historyRecipes, setMainRecipeImage, mainRecipeImage, recipeOwner, toggleParentSteps } = this.props;
 
     let editButton;
     if (user.id === recipe.author && user.id !== null) {
@@ -109,6 +109,81 @@ class MainRecipe extends Component {
       );
     }
 
+    let parentRecipeIngredients;
+    let parentRecipePrep;
+    let parentRecipeCook;
+    let parentRecipeFinish;
+    let compareParentButton;
+
+
+    //PARENT RECIPE LOGIC
+    if (recipe.parentRecipe) {
+
+      if (recipe.parentRecipe.ingredients) {
+        compareParentButton = <button
+        className="btn-compare-parent"
+        onClick={toggleParentSteps} >Compare to Parent</button>;
+      } else {
+        compareParentButton = <button className="btn-compare-parent" disabled>Compare to Parent</button>
+      }
+
+      if (recipe.parentRecipe.ingredients) {
+        parentRecipeIngredients = (
+          <div className="ingredients">
+            <h4>Ingredients</h4>
+            <ul>
+              {recipe.parentRecipe.ingredients.map((ingredient, i) => recipe.ingredients[i] === ingredient ?  <li> {ingredient} </li> :  <li className="changedParentItem"> {ingredient} </li>)}
+            </ul>
+          </div>
+        );
+      }
+
+
+      if (recipe.parentRecipe.prep_steps) {
+        parentRecipePrep = (
+          <div className="prep">
+            <h4> Prep | Time: {recipe.parentRecipe.prep_time} </h4>
+            <ol>
+              {recipe.parentRecipe.prep_steps.map((s) => <li> {s} </li>)}
+            </ol>
+          </div>
+        );
+      }
+
+      if (recipe.parentRecipe.cook_steps) {
+        parentRecipeCook = (
+          <div className="cook">
+            <h4> Cook | Time: {recipe.parentRecipe.cook_time} </h4>
+            <ol>
+            { recipe.parentRecipe.cook_steps.map((s) => <li> {s} </li>)}
+            </ol>
+          </div>
+        );
+      }
+
+      if (recipe.parentRecipe.finish_steps) {
+        parentRecipeFinish = (
+          <div className="finish">
+            <h4> Finish </h4>
+            <ol>
+            { recipe.parentRecipe.finish_steps.map((s) => <li> {s} </li>)}
+            </ol>
+          </div>
+        );
+      }
+  }
+
+    let parentSteps;
+    if (recipe.showParentSteps) {
+      parentSteps = (
+        <div className="parent-recipe-instructions">
+          {parentRecipeIngredients}
+          {parentRecipePrep}
+          {parentRecipeCook}
+          {parentRecipeFinish}
+        </div>
+      )
+    }
     return (
       <div>
         <div className="recipe-content">
@@ -118,6 +193,7 @@ class MainRecipe extends Component {
               <p className="recipe-main-split">/</p>
               <p className="recipe-main-title"> {recipe.title}</p>
               {editButton}
+              {compareParentButton}
               <Fork recipeID={recipe.id} />
               <Like className="recipe-main-likes" recipeID={recipe.id} />
               <Follow parent={recipe} />
@@ -141,6 +217,10 @@ class MainRecipe extends Component {
             </div>
             <h4>Servings: {recipe.yield + ' ' + recipe.yield_unit} </h4>
             {recipeTags}
+          </div>
+
+          <div className="recipe-instructions-parent">
+            {parentSteps}
           </div>
 
           <div className="recipe-instructions">
@@ -197,9 +277,18 @@ const mapDispatchToProps = (dispatch) => {
       });
     },
 
+    toggleParentSteps: () => {
+      dispatch(actions.toggleParentSteps());
+    },
+
     getRecipe: (recipeID, setRecipeImage, setRecipeOwner) => {
       fetchRecipe(recipeID, (recipe) => {
         dispatch(actions.setRecipe(recipe));
+        if (recipe.parent) {
+          fetchRecipe(recipe.parent, (parentRecipe) => {
+            dispatch(actions.setParentRecipe(parentRecipe));
+          });
+        }
         setRecipeImage(recipe.images[0]);
         setRecipeOwner(recipe.author);
         fetchRecipes(recipe.fork_history, (recipes) => {
