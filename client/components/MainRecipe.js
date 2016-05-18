@@ -193,11 +193,8 @@ class MainRecipe extends Component {
               <p className="recipe-main-split">/</p>
               <p className="recipe-main-title"> {recipe.title}</p>
               {editButton}
-              <Fork recipeID={recipe.id} />
-
-              <button onClick={toggleParentSteps}>Compare Parent</button>
               {compareParentButton}
-
+              <Fork recipeID={recipe.id} />
               <Like className="recipe-main-likes" recipeID={recipe.id} />
               <Follow parent={recipe} />
             </div>
