@@ -15,7 +15,7 @@ WITH recipe_of_interest AS (
   FROM
     followers_users_recipes
   WHERE
-    recipe_id = ${recipe_id}
+    recipe_id = ${targetID}
 )
 SELECT
   count(*) AS followCount,
@@ -25,7 +25,7 @@ SELECT
     FROM
       recipe_of_interest
     WHERE
-      user_id = ${user_id})
+      user_id = ${userID})
   ) AS toggleFollow
 FROM
   recipe_of_interest;
