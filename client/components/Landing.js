@@ -35,11 +35,12 @@ const Landing = () => (
         </div>
         <div style={{marginTop: '48px'}} className="hero-content-text">
           <h2 style={{color: 'white', marginBottom: '0px'}} className="hero-tagline col-2-3">Cook. Iterate. Repeat.</h2>
-          <h3 style={{color: 'white', marginTop: '8px', fontWeight: 'normal'}} className="hero-tagline col-2-3">GitCooking helps you perfect your next meal by tracking different iterations of recipes.</h3>
+          <h3 style={{color: 'white', marginTop: '8px', fontWeight: 'normal'}} className="hero-tagline col-2-3">Forkful helps you perfect your next meal by tracking different iterations of recipes.</h3>
         </div>
-        <div style={{margin: '40px 10px'}} className="hero-content-signin col-1-1">
-          <a href="/auth/google" style={{color: 'white', textAlign: 'center'}}>
-            <img style={{display: 'block', margin: 'auto'}} className="google-signin" src="../assets/btn_google_signin_light_normal_web@2x.png"/>
+        <div style={{margin: '40px 10px', textAlign: 'center'}} className="hero-content-signin col-1-1">
+          <a href="/auth/google" style={{color: 'white'}}>
+            {/*<img style={{display: 'block', margin: 'auto'}} className="google-signin" src="../assets/btn_google_signin_light_normal_web@2x.png"/>*/}
+            <div id="google-signin"/>
           </a>
           <a href="/dashboard">
             <h3 id="link-continue" style={{textAlign: 'center'}}>or, continue without signing in</h3>
