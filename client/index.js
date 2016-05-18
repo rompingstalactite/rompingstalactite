@@ -12,6 +12,7 @@ import Dashboard from './components/Dashboard';
 import SearchResults from './components/SearchResults';
 import ImageUpload from './components/ImageUpload.js';
 import CreateRecipe from './components/CreateRecipe';
+import Landing from './components/Landing';
 
 import rootReducer from './reducers';
 
@@ -28,10 +29,11 @@ const render = function () {
       <div>
         <Router history={history}>
           <Route path="/" component={App}>
-            <IndexRoute component={Dashboard} />
+            <IndexRoute component={Landing} />
+            <Route path="/dashboard" component={Dashboard} />
+            <Route path="/landing" component={Landing} />
             <Route path="/profile/:user_id" component={Profile} />
             <Route path="/recipe/:id" component={MainRecipe} />
-            <Route path="/dashboard" component={Dashboard} />
             <Route path="/create" component={CreateRecipe} />
             <Route path="/search" component={SearchResults} />
             <Route path="/*" component={Dashboard} />

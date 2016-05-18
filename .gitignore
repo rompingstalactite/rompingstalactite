@@ -32,3 +32,4 @@ client/bundle.js.map
 server/keys/googleAuth.js
 server/keys/filePicker.js
 server/keys/expressSecrets.js
+server/db/seedData.js
