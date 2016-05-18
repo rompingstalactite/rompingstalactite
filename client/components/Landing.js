@@ -17,7 +17,8 @@ const images = [
 
 let randImage = Math.floor(Math.random() * images.length);
 let heroImageStyle = {
-  backgroundImage: 'url(' + images[randImage] +')',
+  background: 'linear-gradient(rgba(50, 30, 45, 0.5), rgba(130, 20, 45, 0.5)), url(' + images[randImage] +')',
+  // backgroundImage: '',
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
   backgroundPosition: 'center center',
@@ -38,10 +39,10 @@ const Landing = () => (
         </div>
         <div style={{margin: '40px 10px'}} className="hero-content-signin col-1-1">
           <a href="/auth/google" style={{color: 'white', textAlign: 'center'}}>
-            <img style={{display: 'block', margin: 'auto'}} className="google-signin" src="../assets/btn_google_signin_light_normal_web@2x.png" />
+            <img style={{display: 'block', margin: 'auto'}} className="google-signin" src="../assets/btn_google_signin_light_normal_web@2x.png"/>
           </a>
           <a href="/dashboard">
-            <h3 style={{color: 'white', textAlign: 'center'}}>or, continue without signing in</h3>
+            <h3 id="link-continue" style={{textAlign: 'center'}}>or, continue without signing in</h3>
           </a>
         </div>
       </div>
