@@ -59,6 +59,23 @@ export const getLikeState = (getLikeObj) => {
   }).then(response => response.json());
 };
 
+export const updateFollow = (followObj, followType) => {
+  return fetch(`${localServerURL}/api/v1/follows/${followType}`, {
+    credentials: 'same-origin',
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(followObj),
+  }).then(response => {
+    if (response.status >= 400) {
+      throw new Error('Bad response from server');
+    }
+    return response.json();
+  });
+};
+
 export const getFollowState = (userID, targetID, followType) => {
   return fetch(`${localServerURL}/api/v1/follows/${followType}/?userID=${userID}&targetID=${targetID}`, {
     credentials: 'same-origin',
@@ -269,7 +286,6 @@ export const searchRecipes = (query, callback) => {
 };
 
 export const fetchTrending = (callback) => {
-
   fetch(`${localServerURL}/api/v1/trending`, {
     method: 'GET',
     headers: {
