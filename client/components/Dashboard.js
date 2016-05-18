@@ -17,7 +17,7 @@ class Dashboard extends Component {
     const { recipesFeatured, recipesTop } = this.props;
     return (
       <div className="dashboard">
-        <h1>Dashboard</h1>
+        <h1>Discover</h1>
         <RecipeContainer
           className="recipes-featured"
           type="Featured Recipes"

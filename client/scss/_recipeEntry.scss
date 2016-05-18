@@ -6,7 +6,7 @@
 
 .recipe-entry {
   background-color: $primary-detail;
-  width: 250px;
+  width: 220px;
   overflow: hidden;
   position: relative;
   /*border: 1px solid;*/
@@ -37,6 +37,10 @@
   text-overflow: ellipsis;
   color: $primary-text;
   margin: 8px 0px;
+}
+
+.recipe-entry-author {
+  margin: 0;
 }
 
 .recipe-entry-description {

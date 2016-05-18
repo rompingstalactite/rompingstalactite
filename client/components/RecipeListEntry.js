@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 import moment from 'moment';
+import '../scss/_recipeListEntry.scss';
+
 
 moment().format();
 
