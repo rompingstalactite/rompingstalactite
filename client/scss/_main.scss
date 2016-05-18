@@ -23,8 +23,48 @@ body {
 
 a {
   text-decoration: none;
+  /*color: #1e5;*/
+}
+/* OR SETT A BACKGROUND FOR SCROLLING AREAS */
+/*RESET SCROLL BAR TO TRANSPARENT*/
+/*Scroll bar nav*/
+/*::-webkit-scrollbar {
+    width: auto;
+}*/
+
+ /*Track */
+/*::-webkit-scrollbar-track {
+    -webkit-box-shadow: auto; 
+    -webkit-border-radius: auto;
+    border-radius: auto;
+    background:auto;    
 }
 
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius:auto;
+    border-radius:auto;
+    background:auto; 
+    -webkit-box-shadow:auto; 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+    background: auto; 
+}*/
+
+a:visited {
+  text-decoration: none;
+  /*color: #1e5;*/
+}
+button {
+  -webkit-appearance:caret;
+  border-radius: 5px;
+  background-color: #fff;
+}
+button:hover {
+  background-color: #ddd;
+}
+button:active {
+  background-color: #bbb;
+}
 div {
   /*border: 1px solid;*/
 }

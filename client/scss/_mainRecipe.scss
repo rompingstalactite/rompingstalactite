@@ -4,6 +4,10 @@
   width: 450px;
   padding: 0;
   margin-right: 10px;
+  h4 {
+    margin: 0;
+    margin-bottom: 5px
+  }
 }
 .recipe-header-main-image>img{
   width: 450px;
@@ -43,6 +47,14 @@
 .recipe-header-thumb>img {
   outline: solid 1px black;
   padding: 3px;
+}
+
+.recipe-header-fork-history {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 10px;
+  width: 50%;
 }
 
 .recipe-content {
