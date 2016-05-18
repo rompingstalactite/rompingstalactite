@@ -4,10 +4,9 @@
 
 .nav-bar {
   background-color: $primary-detail;
-  // display: flex;
   width: 100%;
-  //align-items: center;
-  height: 50px;
+  justify-content:center;
+  height: 48px;
   padding: 10px 0;
   border-bottom: 1px solid $border-detail;
   position: fixed;
@@ -18,24 +17,24 @@
 
 .nav-bar > * {
   margin: 0;
-  padding: 5px 5px;
+  padding: 8px 8px;
 }
 
 .nav-bar-left {
-  // display: flex;
   float:left;
   align-items: center;
+  padding-left: 96px;
+  align-items: center;
   * {
-    margin: 0 5px;
+    margin: 0 8px;
   }
 }
 
 .nav-bar-right {
   float: right;
-  // display: flex;
   align-items: center;
   * {
-    margin: 0 5px;
+    margin: 0 8px;
   }
 }
 
@@ -47,10 +46,10 @@
 
 .search-bar {
   height: 24px;
-  width: 72px;
-  padding-left: 10px;
+  width: 176px;
+  padding-left: 8px;
   margin: 0 5px;
-  border-radius: 3px;
+  border-radius: 4px;
   border: none;
   font-size: 14;
   width: px;
