@@ -119,7 +119,7 @@ class MainRecipe extends Component {
     //PARENT RECIPE LOGIC
     if (recipe.parentRecipe) {
 
-      if (user.id === recipe.author && user.id !== null) {
+      if (recipe.parentRecipe.ingredients) {
         compareParentButton = <button
         className="btn-compare-parent"
         onClick={toggleParentSteps} >Compare to Parent</button>;
