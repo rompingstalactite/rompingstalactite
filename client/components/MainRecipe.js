@@ -113,16 +113,26 @@ class MainRecipe extends Component {
     let parentRecipePrep;
     let parentRecipeCook;
     let parentRecipeFinish;
+    let compareParentButton;
 
 
     //PARENT RECIPE LOGIC
     if (recipe.parentRecipe) {
+
+      if (user.id === recipe.author && user.id !== null) {
+        compareParentButton = <button
+        className="btn-compare-parent"
+        onClick={toggleParentSteps} >Compare to Parent</button>;
+      } else {
+        compareParentButton = <button className="btn-compare-parent" disabled>Compare to Parent</button>
+      }
+
       if (recipe.parentRecipe.ingredients) {
         parentRecipeIngredients = (
           <div className="ingredients">
             <h4>Ingredients</h4>
             <ul>
-              {recipe.parentRecipe.ingredients.map((ingredient, i) => recipe.ingredients[i] === ingredient ?  <li> {ingredient} </li> :  <li> CHANGED {ingredient} </li>)}
+              {recipe.parentRecipe.ingredients.map((ingredient, i) => recipe.ingredients[i] === ingredient ?  <li> {ingredient} </li> :  <li className="changedParentItem"> {ingredient} </li>)}
             </ul>
           </div>
         );
@@ -186,6 +196,7 @@ class MainRecipe extends Component {
               <Fork recipeID={recipe.id} />
 
               <button onClick={toggleParentSteps}>Compare Parent</button>
+              {compareParentButton}
 
               <Like className="recipe-main-likes" recipeID={recipe.id} />
               <Follow parent={recipe} />
@@ -212,9 +223,7 @@ class MainRecipe extends Component {
           </div>
 
           <div className="recipe-instructions-parent">
-            RECIPE INSTRUCTIONS PARENT
             {parentSteps}
-            {recipe.parentRecipe ? recipe.parentRecipe.id : 'NO PARENT'}
           </div>
 
           <div className="recipe-instructions">
