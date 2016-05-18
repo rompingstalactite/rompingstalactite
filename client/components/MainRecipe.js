@@ -57,8 +57,14 @@ class MainRecipe extends Component {
     }
 
     let recipeTags;
+
     if (recipe.tags) {
-      recipeTags = <h4> tags: {recipe.tags.map(t => <a> {t} </a>) } </h4>;
+      recipeTags = (
+        <h4> tags: {recipe.tags.map(t => <Link
+          to={`/recipe/${t}`}
+          className="recipe-entry-title"
+        >{t}</Link>)} </h4>
+      );
     }
 
     let recipeIngredients;
