@@ -11,6 +11,7 @@ import '../scss/_main.scss';
 import '../scss/_mainRecipe.scss';
 
 import Like from './Like.js';
+import Follow from './Follow.js';
 class MainRecipe extends Component {
   componentDidMount() {
     const { getRecipe, id, setMainRecipeImage, recipe, setRecipeOwner } = this.props;
@@ -118,6 +119,7 @@ class MainRecipe extends Component {
               {editButton}
               <Fork recipeID={recipe.id} />
               <Like className="recipe-main-likes" recipeID={recipe.id} />
+              <Follow parent={recipe} />
             </div>
             <div className="recipe-header-container">
               <div className="recipe-header-card">
@@ -165,6 +167,8 @@ const mapStateToProps = (state, ownProps) => {
     fork_history: state.recipe.fork_history || [],
     historyRecipes: state.recipe.historyRecipes,
     id: ownProps.params.id,
+    followState: null,
+    likeState: null,
   };
 };
 
