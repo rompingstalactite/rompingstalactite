@@ -1,6 +1,9 @@
+@import url(https://fonts.googleapis.com/css?family=Muli);
+
 .profile-content {
   margin: 0 auto;
   width: 80%;
+  font-family: 'Muli', sans-serif;
 }
 
 .profile-recipe-containers {
@@ -17,4 +20,4 @@ img.profile-avatar {
 
 .recipe-container {
   flex-wrap: wrap;
-} 
+}
