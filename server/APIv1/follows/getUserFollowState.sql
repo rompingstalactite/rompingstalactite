@@ -1,7 +1,7 @@
 /**
 * input
-*   follower: user_id<Number>
-*   target:   user_id<Number>
+*   targetID: user_id<Number>
+*   userID:   user_id<Number>
 *
 * returns:
 * | followcount | togglefollow |
@@ -15,7 +15,7 @@ WITH user_of_interest AS (
   FROM
     followers_users_users
   WHERE
-    target = ${target}
+    target = ${targetID}
 )
 SELECT
   count(*) AS followCount,
@@ -25,7 +25,7 @@ SELECT
     FROM
       user_of_interest
     WHERE
-      follower = ${follower})
+      follower = ${userID})
   ) AS toggleFollow
 FROM
   user_of_interest;
