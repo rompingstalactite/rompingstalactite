@@ -3,13 +3,15 @@ import { connect } from 'react-redux';
 import actions from '../actions/index.js';
 import { fetchFPKey } from '../utils/utils';
 const filepicker = require('filepicker-js');
+import '../scss/_createRecipe.scss';
 
 class ImageUpload extends Component {
   render() {
     const { recipe, uploadPicture } = this.props;
     return (
       <div>
-        <button 
+        <button
+        className="btn btn-primary"
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
