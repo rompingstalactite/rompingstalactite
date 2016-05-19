@@ -24,22 +24,13 @@ class Nav extends Component {
     return (
         <div className="nav-bar">
           <div className="nav-bar-left">
-            <Link to="/">GitCooking</Link>
+            <Link to="/">Forkful</Link>
             <input
               className="search-bar"
               placeholder="Search for recipes"
-              onChange={(e) => { searchString = e.target.value; }}
+              onKeyDown={(e) => { e.keyCode === 13 ? search(searchString) : searchString = e.target.value }}
             ></input>
             <button
-              class="search-button"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                search(searchString);
-              }}
-            > Search </button>
-            <button
-              class="create-button"
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
