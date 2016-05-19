@@ -64,7 +64,9 @@ const Landing = () => (
       </div>
     </div>
     <div className="footer">
-      <p style={{textAlign: 'center', color: '#687F72'}}>Made by <a href="https://github.com/andrewh0">Andrew</a>, <a href="https://github.com/controtie">Dylan</a>, <a href="https://github.com/nemobaker">Nemo</a>, and <a href="https://github.com/thomasingalls">Thomas</a>.</p>
+      <p style={{textAlign: 'center', color: '#687F72', size: '8px'}}>Made by <a href="https://github.com/andrewh0">Andrew</a>, <a href="https://github.com/controtie">Dylan</a>, <a href="https://github.com/nemobaker">Nemo</a>, and <a href="https://github.com/thomasingalls">Thomas</a>.
+        <br/>Recipes powered by <a href="http://www.yummly.com">Yummly</a>. Icons from <a href="http://www.thenounproject.com">The Noun Project</a>.
+      </p>
     </div>
   </div>
 );
