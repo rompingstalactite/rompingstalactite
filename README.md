@@ -34,7 +34,10 @@ See the app live at [forkful.io](www.forkful.io) and get started!
 GIF
 
 ### Technologies
-- __Client:__ React, Redux, SCSS
+
+This app is written completely in ECMAScript 2015 (ES6).
+
+- __Client:__ React, Redux, React Router, SCSS
 - __Server:__ Node, Express
 - __Database:__ PostgreSQL
 - __Testing:__ Mocha, Chai, Karma, Enzyme
@@ -72,7 +75,8 @@ npm install
 
 ### Running Locally
 
-First, set up your database by running the following inside your root directory:
+Make sure you have PostgreSQL running and that the database has been initialized.
+Set up your database by running the following inside your root directory:
 
 ```
 npm run db-setup
@@ -113,7 +117,7 @@ What are we working on now? View the project roadmap [here](https://github.com/r
 
 ### Running in Production
 
-Make sure you have PostgreSQL running, and the database has been initialized.
+Make sure you have PostgreSQL running and that the database has been initialized.
 If the database has not been initialized, run:
 
 ```
