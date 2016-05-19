@@ -12,8 +12,36 @@
   border-bottom: 1px solid $border-detail;
   position: fixed;
   font-family: 'Muli', sans-serif;
+  font-size: 18px;
   z-index:1;
   margin-top: -32px;
+  background: #DAD299; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #DAD299 , #B0DAB9); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #DAD299 , #B0DAB9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+button {
+  font-family: 'Muli', sans-serif;
+  background-color: transparent;
+  border-color: transparent;
+  font-size: 18px
+}
+
+a:link {
+  color: black
+}
+
+a:hover {
+  color: 48726F
+}
+
+a:active {
+  color: black
+}
+
+a:visited {
+  color: black
 }
 
 .nav-bar > * {
@@ -47,6 +75,7 @@
 .search-bar {
   height: 24px;
   width: 176px;
+  vertical-align: top;
   padding-left: 8px;
   margin: 0 5px;
   border-radius: 4px;
