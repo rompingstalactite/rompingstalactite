@@ -15,7 +15,7 @@ class Nav extends Component {
     if (!user.id) {
       signInOut = <a class="sign-in-text" href="/auth/google">Sign In</a>;
     } else {
-      signInOut = <a href="/auth/signout">Sign out</a>;
+      signInOut = <a href="/auth/signout">Sign Out</a>;
       linkToProfile = (
         <Link to={`/profile/${user.id}`}>
           <img className="avatar" src={avatar} alt="avatar"></img>
