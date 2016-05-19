@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import actions from '../actions/index.js';
+import { push } from 'react-router-redux';
 import '../scss/_forkHistoryVis.scss';
 
 
@@ -12,7 +13,7 @@ class ForkHistoryVis extends Component {
     const { history, recipe } = this.props;
   }
   render() {
-    const { history, recipe } = this.props;
+    const { history, recipe, navToHistRecipe } = this.props;
     let recipeHistory = <p> no history </p>;
     if (history && history.length > 0) {
       recipeHistory = <div>
@@ -23,7 +24,7 @@ class ForkHistoryVis extends Component {
         }
         return (<div>
         <div className="history-vis-edge"> </div>
-          <div className="history-vis-node" data-recipeInfo={histRecipe.title}>
+          <div className="history-vis-node" onClick={() => navToHistRecipe(histRecipe.id)} data-recipeInfo={histRecipe.title}>
             <div className="tooltiptext"> {histRecipe.title} <br /> {creationDate}</div>
           </div>
         </div>
@@ -41,6 +42,11 @@ class ForkHistoryVis extends Component {
     );
   }
 }
-        // <button onClick={() => console.log(history)}> Get History </button>
 
-export default ForkHistoryVis;
+const mapDispatchToProps = (dispatch) => ({
+  navToHistRecipe: (recipeID) => {
+    dispatch(push(`/recipe/${recipeID}`));
+  },
+});
+
+export default connect(null, mapDispatchToProps)(ForkHistoryVis);
