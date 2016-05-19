@@ -4,28 +4,26 @@
 
 [![Build Status](https://travis-ci.org/rompingstalactite/rompingstalactite.svg?branch=master)](https://travis-ci.org/rompingstalactite/rompingstalactite)
 
-Forkful lets chefs keep track of different versions of recipes.
-Chefs can add recipes for allergies or dietary restrictions.
-Create the best possible version of a recipe.
+Forkful lets chefs track previous iterations of recipes by allowing them view a recipe's version history. By "forking" an existing recipe, chefs can copy and edit the list of ingredients and steps. If a recipe is missing, they can create their own and allow others to modify it. Forkful is a great way for chefs to collaborate on and improve a recipe.
 
-See the app live at [forkful.io](www.forkful.io).
+See the app live at [forkful.io](www.forkful.io) and get started!
 
 ## Table of Contents
 
 1. [Overview](#overview)
-  1. [Usage](#usage)
-  1. [Technologies](#technologies)
-  1. [Architecture](#architecture)
-  1. [Schema Design](#schema-design)
+  - [Usage](#usage)
+  - [Technologies](#technologies)
+  - [Architecture](#architecture)
+  - [Schema Design](#schema-design)
 1. [Requirements](#requirements)
 1. [Development](#development)
-  1. [Keys](#keys)
-  1. [Installing Dependencies](#installing-dependencies)
-  1. [Running Locally](#running-locally)
-  1. [Testing](#testing)
-  1. [Roadmap](#roadmap)
+  - [Keys](#keys)
+  - [Installing Dependencies](#installing-dependencies)
+  - [Running Locally](#running-locally)
+  - [Testing](#testing)
+  - [Roadmap](#roadmap)
 1. [Production](#production)
-  1. [Running in Production](#running-in-production)
+  - [Running in Production](#running-in-production)
 1. [Team](#team)
 1. [Contributing](#contributing)
 1. [Attribution](#attribution)
