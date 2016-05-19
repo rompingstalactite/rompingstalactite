@@ -13,7 +13,7 @@ class Nav extends Component {
     let { searchString } = this.props;
     let signInOut, linkToProfile;
     if (!user.id) {
-      signInOut = <a href="/auth/google">Sign In</a>;
+      signInOut = <a class="sign-in-text" href="/auth/google">Sign In</a>;
     } else {
       signInOut = <a href="/auth/signout">Sign out</a>;
       linkToProfile = (
@@ -22,7 +22,6 @@ class Nav extends Component {
         </Link>);
     }
     return (
-      <div>
         <div className="nav-bar">
           <div className="nav-bar-left">
             <Link to="/">GitCooking</Link>
@@ -32,6 +31,7 @@ class Nav extends Component {
               onChange={(e) => { searchString = e.target.value; }}
             ></input>
             <button
+              class="search-button"
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -39,22 +39,23 @@ class Nav extends Component {
               }}
             > Search </button>
             <button
+              class="create-button"
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 navToCreate();
               }}> Create
             </button>
-            <a> Discover </a>
-            <a> About </a>
+            <button>
+              <a href="/dashboard">Discover</a>
+            </button>
           </div>
           <div className="nav-bar-right">
-            {signInOut}
-            {linkToProfile}
+              {signInOut}
+              {linkToProfile}
           </div>
           {/* <Link to={`/recipe/${recipeID}`}>Recipe</Link>*/}
         </div>
-      </div>
     );
   }
 }
