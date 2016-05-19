@@ -138,3 +138,67 @@
 .changedParentItem {
   color: red;
 }
+.btn-small {
+  font-size: 14px !important;
+  padding: 0 8px !important;
+  margin: 4px 4px !important;
+}
+
+.tag:first-child {
+  margin: 4px 4px 4px 0px;
+}
+.tag {
+  display: inline-block;
+  text-decoration: none;
+  list-style: none;
+  padding: 0;
+  margin: 4px;
+  background: #eee;
+  border-radius: 3px 0 0 3px;
+  color: $color5;
+  display: inline-block;
+  height: 26px;
+  line-height: 26px;
+  padding: 0 20px 0 8px;
+  position: relative;
+  // margin: 0 10px 10px 0;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.tag a {
+  color: $color5;
+  text-decoration: none;
+}
+.tag:hover {
+  background-color: $color5;
+}
+.tag a:hover {
+  color: $color2;
+  text-decoration: none;
+}
+.tag::after {
+  background: $color1;
+  border-bottom: 13px solid transparent;
+  border-left: 10px solid #eee;
+  border-top: 13px solid transparent;
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: all 0.2s;
+}
+.tag:hover::after {
+  border-left-color: $color5;
+}
+.tag:last-child {
+  margin: 4px 0px 4px 4px;
+}
+.tags-list {
+  display: inline-block;
+  padding-left: 16px;
+}
+.tags-title {
+  display: inline-block;
+  margin: 4;
+  padding: 0;
+}

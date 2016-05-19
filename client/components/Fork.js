@@ -7,11 +7,11 @@ import { forkRecipe } from '../utils/utils';
 const Fork = (props) => {
   let forkComponent;
   if (props.userID) {
-    forkComponent = (<button className="btn-fork" onClick={ props.onForkClick.bind(null, props.recipeID, props.userID) }>
+    forkComponent = (<button className="btn btn-primary btn-small btn-fork" onClick={ props.onForkClick.bind(null, props.recipeID, props.userID) }>
       Fork
     </button>);
   } else {
-    forkComponent = (<button className="btn-fork" disabled>Fork</button>);
+    forkComponent = (<button className="btn btn-primary btn-small btn-fork" disabled>Fork</button>);
   }
   return forkComponent;
 };
