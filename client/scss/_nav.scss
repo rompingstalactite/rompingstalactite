@@ -8,47 +8,52 @@
   align-items: center;
   justify-content: center;
   height: 48px;
-  padding: 10px 0;
-  border-bottom: 1px solid $border-detail;
+  padding: 8px 0;
+  // border-bottom: 1px solid $border-detail;
   position: fixed;
   font-family: 'Muli', sans-serif;
-  font-size: 18px;
+  font-size: 24px;
   z-index:1;
   margin-top: -32px;
   background: #73D786;
-
 }
 
+a:hover{
+  color: #035AA6;
+}
 
 .nav-bar > * {
   button {
     font-family: 'Muli', sans-serif;
     background-color: transparent;
     border-color: transparent;
-    font-size: 18px;
-    cursor:pointer;
-    color: #F2F2F2;
+    font-size: 24px;
+    cursor: pointer;
+    color: #FFFFFF;
+  }
+
+  a:visited{
+    color: #FFFFFF;
+  }
+
+  a:hover{
+    color: #035AA6 !important;
   }
 
   a:link {
-    color: #F2F2F2;
-  }
-
-  a:hover {
-    color: gray;
+    color: #FFFFFF;
   }
 
   a:active {
-    color: #F2F2F2;
+    color: #FFFFFF;
   }
 
-  a:visited {
-    color: #F2F2F2;
-  }
   margin: 0;
   padding: 8px 8px;
   transform: translate(0%, -16%);
 }
+
+
 
 .nav-bar-left {
   float:left;
@@ -62,7 +67,11 @@
 .nav-bar-right {
   float: right;
   * {
-    margin: 0 8px;
+    margin: -8px 8px;
+  }
+  button {
+    border-radius:10px;
+    border-color: #FFFFFF;
   }
 }
 
@@ -73,12 +82,13 @@
 }
 
 .search-bar {
-  height: 24px;
-  width: 176px;
-  vertical-align: top;
-  padding-left: 8px;
-  margin: 0 5px;
-  border-radius: 4px;
+  height: 28px;
+  width: 270px;
+  vertical-align: text-top;
+  padding-left: 12px;
+  padding-top: 2px;
+  margin: 0 10px;
+  border-radius: 10px;
   border: none;
-  font-size: 14;
+  font-size: 12px;
 }

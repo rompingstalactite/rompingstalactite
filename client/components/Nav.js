@@ -13,9 +13,9 @@ class Nav extends Component {
     let { searchString } = this.props;
     let signInOut, linkToProfile;
     if (!user.id) {
-      signInOut = <a class="sign-in-text" href="/auth/google">Sign In</a>;
+      signInOut = <button class="sign-in-btn"> <a href="/auth/google">Sign In</a> </button>;
     } else {
-      signInOut = <a href="/auth/signout">Sign out</a>;
+      signInOut = <a href="/auth/signout">Sign Out</a>;
       linkToProfile = (
         <Link to={`/profile/${user.id}`}>
           <img className="avatar" src={avatar} alt="avatar"></img>
@@ -24,22 +24,13 @@ class Nav extends Component {
     return (
         <div className="nav-bar">
           <div className="nav-bar-left">
-            <Link to="/">GitCooking</Link>
+            <Link to="/">Forkful</Link>
             <input
               className="search-bar"
               placeholder="Search for recipes"
-              onChange={(e) => { searchString = e.target.value; }}
+              onKeyDown={(e) => { e.keyCode === 13 ? search(searchString) : searchString = e.target.value }}
             ></input>
             <button
-              class="search-button"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                search(searchString);
-              }}
-            > Search </button>
-            <button
-              class="create-button"
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();

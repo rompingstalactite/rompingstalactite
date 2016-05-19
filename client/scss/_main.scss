@@ -28,6 +28,7 @@ body {
   margin: 0;
   background-color: $primary-base;
   font-family: $paragraph-font;
+  color: #080F0A;
   padding-top: 32px;
   background-color: $color1;
 }
@@ -46,17 +47,4 @@ a {
 
 a:visited {
   text-decoration: none;
-}
-
-button {
-  padding: 4px 6px;
-  -webkit-appearance:caret;
-  border-radius: 5px;
-  background-color: #fff;
-}
-button:hover {
-  background-color: #ddd;
-}
-button:active {
-  background-color: #bbb;
 }
