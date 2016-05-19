@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import actions from '../actions/index.js';
-import classNames from 'classnames';
+// import classNames from 'classnames';
 import { getLikeState, updateLike } from '../utils/utils';
 
 
@@ -18,11 +18,11 @@ class Like extends Component {
   render() {
     const { userID, recipeID, toggleLike, handleToggleLike, dispatch } = this.props;
 
-    const likedClass = classNames({
-      'btn': true,
-      'btn-like': true,
-      'btn-active': toggleLike.toggleLike,
-    });
+    // const likedClass = classNames({
+    //   'btn': true,
+    //   'btn-like': true,
+    //   'btn-active': toggleLike.toggleLike,
+    // });
 
     return (
       <button
@@ -30,7 +30,7 @@ class Like extends Component {
         disabled={!userID}
         onClick={handleToggleLike.bind(null, userID, recipeID, toggleLike.toggleLike)}
       >
-        <span className={likedClass}>Likes: {toggleLike.likeCount || '0'} </span>
+        Likes: {toggleLike.likeCount || '0'}
       </button>
     );
   }
