@@ -39,6 +39,7 @@ class Nav extends Component {
               }}
             > Search </button>
             <button
+              class="create-button"
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();

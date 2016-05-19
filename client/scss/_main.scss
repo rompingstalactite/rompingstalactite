@@ -1,5 +1,8 @@
+/*import font*/
+@import url(https://fonts.googleapis.com/css?family=Muli);
+
 /* default base for site */
-$primary-base: #FFFEFC;
+$primary-base: #F2F2F2;
 /* default base color for cards */
 $secondary-base: #E0E4E5;
 /* base color for nav */
@@ -14,7 +17,7 @@ $border-detail: #E2E3DF;
 body {
   margin: 0;
   background-color: $primary-base;
-  font-family: sans-serif;
+  font-family: 'Muli', sans-serif;
   padding-top: 32px;
 }
 
