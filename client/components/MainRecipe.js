@@ -205,6 +205,8 @@ class MainRecipe extends Component {
 
                   {recipeImages}
                 </div>
+                <h4>Servings: {recipe.yield + ' ' + recipe.yield_unit} </h4>
+                {recipeTags}
               </div>
               <div className="recipe-header-fork-history">
                 <ForkHistoryVis recipe={recipe} history={historyRecipes} />
@@ -215,8 +217,6 @@ class MainRecipe extends Component {
                 />
               </div>
             </div>
-            <h4>Servings: {recipe.yield + ' ' + recipe.yield_unit} </h4>
-            {recipeTags}
           </div>
 
           <div className="recipe-instructions-parent">
