@@ -18,11 +18,9 @@ const images = [
 let randImage = Math.floor(Math.random() * images.length);
 let heroImageStyle = {
   background: 'linear-gradient(rgba(50, 30, 45, 0.5), rgba(3, 79, 145, 0.5)), url(' + images[randImage] +')',
-  // backgroundImage: '',
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
   backgroundPosition: 'center center',
-  // height: '500px',
   paddingTop: '100px',
 };
 
@@ -66,7 +64,7 @@ const Landing = () => (
       </div>
     </div>
     <div className="footer">
-      <p style={{textAlign: 'center', color: '#687F72'}}>Made by Andrew, Dylan, Nemo, and Thomas.</p>
+      <p style={{textAlign: 'center', color: '#687F72'}}>Made by <a href="https://github.com/andrewh0">Andrew</a>, <a href="https://github.com/controtie">Dylan</a>, <a href="https://github.com/nemobaker">Nemo</a>, and <a href="https://github.com/thomasingalls">Thomas</a>.</p>
     </div>
   </div>
 );
