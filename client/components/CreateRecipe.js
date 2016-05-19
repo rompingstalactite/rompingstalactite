@@ -193,23 +193,23 @@ class CreateRecipe extends Component {
                 className="create-input medium-input"
                 onChange={(e) => updateRecipe(e)}
               />
-             </div>
+            </div>
 
-             <div className="section">
-                <h3> Finish Steps: </h3>
-                <ol> {recipe.finish_steps.map((i, key) =>
-                    <li className="input-list-item">
-                      <input
-                        type="text"
-                        value={i}
-                        data-index={key}
-                        className="create-input xl-input"
-                        onChange={
-                          (e) => updateRecipe(e, { finish_steps: recipe.finish_steps })}
-                      />
-                  </li>
-                )}
-                </ol>
+            <div className="section">
+              <h3> Finish Steps: </h3>
+              <ol> {recipe.finish_steps.map((i, key) =>
+                <li className="input-list-item">
+                  <input
+                    type="text"
+                    value={i}
+                    data-index={key}
+                    className="create-input xl-input"
+                    onChange={
+                      (e) => updateRecipe(e, { finish_steps: recipe.finish_steps })}
+                  />
+                </li>
+              )}
+              </ol>
               <button
                 className="btn btn-primary"
                 onClick={(e) => {
@@ -226,8 +226,9 @@ class CreateRecipe extends Component {
                   removeField('finish_steps');
                 }}
               > remove Step </button>
-              <br />
+            </div>
 
+            <div className="section">
               <h3> Tags: </h3>
               <ol> {recipe.tags.map((i, key) =>
                 <li className="input-list-item">
@@ -256,46 +257,18 @@ class CreateRecipe extends Component {
                   removeField('tags');
                 }}
               > remove Tag </button>
-             </div>
+            </div>
 
-            <button
-
-              onClick={(e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                removeField('finish_steps');
-              }}
-            > remove Step </button>
-            <br />
-
-            {recipeTags}
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                addField('tags');
-              }}
-            > add Tag </button>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                removeField('tags');
-              }}
-            > remove Tag </button>
-            <br />
-
-            <button
-
-              className="btn btn-primary"
-
-              onClick={(e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                submitRecipe(recipe, user.id);
-              }}
-            > Submit </button>
-
+            <div className="section">
+              <button
+                className="btn btn-primary"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  submitRecipe(recipe, user.id);
+                }}
+              > Submit </button>
+            </div>
           </form>
         </div>
       </div>
