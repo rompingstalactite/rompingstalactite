@@ -195,14 +195,18 @@ class MainRecipe extends Component {
         <div className="recipe-content">
           <div className="recipe-content-header">
             <div className="recipe-header-meta">
-              <p className="recipe-main-author" onClick={() => navToProfile(recipe.author)}>{recipeOwner}</p>
-              <p className="recipe-main-split">/</p>
-              <p className="recipe-main-title"> {recipe.title}</p>
-              {editButton}
-              {compareParentButton}
-              <Fork recipeID={recipe.id} />
-              <Like className="recipe-main-likes" recipeID={recipe.id} />
-              <Follow parent={recipe} />
+              <div className="recipe-header-names">
+                <p className="recipe-main-author" onClick={() => navToProfile(recipe.author)}>{recipeOwner}</p>
+                <p className="recipe-main-split">/</p>
+                <p className="recipe-main-title"> {recipe.title}</p>
+              </div>
+              <div className="recipe-header-buttons">
+                {editButton}
+                {compareParentButton}
+                <Fork recipeID={recipe.id} />
+                <Like className="recipe-main-likes" recipeID={recipe.id} />
+                <Follow parent={recipe} />
+              </div>
             </div>
             <div className="recipe-header-container">
               <div className="recipe-header-card">

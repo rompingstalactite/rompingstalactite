@@ -17,7 +17,7 @@ class Dashboard extends Component {
     const { recipesFeatured, recipesTop } = this.props;
     return (
       <div className="dashboard">
-        <h1>Discover</h1>
+        <h1 className="dashboard-title">Discover - Forkful's most popular receipes</h1>
         <RecipeContainer
           className="recipes-featured"
           type="Featured Recipes"

@@ -30,17 +30,6 @@ const RecipeEntry = (props) => {
         <span className="date" >Created {createdTime}</span>
         <div>
           <p className="recipe-entry-description">... some description to come</p>
-
-          <div className="action-buttons">
-            <span>♥</span>
-            <span>⤿</span>
-            <span>⑂</span>
-            <span>⟲</span>
-            <Fork recipe={props.recipe.recipe_id || props.recipe.id} />
-            <Like recipe={props.recipe.recipe_id || props.recipe.id} />
-            <button disabled>Edit</button>
-          </div>
-
         </div>
       </div>
     </div>

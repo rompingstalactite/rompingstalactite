@@ -15,7 +15,7 @@ const RecipeContainer = (props) => {
   }
   return (
     <div className={props.className}>
-      <h2>{props.type}</h2>
+      <h2 className="recipe-container-title">{props.type}</h2>
       <div className="recipe-container">
         {childRecipes}
       </div>
