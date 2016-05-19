@@ -92,13 +92,25 @@ input[type=number]::-webkit-outer-spin-button {
 .btn {
   display: inline-block;
   border: 0;
-  border-radius: 4px;
+  border-radius: 6px;
   background-color: transparent;
   padding: 8px 16px;
   margin: 0 16px;
   font-size: 24px;
   line-height: 32px;
   transition: all 200ms;
+}
+
+.btn:disabled {
+  border: solid 1px #333 !important;
+  color: #333 !important;
+  background: transparent !important;
+}
+.btn:disabled:hover, .btn:disabled:active, .btn:disabled:focus {
+  border: solid 1px #333 !important;
+  color: #333 !important;
+  background: transparent !important;
+
 }
 
 .btn.btn-primary {
