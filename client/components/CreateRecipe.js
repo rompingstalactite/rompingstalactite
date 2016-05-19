@@ -102,7 +102,7 @@ class CreateRecipe extends Component {
                   e.preventDefault();
                   addField('ingredients');
                 }}
-              > add ingredient </button>
+              > Add Ingredient </button>
               <button
                 className="btn btn-warning"
                 onClick={(e) => {
@@ -110,7 +110,7 @@ class CreateRecipe extends Component {
                   e.preventDefault();
                   removeField('ingredients');
                 }}
-              > remove ingredient </button>
+              > Remove Ingredient </button>
             </div>
 
             <div className="section">
@@ -141,7 +141,7 @@ class CreateRecipe extends Component {
                   e.preventDefault();
                   removeField('prep_steps');
                 }}
-              > remove Step </button>
+              > Remove Step </button>
             </div>
 
             <div className="section">
@@ -175,7 +175,7 @@ class CreateRecipe extends Component {
                   e.preventDefault();
                   addField('cook_steps');
                 }}
-              > add Step </button>
+              > Add Step </button>
               <button
                 className="btn btn-warning"
                 onClick={(e) => {
@@ -219,7 +219,7 @@ class CreateRecipe extends Component {
                   e.preventDefault();
                   addField('finish_steps');
                 }}
-              > add Step </button>
+              > Add Step </button>
               <button
                 className="btn btn-warning"
                 onClick={(e) => {
@@ -227,7 +227,7 @@ class CreateRecipe extends Component {
                   e.preventDefault();
                   removeField('finish_steps');
                 }}
-              > remove Step </button>
+              > Remove Step </button>
             </div>
 
             <div className="section">
@@ -250,7 +250,7 @@ class CreateRecipe extends Component {
                   e.preventDefault();
                   addField('tags');
                 }}
-              > add Tag </button>
+              > Add Tag </button>
               <button
                 className="btn btn-warning"
                 onClick={(e) => {
@@ -258,7 +258,7 @@ class CreateRecipe extends Component {
                   e.preventDefault();
                   removeField('tags');
                 }}
-              > remove Tag </button>
+              > Remove Tag </button>
             </div>
 
             <div className="section">
