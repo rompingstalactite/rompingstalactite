@@ -240,10 +240,6 @@ class MainRecipe extends Component {
             {recipeFinish}
           </div>
 
-          <div className="documentation">
-            <h2> Documentation </h2>
-          </div>
-
         </div>
       </div>
     );
