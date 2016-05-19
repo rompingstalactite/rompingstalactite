@@ -44,7 +44,9 @@ class Nav extends Component {
                 navToCreate();
               }}> Create
             </button>
-            <a class="discover-text" href="/dashboard">Discover</a>
+            <button>
+              <a href="/dashboard">Discover</a>
+            </button>
           </div>
           <div className="nav-bar-right">
               {signInOut}
