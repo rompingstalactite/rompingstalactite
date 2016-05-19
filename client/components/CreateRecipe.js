@@ -6,7 +6,6 @@ import actions from '../actions/index.js';
 import { createRecipe, editRecipe } from '../utils/utils.js';
 import '../scss/_createRecipe.scss';
 
-
 class CreateRecipe extends Component {
   constructor(props) {
     super(props);
@@ -14,6 +13,9 @@ class CreateRecipe extends Component {
 
   render() {
     const { user, recipe, addField, removeField, updateRecipe, submitRecipe } = this.props;
+
+    let userValidation;
+    !user.id ? userValidation = "*Please Log In To Create A Recipe" : null
 
     let recipeTags;
     if (recipe.tags) {
@@ -269,6 +271,10 @@ class CreateRecipe extends Component {
                 }}
               > Submit </button>
             </div>
+            <div className="user-validation">
+              {userValidation}
+            </div>
+
           </form>
         </div>
       </div>
