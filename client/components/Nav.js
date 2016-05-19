@@ -24,7 +24,10 @@ class Nav extends Component {
     return (
         <div className="nav-bar">
           <div className="nav-bar-left">
-            <Link to="/">Forkful</Link>
+            <Link to="/">
+              <object style={{maxHeight: '24px'}} type="image/svg+xml" className="logo" data="../assets/forkful-very-long.svg">
+                <img style={{maxHeight: '24px'}} src="../assets/forkful-very-long.svg" />
+              </object></Link>
             <input
               className="search-bar"
               placeholder="Search for recipes"
