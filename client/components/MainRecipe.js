@@ -35,14 +35,14 @@ class MainRecipe extends Component {
     let editButton;
     if (user.id === recipe.author && user.id !== null) {
       editButton = <button
-      className="btn-toggle-edit"
+      className="btn btn-primary btn-small btn-toggle-edit"
       onClick={(e) => {
         e.preventDefault();
         e.stopPropagation();
         navToEdit(user);
       }}>Edit Recipe</button>;
     } else {
-      editButton = <button className="btn-toggle-edit" disabled>Edit Recipe</button>
+      editButton = <button className="btn btn-primary btn-small btn-toggle-edit" disabled>Edit Recipe</button>
     }
 
     let recipeImages;
@@ -127,10 +127,10 @@ class MainRecipe extends Component {
 
       if (recipe.parentRecipe.ingredients) {
         compareParentButton = <button
-        className="btn-compare-parent"
+        className="btn btn-primary btn-small btn-compare-parent"
         onClick={toggleParentSteps} >Compare to Parent</button>;
       } else {
-        compareParentButton = <button className="btn-compare-parent" disabled>Compare to Parent</button>
+        compareParentButton = <button className="btn btn-primary btn-small btn-compare-parent" disabled>Compare to Parent</button>
       }
 
       if (recipe.parentRecipe.ingredients) {

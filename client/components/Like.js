@@ -26,7 +26,7 @@ class Like extends Component {
 
     return (
       <button
-        className="like-button"
+        className="btn btn-primary btn-small btn-like"
         disabled={!userID}
         onClick={handleToggleLike.bind(null, userID, recipeID, toggleLike.toggleLike)}
       >
