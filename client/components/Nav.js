@@ -31,6 +31,7 @@ class Nav extends Component {
               onChange={(e) => { searchString = e.target.value; }}
             ></input>
             <button
+              style="curosr=pointer"
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
