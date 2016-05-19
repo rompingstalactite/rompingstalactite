@@ -17,11 +17,13 @@
     "db-setup": "./server/db/create_db.sh",
     "db-setup-travis": "./server/db/create_db_travis.sh",
     "db-seed": "babel-node ./server/db/addSeedData.js --presets es2015",
+    "clean": "rm -rf build && mkdir build",
+    "build-server": "babel server -d build",
     "build-css": "node-sass --include-path scss client/scss/app.scss client/css/app.css",
     "test": "karma start && mocha ./test/server --compilers js:babel-register",
     "test:client": "karma start",
     "test:server": "mocha ./test/server --watch --compilers js:babel-register",
-    "start": "NODE_ENV=\"production\" webpack -p --progress && PORT=80 babel-node server/server.js --presets es2015",
+    "start": "npm run clean && npm run build-server && NODE_ENV=\"production\" webpack -p && node build/server.js",
     "dev-start": "webpack -d --watch --progress & nodemon server/server.js --exec babel-node --debug --presets es2015"
   },
   "repository": {
