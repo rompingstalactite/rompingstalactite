@@ -9,6 +9,7 @@ import App from './components/App';
 import MainRecipe from './components/MainRecipe';
 import Profile from './components/Profile';
 import Dashboard from './components/Dashboard';
+import Discover from './components/Discover';
 import SearchResults from './components/SearchResults';
 import ImageUpload from './components/ImageUpload.js';
 import CreateRecipe from './components/CreateRecipe';
@@ -32,6 +33,7 @@ const render = function () {
             <IndexRoute component={Landing} />
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/landing" component={Landing} />
+            <Route path="/discover" component={Discover} />
             <Route path="/profile/:user_id" component={Profile} />
             <Route path="/recipe/:id" component={MainRecipe} />
             <Route path="/create" component={CreateRecipe} />

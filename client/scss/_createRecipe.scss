@@ -1,3 +1,19 @@
+@import '_main';
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  text-align: right;
+}
+
+.section {
+  width: 100%;
+  margin-bottom: 48px;
+}
+.section > div:last-child {
+  clear: both;
+}
 .edit-recipe-content {
   margin: 0 auto;
   width: 80%;
@@ -5,4 +21,100 @@
   flex-direction: column;
   border: 1px solid;
   padding: 20px;
+}
+
+.create-input {
+  display: inline-block;
+  height: 1.2em;
+  line-height: 1.2em;
+  position: relative;
+  padding: 16px 8px;
+  border: solid;
+  border-radius: 4px;
+  font-size: 1.2em;
+  color: $color5;
+  background-color: $color4;
+  width: 96px;
+}
+.small-input {
+  width: 48px;
+}
+.medium-input {
+  width: 192px;
+}
+.large-input {
+  width: 192px;
+}
+.xl-input {
+  width: 384px;
+}
+
+.create-input:focus, .create-input:active {
+  background: $color3;
+}
+
+
+.input-container {
+  display: inline-block;
+  margin: 8px;
+}
+.input-list-item {
+  margin: 8px 0;
+}
+.thumbs {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  height: 160px;
+
+}
+
+.thumb {
+  margin-top: 1px;
+  margin-right: 6px;
+  margin-bottom: 6px;
+  margin-left: 6px;
+  display: inline-block;
+}
+.thumb:last-child {
+  margin-right: 1px;
+}
+.thumb:first-child {
+  margin-left: 1px;
+}
+.thumb>img {
+  outline: solid 1px $color5;
+  padding: 3px;
+  width: 120px;
+  max-height: 120px;
+}
+
+.btn {
+  display: inline-block;
+  border: 0;
+  border-radius: 4px;
+  background-color: transparent;
+  padding: 8px 16px;
+  margin: 0 16px;
+  font-size: 24px;
+  line-height: 32px;
+  transition: all 200ms;
+}
+
+.btn.btn-primary {
+  border: solid 1px $color5;
+  color: $color5;
+}
+.btn.btn-primary:hover, .btn.btn-primary:active, .btn.btn-primary:focus {
+  background-color: $color5;
+  color: $color4;
+}
+
+.btn.btn-warning {
+  border: solid 1px $flair;
+  color: $flair;
+}
+.btn.btn-warning:hover, .btn.btn-warning:active, .btn.btn-warning:focus {
+  background-color: $flair;
+  color: $color4;
 }

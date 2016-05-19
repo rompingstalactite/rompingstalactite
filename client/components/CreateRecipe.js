@@ -37,184 +37,238 @@ class CreateRecipe extends Component {
       <div>
         <div className="edit-recipe-content">
           <form>
-            <h3> Recipe Title: </h3>
+            <label for="title"><h3> Recipe Title: </h3></label>
             <input
               type="text"
               name="title"
               value={recipe.title}
+              className="create-input xl-input"
               onChange={(e) => updateRecipe(e)}
             /><br />
             <h3> Images: </h3>
-            {recipe.images.map((i, key) =>
-              <img src={i} data-index={key} />
-            )}
+            <div
+              className="thumbs"
+            >
+              {recipe.images.map((i, key) =>
+                <div className="thumb">
+                  <img src={i} data-index={key} />
+                </div>
+              )}
+            </div>
 
             <ImageUpload />
+            <div className="section">
+              <div className="input-container left">
+                <label><h3>Yield:</h3></label>
+                <input
+                  type="number"
+                  name="yield"
+                  value={recipe.yield}
+                  className="create-input small-input"
+                  onChange={(e) => updateRecipe(e)}
+                />
+              </div>
+              <div className="input-container">
+                <label><h3>Yield unit:</h3></label>
+                <input
+                  type="text"
+                  name="yield_unit"
+                  value={recipe.yield_unit}
+                  className="create-input medium-input"
+                  onChange={(e) => updateRecipe(e)}
+                />
+              </div>
+            </div>
+            <div className="section">
+              <h3> Ingredients: </h3>
+              <ol>
+                {recipe.ingredients.map((i, key) =>
+                  <li className="input-list-item">
+                    <input
+                      type="text"
+                      value={i}
+                      data-index={key}
+                      className="create-input xl-input"
+                      onChange={(e) => updateRecipe(e, { ingredients: recipe.ingredients })}
+                    />
+                  </li>)}
+              </ol>
+              <button
+                className="btn btn-primary"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  addField('ingredients');
+                }}
+              > add ingredient </button>
+              <button
+                className="btn btn-warning"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  removeField('ingredients');
+                }}
+              > remove ingredient </button>
+            </div>
 
-            <br />
-            yield:
-            <input
-              type="text"
-              name="yield"
-              value={recipe.yield}
-              onChange={(e) => updateRecipe(e)}
-            /><br />
-            yield_unit:
-            <input
-              type="text"
-              name="yield_unit"
-              value={recipe.yield_unit}
-              onChange={(e) => updateRecipe(e)}
-            /><br />
+            <div className="section">
+              <h3> Prep Steps: </h3>
+              <ol> {recipe.prep_steps.map((i, key) =>
+                <li className="input-list-item">
+                  <input
+                    type="text"
+                    value={i}
+                    data-index={key}
+                    className="create-input xl-input"
+                    onChange={(e) => updateRecipe(e, { prep_steps: recipe.prep_steps })}
+                  />
+                </li>)}
+              </ol>
+              <button
+                className="btn btn-primary"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  addField('prep_steps');
+                }}
+              > add Step </button>
+              <button
+                className="btn btn-warning"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  removeField('prep_steps');
+                }}
+              > remove Step </button>
+            </div>
 
-
-            <h3> Ingredients: </h3>
-            <h3> {recipe.ingredients.map((i, key) =>
+            <div className="section">
+              <label><h3>Prep Time:</h3></label>
               <input
                 type="text"
-                value={i}
-                data-index={key}
-                onChange={(e) => updateRecipe(e, { ingredients: recipe.ingredients })}
-              >
-              </input>)}
-            </h3>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                addField('ingredients');
-              }}
-            > add ingredient </button>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                removeField('ingredients');
-              }}
-            > remove ingredient </button> <br />
+                name="prep_time"
+                value={recipe.prep_time}
+                className="create-input"
+                onChange={(e) => updateRecipe(e)}
+              />
+            </div>
 
+            <div className="section">
+              <h3> Cook Steps: </h3>
+              <ol> {recipe.cook_steps.map((i, key) =>
+                <li className="input-list-item">
+                  <input
+                    type="text"
+                    value={i}
+                    data-index={key}
+                    className="create-input xl-input"
+                    onChange={(e) => updateRecipe(e, { cook_steps: recipe.cook_steps })}
+                  />
+                </li>)}
+              </ol>
+              <button
+                className="btn btn-primary"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  addField('cook_steps');
+                }}
+              > add Step </button>
+              <button
+                className="btn btn-warning"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  removeField('cook_steps');
+                }}
+              > remove Step </button>
+            </div>
 
-            <h3> Prep Steps: </h3>
-            <h3> {recipe.prep_steps.map((i, key) =>
+            <div className="section">
+              <h3>Cook Time:</h3>
               <input
                 type="text"
-                value={i}
-                data-index={key}
-                onChange={(e) => updateRecipe(e, { prep_steps: recipe.prep_steps })}
-              >
-              </input>)}
-            </h3>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                addField('prep_steps');
-              }}
-            > add Step </button>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                removeField('prep_steps');
-              }}
-            > remove Step </button>
-            <br />
-            Prep Time:
-            <input
-              type="text"
-              name="prep_time"
-              value={recipe.prep_time}
-              onChange={(e) => updateRecipe(e)}
-            /><br />
+                name="cook_time"
+                value={recipe.cook_times}
+                className="create-input medium-input"
+                onChange={(e) => updateRecipe(e)}
+              />
+            </div>
 
+            <div className="section">
+              <h3> Finish Steps: </h3>
+              <ol> {recipe.finish_steps.map((i, key) =>
+                <li className="input-list-item">
+                  <input
+                    type="text"
+                    value={i}
+                    data-index={key}
+                    className="create-input xl-input"
+                    onChange={
+                      (e) => updateRecipe(e, { finish_steps: recipe.finish_steps })}
+                  />
+                </li>
+              )}
+              </ol>
+              <button
+                className="btn btn-primary"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  addField('finish_steps');
+                }}
+              > add Step </button>
+              <button
+                className="btn btn-warning"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  removeField('finish_steps');
+                }}
+              > remove Step </button>
+            </div>
 
-            <h3> Cook Steps: </h3>
-            <h3> {recipe.cook_steps.map((i, key) =>
-              <input
-                type="text"
-                value={i}
-                data-index={key}
-                onChange={(e) => updateRecipe(e, { cook_steps: recipe.cook_steps })}
-              >
-              </input>)}
-            </h3>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                addField('cook_steps');
-              }}
-            > add Step </button>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                removeField('cook_steps');
-              }}
-            > remove Step </button>
-            <br />
-            Cook Time:
-            <input
-              type="text"
-              name="cook_time"
-              value={recipe.cook_steps}
-              onChange={(e) => updateRecipe(e)}
-            /><br />
+            <div className="section">
+              <h3> Tags: </h3>
+              <ol> {recipe.tags.map((i, key) =>
+                <li className="input-list-item">
+                  <input
+                    type="text"
+                    value={i}
+                    data-index={key}
+                    className="create-input xl-input"
+                    onChange={(e) => updateRecipe(e, { tags: recipe.tags })}
+                  />
+                </li>)}
+              </ol>
+              <button
+                className="btn btn-primary"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  addField('tags');
+                }}
+              > add Tag </button>
+              <button
+                className="btn btn-warning"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  removeField('tags');
+                }}
+              > remove Tag </button>
+            </div>
 
-
-            <h3> Finish Steps: </h3>
-            <h3> {recipe.finish_steps.map((i, key) =>
-              <input
-                type="text"
-                value={i}
-                data-index={key}
-                onChange={
-                  (e) => updateRecipe(e, { finish_steps: recipe.finish_steps })}
-              >
-              </input>
-            )}
-            </h3>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                addField('finish_steps');
-              }}
-            > add Step </button>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                removeField('finish_steps');
-              }}
-            > remove Step </button>
-            <br />
-
-            {recipeTags}
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                addField('tags');
-              }}
-            > add Tag </button>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                removeField('tags');
-              }}
-            > remove Tag </button>
-            <br />
-
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                submitRecipe(recipe, user.id);
-              }}
-            > Submit </button>
-
+            <div className="section">
+              <button
+                className="btn btn-primary"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  submitRecipe(recipe, user.id);
+                }}
+              > Submit </button>
+            </div>
           </form>
         </div>
       </div>

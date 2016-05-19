@@ -1,5 +1,9 @@
 /*import font*/
-@import url(https://fonts.googleapis.com/css?family=Muli);
+@import url(https://fonts.googleapis.com/css?family=Ovo);
+// @import url(https://fonts.googleapis.com/css?family=Muli); // serif font
+
+// $header-font: 'Ovo', serif;
+$paragraph-font: 'Muli', sans-serif;
 
 /* default base for site */
 $primary-base: #F2F2F2;
@@ -10,6 +14,12 @@ $primary-detail: #F0F0F0;
 $secondary-detail: #E2E3DF;
 $flair: #BE0031;
 
+$color1: #dad299 ; //rgba(218, 210, 153, 100)
+$color2: #b0dab9 ; //rgba(176, 218, 185, 100)
+$color3: #daffed ; //rgba(218, 255, 237, 100)
+$color4: #9bf3f0 ; //rgba(155, 243, 240, 100)
+$color5: #473198 ; //rgba(71, 49, 152, 100)
+
 $primary-text: #000;
 /* border bottom detail for nav */
 $border-detail: #E2E3DF;
@@ -17,8 +27,17 @@ $border-detail: #E2E3DF;
 body {
   margin: 0;
   background-color: $primary-base;
-  font-family: 'Muli', sans-serif;
+  font-family: $paragraph-font;
   padding-top: 32px;
+  background-color: $color1;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  font-family: $paragraph-font;
+}
+
+form, input, textarea, button {
+  font-family: $paragraph-font
 }
 
 a {
