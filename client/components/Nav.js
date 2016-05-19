@@ -13,7 +13,7 @@ class Nav extends Component {
     let { searchString } = this.props;
     let signInOut, linkToProfile;
     if (!user.id) {
-      signInOut = <a class="sign-in-text" href="/auth/google">Sign In</a>;
+      signInOut = <button class="sign-in-btn"> <a href="/auth/google">Sign In</a> </button>;
     } else {
       signInOut = <a href="/auth/signout">Sign Out</a>;
       linkToProfile = (

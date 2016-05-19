@@ -17,7 +17,7 @@ const images = [
 
 let randImage = Math.floor(Math.random() * images.length);
 let heroImageStyle = {
-  background: 'linear-gradient(rgba(50, 30, 45, 0.5), rgba(130, 20, 45, 0.5)), url(' + images[randImage] +')',
+  background: 'linear-gradient(rgba(50, 30, 45, 0.5), rgba(3, 79, 145, 0.5)), url(' + images[randImage] +')',
   // backgroundImage: '',
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
