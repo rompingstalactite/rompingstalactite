@@ -60,10 +60,16 @@ class MainRecipe extends Component {
 
     if (recipe.tags) {
       recipeTags = (
-        <h4> tags: {recipe.tags.map(t => <Link
-          to={`/recipe/${t}`}
-          className="recipe-entry-title"
-        >{t}</Link>)} </h4>
+        <div>
+          <h5 className="tags-title">tags:</h5>
+          <ul className="tags-list">
+            {recipe.tags.map(t => <li className="tag">
+              <Link
+                to={`/recipe/${t}`}
+              >{t}</Link>
+            </li>)}
+          </ul>
+        </div>
       );
     }
 
