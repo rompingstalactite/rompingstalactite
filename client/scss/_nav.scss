@@ -21,30 +21,30 @@
 
 }
 
-button {
-  font-family: 'Muli', sans-serif;
-  background-color: transparent;
-  border-color: transparent;
-  font-size: 18px
-}
-
-a:link {
-  color: black
-}
-
-a:hover {
-  color: 48726F
-}
-
-a:active {
-  color: black
-}
-
-a:visited {
-  color: black
-}
 
 .nav-bar > * {
+  button {
+    font-family: 'Muli', sans-serif;
+    background-color: transparent;
+    border-color: transparent;
+    font-size: 18px;
+  }
+
+  a:link {
+    color: black;
+  }
+
+  a:hover {
+    color: gray;
+  }
+
+  a:active {
+    color: black;
+  }
+
+  a:visited {
+    color: black;
+  }
   margin: 0;
   padding: 8px 8px;
   transform: translate(0%, -16%);
