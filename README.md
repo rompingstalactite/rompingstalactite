@@ -8,13 +8,6 @@ Create the best possible version of a recipe.
 
 See the app live at [forkful.io](www.forkful.io).
 
-
-## Team
-
-  - __Product Owner__: Thomas Ingalls
-  - __Scrum Master__: Nemo Baker
-  - __Development Team Members__: Andrew Ho, Dylan Tran
-
 ## Table of Contents
 
 1. [Usage](#Usage)
@@ -27,15 +20,17 @@ See the app live at [forkful.io](www.forkful.io).
 
 ## Overview
 ### Technologies
-- __Client:__ React, Redux, webpack
+- __Client:__ React, Redux, SCSS
 - __Server:__ Node, Express
 - __Database:__ PostgreSQL
 - __Testing:__ Mocha, Chai, Karma, Enzyme
-
-### Schema Design
+- __Build:__ webpack
+- __Deployment:__ TravisCI, Heroku
 
 ### Architecture
+<img src="http://i.imgur.com/vymoBpZ.png" width="600px"/>
 
+### Schema Design
 
 ## Usage
 
@@ -122,9 +117,27 @@ The app will run on the port defined in `process.env.PORT` or default to port 80
 
 ### Roadmap
 
-View the project roadmap [here](https://github.com/rompingstalactite/rompingstalactite/issues)
+View the project roadmap [here](https://github.com/rompingstalactite/rompingstalactite/issues).
 
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+We love contributors. See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+
+## Who built this?
+
+  - __Product Owner__: [Thomas Ingalls](https://github.com/thomasingalls)
+  - __Scrum Master__: [Nemo Baker](https://github.com/nemobaker)
+  - __Development Team__: [Andrew Ho](https://github.com/andrewh0), [Dylan Tran](https://github.com/controtie)
+
+## Attribution
+
+The amazing icons in this application were from [The Noun Project](http://www.thenounproject.com).
+We used icons from these designers:
+
+- [Cristiano Zoucas](https://thenounproject.com/term/spaghetti-fork/305007/)
+- [Julien Lescuyer](https://thenounproject.com/term/discover/151658/)
+- [John Caserta](https://thenounproject.com/term/history/11223/)
+- [ImageCatalog](https://thenounproject.com/term/fork/406101/)
+
+And of course, we couldn't have built this app without the wonderful recipes from [Yummly](http://www.yummly.com) and their awesome API.
