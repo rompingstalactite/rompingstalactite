@@ -1,0 +1,1 @@
+export const FILE_PICKER_KEY = 'YOUR FILE PICKER API KEY';
