@@ -8,7 +8,7 @@ module.exports = {
   searchRecipes: (request, response, next) => {
     const queryObj = {
       name: 'search-recipe-title',
-      text: `SELECT id FROM recipes WHERE exists (SELECT TITLE FROM (SELECT UNNEST(recipes.tags)) x(recipe) where x.recipe like $1)`
+      text: `SELECT id FROM recipes WHERE title ~* $1`,
       values: [request.params.q.toString()],
     };
 
