@@ -24,6 +24,9 @@
   width: 100px;
   height: 100px;
   object-fit: cover;
+  &:hover {
+    background-color: $color1;
+  }
 }
 
 .recipe-header-thumbs {
@@ -39,6 +42,7 @@
   margin-bottom: 6px;
   margin-left: 6px;
   display: inline-block;
+
 }
 
 .recipe-header-thumb:last-child {
