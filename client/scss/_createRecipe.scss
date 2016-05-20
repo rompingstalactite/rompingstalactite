@@ -129,6 +129,15 @@ input[type=number]::-webkit-outer-spin-button {
   color: $color4;
 }
 
+.btn.btn-add {
+  border: solid 1px $color1;
+  color: $color1;
+}
+.btn.btn-add:hover, .btn.btn-add:active, .btn.btn-add:focus {
+  background-color: $color1;
+  color: $color2;
+}
+
 .btn.btn-warning {
   border: solid 1px $color6;
   color: $color6;

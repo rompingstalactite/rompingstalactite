@@ -96,7 +96,7 @@ class CreateRecipe extends Component {
                   </li>)}
               </ol>
               <button
-                className="btn btn-primary"
+                className="btn btn-add"
                 onClick={(e) => {
                   e.stopPropagation();
                   e.preventDefault();
@@ -127,7 +127,7 @@ class CreateRecipe extends Component {
                 </li>)}
               </ol>
               <button
-                className="btn btn-primary"
+                className="btn btn-add"
                 onClick={(e) => {
                   e.stopPropagation();
                   e.preventDefault();
@@ -169,7 +169,7 @@ class CreateRecipe extends Component {
                 </li>)}
               </ol>
               <button
-                className="btn btn-primary"
+                className="btn btn-add"
                 onClick={(e) => {
                   e.stopPropagation();
                   e.preventDefault();
@@ -213,7 +213,7 @@ class CreateRecipe extends Component {
               )}
               </ol>
               <button
-                className="btn btn-primary"
+                className="btn btn-add"
                 onClick={(e) => {
                   e.stopPropagation();
                   e.preventDefault();
@@ -244,7 +244,7 @@ class CreateRecipe extends Component {
                 </li>)}
               </ol>
               <button
-                className="btn btn-primary"
+                className="btn btn-add"
                 onClick={(e) => {
                   e.stopPropagation();
                   e.preventDefault();
@@ -263,7 +263,7 @@ class CreateRecipe extends Component {
 
             <div className="section">
               <button
-                className="btn btn-primary"
+                className="btn btn-add"
                 onClick={(e) => {
                   e.stopPropagation();
                   e.preventDefault();
