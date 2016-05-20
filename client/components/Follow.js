@@ -13,17 +13,19 @@ class Follow extends Component {
     super(props);
   }
 
-  componentDidMount() {
-    const { user, parent, handleGetFollowState } = this.props;
+
+  componentWillReceiveProps(nextProps) {
+    const { user, parent, handleGetFollowState } = nextProps;
     let followType;
+    if (parent.id !== this.props.parent.id) {
+      if (parent.hasOwnProperty('displayName')) {
+        followType = 'users';
+      } else {
+        followType = 'recipes';
+      }
 
-    if (parent.hasOwnProperty('displayName')) {
-      followType = 'users';
-    } else {
-      followType = 'recipes';
+      handleGetFollowState((user.id || 0), (parent.id || 0), followType);
     }
-
-    handleGetFollowState((user.id || 0), (parent.id || 0), followType);
   }
 
   render() {
@@ -35,6 +37,8 @@ class Follow extends Component {
     } else {
       followType = 'recipes';
     }
+
+    followType = 'recipes';
 
     return (
       <button
