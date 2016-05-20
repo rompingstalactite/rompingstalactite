@@ -87,9 +87,6 @@
       }
     }
   }
-  .recipe-header-buttons {
-
-  }
 }
 
 .recipe-image {
@@ -109,27 +106,30 @@
   border-radius: 5px;
 }
 
+.instruction-title {
+  margin: 0;
+}
+
 .prep, .cook, .finish {
   flex-grow: 1;
   flex-basis: 30%;
   padding: 10px;
 }
 
-.prep {
-  order: 1;
-}
-.cook {
-  order: 2;
-}
-.finish {
-  order: 3;
-}
-
-
 .ingredients {
   margin: 10px;
-  order: 4;
+  order: 1;
   flex-grow: 1;
+}
+
+.prep {
+  order: 2;
+}
+.cook {
+  order: 3;
+}
+.finish {
+  order: 4;
 }
 
 .changedParentItem {
@@ -172,9 +172,9 @@
 }
 .tag::after {
   background: $color1;
-  border-bottom: 13px solid transparent;
-  border-left: 10px solid $primary-base;
-  border-top: 13px solid transparent;
+  border-bottom: 14px solid $primary-base;
+  border-left: 12px solid $color1;
+  border-top: 14px solid $primary-base;
   content: '';
   position: absolute;
   right: 0;

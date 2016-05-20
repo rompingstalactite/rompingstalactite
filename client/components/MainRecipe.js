@@ -77,7 +77,7 @@ class MainRecipe extends Component {
     if (recipe.ingredients) {
       recipeIngredients = (
         <div className="ingredients">
-          <h4>Ingredients</h4>
+          <h4 className="instruction-title">Ingredients</h4>
           <ul>
             {recipe.ingredients.map((i) => <li> {i} </li>)}
           </ul>
@@ -89,7 +89,7 @@ class MainRecipe extends Component {
     if (recipe.prep_steps) {
       recipePrep = (
         <div className="prep">
-          <h4> Prep | Time: {recipe.prep_time} </h4>
+          <h4 className="instruction-title"> Prep | Time: {recipe.prep_time} </h4>
           <ol>
             {recipe.prep_steps.map((s) => <li> {s} </li>)}
           </ol>
@@ -101,7 +101,7 @@ class MainRecipe extends Component {
     if (recipe.cook_steps) {
       recipeCook = (
         <div className="cook">
-          <h4> Cook | Time: {recipe.cook_time} </h4>
+          <h4 className="instruction-title"> Cook | Time: {recipe.cook_time} </h4>
           <ol>
           { recipe.cook_steps.map((s) => <li> {s} </li>)}
           </ol>
@@ -113,7 +113,7 @@ class MainRecipe extends Component {
     if (recipe.finish_steps) {
       recipeFinish = (
         <div className="finish">
-          <h4> Finish </h4>
+          <h4 className="instruction-title"> Finish </h4>
           <ol>
           { recipe.finish_steps.map((s) => <li> {s} </li>)}
           </ol>
