@@ -17,6 +17,16 @@ const RecipeEntry = (props) => {
   } else {
     image = null;
   }
+
+  let author;
+  if (props.recipe.display_name) {
+    author = (<p className="recipe-entry-author" >Created by
+      {' '}<Link to={`/profile/${props.recipe.author || 1}`}>
+        {props.recipe.display_name}
+      </Link>
+    </p>);
+  }
+
   const createdTime = moment(props.recipe.created_at).fromNow();
   return (
     <div className="recipe-entry-container">
@@ -26,10 +36,10 @@ const RecipeEntry = (props) => {
         className="recipe-entry-title">
         {props.recipe.title}
         </Link>
-        <p className="recipe-entry-author" >Created by {props.recipe.display_name}</p>
+        {author}
         <span className="date" >Created {createdTime}</span>
         <div>
-          <p className="recipe-entry-description">... some description to come</p>
+          <p className="recipe-entry-description">{props.recipe.description || ''}</p>
         </div>
       </div>
     </div>
