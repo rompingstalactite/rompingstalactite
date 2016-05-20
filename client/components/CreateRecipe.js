@@ -17,23 +17,104 @@ class CreateRecipe extends Component {
     let userValidation;
     !user.id ? userValidation = "*Please Sign In To Create A Recipe" : null;
 
-    let recipeTags;
-    if (recipe.tags) {
-      recipeTags = (
-        <div>
-          <h2> Tags: </h2>
-          <h3> {recipe.tags.map((i, key) =>
+    let images;
+    if (recipe.images) {
+      images = (
+        <div
+          className="thumbs"
+        >
+          {recipe.images.map((i, key) =>
+            <div className="thumb">
+              <img src={i} data-index={key} />
+            </div>
+          )}
+        </div>
+      );
+    }
+    let ingredients;
+    if (recipe.ingredients) {
+      ingredients = (
+        <ol>
+          {recipe.ingredients.map((i, key) =>
+            <li className="input-list-item">
+              <input
+                type="text"
+                value={i}
+                data-index={key}
+                className="create-input xl-input"
+                onChange={(e) => updateRecipe(e, { ingredients: recipe.ingredients })}
+              />
+            </li>)}
+        </ol>
+      );
+    }
+    let prep_steps;
+    if (recipe.prep_steps) {
+      prep_steps = (
+        <ol> {recipe.prep_steps.map((i, key) =>
+          <li className="input-list-item">
             <input
-            type="text"
-            value={i}
-            data-index={key}
-            onChange={(e) => updateRecipe(e, { tags: recipe.tags })}
-            >
-            </input>)}
-            </h3>
-          </div>
-        );
-     }
+              type="text"
+              value={i}
+              data-index={key}
+              className="create-input xl-input"
+              onChange={(e) => updateRecipe(e, { prep_steps: recipe.prep_steps })}
+            />
+          </li>)}
+        </ol>
+      )
+    }
+    let prep_time;
+    let cook_steps;
+    if (recipe.cook_steps) {
+      cook_steps = (
+        <ol> {recipe.cook_steps.map((i, key) =>
+          <li className="input-list-item">
+            <input
+              type="text"
+              value={i}
+              data-index={key}
+              className="create-input xl-input"
+              onChange={(e) => updateRecipe(e, { cook_steps: recipe.cook_steps })}
+            />
+          </li>)}
+        </ol>
+      );
+    }
+    let finish_steps;
+    if (recipe.finish_steps) {
+      finish_steps = (
+        <ol> {recipe.finish_steps.map((i, key) =>
+          <li className="input-list-item">
+            <input
+              type="text"
+              value={i}
+              data-index={key}
+              className="create-input xl-input"
+              onChange={
+                (e) => updateRecipe(e, { finish_steps: recipe.finish_steps })}
+            />
+          </li>
+        )}
+        </ol>
+      );
+    }
+    let tags;
+    if (recipe.tags) {
+      tags = (
+        <ol> {recipe.tags.map((i, key) =>
+          <li className="input-list-item">
+            <input
+              type="text"
+              value={i}
+              data-index={key}
+              className="create-input xl-input"
+              onChange={(e) => updateRecipe(e, { tags: recipe.tags })}
+            />
+          </li>)}
+        </ol>
+      );
+    }
 
     return (
       <div>
@@ -52,16 +133,7 @@ class CreateRecipe extends Component {
               onChange={(e) => updateRecipe(e)}
             /><br />
             <h2> Images: </h2>
-            <div
-              className="thumbs"
-            >
-              {recipe.images.map((i, key) =>
-                <div className="thumb">
-                  <img src={i} data-index={key} />
-                </div>
-              )}
-            </div>
-
+            {images}
             <ImageUpload />
             <div className="section">
               <div className="input-container left">
@@ -87,18 +159,7 @@ class CreateRecipe extends Component {
             </div>
             <div className="section">
               <h2> Ingredients: </h2>
-              <ol>
-                {recipe.ingredients.map((i, key) =>
-                  <li className="input-list-item">
-                    <input
-                      type="text"
-                      value={i}
-                      data-index={key}
-                      className="create-input xl-input"
-                      onChange={(e) => updateRecipe(e, { ingredients: recipe.ingredients })}
-                    />
-                  </li>)}
-              </ol>
+              {ingredients}
               <button
                 className="btn btn-add"
                 onClick={(e) => {
@@ -119,17 +180,7 @@ class CreateRecipe extends Component {
 
             <div className="section">
               <h2> Prep Steps: </h2>
-              <ol> {recipe.prep_steps.map((i, key) =>
-                <li className="input-list-item">
-                  <input
-                    type="text"
-                    value={i}
-                    data-index={key}
-                    className="create-input xl-input"
-                    onChange={(e) => updateRecipe(e, { prep_steps: recipe.prep_steps })}
-                  />
-                </li>)}
-              </ol>
+              {prep_steps}
               <button
                 className="btn btn-add"
                 onClick={(e) => {
@@ -161,17 +212,7 @@ class CreateRecipe extends Component {
 
             <div className="section">
               <h2> Cook Steps: </h2>
-              <ol> {recipe.cook_steps.map((i, key) =>
-                <li className="input-list-item">
-                  <input
-                    type="text"
-                    value={i}
-                    data-index={key}
-                    className="create-input xl-input"
-                    onChange={(e) => updateRecipe(e, { cook_steps: recipe.cook_steps })}
-                  />
-                </li>)}
-              </ol>
+              {cook_steps}
               <button
                 className="btn btn-add"
                 onClick={(e) => {
@@ -203,19 +244,7 @@ class CreateRecipe extends Component {
 
             <div className="section">
               <h2> Finish Steps: </h2>
-              <ol> {recipe.finish_steps.map((i, key) =>
-                <li className="input-list-item">
-                  <input
-                    type="text"
-                    value={i}
-                    data-index={key}
-                    className="create-input xl-input"
-                    onChange={
-                      (e) => updateRecipe(e, { finish_steps: recipe.finish_steps })}
-                  />
-                </li>
-              )}
-              </ol>
+              {finish_steps}
               <button
                 className="btn btn-add"
                 onClick={(e) => {
@@ -236,17 +265,7 @@ class CreateRecipe extends Component {
 
             <div className="section">
               <h2> Tags: </h2>
-              <ol> {recipe.tags.map((i, key) =>
-                <li className="input-list-item">
-                  <input
-                    type="text"
-                    value={i}
-                    data-index={key}
-                    className="create-input xl-input"
-                    onChange={(e) => updateRecipe(e, { tags: recipe.tags })}
-                  />
-                </li>)}
-              </ol>
+              {tags}
               <button
                 className="btn btn-add"
                 onClick={(e) => {
