@@ -189,6 +189,7 @@ class MainRecipe extends Component {
     if (recipe.showParentSteps) {
       parentSteps = (
         <div className="parent-recipe-instructions">
+          <h2> Parent Steps </h2>
           {parentRecipeIngredients}
           {parentRecipePrep}
           {parentRecipeCook}
