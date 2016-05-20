@@ -24,3 +24,16 @@
 #link-continue {
   color: $primary-base;
 }
+
+.footer {
+  a {
+    color: #687F72;
+  }
+  a:hover {
+    color: #035AA6 !important;
+    text-decoration: underline;
+  }
+  a:visited {
+    color: #687F72;
+  }
+}
