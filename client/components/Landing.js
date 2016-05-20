@@ -32,7 +32,7 @@ const Landing = () => (
           <img style={{display: 'block', margin: '14px auto', maxWidth: '300px'}} className="landing-content-image" src="../assets/forkful-large.svg"></img>
         </div>
         <div style={{marginTop: '48px'}} className="hero-content-text">
-          <h1 style={{color: 'white', marginBottom: '0px'}} className="hero-tagline col-2-3">Cook. Iterate. Repeat.</h1>
+          <h1 style={{color: 'white', marginBottom: '0px'}} className="hero-tagline col-2-3">Cook. Modify. Repeat.</h1>
           <h3 style={{color: 'white', marginTop: '8px', fontWeight: 'lighter'}} className="hero-tagline col-2-3">Forkful helps you perfect your next meal by tracking different iterations of recipes.</h3>
         </div>
         <div style={{margin: '40px 10px', textAlign: 'center'}} className="hero-content-signin col-1-1">
