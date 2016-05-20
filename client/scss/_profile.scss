@@ -11,6 +11,9 @@
   float: left;
   padding-top: 18px;
   padding-left: 270px;
+  .recipes-created {
+    margin-top: 10px;
+  }
 }
 
 img.profile-avatar {
@@ -32,7 +35,7 @@ img.profile-avatar {
 
 .profile-username {
   font-size: 36px;
-  width: auto;
+  text-align: center;
   white-space: nowrap;
 }
 

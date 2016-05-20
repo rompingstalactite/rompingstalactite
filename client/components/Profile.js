@@ -36,11 +36,11 @@ class Profile extends Component {
               type="My Recipes"
               recipes={recipesCreated}
             />
-            <RecipeContainer
+            {/*<RecipeContainer
               className="recipes-followed"
               type="Followed Recipes"
               recipes={recipesFollowed}
-            />
+            />*/}
             <RecipeContainer
               className="recipes-liked"
               type="Liked Recipes"

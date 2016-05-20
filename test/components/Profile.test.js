@@ -30,6 +30,6 @@ describe('<Profile />', () => {
   });
 
   it('should render three recipe containers', () => {
-    expect(wrapper.find(RecipeContainer)).to.have.length(3);
+    expect(wrapper.find(RecipeContainer)).to.have.length(2);
   })
 });
