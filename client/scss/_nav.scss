@@ -91,3 +91,13 @@ a:hover{
   border: none;
   font-size: 12px;
 }
+
+.logo {
+  display: inline-block;
+  max-height: 26px;
+  max-width: 141px;
+}
+
+.logo:hover > path {
+  fill: $color5;
+}
