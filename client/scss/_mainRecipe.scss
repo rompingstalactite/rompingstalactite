@@ -39,9 +39,6 @@
   margin-bottom: 6px;
   margin-left: 6px;
   display: inline-block;
-  &:hover {
-    background-color: #ccc;
-  }
 }
 
 .recipe-header-thumb:last-child {
@@ -148,10 +145,7 @@
   margin: 4px 4px 4px 0px;
 }
 .tag {
-  display: inline-block;
-  text-decoration: none;
   list-style: none;
-  padding: 0;
   margin: 4px;
   background: $color1;
   border-radius: 3px 0 0 3px;
