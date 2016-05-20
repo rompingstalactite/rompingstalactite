@@ -15,14 +15,14 @@
   font-size: 24px;
   z-index:1;
   margin-top: -32px;
-  background: #73D786;
-  button:hover{
-    color: #035AA6;
+  background: $color1;
+  button:hover {
+    color: $color5;
   }
 }
 
 a:hover{
-  color: #035AA6;
+  color: $color5;
 }
 
 .nav-bar > * {
@@ -32,23 +32,23 @@ a:hover{
     border-color: transparent;
     font-size: 24px;
     cursor: pointer;
-    color: #FFFFFF;
+    color: $primary-base;
   }
 
   a:visited{
-    color: #FFFFFF;
+    color: $primary-base;
   }
 
   a:hover{
-    color: #035AA6 !important;
+    color: $color5 !important;
   }
 
   a:link {
-    color: #FFFFFF;
+    color: $primary-base;
   }
 
   a:active {
-    color: #FFFFFF;
+    color: $primary-base;
   }
 
   margin: 0;

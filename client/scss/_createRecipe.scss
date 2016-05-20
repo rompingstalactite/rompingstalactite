@@ -109,13 +109,13 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .btn:disabled {
-  border: solid 1px #333 !important;
-  color: #333 !important;
+  border: solid 1px $color6 !important;
+  color: $color6 !important;
   background: transparent !important;
 }
 .btn:disabled:hover, .btn:disabled:active, .btn:disabled:focus {
-  border: solid 1px #333 !important;
-  color: #333 !important;
+  border: solid 1px $color6 !important;
+  color: $color6 !important;
   background: transparent !important;
 
 }
@@ -130,11 +130,11 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .btn.btn-warning {
-  border: solid 1px $flair;
-  color: $flair;
+  border: solid 1px $color6;
+  color: $color6;
 }
 .btn.btn-warning:hover, .btn.btn-warning:active, .btn.btn-warning:focus {
-  background-color: $flair;
+  background-color: $color6;
   color: $color4;
 }
 

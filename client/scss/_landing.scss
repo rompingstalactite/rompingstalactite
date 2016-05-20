@@ -1,3 +1,5 @@
+@import '_main.scss';
+
 #google-signin {
   background-image: url('../assets/btn_google_signin_light_normal_web@2x.png');
   background-size: contain;
@@ -16,9 +18,9 @@
 
 #link-continue:hover {
   cursor: pointer;
-  color: #b0dab9;
+  color: $color2;
 }
 
 #link-continue {
-  color: white;
+  color: $primary-base;
 }

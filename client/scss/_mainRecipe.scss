@@ -1,4 +1,4 @@
-@import '_main';
+@import '_main.scss';
 
 .recipe-header-card {
   width: 50%;
@@ -51,7 +51,7 @@
   margin-left: 1px;
 }
 .recipe-header-thumb>img {
-  outline: solid 1px black;
+  outline: solid 1px $color4;
   padding: 3px;
 }
 
@@ -153,7 +153,7 @@
   list-style: none;
   padding: 0;
   margin: 4px;
-  background: #eee;
+  background: $color1;
   border-radius: 3px 0 0 3px;
   color: $color5;
   display: inline-block;
@@ -179,7 +179,7 @@
 .tag::after {
   background: $color1;
   border-bottom: 13px solid transparent;
-  border-left: 10px solid #eee;
+  border-left: 10px solid $primary-base;
   border-top: 13px solid transparent;
   content: '';
   position: absolute;
