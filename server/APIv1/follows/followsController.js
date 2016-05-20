@@ -23,7 +23,10 @@ export const getUserFollowState = (request, response) => {
 export const getRecipeFollowState = (request, response) => {
   // in query: .userID, .targetID
   // or in body: .userID, .targetID
-  const queryObj = Object.keys(request.query).length !== 0 ? request.query : request.body;
+  const queryObj = {
+    userID: request.query.userID || request.body.userID,
+    targetID: request.query.targetID || request.body.targetID,
+  };
   console.log('query', request.query,' or body', request.body);
   console.log('queryobj', queryObj);
 
@@ -50,7 +53,11 @@ const addRecipeFollow = (request, response) => {
   // TODO: does not verify that a user or a recipe exists before
   //       inserting a new recipe follow
   // body: .user_id, .recipe_id
-  db.query(sql('addRecipeFollow.sql'), request.body)
+  const queryObj = {
+    userID: request.query.userID || request.body.userID,
+    targetID: request.query.targetID || request.body.targetID,
+  };
+  db.query(sql('addRecipeFollow.sql'), queryObj)
     .then(data => { getRecipeFollowState(request, response); })
     .catch(error => { response.json(error); });
 };
@@ -70,7 +77,10 @@ const removeUserFollow = (request, response) => {
 const removeRecipeFollow = (request, response) => {
   // in query: .user_id, .recipe_id
   // or in body: ., .targetID
-  const queryObj = Object.keys(request.query).length !== 0 ? request.query : request.body;
+  const queryObj = {
+    userID: request.query.userID || request.body.userID,
+    targetID: request.query.targetID || request.body.targetID,
+  };
   db.query(sql('removeRecipeFollow.sql'), queryObj)
     .then(data => { getRecipeFollowState(request, response); })
     .catch(error => { response.json(error); });

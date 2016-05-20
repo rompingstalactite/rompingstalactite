@@ -1,12 +1,12 @@
 /**
 * input
-*   follower: user_id<Number>
-*   target:   recipe_id<Number>
+*   userID:     user_id<Number>
+*   targetID:   recipe_id<Number>
 *
 * returns:
-* | followcount | togglefollow |
-* |-------------|--------------|
-* | number      | boolean      |
+*   | followcount | togglefollow |
+*   |-------------|--------------|
+*   | number      | boolean      |
 */
 
 WITH recipe_of_interest AS (
@@ -18,7 +18,7 @@ WITH recipe_of_interest AS (
     recipe_id = ${targetID}
 )
 SELECT
-  count(*) AS followCount,
+  count(*) AS followcount,
   (EXISTS
     (SELECT
       1
@@ -26,6 +26,6 @@ SELECT
       recipe_of_interest
     WHERE
       user_id = ${userID})
-  ) AS toggleFollow
+  ) AS togglefollow
 FROM
   recipe_of_interest;

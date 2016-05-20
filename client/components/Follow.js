@@ -63,20 +63,24 @@ const mapDispatchToProps = (dispatch) => {
       // const targetID = 1 || targetIDparam;
       getFollowState(userID, targetID, followType)
         .then(response => {
-          dispatch(actions.toggleFollow({
-            followCount: response[0].followcount,
-            toggleFollow: response[0].togglefollow,
-          }));
+          if (response[0]){
+            dispatch(actions.toggleFollow({
+              followCount: response[0].followcount,
+              toggleFollow: response[0].togglefollow,
+            }));
+          }
         });
     },
     handleToggleFollow: (userID, targetID, followType, toggleFollow) => {
       if (!!userID) {
         updateFollow({ userID, targetID, toggleFollow }, followType)
           .then((response) => {
+            if (response[0]){
               dispatch(actions.toggleFollow({
                 followCount: response[0].followcount,
                 toggleFollow: response[0].togglefollow,
               }));
+            }
           });
       }
     },
