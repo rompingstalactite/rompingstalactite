@@ -4,6 +4,8 @@
 
 [![Build Status](https://travis-ci.org/rompingstalactite/rompingstalactite.svg?branch=master)](https://travis-ci.org/rompingstalactite/rompingstalactite)
 
+![Forkful Brand](http://i.imgur.com/ZpbxMUp.png)
+
 Forkful lets chefs track previous iterations of recipes by allowing them view a recipe's version history. By "forking" an existing recipe, chefs can copy and edit the list of ingredients and steps. If a recipe is missing, they can create their own and allow others to modify it. Forkful is a great way for chefs to collaborate on and improve a recipe.
 
 See the app live at [forkful.io](www.forkful.io) and get started!
@@ -31,7 +33,7 @@ See the app live at [forkful.io](www.forkful.io) and get started!
 ## Overview
 ### Usage
 
-GIF
+<img src="http://i.giphy.com/TZqVXVdZWrzaw.gif" width="600px"/>
 
 ### Technologies
 
@@ -49,7 +51,7 @@ This app is written completely in ECMAScript 2015 (ES6).
 
 ### Schema Design
 
-![Schema Design](http://i.imgur.com/hM0IasM.png)
+<img src="http://i.imgur.com/hM0IasM.png" width="600px"/>  
 
 ## Requirements
 
