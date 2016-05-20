@@ -71,7 +71,7 @@ module.exports = (app, express) => {
    */
   app.get('/api/v1/likes', lc.getLikeState);
   app.post('/api/v1/likes', checkAuth, lc.addOrDeleteRecipeLike);
-  app.get('/api/v1/likes/:user', checkAuth, lc.getAllLikedRecipes);
+  app.get('/api/v1/likes/:user', lc.getAllLikedRecipes);
 
    /**
    * FPKey
@@ -85,11 +85,11 @@ module.exports = (app, express) => {
   app.get('/api/v1/follows/', (req, res) => { res.status(403); res.send('forbidden'); });
 
   app.get('/api/v1/follows/users', fc.getUserFollowState);
-  app.post('/api/v1/follows/users', /* checkAuth,*/ fc.addOrRemoveUserFollow);
+  app.post('/api/v1/follows/users', checkAuth, fc.addOrRemoveUserFollow);
   app.get('/api/v1/follows/users/:user', /* checkAuth,*/ fc.getAllFollowedUsers);
 
   app.get('/api/v1/follows/recipes', fc.getRecipeFollowState);
-  app.post('/api/v1/follows/recipes', /* checkAuth,*/ fc.addOrRemoveRecipeFollow);
+  app.post('/api/v1/follows/recipes', checkAuth, fc.addOrRemoveRecipeFollow);
   app.get('/api/v1/follows/recipes/:user', /* checkAuth,*/ fc.getAllFollowedRecipes);
 
   /**

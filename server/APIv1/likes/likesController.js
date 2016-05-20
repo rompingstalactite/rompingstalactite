@@ -4,14 +4,14 @@ const db = pgp(cn);
 
 
 module.exports = {
-  addOrDeleteRecipeLike: (request, response, next) => {
+  addOrDeleteRecipeLike: (request, response) => {
     if (request.body.toggleLike) {
-      module.exports.deleteLikedRecipe(request, response, next);
+      module.exports.deleteLikedRecipe(request, response);
     } else {
-      module.exports.addLikedRecipe(request, response, next);
+      module.exports.addLikedRecipe(request, response);
     }
   },
-  getLikeState: (request, response, next) => {
+  getLikeState: (request, response) => {
     const userID = request.query.userID || request.body.userID;
     const recipeID = request.query.recipeID || request.body.recipeID;
     const newQueryObj = {
@@ -40,13 +40,11 @@ module.exports = {
     };
     db.one(newQueryObj).then(data => {
       response.json(data);
-      // next();
     }).catch((error) => {
       response.json(error);
-      // next();
     });
   },
-  addLikedRecipe: (request, response, next) => {
+  addLikedRecipe: (request, response) => {
     const newQueryObj = {
       name: 'add-liked-recipe',
       text: `-- WITH upsert AS (
@@ -91,22 +89,15 @@ module.exports = {
     };
 
     db.query(newQueryObj).then(data => {
-      // console.log(data);
+      console.log(data);
       // response.json(data);
-      module.exports.getLikeState(request, response, next);
-      // next();
+      module.exports.getLikeState(request, response);
     }).catch((error) => {
       response.json(error);
-      // possible errors:
-      // recipe does not exist
-      // user does not exist
-      // both recipe and user do not exist
-      // query failed
-      // next();
     });
   },
 
-  deleteLikedRecipe: (request, response, next) => {
+  deleteLikedRecipe: (request, response) => {
     const newQueryObj = {
       name: 'delete-liked-recipe',
       text: `-- WITH deleting AS (
@@ -149,18 +140,16 @@ module.exports = {
     db.query(newQueryObj).then(data => {
       // console.log(data);
       // response.json(data);
-      module.exports.getLikeState(request, response, next);
-      // next();
+      module.exports.getLikeState(request, response);
     }).catch((error) => {
       response.json(error);
       // console.log(error);
       // possible errors:
       // query failed for unknown reason
-      // next();
     });
   },
 
-  getAllLikedRecipes: (request, response, next) => {
+  getAllLikedRecipes: (request, response) => {
     const newQueryObj = {
       name: 'get-my-favorite-recipes',
       text: `SELECT
@@ -176,18 +165,17 @@ module.exports = {
       values: [
         request.params.user,
       ],
-    }
+    };
 
     db.query(newQueryObj)
       .then((data) => {
         response.status(200);
         response.json(data);
-        // next();
       })
       .catch((error) => {
+        console.log(error);
         response.json(error);
-        // console.log(error);
-        // next();
+
       });
   }
 };
