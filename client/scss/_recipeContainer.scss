@@ -55,6 +55,21 @@
   }
 }
 
+.recipes-smoothies {
+  position: absolute;
+  top: 970px;
+  right: 25px;
+  left: 25px;
+  .recipe-container {
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+  }
+  .recipe-container-title {
+    margin: 0 0 0 5%;
+  }
+}
+
 .recipes-top {
   position: absolute;
   top: 520px;
@@ -72,6 +87,5 @@
 
 .search-results {
   position: relative;
-  
-}
 
+}

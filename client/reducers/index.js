@@ -11,8 +11,10 @@ import toggleLike from './toggleLike.js';
 import mainRecipeImage from './mainRecipeImage.js';
 import recipeOwner from './recipeOwner.js';
 import toggleFollow from './toggleFollow.js';
+import recipesSmoothies from './recipesSmoothies.js';
 
 const rootReducer = combineReducers({
+  recipesSmoothies,
   recipesFeatured,
   recipesSearched,
   recipesTop,

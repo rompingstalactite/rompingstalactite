@@ -14,7 +14,7 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { recipesFeatured, recipesTop } = this.props;
+    const { recipesSmoothies, recipesFeatured, recipesTop } = this.props;
     return (
       <div className="dashboard">
         <h1 className="dashboard-title">Discover - Forkful's most popular receipes</h1>
@@ -28,6 +28,11 @@ class Dashboard extends Component {
           type="Most Forked Recipes"
           recipes={ recipesTop }
         />
+        <RecipeContainer
+          className="recipes-smoothies"
+          type="Summer Appetizers"
+          recipes={recipesSmoothies}
+        />
       </div>
     );
   }
@@ -36,6 +41,7 @@ class Dashboard extends Component {
 const mapStateToProps = (state) => {
   return {
     recipesFeatured: state.recipesFeatured,
+    recipesSmoothies: state.recipesSmoothies,
     recipesTop: state.recipesTop,
   };
 };
