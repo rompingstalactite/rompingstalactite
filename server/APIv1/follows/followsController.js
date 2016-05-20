@@ -109,7 +109,7 @@ export const addOrRemoveRecipeFollow = (request, response) => {
 export const getAllFollowedUsers = (request, response) => {
   // TODO: pagination
   // in query: .user_id
-  db.query('getAllFollowedUsers.sql', request.query)
+  db.query(sql('getAllFollowedUsers.sql'), request.query)
     .then(data => { response.json(data); })
     .catch(error => { response.data(error); });
 };
@@ -117,7 +117,7 @@ export const getAllFollowedUsers = (request, response) => {
 export const getAllFollowedRecipes = (request, response) => {
   // TODO: pagination
   // in query: .user_id
-  db.query('getAllFollowedRecipes.sql', request.query)
+  db.query(sql('getAllFollowedRecipes.sql'), request.query)
     .then(data => { response.json(data); })
     .catch(error => { response.data(error); });
 };

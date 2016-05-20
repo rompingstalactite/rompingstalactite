@@ -14,7 +14,7 @@ if (!process.env.TRAVIS && !process.env.HEROKU) {
 }
 
 module.exports = (app, express) => {
-  app.use(morgan('dev'));
+  app.use(morgan('combined'));
   app.use(compress());
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());

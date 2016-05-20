@@ -212,7 +212,7 @@ class MainRecipe extends Component {
                 {compareParentButton}
                 <Fork recipeID={recipe.id} />
                 <Like className="recipe-main-likes" recipeID={recipe.id} />
-                <Follow parent={recipe} />
+                <Follow parent={{ id: recipe.id }} />
               </div>
             </div>
             <div className="recipe-header-container">
