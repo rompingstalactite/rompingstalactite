@@ -38,7 +38,7 @@ class CreateRecipe extends Component {
     return (
       <div>
         <div className="edit-recipe-content">
-          <form>
+          <form className="edit-recipe-form">
             <label for="title"><h3> Recipe Title: </h3></label>
             <input
               type="text"

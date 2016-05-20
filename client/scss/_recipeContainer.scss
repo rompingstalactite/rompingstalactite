@@ -2,6 +2,10 @@
   display: flex;
 }
 
+.recipe-container-title {
+  margin: 0;
+}
+
 .fork-history {
   display: flex;
   flex-direction: column;
@@ -32,13 +36,13 @@
       p {
         margin: 3px;
       }
+      .recipe-entry {
+        height: 100px;
+      }
     }
   }
 }
 
-.recipe-container-title {
-  margin: 0;
-}
 
 .recipes-featured {
   .recipe-container {
@@ -62,10 +66,12 @@
     overflow-y: hidden;
   }
   .recipe-container-title {
-    margin: 10px 0 10px 75px;
+    margin: 0 0 0 5%;
   }
 }
 
-.fork-history .recipe-container .recipe-entry {
-  height: 100px;
+.search-results {
+  position: relative;
+  
 }
+
