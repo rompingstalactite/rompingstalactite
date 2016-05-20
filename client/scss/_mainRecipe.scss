@@ -72,13 +72,13 @@
   .recipe-header-names {
     .recipe-main-split {
       display: inline-block;
-      color: #035AA6;
+      color: $color5;
       font-size: 30px;
       padding: 0 5px;
     }
     .recipe-main-author, .recipe-main-title {
       display: inline-block;
-      color: #035AA6;
+      color: $color5;
       font-size: 30px;
       padding: 0 5px;
       &:hover {
@@ -133,7 +133,7 @@
 }
 
 .changedParentItem {
-  color: red;
+  color: $color6;
 }
 .btn-small {
   font-size: 14px !important;
@@ -151,8 +151,8 @@
   border-radius: 3px 0 0 3px;
   color: $color5;
   display: inline-block;
-  height: 26px;
-  line-height: 26px;
+  height: 28px;
+  line-height: 28px;
   padding: 0 20px 0 8px;
   position: relative;
   // margin: 0 10px 10px 0;
@@ -173,7 +173,7 @@
 .tag::after {
   background: $primary-base;
   border-bottom: 14px solid transparent;
-  border-left: 12px solid $primary-base;
+  border-left: 12px solid $color1;
   border-top: 14px solid transparent;
   content: '';
   position: absolute;
