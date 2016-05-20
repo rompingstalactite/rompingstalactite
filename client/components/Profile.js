@@ -8,7 +8,8 @@ import actions from '../actions/index.js';
 class Profile extends Component {
 
   componentDidMount() {
-    const { updateProfile, id } = this.props;
+    const { updateProfile, id, recipesLiked } = this.props;
+    console.log('recipesLiked =', recipesLiked);
     updateProfile(+id);
   }
 
@@ -36,11 +37,11 @@ class Profile extends Component {
               type="My Recipes"
               recipes={recipesCreated}
             />
-            <RecipeContainer
+            {/*<RecipeContainer
               className="recipes-followed"
               type="Followed Recipes"
               recipes={recipesFollowed}
-            />
+            />*/}
             <RecipeContainer
               className="recipes-liked"
               type="Liked Recipes"
