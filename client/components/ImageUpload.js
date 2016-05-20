@@ -11,7 +11,7 @@ class ImageUpload extends Component {
     return (
       <div>
         <button
-        className="btn btn-primary"
+        className="btn btn-add"
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();

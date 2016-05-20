@@ -21,7 +21,7 @@ class CreateRecipe extends Component {
     if (recipe.tags) {
       recipeTags = (
         <div>
-          <h3> Tags: </h3>
+          <h2> Tags: </h2>
           <h3> {recipe.tags.map((i, key) =>
             <input
             type="text"
@@ -39,7 +39,7 @@ class CreateRecipe extends Component {
       <div>
         <div className="edit-recipe-content">
           <form className="edit-recipe-form">
-            <label for="title"><h3> Recipe Title: </h3></label>
+            <label for="title"><h2> Recipe Title: </h2></label>
             <input
               type="text"
               name="title"
@@ -47,7 +47,7 @@ class CreateRecipe extends Component {
               className="create-input xl-input"
               onChange={(e) => updateRecipe(e)}
             /><br />
-            <h3> Images: </h3>
+            <h2> Images: </h2>
             <div
               className="thumbs"
             >
@@ -61,7 +61,7 @@ class CreateRecipe extends Component {
             <ImageUpload />
             <div className="section">
               <div className="input-container left">
-                <label><h3>Yield:</h3></label>
+                <label><h2>Yield:</h2></label>
                 <input
                   type="number"
                   name="yield"
@@ -71,7 +71,7 @@ class CreateRecipe extends Component {
                 />
               </div>
               <div className="input-container">
-                <label><h3>Yield unit:</h3></label>
+                <label><h2>Yield unit:</h2></label>
                 <input
                   type="text"
                   name="yield_unit"
@@ -82,7 +82,7 @@ class CreateRecipe extends Component {
               </div>
             </div>
             <div className="section">
-              <h3> Ingredients: </h3>
+              <h2> Ingredients: </h2>
               <ol>
                 {recipe.ingredients.map((i, key) =>
                   <li className="input-list-item">
@@ -96,13 +96,13 @@ class CreateRecipe extends Component {
                   </li>)}
               </ol>
               <button
-                className="btn btn-primary"
+                className="btn btn-add"
                 onClick={(e) => {
                   e.stopPropagation();
                   e.preventDefault();
                   addField('ingredients');
                 }}
-              > add ingredient </button>
+              > Add Ingredient </button>
               <button
                 className="btn btn-warning"
                 onClick={(e) => {
@@ -110,11 +110,11 @@ class CreateRecipe extends Component {
                   e.preventDefault();
                   removeField('ingredients');
                 }}
-              > remove ingredient </button>
+              > Remove Ingredient </button>
             </div>
 
             <div className="section">
-              <h3> Prep Steps: </h3>
+              <h2> Prep Steps: </h2>
               <ol> {recipe.prep_steps.map((i, key) =>
                 <li className="input-list-item">
                   <input
@@ -127,13 +127,13 @@ class CreateRecipe extends Component {
                 </li>)}
               </ol>
               <button
-                className="btn btn-primary"
+                className="btn btn-add"
                 onClick={(e) => {
                   e.stopPropagation();
                   e.preventDefault();
                   addField('prep_steps');
                 }}
-              > add Step </button>
+              > Add Step </button>
               <button
                 className="btn btn-warning"
                 onClick={(e) => {
@@ -141,11 +141,11 @@ class CreateRecipe extends Component {
                   e.preventDefault();
                   removeField('prep_steps');
                 }}
-              > remove Step </button>
+              > Remove Step </button>
             </div>
 
             <div className="section">
-              <label><h3>Prep Time:</h3></label>
+              <label><h2>Prep Time:</h2></label>
               <input
                 type="text"
                 name="prep_time"
@@ -156,7 +156,7 @@ class CreateRecipe extends Component {
             </div>
 
             <div className="section">
-              <h3> Cook Steps: </h3>
+              <h2> Cook Steps: </h2>
               <ol> {recipe.cook_steps.map((i, key) =>
                 <li className="input-list-item">
                   <input
@@ -169,13 +169,13 @@ class CreateRecipe extends Component {
                 </li>)}
               </ol>
               <button
-                className="btn btn-primary"
+                className="btn btn-add"
                 onClick={(e) => {
                   e.stopPropagation();
                   e.preventDefault();
                   addField('cook_steps');
                 }}
-              > add Step </button>
+              > Add Step </button>
               <button
                 className="btn btn-warning"
                 onClick={(e) => {
@@ -183,11 +183,11 @@ class CreateRecipe extends Component {
                   e.preventDefault();
                   removeField('cook_steps');
                 }}
-              > remove Step </button>
+              > Remove Step </button>
             </div>
 
             <div className="section">
-              <h3>Cook Time:</h3>
+              <h2>Cook Time:</h2>
               <input
                 type="text"
                 name="cook_time"
@@ -198,7 +198,7 @@ class CreateRecipe extends Component {
             </div>
 
             <div className="section">
-              <h3> Finish Steps: </h3>
+              <h2> Finish Steps: </h2>
               <ol> {recipe.finish_steps.map((i, key) =>
                 <li className="input-list-item">
                   <input
@@ -213,13 +213,13 @@ class CreateRecipe extends Component {
               )}
               </ol>
               <button
-                className="btn btn-primary"
+                className="btn btn-add"
                 onClick={(e) => {
                   e.stopPropagation();
                   e.preventDefault();
                   addField('finish_steps');
                 }}
-              > add Step </button>
+              > Add Step </button>
               <button
                 className="btn btn-warning"
                 onClick={(e) => {
@@ -227,11 +227,11 @@ class CreateRecipe extends Component {
                   e.preventDefault();
                   removeField('finish_steps');
                 }}
-              > remove Step </button>
+              > Remove Step </button>
             </div>
 
             <div className="section">
-              <h3> Tags: </h3>
+              <h2> Tags: </h2>
               <ol> {recipe.tags.map((i, key) =>
                 <li className="input-list-item">
                   <input
@@ -244,13 +244,13 @@ class CreateRecipe extends Component {
                 </li>)}
               </ol>
               <button
-                className="btn btn-primary"
+                className="btn btn-add"
                 onClick={(e) => {
                   e.stopPropagation();
                   e.preventDefault();
                   addField('tags');
                 }}
-              > add Tag </button>
+              > Add Tag </button>
               <button
                 className="btn btn-warning"
                 onClick={(e) => {
@@ -258,12 +258,12 @@ class CreateRecipe extends Component {
                   e.preventDefault();
                   removeField('tags');
                 }}
-              > remove Tag </button>
+              > Remove Tag </button>
             </div>
 
             <div className="section">
               <button
-                className="btn btn-primary"
+                className="btn btn-add"
                 onClick={(e) => {
                   e.stopPropagation();
                   e.preventDefault();

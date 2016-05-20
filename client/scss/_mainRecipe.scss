@@ -1,4 +1,4 @@
-@import '_main';
+@import '_main.scss';
 
 .recipe-header-card {
   width: 50%;
@@ -39,9 +39,6 @@
   margin-bottom: 6px;
   margin-left: 6px;
   display: inline-block;
-  &:hover {
-    background-color: #ccc;
-  }
 }
 
 .recipe-header-thumb:last-child {
@@ -51,7 +48,7 @@
   margin-left: 1px;
 }
 .recipe-header-thumb>img {
-  outline: solid 1px black;
+  outline: solid 1px $color4;
   padding: 3px;
 }
 
@@ -148,12 +145,9 @@
   margin: 4px 4px 4px 0px;
 }
 .tag {
-  display: inline-block;
-  text-decoration: none;
   list-style: none;
-  padding: 0;
   margin: 4px;
-  background: #eee;
+  background: $color1;
   border-radius: 3px 0 0 3px;
   color: $color5;
   display: inline-block;
@@ -179,7 +173,7 @@
 .tag::after {
   background: $color1;
   border-bottom: 13px solid transparent;
-  border-left: 10px solid #eee;
+  border-left: 10px solid $primary-base;
   border-top: 13px solid transparent;
   content: '';
   position: absolute;

@@ -29,7 +29,7 @@ const Landing = () => (
     <div className="hero" style={heroImageStyle}>
       <div className="hero-content grid grid-pad">
         <div className="hero-content-logo col-1-3">
-          <img style={{display: 'block', margin: 'auto'}} className="landing-content-image" src="http://placehold.it/200x200"></img>
+          <img style={{display: 'block', margin: '14px auto', maxWidth: '300px'}} className="landing-content-image" src="../assets/forkful-large.svg"></img>
         </div>
         <div style={{marginTop: '48px'}} className="hero-content-text">
           <h1 style={{color: 'white', marginBottom: '0px'}} className="hero-tagline col-2-3">Cook. Iterate. Repeat.</h1>

@@ -20,11 +20,6 @@
   margin: 0 15px;
 }
 
-.recipe-entry-title {
-  font-size: 18px;
-  font-style: bold;
-}
-
 .recipe-entry-img {
   object-fit: cover;
   width: auto;
@@ -32,11 +27,15 @@
 }
 
 .recipe-entry-title {
+  font-size: 18px;
+  font-style: bold;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   color: $primary-text;
   margin: 8px 0px;
+  display: inline-block;
+  width: 100%;
 }
 
 .recipe-entry-author {
