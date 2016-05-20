@@ -6,11 +6,23 @@ const db = pgp(cn);
 module.exports = {
 
   searchRecipes: (request, response, next) => {
+    // const queryObj = {
+    //   name: 'search-recipe-title',
+    //   text: `SELECT id FROM recipes WHERE title ~* $1`,
+    //   values: [request.params.q.toString()],
+    // };
     const queryObj = {
-      name: 'search-recipe-title',
-      text: `SELECT id FROM recipes WHERE title ~* $1`,
-      values: [request.params.q.toString()],
+      name: 'search-recipe-tag',
+      text: `
+            SELECT id FROM recipes
+            WHERE recipes.title ~* $1
+            OR $1 like ANY(recipes.tags)
+            `,
+      values: [request.params.q],
     };
+
+    // functional simple title search
+    // text: `SELECT id FROM recipes WHERE title ~* $1`,
 
     db.query(queryObj)
       .then((data) => {
