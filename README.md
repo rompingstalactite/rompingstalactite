@@ -49,6 +49,7 @@ This app is written completely in ECMAScript 2015 (ES6).
 
 ### Schema Design
 
+![Schema Design](http://i.imgur.com/hM0IasM.png)
 
 ## Requirements
 
