@@ -8,8 +8,7 @@ import actions from '../actions/index.js';
 class Profile extends Component {
 
   componentDidMount() {
-    const { updateProfile, id, recipesLiked } = this.props;
-    console.log('recipesLiked =', recipesLiked);
+    const { updateProfile, id } = this.props;
     updateProfile(+id);
   }
 
