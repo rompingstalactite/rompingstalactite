@@ -2,7 +2,7 @@
 
 > Version control for recipes.
 
-[![Build Status](https://travis-ci.org/rompingstalactite/rompingstalactite.svg?branch=master)](https://travis-ci.org/rompingstalactite/rompingstalactite)
+[![Build Status](https://travis-ci.org/forkful/forkful.svg?branch=master)](https://travis-ci.org/forkful/forkful)
 
 ![Forkful Brand](http://i.imgur.com/ZpbxMUp.png)
 
