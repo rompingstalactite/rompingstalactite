@@ -257,7 +257,7 @@ module.exports = {
               FROM
                 recipes
               WHERE
-                created_at > CURRENT_TIMESTAMP - INTERVAL '1 day'
+                created_at > CURRENT_TIMESTAMP - INTERVAL '1 year'
               AND
                 parent is not null
               GROUP BY
