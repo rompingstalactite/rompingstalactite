@@ -4,7 +4,7 @@ var webpack = require('webpack');
 var PROD = (process.env.NODE_ENV === 'production');
 
 module.exports = {
-  entry: './client/index.js',
+  entry: ['bootstrap-loader', './client/index.js'],
   output: { path: __dirname, filename: '/client/bundle.js' },
   devtool: 'source-map',
   module: {
@@ -28,7 +28,10 @@ module.exports = {
       {
         test: /\.png$/,
         loader: 'url-loader'
-      }
+      },
+      { test:/bootstrap-sass[\/\\]assets[\/\\]javascripts[\/\\]/, loader: 'imports?jQuery=jquery' },
+      { test: /\.(woff2?|svg)$/, loader: 'url?limit=10000' },
+      { test: /\.(ttf|eot)$/, loader: 'file' },
     ],
   },
   externals: {
