@@ -28,7 +28,7 @@ describe('<RecipeContainer />', () => {
   });
 
   it('should render the recipe container title', () => {
-    expect(wrapper.find('h2').text()).to.equal(fakeTitle);
+    expect(wrapper.find('h3').text()).to.equal(fakeTitle);
   });
 
   it('should render all <RecipeEntry /> child components', () => {
