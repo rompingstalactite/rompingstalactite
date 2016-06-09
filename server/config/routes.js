@@ -37,8 +37,6 @@ module.exports = (app, express) => {
    */
 
   app.post('/api/v1/recipes/', checkAuth, rc.createRecipe);
-  // app.post('/api/v1/recipes/', checkAuth, rc.createRecipe);
-
   app.put('/api/v1/recipes/', rc.editRecipe);
   // app.post('/api/v1/recipes/:recipe_id', /* auth, */ forkRecipe);
 
