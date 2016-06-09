@@ -49,7 +49,6 @@ class Nav extends Component {
             </div>
 
             <div className="navbar-collapse collapse" id="abc">
-              {/*<form className="navbar-form navbar-left" style={{maxWidth: '300px'}}>*/}
                 <div className="navbar-form navbar-left form-group" style={{maxWidth: '300px'}}>
                   <input
                     type="text"
@@ -57,13 +56,7 @@ class Nav extends Component {
                     placeholder="Search for recipes"
                     onKeyDown={(e) => { e.keyCode === 13 ? search(searchString) : searchString = e.target.value }}
                   ></input>
-                  {/*<input
-                    type="submit"
-                    className="btn btn-default"
-                    onKeyDown={(e) => { e.keyCode === 13 ? search(searchString) : searchString = e.target.value }}
-                  ></input>*/}
                 </div>
-              {/*</form>*/}
 
               <ul className="nav navbar-nav navbar-right">
                 <li><a className="navbar-link" href="/dashboard">Discover</a></li>
