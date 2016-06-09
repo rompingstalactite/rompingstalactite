@@ -5,7 +5,7 @@ import { searchRecipes } from '../utils/utils.js';
 import actions from '../actions/index.js';
 import { push } from 'react-router-redux';
 import { EMPTY_RECIPE } from '../constants/EmptyRecipe.js';
-// import '../scss/_nav.scss';
+import '../scss/_nav.scss';
 
 class Nav extends Component {
   render() {
@@ -22,10 +22,10 @@ class Nav extends Component {
         </Link>);
     }
     return (
-        <nav className="navbar navbar-default navbar-fixed-top">
+        <nav className="navbar navbar-fixed-top">
           <div className="container-fluid">
             <div className="navbar-header">
-              <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#abc" aria-expanded="false">
+              <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-collapse" aria-expanded="false">
                 <span className="sr-only">Toggle navigation</span>
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
@@ -48,8 +48,8 @@ class Nav extends Component {
               </Link>
             </div>
 
-            <div className="navbar-collapse collapse" id="abc">
-                <div className="navbar-form navbar-left form-group" style={{maxWidth: '300px'}}>
+            <div className="navbar-collapse collapse" id="nav-collapse">
+                <div className="navbar-form navbar-left form-group" style={{maxWidth: '300px', boxShadow: 'none'}}>
                   <input
                     type="text"
                     className="form-control"

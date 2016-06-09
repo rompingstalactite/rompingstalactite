@@ -2,61 +2,39 @@
 @import url(https://fonts.googleapis.com/css?family=Muli);
 
 
-.nav-bar {
+.navbar {
   background-color: $primary-detail;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  height: 48px;
-  padding: 8px 0;
+  // width: 100%;
+  // align-items: center;
+  // justify-content: center;
+  // height: 48px;
+  // padding: 8px 0;
   // border-bottom: 1px solid $border-detail;
-  position: fixed;
+  // position: fixed;
   font-family: 'Muli', sans-serif;
-  font-size: 24px;
-  z-index:1;
-  margin-top: -32px;
+  // font-size: 24px;
+  // z-index:1;
+  // margin-top: -32px;
   background: $color1;
-  button:hover {
-    color: $color5;
-  }
+  // button:hover {
+    // color: $color5;
+  // }
 }
 
-a:hover{
-  color: $color5;
+.navbar-toggle .icon-bar {
+  background-color: white;
+}
+.navbar-toggle .icon-bar :hover {
+  background-color: #ddd;
 }
 
-.nav-bar > * {
-  button {
-    font-family: 'Muli', sans-serif;
-    background-color: transparent;
-    border-color: transparent;
-    font-size: 24px;
-    cursor: pointer;
-    color: $primary-base;
-  }
-
-  a:visited{
-    color: $primary-base;
-  }
-
-  a:hover{
-    color: $color5 !important;
-  }
-
-  a:link {
-    color: $primary-base;
-  }
-
-  a:active {
-    color: $primary-base;
-  }
-
-  margin: 0;
-  padding: 8px 8px;
-  transform: translate(0%, -16%);
+.navbar-link {
+  color: white;
 }
 
-
+.navbar-link :hover {
+  color: #ddd;
+}
 
 .nav-bar-left {
   float:left;
@@ -98,6 +76,6 @@ a:hover{
   max-width: 141px;
 }
 
-.logo:hover > path {
-  fill: $color5;
-}
+// .logo:hover > path {
+//   fill: $color5;
+// }
