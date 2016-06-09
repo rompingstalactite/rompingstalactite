@@ -2,7 +2,6 @@ import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import actions from '../actions/index.js';
 import { fetchCurrentUser } from '../utils/utils.js';
-import '../scss/simple-grid.scss';
 import '../scss/_main.scss';
 import '../scss/_app.scss';
 
@@ -21,6 +20,7 @@ class App extends Component {
       <div>
         <Nav />
         <div>{ children }</div>
+        <div className="footer" style={{height: '50px'}}></div>
       </div>
     );
   }
