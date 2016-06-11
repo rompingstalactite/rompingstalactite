@@ -1,6 +1,6 @@
 @import '_main.scss';
 
-#google-signin {
+#g-signin {
   background-image: url('../assets/btn_google_signin_light_normal_web@2x.png');
   background-size: contain;
   background-repeat: no-repeat;
@@ -10,7 +10,7 @@
   display: inline-block;
 }
 
-#google-signin:hover {
+#g-signin:hover {
   background-image: url('../assets/btn_google_signin_light_pressed_web@2x.png');
   max-width: 191px;
   margin: auto 0;
@@ -18,22 +18,16 @@
 
 #link-continue:hover {
   cursor: pointer;
-  color: $color2;
+  text-decoration: none;
+  color: white;
 }
 
 #link-continue {
-  color: $primary-base;
+  color: $color1;
 }
 
-.footer {
-  a {
-    color: #687F72;
-  }
-  a:hover {
-    color: #035AA6 !important;
-    text-decoration: underline;
-  }
-  a:visited {
-    color: #687F72;
-  }
+.landing-content-image {
+  width: 128px;
+  display: block;
+  margin: auto;
 }
