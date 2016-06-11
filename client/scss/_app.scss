@@ -1,0 +1,16 @@
+@import '_main.scss';
+
+.footer {
+  background-color: white;
+
+  a {
+    color: $color1;
+  }
+  a:hover {
+    color: #035AA6 !important;
+    text-decoration: underline;
+  }
+  a:visited {
+    color: $color1;
+  }
+}
