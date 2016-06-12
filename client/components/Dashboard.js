@@ -16,7 +16,7 @@ class Dashboard extends Component {
   render() {
     const { recipesSmoothies, recipesFeatured, recipesTop } = this.props;
     return (
-      <div className="dashboard container-fluid">
+      <div className="dashboard container">
         <div className="row">
           <div className="col-xs-12">
             <h1 className="dashboard-title">Discover <small>the best of Forkful</small></h1>
