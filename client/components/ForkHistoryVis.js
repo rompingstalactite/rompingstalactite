@@ -33,7 +33,7 @@ class ForkHistoryVis extends Component {
       </div>;
     }
     return (
-      <div className="history-vis" style={{margin: '10px'}}>
+      <div className="history-vis">
         <div className="history-vis-node" data-recipeInfo={recipe}>
           <span className="tooltiptext"> Current Recipe </span>
         </div>
