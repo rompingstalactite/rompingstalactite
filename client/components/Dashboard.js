@@ -24,6 +24,7 @@ class Dashboard extends Component {
         </div>
         <div className="row">
           <div className="col-xs-12">
+            <h3>Featured Recipes</h3>
             <RecipeContainer
               className="recipes-featured"
               type="Featured Recipes"
@@ -33,6 +34,7 @@ class Dashboard extends Component {
         </div>
         <div className="row">
           <div className="col-xs-12">
+          <h3>Most Forked Recipes</h3>
             <RecipeContainer
               className="recipes-top"
               type="Most Forked Recipes"
@@ -42,6 +44,7 @@ class Dashboard extends Component {
         </div>
         <div className="row">
           <div className="col-xs-12">
+          <h3>Summer Appetizers</h3>
             <RecipeContainer
               className="recipes-smoothies"
               type="Summer Appetizers"
