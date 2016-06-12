@@ -3,21 +3,19 @@ import { connect } from 'react-redux';
 import actions from '../actions/index.js';
 import { fetchFPKey } from '../utils/utils';
 const filepicker = require('filepicker-js');
-import '../scss/_createRecipe.scss';
+// import '../scss/_createRecipe.scss';
 
 class ImageUpload extends Component {
   render() {
     const { recipe, uploadPicture } = this.props;
     return (
-      <div>
         <button
-        className="btn btn-add"
-        onClick={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          uploadPicture(recipe);
-        }}>Add Pics</button>
-      </div>
+          className="btn btn-default"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            uploadPicture(recipe);
+        }}>Upload</button>
     );
   }
 }
