@@ -42,9 +42,10 @@ class Follow extends Component {
 
     return (
       <button
-        className="btn btn-primary btn-small btn-follow"
+        className="btn btn-primary btn-sm btn-follow"
         disabled={!user.id}
         onClick={ handleToggleFollow.bind(null, user.id, parent.id, followType, toggleFollow.toggleFollow) }
+        style={{marginRight: '10px'}}
       >
         Follows: {toggleFollow.followCount}
       </button>
