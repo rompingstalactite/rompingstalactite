@@ -155,7 +155,7 @@ class MainRecipe extends Component {
 
       if (recipe.parentRecipe.prep_steps) {
         parentRecipePrep = (
-          <div className="prep col-xs-12">
+          <div className="prep col-xs-12" style={{marginTop: '10px'}}>
             <h4> Preparation <small>Time: {recipe.parentRecipe.prep_time} </small></h4>
             <ol>
               {recipe.parentRecipe.prep_steps.map((s) => <li> {s} </li>)}
@@ -166,7 +166,7 @@ class MainRecipe extends Component {
 
       if (recipe.parentRecipe.cook_steps) {
         parentRecipeCook = (
-          <div className="cook col-xs-12">
+          <div className="cook col-xs-12" style={{marginTop: '10px'}}>
             <h4> Cook <small>Time: {recipe.parentRecipe.cook_time}</small></h4>
             <ol>
             { recipe.parentRecipe.cook_steps.map((s) => <li> {s} </li>)}
@@ -177,7 +177,7 @@ class MainRecipe extends Component {
 
       if (recipe.parentRecipe.finish_steps) {
         parentRecipeFinish = (
-          <div className="finish col-xs-12">
+          <div className="finish col-xs-12" style={{marginTop: '10px'}}>
             <h4> Finish </h4>
             <ol>
             { recipe.parentRecipe.finish_steps.map((s) => <li> {s} </li>)}
@@ -225,7 +225,8 @@ class MainRecipe extends Component {
                 <h4>Servings: {recipe.yield + ' ' + recipe.yield_unit} </h4>
                 {recipeTags}
               </div>
-              <div className="recipe-header-fork-history col-md-6" style={{marginTop: '20px'}}>
+              <div className="recipe-header-fork-history col-md-6">
+                <h3>Fork History</h3>
                 <RecipeContainer
                   className="fork-history"
                   type="Recipe History"
@@ -234,23 +235,25 @@ class MainRecipe extends Component {
                 <ForkHistoryVis recipe={recipe} history={historyRecipes} />
               </div>
             </div>
-            <div className="recipe-header-container row">
+          </div>
+          <div className="recipe-content-body">
+            {compareParentButton}
+            {/*<div className="recipe-instructions-parent row">*/}
+              {parentSteps}
+            {/*</div>*/}
 
+            <div className="row">
+              <div className="recipe-instructions col-sm-12">
+                <h2> Recipe Steps </h2>
+              </div>
+            </div>
+            <div className="row">
+              {recipeIngredients}
+              {recipePrep}
+              {recipeCook}
+              {recipeFinish}
             </div>
           </div>
-          {compareParentButton}
-          {/*<div className="recipe-instructions-parent row">*/}
-            {parentSteps}
-          {/*</div>*/}
-
-          <div className="recipe-instructions row">
-            <h2 className="col-xs-12"> Recipe Steps </h2>
-            {recipeIngredients}
-            {recipePrep}
-            {recipeCook}
-            {recipeFinish}
-          </div>
-
         </div>
       </div>
     );
