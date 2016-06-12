@@ -12,9 +12,9 @@
 .recipe-header-main-image {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  // align-items: center;
   > img {
-    width: 80%;
+    // width: 80%;
     height: 250px;
     object-fit: cover;
   }
@@ -52,8 +52,13 @@
   margin-left: 1px;
 }
 .recipe-header-thumb>img {
-  outline: solid 1px $color4;
+  border: solid 1px $color1;
   padding: 3px;
+  border-radius: 4px;
+}
+
+.fork-history {
+  margin-top: -20px;
 }
 
 // .recipe-header-fork-history {
@@ -167,7 +172,7 @@ ul,li {
   margin: 4px;
   background: $color1;
   border-radius: 3px 0 0 3px;
-  color: $color5;
+  color: white;
   display: inline-block;
   height: 28px;
   line-height: 28px;
@@ -178,14 +183,14 @@ ul,li {
   transition: all 0.2s;
 }
 .tag a {
-  color: $color5;
+  color: white;
   text-decoration: none;
 }
 .tag:hover {
   background-color: $color5;
 }
 .tag a:hover {
-  color: $color2;
+  color: white;
   text-decoration: none;
 }
 .tag::after {
