@@ -19,7 +19,7 @@ class App extends Component {
     return (
       <div>
         <Nav />
-        <div>{ children }</div>
+        { children }
         <div className="footer">
           <p className="text-muted text-center" style={{paddingTop: '10px', paddingBottom: '10px', margin: 0}}><small>Made by&nbsp;
             <a href="https://github.com/andrewh0">Andrew</a>,&nbsp;
