@@ -226,12 +226,12 @@ class MainRecipe extends Component {
               </div>
               <div className="recipe-header-fork-history col-md-6">
                 <h3>Fork History</h3>
+                <ForkHistoryVis recipe={recipe} history={historyRecipes} />
                 <RecipeContainer
                   className="fork-history"
                   type="Recipe History"
                   recipes={historyRecipes}
                 />
-                <ForkHistoryVis recipe={recipe} history={historyRecipes} />
               </div>
             </div>
           </div>
