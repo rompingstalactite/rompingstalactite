@@ -35,14 +35,16 @@ class MainRecipe extends Component {
     let editButton;
     if (user.id === recipe.author && user.id !== null) {
       editButton = <button
-      className="btn btn-primary btn-small btn-toggle-edit"
+      className="btn btn-primary btn-sm btn-toggle-edit"
       onClick={(e) => {
         e.preventDefault();
         e.stopPropagation();
         navToEdit(user);
-      }}>Edit Recipe</button>;
+      }}
+      style={{marginRight: '10px'}}
+      >Edit</button>;
     } else {
-      editButton = <button className="btn btn-primary btn-small btn-toggle-edit" disabled>Edit Recipe</button>
+      editButton = <button className="btn btn-primary btn-sm btn-toggle-edit" disabled style={{marginRight: '10px'}}>Edit</button>
     }
 
     let recipeImages;
@@ -61,7 +63,7 @@ class MainRecipe extends Component {
     if (recipe.tags) {
       recipeTags = (
         <div>
-          <h5 className="tags-title">tags:</h5>
+          <h4 className="tags-title">Tags:</h4>
           <ul className="tags-list">
             {recipe.tags.map(t => <li className="tag">
               <Link
@@ -88,8 +90,8 @@ class MainRecipe extends Component {
     let recipePrep;
     if (recipe.prep_steps) {
       recipePrep = (
-        <div className="prep">
-          <h4 className="instruction-title"> Prep | Time: {recipe.prep_time} </h4>
+        <div className="prep" style={{marginTop: '10px'}}>
+          <h4 className="instruction-title"> Preparation <small>Time: {recipe.prep_time}</small></h4>
           <ol>
             {recipe.prep_steps.map((s) => <li> {s} </li>)}
           </ol>
@@ -100,8 +102,8 @@ class MainRecipe extends Component {
     let recipeCook;
     if (recipe.cook_steps) {
       recipeCook = (
-        <div className="cook">
-          <h4 className="instruction-title"> Cook | Time: {recipe.cook_time} </h4>
+        <div className="cook" style={{marginTop: '10px'}}>
+          <h4 className="instruction-title"> Cook <small>Time: {recipe.cook_time}</small></h4>
           <ol>
           { recipe.cook_steps.map((s) => <li> {s} </li>)}
           </ol>
@@ -112,7 +114,7 @@ class MainRecipe extends Component {
     let recipeFinish;
     if (recipe.finish_steps) {
       recipeFinish = (
-        <div className="finish">
+        <div className="finish" style={{marginTop: '10px'}}>
           <h4 className="instruction-title"> Finish </h4>
           <ol>
           { recipe.finish_steps.map((s) => <li> {s} </li>)}
@@ -133,10 +135,10 @@ class MainRecipe extends Component {
 
       if (recipe.parentRecipe.ingredients) {
         compareParentButton = <button
-        className="btn btn-primary btn-small btn-compare-parent"
-        onClick={toggleParentSteps} >Compare to Parent</button>;
+        className="btn btn-primary btn-sm btn-compare-parent"
+        onClick={toggleParentSteps} >Toggle Previous Recipe Steps</button>;
       } else {
-        compareParentButton = <button className="btn btn-primary btn-small btn-compare-parent" disabled>Compare to Parent</button>
+        compareParentButton = <button className="btn btn-primary btn-sm btn-compare-parent" disabled>Compare to Parent</button>
       }
 
       if (recipe.parentRecipe.ingredients) {
@@ -150,11 +152,10 @@ class MainRecipe extends Component {
         );
       }
 
-
       if (recipe.parentRecipe.prep_steps) {
         parentRecipePrep = (
-          <div className="prep">
-            <h4> Prep | Time: {recipe.parentRecipe.prep_time} </h4>
+          <div className="prep" style={{marginTop: '10px'}}>
+            <h4> Preparation <small>Time: {recipe.parentRecipe.prep_time} </small></h4>
             <ol>
               {recipe.parentRecipe.prep_steps.map((s) => <li> {s} </li>)}
             </ol>
@@ -164,8 +165,8 @@ class MainRecipe extends Component {
 
       if (recipe.parentRecipe.cook_steps) {
         parentRecipeCook = (
-          <div className="cook">
-            <h4> Cook | Time: {recipe.parentRecipe.cook_time} </h4>
+          <div className="cook" style={{marginTop: '10px'}}>
+            <h4> Cook <small>Time: {recipe.parentRecipe.cook_time}</small></h4>
             <ol>
             { recipe.parentRecipe.cook_steps.map((s) => <li> {s} </li>)}
             </ol>
@@ -175,7 +176,7 @@ class MainRecipe extends Component {
 
       if (recipe.parentRecipe.finish_steps) {
         parentRecipeFinish = (
-          <div className="finish">
+          <div className="finish" style={{marginTop: '10px'}}>
             <h4> Finish </h4>
             <ol>
             { recipe.parentRecipe.finish_steps.map((s) => <li> {s} </li>)}
@@ -188,44 +189,47 @@ class MainRecipe extends Component {
     let parentSteps;
     if (recipe.showParentSteps) {
       parentSteps = (
-        <div className="parent-recipe-instructions">
-          <h2> Parent Steps </h2>
-          {parentRecipeIngredients}
-          {parentRecipePrep}
-          {parentRecipeCook}
-          {parentRecipeFinish}
+        <div className="parent-recipe-instructions row">
+          <div className="col-xs-12">
+            <h2>Previous Recipe Steps</h2>
+            <div className="recipe-instructions">
+              {parentRecipeIngredients}
+              {parentRecipePrep}
+              {parentRecipeCook}
+              {parentRecipeFinish}
+            </div>
+          </div>
         </div>
       )
     }
     return (
-      <div>
+      <div className="container">
         <div className="recipe-content">
           <div className="recipe-content-header">
-            <div className="recipe-header-meta">
-              <div className="recipe-header-names">
-                <p className="recipe-main-author" onClick={() => navToProfile(recipe.author)}>{recipeOwner}</p>
-                <p className="recipe-main-split">/</p>
-                <p className="recipe-main-title"> {recipe.title}</p>
-              </div>
-              <div className="recipe-header-buttons">
-                {editButton}
-                {compareParentButton}
-                <Fork recipeID={recipe.id} />
-                <Like className="recipe-main-likes" recipeID={recipe.id} />
-                <Follow parent={{ id: recipe.id }} />
+            <div className="recipe-header-meta row">
+              <div className="recipe-header-names col-xs-12">
+                <h1 className="recipe-main-author" ><span onClick={() => navToProfile(recipe.author)}>{recipeOwner} </span>/ {recipe.title} </h1>
               </div>
             </div>
-            <div className="recipe-header-container">
-              <div className="recipe-header-card">
+            <div className="row">
+              <div className="recipe-header-names col-md-6" style={{marginBottom:'40px'}}>
+                {/*<p className="recipe-main-split">/</p>*/}
+                {/*<p className="recipe-main-title"> {recipe.title}</p>*/}
+                <div className="recipe-header-buttons" style={{marginTop: '20px', marginBottom: '10px'}}>
+                  {editButton}
+                  <Fork recipeID={recipe.id} />
+                  <Like className="recipe-main-likes" recipeID={recipe.id} style={{marginRight: '10px'}} />
+                  <Follow parent={{ id: recipe.id }} />
+                </div>
                 <div className="recipe-header-main-image">
                   <img src={mainRecipeImage} />
-
                   {recipeImages}
                 </div>
                 <h4>Servings: {recipe.yield + ' ' + recipe.yield_unit} </h4>
                 {recipeTags}
               </div>
-              <div className="recipe-header-fork-history">
+              <div className="recipe-header-fork-history col-md-6">
+                <h3>Fork History</h3>
                 <ForkHistoryVis recipe={recipe} history={historyRecipes} />
                 <RecipeContainer
                   className="fork-history"
@@ -235,18 +239,24 @@ class MainRecipe extends Component {
               </div>
             </div>
           </div>
+          <div className="recipe-content-body">
+            {compareParentButton}
+            {/*<div className="recipe-instructions-parent row">*/}
+              {parentSteps}
+            {/*</div>*/}
 
-          <div className="recipe-instructions-parent">
-            {parentSteps}
+            <div className="row">
+              <div className="col-xs-12">
+                <h2> Recipe Steps </h2>
+                <div className="recipe-instructions">
+                  {recipeIngredients}
+                  {recipePrep}
+                  {recipeCook}
+                  {recipeFinish}
+                </div>
+              </div>
+            </div>
           </div>
-
-          <div className="recipe-instructions">
-            {recipeIngredients}
-            {recipePrep}
-            {recipeCook}
-            {recipeFinish}
-          </div>
-
         </div>
       </div>
     );

@@ -17,56 +17,54 @@ const images = [
 
 let randImage = Math.floor(Math.random() * images.length);
 let heroImageStyle = {
-  background: 'linear-gradient(rgba(50, 30, 45, 0.5), rgba(3, 79, 145, 0.5)), url(' + images[randImage] +')',
+  background: 'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(' + images[randImage] +')',
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
   backgroundPosition: 'center center',
-  paddingTop: '100px',
+  marginBottom: 0,
+  // paddingTop: '100px',
 };
 
 const Landing = () => (
   <div className="landing">
-    <div className="hero" style={heroImageStyle}>
-      <div className="hero-content grid grid-pad">
-        <div className="hero-content-logo col-1-3">
-          <img style={{display: 'block', margin: '14px auto', maxWidth: '300px'}} className="landing-content-image" src="../assets/forkful-large.svg"></img>
+    <div className="jumbotron" style={heroImageStyle}>
+      <div className="container">
+        <div className="hero-content-logo">
+          <img
+            style={{display: 'block', margin: '14px auto', maxWidth: '150px'}}
+            src="../assets/forkful-large.svg">
+          </img>
         </div>
-        <div style={{marginTop: '48px'}} className="hero-content-text">
-          <h1 style={{color: 'white', marginBottom: '0px'}} className="hero-tagline col-2-3">Cook. Modify. Repeat.</h1>
-          <h3 style={{color: 'white', marginTop: '8px', fontWeight: 'lighter'}} className="hero-tagline col-2-3">Forkful helps you perfect your next meal by tracking different iterations of recipes.</h3>
-        </div>
-        <div style={{margin: '40px 10px', textAlign: 'center'}} className="hero-content-signin col-1-1">
+        <h1 style={{color: 'white', marginBottom: '0px'}} className="hero-tagline text-center">Cook. Modify. Repeat.</h1>
+        <p style={{color: 'white'}} className="hero-tagline text-center">Forkful helps you perfect your next meal by tracking different iterations of recipes.</p>
+        <div style={{margin: '20px 10px'}} className="hero-content-signin text-center">
           <a href="/auth/google" style={{color: 'white'}}>
-            {/*<img style={{display: 'block', margin: 'auto'}} className="google-signin" src="../assets/btn_google_signin_light_normal_web@2x.png"/>*/}
-            <div id="google-signin"/>
+            <div id="g-signin"/>
           </a>
-          <a href="/dashboard">
-            <h4 id="link-continue" style={{textAlign: 'center'}}>or, continue without signing in</h4>
+          <a href="/dashboard" id="link-continue">
+            <h6>or, continue without signing in</h6>
           </a>
         </div>
       </div>
     </div>
-    <div className="grid grid-pad landing-content">
-      <div style={{marginBottom: '48px'}} className="col-1-3 landing-content-blurb">
-        <h3 style={{textAlign: 'center'}} className="landing-content-title">Fork Recipes</h3>
-        <p style={{height: '32px', textAlign: 'center', marginBottom: '16px', color: '#687F72'}} className="landing-content-text">"Fork" a recipe to modify it and make it your own.</p>
-        <img style={{width: '150px', display: 'block', margin: 'auto'}} className="landing-content-image" src="../assets/fork.png"></img>
+    <div className="container-fluid" style={{backgroundColor: 'white', paddingTop: '30px', paddingBottom: '30px'}}>
+      <div className="row">
+        <div className="col-md-4">
+          <h3 className="landing-content-title text-center">Fork Recipes</h3>
+          <p className="landing-content-text text-center text-muted">"Fork" a recipe to modify it and make it your own.</p>
+          <img className="landing-content-image" src="../assets/fork.png"></img>
+        </div>
+        <div className="col-md-4">
+          <h3 className="landing-content-title text-center">Recipe History</h3>
+          <p className="landing-content-text text-center text-muted">See how recipes have changed over time.</p>
+          <img className="landing-content-image" src="../assets/history.png"></img>
+        </div>
+        <div className="col-md-4">
+          <h3 className="landing-content-title text-center">Explore</h3>
+          <p className="landing-content-text text-center text-muted">Browse our most popular recipes and get cooking!</p>
+          <img className="landing-content-image" src="../assets/explore.png"></img>
+        </div>
       </div>
-      <div style={{marginBottom: '48px'}} className="col-1-3 landing-content-blurb">
-        <h3 style={{textAlign: 'center'}} className="landing-content-title">Recipe History</h3>
-        <p style={{height: '32px', textAlign: 'center', marginBottom: '16px', color: '#687F72'}} className="landing-content-text">See how recipes have changed over time.</p>
-        <img style={{width: '150px', display: 'block', margin: 'auto'}} className="landing-content-image" src="../assets/history.png"></img>
-      </div>
-      <div style={{marginBottom: '48px'}} className="col-1-3 landing-content-blurb">
-        <h3 style={{textAlign: 'center'}} className="landing-content-title">Explore</h3>
-        <p style={{height: '32px', textAlign: 'center', marginBottom: '16px', color: '#687F72'}} className="landing-content-text">Browse our most popular recipes and get cooking!</p>
-        <img style={{width: '150px', display: 'block', margin: 'auto'}} className="landing-content-image" src="../assets/explore.png"></img>
-      </div>
-    </div>
-    <div className="footer">
-      <p style={{textAlign: 'center', color: '#687F72', size: '8px'}}>Made by <a href="https://github.com/andrewh0">Andrew</a>, <a href="https://github.com/controtie">Dylan</a>, <a href="https://github.com/nemobaker">Nemo</a>, and <a href="https://github.com/thomasingalls">Thomas</a>.
-        <br/>Recipes powered by <a href="http://www.yummly.com">Yummly</a>. Icons from <a href="http://www.thenounproject.com">The Noun Project</a>.
-      </p>
     </div>
   </div>
 );

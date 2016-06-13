@@ -15,14 +15,33 @@ class CreateRecipe extends Component {
     const { user, recipe, addField, removeField, updateRecipe, submitRecipe } = this.props;
 
     let userValidation;
-    !user.id ? userValidation = "*Please Sign In To Create A Recipe" : null;
+    !user.id ? userValidation = "You must be signed in to create a recipe." : null;
+
+    let createRecipeButton;
+    if (user.id) {
+      createRecipeButton = (
+        <button
+          className="btn btn-default"
+          onClick={(e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            submitRecipe(recipe, user.id);
+          }}
+        >Create</button>
+      );
+    } else {
+      createRecipeButton = (
+        <button
+          className="btn btn-default"
+          disabled="disabled"
+        >Create</button>
+      );
+    }
 
     let images;
     if (recipe.images) {
       images = (
-        <div
-          className="thumbs"
-        >
+        <div className="thumbs">
           {recipe.images.map((i, key) =>
             <div className="thumb">
               <img src={i} data-index={key} />
@@ -39,9 +58,10 @@ class CreateRecipe extends Component {
             <li className="input-list-item">
               <input
                 type="text"
+                placeholder="Ingredient"
                 value={i}
                 data-index={key}
-                className="create-input xl-input"
+                className="create-input large-input form-control"
                 onChange={(e) => updateRecipe(e, { ingredients: recipe.ingredients })}
               />
             </li>)}
@@ -55,12 +75,14 @@ class CreateRecipe extends Component {
           <li className="input-list-item">
             <input
               type="text"
+              placeholder="Preparation step"
               value={i}
               data-index={key}
-              className="create-input xl-input"
+              className="create-input large-input form-control"
               onChange={(e) => updateRecipe(e, { prep_steps: recipe.prep_steps })}
             />
-          </li>)}
+          </li>)
+        }
         </ol>
       )
     }
@@ -72,9 +94,10 @@ class CreateRecipe extends Component {
           <li className="input-list-item">
             <input
               type="text"
+              placeholder="Cook step"
               value={i}
               data-index={key}
-              className="create-input xl-input"
+              className="create-input large-input form-control"
               onChange={(e) => updateRecipe(e, { cook_steps: recipe.cook_steps })}
             />
           </li>)}
@@ -88,9 +111,10 @@ class CreateRecipe extends Component {
           <li className="input-list-item">
             <input
               type="text"
+              placeholder="Finish step"
               value={i}
               data-index={key}
-              className="create-input xl-input"
+              className="create-input large-input form-control"
               onChange={
                 (e) => updateRecipe(e, { finish_steps: recipe.finish_steps })}
             />
@@ -106,9 +130,10 @@ class CreateRecipe extends Component {
           <li className="input-list-item">
             <input
               type="text"
+              placeholder="Tag"
               value={i}
               data-index={key}
-              className="create-input xl-input"
+              className="create-input large-input form-control"
               onChange={(e) => updateRecipe(e, { tags: recipe.tags })}
             />
           </li>)}
@@ -117,185 +142,198 @@ class CreateRecipe extends Component {
     }
 
     return (
-      <div>
-        <div className="edit-recipe-content">
-          <form className="edit-recipe-form">
-            <div className="user-validation">
-              {userValidation}
-            </div>
+      <div className="edit-recipe-content container">
 
-            <label for="title"><h2> Recipe Title: </h2></label>
-            <input
-              type="text"
-              name="title"
-              value={recipe.title}
-              className="create-input xl-input"
-              onChange={(e) => updateRecipe(e)}
-            /><br />
-            <h2> Images: </h2>
-            {images}
-            <ImageUpload />
-            <div className="section">
-              <div className="input-container left">
-                <label><h2>Yield:</h2></label>
-                <input
-                  type="number"
-                  name="yield"
-                  value={recipe.yield}
-                  className="create-input small-input"
-                  onChange={(e) => updateRecipe(e)}
-                />
-              </div>
-              <div className="input-container">
-                <label><h2>Yield unit:</h2></label>
+        <div className="row">
+          <div className="col-xs-12">
+            <h1>Create <small>a new recipe</small></h1>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-xs-12">
+            <form className="edit-recipe-form">
+
+
+              <div className="form-group">
+                <label for="title" className="control-label">Recipe title</label>
                 <input
                   type="text"
-                  name="yield_unit"
-                  value={recipe.yield_unit}
-                  className="create-input medium-input"
+                  name="title"
+                  placeholder="Recipe title"
+                  value={recipe.title}
+                  className="form-control large-input"
                   onChange={(e) => updateRecipe(e)}
                 />
               </div>
-            </div>
-            <div className="section">
-              <h2> Ingredients: </h2>
-              {ingredients}
-              <button
-                className="btn btn-add"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  e.preventDefault();
-                  addField('ingredients');
-                }}
-              > Add Ingredient </button>
-              <button
-                className="btn btn-warning"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  e.preventDefault();
-                  removeField('ingredients');
-                }}
-              > Remove Ingredient </button>
-            </div>
 
-            <div className="section">
-              <h2> Prep Steps: </h2>
-              {prep_steps}
-              <button
-                className="btn btn-add"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  e.preventDefault();
-                  addField('prep_steps');
-                }}
-              > Add Step </button>
-              <button
-                className="btn btn-warning"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  e.preventDefault();
-                  removeField('prep_steps');
-                }}
-              > Remove Step </button>
-            </div>
+              <div className="form-group">
+                <label className="control-label">Images</label><br/>
+                <ImageUpload/>
+                {images}
+              </div>
 
-            <div className="section">
-              <label><h2>Prep Time:</h2></label>
-              <input
-                type="text"
-                name="prep_time"
-                value={recipe.prep_time}
-                className="create-input"
-                onChange={(e) => updateRecipe(e)}
-              />
-            </div>
+              <div className="form-group">
+                  <label for="yield" className="control-label">Yield</label>
+                  <input
+                    type="number"
+                    name="yield"
+                    placeholder="2"
+                    value={recipe.yield}
+                    className="create-input small-input form-control"
+                    onChange={(e) => updateRecipe(e)}
+                  />
+              </div>
 
-            <div className="section">
-              <h2> Cook Steps: </h2>
-              {cook_steps}
-              <button
-                className="btn btn-add"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  e.preventDefault();
-                  addField('cook_steps');
-                }}
-              > Add Step </button>
-              <button
-                className="btn btn-warning"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  e.preventDefault();
-                  removeField('cook_steps');
-                }}
-              > Remove Step </button>
-            </div>
+              <div className="form-group">
+                  <label for="yield_unit" className="control-label">Yield unit</label>
+                  <input
+                    type="text"
+                    name="yield_unit"
+                    placeholder="Servings"
+                    value={recipe.yield_unit}
+                    className="create-input medium-input form-control"
+                    onChange={(e) => updateRecipe(e)}
+                  />
+              </div>
 
-            <div className="section">
-              <h2>Cook Time:</h2>
-              <input
-                type="text"
-                name="cook_time"
-                value={recipe.cook_times}
-                className="create-input medium-input"
-                onChange={(e) => updateRecipe(e)}
-              />
-            </div>
+              <div className="form-group">
+                <label className="control-label">Ingredients</label>
+                {ingredients}
+                <button
+                  className="btn btn-success"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    addField('ingredients');
+                  }}
+                >Add ingredient</button>
+                <button
+                  className="btn btn-danger"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    removeField('ingredients');
+                  }}
+                >Remove ingredient</button>
+              </div>
 
-            <div className="section">
-              <h2> Finish Steps: </h2>
-              {finish_steps}
-              <button
-                className="btn btn-add"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  e.preventDefault();
-                  addField('finish_steps');
-                }}
-              > Add Step </button>
-              <button
-                className="btn btn-warning"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  e.preventDefault();
-                  removeField('finish_steps');
-                }}
-              > Remove Step </button>
-            </div>
+              <div className="form-group">
+                <label for="prep_time" className="control-label">Preparation time</label>
+                <input
+                  type="text"
+                  name="prep_time"
+                  placeholder="30 minutes"
+                  value={recipe.prep_time}
+                  className="create-input medium-input form-control"
+                  onChange={(e) => updateRecipe(e)}
+                />
+              </div>
 
-            <div className="section">
-              <h2> Tags: </h2>
-              {tags}
-              <button
-                className="btn btn-add"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  e.preventDefault();
-                  addField('tags');
-                }}
-              > Add Tag </button>
-              <button
-                className="btn btn-warning"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  e.preventDefault();
-                  removeField('tags');
-                }}
-              > Remove Tag </button>
-            </div>
+              <div className="form-group">
+                <label className="control-label">Preparation steps</label>
+                {prep_steps}
+                <button
+                  className="btn btn-success"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    addField('prep_steps');
+                  }}
+                >Add step</button>
+                <button
+                  className="btn btn-danger"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    removeField('prep_steps');
+                  }}
+                >Remove step</button>
+              </div>
 
-            <div className="section">
-              <button
-                className="btn btn-add"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  e.preventDefault();
-                  submitRecipe(recipe, user.id);
-                }}
-              > Submit </button>
-            </div>
+              <div className="form-group">
+                <label for="cook_time" className="control-label">Cook time</label>
+                <input
+                  type="text"
+                  name="cook_time"
+                  placeholder="30 minutes"
+                  value={recipe.cook_times}
+                  className="create-input medium-input form-control"
+                  onChange={(e) => updateRecipe(e)}
+                />
+              </div>
 
-          </form>
+              <div className="form-group">
+                <label className="control-label">Cook steps</label>
+                {cook_steps}
+                <button
+                  className="btn btn-success"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    addField('cook_steps');
+                  }}
+                >Add step</button>
+                <button
+                  className="btn btn-danger"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    removeField('cook_steps');
+                  }}
+                >Remove step</button>
+              </div>
+
+              <div className="form-group">
+                <label className="control-label">Finish steps</label>
+                {finish_steps}
+                <button
+                  className="btn btn-success"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    addField('finish_steps');
+                  }}
+                >Add step</button>
+                <button
+                  className="btn btn-danger"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    removeField('finish_steps');
+                  }}
+                >Remove step</button>
+              </div>
+
+              <div className="form-group">
+                <label className="control-label">Tags</label>
+                {tags}
+                <button
+                  className="btn btn-success"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    addField('tags');
+                  }}
+                >Add tag</button>
+                <button
+                  className="btn btn-danger"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    removeField('tags');
+                  }}
+                >Remove tag</button>
+              </div>
+
+              <div className="user-validation help-block">
+              {userValidation}
+              </div>
+
+              {createRecipeButton}
+            </form>
+
+          </div>
         </div>
       </div>
     );

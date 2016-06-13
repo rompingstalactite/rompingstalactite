@@ -26,7 +26,7 @@ describe('<MainRecipe />', () => {
   });
 
   it('displays the recipe title', () => {
-    expect(wrapper.find('.recipe-main-title').html()).to.contain(fakeStore.getState().recipe.title);
+    expect(wrapper.find('.recipe-main-author').html()).to.contain(fakeStore.getState().recipe.title);
   });
 
   it('displays the recipe procedures', () => {

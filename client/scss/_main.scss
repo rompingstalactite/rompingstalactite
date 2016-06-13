@@ -1,6 +1,6 @@
 /*import font*/
-@import url(https://fonts.googleapis.com/css?family=Ovo);
-// @import url(https://fonts.googleapis.com/css?family=Muli); // serif font
+// @import url(https://fonts.googleapis.com/css?family=Ovo);
+@import url(https://fonts.googleapis.com/css?family=Muli:400,300); // serif font
 
 // $header-font: 'Ovo', serif;
 $paragraph-font: 'Muli', sans-serif;
@@ -24,7 +24,7 @@ $color5: #035AA6 ; //rgba(71, 49, 152, 100)
 $color6: #BE0031 ; //rgba(190, 0, 49, 100)
 
 
-$primary-text: #080F0A;
+$primary-text: #333;
 /* border bottom detail for nav */
 $border-detail: #E2E3DF;
 
@@ -33,7 +33,7 @@ body {
   background-color: $primary-base;
   font-family: $paragraph-font;
   color: $primary-text;
-  padding-top: 32px;
+  padding-top: 50px;
   // background-color: $color1;
 }
 
@@ -41,9 +41,9 @@ p, h1, h2, h3, h4, h5, h6 {
   font-family: $paragraph-font;
 }
 
-form, input, textarea, button {
-  font-family: $paragraph-font
-}
+// form, input, textarea, button {
+//   font-family: $paragraph-font
+// }
 
 a {
   text-decoration: none;

@@ -37,7 +37,7 @@ const RecipeEntry = (props) => {
         {props.recipe.title}
         </Link>
         {author}
-        <span className="date" >Created {createdTime}</span>
+        <span className="date" >{createdTime}</span>
         <div>
           <p className="recipe-entry-description">{props.recipe.description || ''}</p>
         </div>

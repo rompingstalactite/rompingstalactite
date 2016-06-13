@@ -26,9 +26,10 @@ class Like extends Component {
 
     return (
       <button
-        className="btn btn-primary btn-small btn-like"
+        className="btn btn-primary btn-sm btn-like"
         disabled={!userID}
         onClick={handleToggleLike.bind(null, userID, recipeID, toggleLike.toggleLike)}
+        style={{marginRight: '10px'}}
       >
         Likes: {toggleLike.likeCount || '0'}
       </button>

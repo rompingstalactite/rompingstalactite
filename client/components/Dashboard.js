@@ -16,23 +16,42 @@ class Dashboard extends Component {
   render() {
     const { recipesSmoothies, recipesFeatured, recipesTop } = this.props;
     return (
-      <div className="dashboard">
-        <h1 className="dashboard-title">Discover - Forkful's most popular recipes</h1>
-        <RecipeContainer
-          className="recipes-featured"
-          type="Featured Recipes"
-          recipes={recipesFeatured}
-        />
-        <RecipeContainer
-          className="recipes-top"
-          type="Most Forked Recipes"
-          recipes={ recipesTop }
-        />
-        <RecipeContainer
-          className="recipes-smoothies"
-          type="Summer Appetizers"
-          recipes={recipesSmoothies}
-        />
+      <div className="dashboard container">
+        <div className="row">
+          <div className="col-xs-12">
+            <h1 className="dashboard-title">Discover <small>the best of Forkful</small></h1>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-xs-12">
+            <h3>Featured Recipes</h3>
+            <RecipeContainer
+              className="recipes-featured"
+              type="Featured Recipes"
+              recipes={recipesFeatured}
+            />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-xs-12">
+          <h3>Most Forked Recipes</h3>
+            <RecipeContainer
+              className="recipes-top"
+              type="Most Forked Recipes"
+              recipes={ recipesTop }
+            />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-xs-12">
+          <h3>Summer Appetizers</h3>
+            <RecipeContainer
+              className="recipes-smoothies"
+              type="Summer Appetizers"
+              recipes={recipesSmoothies}
+            />
+          </div>
+        </div>
       </div>
     );
   }

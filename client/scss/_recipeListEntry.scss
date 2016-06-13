@@ -1,8 +1,19 @@
 @import '_main.scss';
 
 .recipe-list-entry {
-  background-color: $secondary-base;
-  margin: 4px;
-  padding: 4px;
-  width: 40%;
+  background-color: white;
+  border-radius: 4px;
+  margin-left: 10px;
+  // padding: 4px;
+}
+
+.media-left > img {
+  width: 50px;
+  // margin: 4px;
+  padding-left: 8px;
+  padding-top: 8px;
+}
+
+.recipe-author {
+  margin-top: -8px;
 }

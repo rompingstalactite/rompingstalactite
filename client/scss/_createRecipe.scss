@@ -1,47 +1,60 @@
 @import '_main';
 
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-  text-align: right;
+.btn {
+  margin-right: 5px;
 }
 
-.section {
-  width: 100%;
-  margin-bottom: 48px;
-}
-.section > div:last-child {
-  clear: both;
-}
-.edit-recipe-content {
-  margin: 0 auto;
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
+li > input {
+  margin-bottom: 5px;
 }
 
-.edit-recipe-form {
-  margin-top: 30px;
-  padding: 20px;
-  border: 1px solid black;
-  border-radius: 4px;
+.container {
+  margin-bottom: 20px;
 }
 
-.create-input {
-  display: inline-block;
-  height: 1.2em;
-  line-height: 1.2em;
-  position: relative;
-  padding: 16px 8px;
-  border: solid;
-  border-radius: 4px;
-  font-size: 1.2em;
-  color: $color5;
-  background-color: $color4;
-  width: 96px;
-}
+// input[type=number]::-webkit-inner-spin-button,
+// input[type=number]::-webkit-outer-spin-button {
+//   -webkit-appearance: none;
+//   margin: 0;
+//   text-align: right;
+// }
+
+// .section {
+//   width: 100%;
+//   margin-bottom: 48px;
+// }
+// .section > div:last-child {
+//   clear: both;
+// }
+// .edit-recipe-content {
+//   margin: 0 auto;
+//   width: 80%;
+//   display: flex;
+//   flex-direction: column;
+//   padding: 20px;
+// }
+
+// .edit-recipe-form {
+//   margin-top: 30px;
+//   padding: 20px;
+//   border: 1px solid black;
+//   border-radius: 4px;
+// }
+
+// .create-input {
+//   display: inline-block;
+//   height: 1.2em;
+//   line-height: 1.2em;
+//   position: relative;
+//   padding: 16px 8px;
+//   border: solid;
+//   border-radius: 4px;
+//   font-size: 1.2em;
+//   color: $color5;
+//   background-color: $color4;
+//   width: 96px;
+// }
+
 .small-input {
   width: 48px;
 }
@@ -49,24 +62,22 @@ input[type=number]::-webkit-outer-spin-button {
   width: 192px;
 }
 .large-input {
-  width: 192px;
-}
-.xl-input {
   width: 384px;
 }
 
-.create-input:focus, .create-input:active {
-  background: $color3;
-}
+// .create-input:focus, .create-input:active {
+//   background: $color3;
+// }
+//
+//
+// .input-container {
+//   display: inline-block;
+//   margin: 8px;
+// }
+// .input-list-item {
+//   margin: 8px 0;
+// }
 
-
-.input-container {
-  display: inline-block;
-  margin: 8px;
-}
-.input-list-item {
-  margin: 8px 0;
-}
 .thumbs {
   overflow-x: scroll;
   overflow-y: hidden;
@@ -75,10 +86,10 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .thumb {
-  margin-top: 1px;
-  margin-right: 6px;
-  margin-bottom: 6px;
-  margin-left: 6px;
+  margin-top: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
   display: inline-block;
 }
 .thumb:last-child {
@@ -88,68 +99,10 @@ input[type=number]::-webkit-outer-spin-button {
   margin-left: 1px;
 }
 .thumb>img {
-  outline: solid 1px $color5;
+  border: solid 1px $color1;
+  border-radius: 4px;
   padding: 3px;
   width: 120px;
   max-height: 120px;
   object-fit: cover;
-}
-
-.btn {
-  display: inline-block;
-  border: 0;
-  border-radius: 6px;
-  background-color: transparent;
-  padding: 8px 16px;
-  margin: 0 16px;
-  font-size: 24px;
-  line-height: 32px;
-  transition: all 200ms;
-  outline: none;
-}
-
-.btn:disabled {
-  border: solid 1px $color6 !important;
-  color: $color6 !important;
-  background: transparent !important;
-}
-.btn:disabled:hover, .btn:disabled:active, .btn:disabled:focus {
-  border: solid 1px $color6 !important;
-  color: $color6 !important;
-  background: transparent !important;
-
-}
-
-.btn.btn-primary {
-  border: solid 1px $color5;
-  color: $color5;
-}
-.btn.btn-primary:hover, .btn.btn-primary:active, .btn.btn-primary:focus {
-  background-color: $color5;
-  color: $color4;
-}
-
-.btn.btn-add {
-  border: solid 1px $color1;
-  color: $color1;
-}
-.btn.btn-add:hover, .btn.btn-add:active, .btn.btn-add:focus {
-  background-color: $color1;
-  color: $color2;
-}
-
-.btn.btn-warning {
-  border: solid 1px $color6;
-  color: $color6;
-}
-.btn.btn-warning:hover, .btn.btn-warning:active, .btn.btn-warning:focus {
-  background-color: $color6;
-  color: $color4;
-}
-
-.user-validation{
-  float: left;
-  padding-left: 15px;
-  color:$flair;
-  margin-top: -40px;
 }

@@ -41,7 +41,6 @@ module.exports = (app, express) => {
   // app.post('/api/v1/recipes/:recipe_id', /* auth, */ forkRecipe);
 
   app.get('/api/v1/recipes/', rc.getMultipleRecipes);
-  app.post('/api/v1/recipes/', checkAuth, rc.createRecipe);
 
   app.get('/api/v1/recipes/:recipe_id', rc.getOneRecipe);
   // app.post('/api/v1/recipes/:recipe_id', /* auth, */ forkRecipe);
@@ -54,25 +53,28 @@ module.exports = (app, express) => {
    * Trending
    */
   app.get('/api/v1/trending', rc.trendingRecipes);
-
+  // app.get('/api/v1/recipes/trending', rc.trendingRecipes);
   /**
    * Created
    */
 
   app.get('/api/v1/created/:user', rc.getAllCreatedRecipes);
-
+  // app.get('api/v1/users/:users_id/recipes')
+  // app.get('api/v1/recipes/author/:user_id')
   /**
    * Search
    */
   app.get('/api/v1/search/:q', sc.searchRecipes);
-
+  // add query string to get /recipes
   /**
    * Likes
    */
   app.get('/api/v1/likes', lc.getLikeState);
+  // always have the main endpoint be the resource that you're modifying - /recipes/:r_id/likes
   app.post('/api/v1/likes', checkAuth, lc.addOrDeleteRecipeLike);
+  // put? toggle?
   app.get('/api/v1/likes/:user', lc.getAllLikedRecipes);
-
+  // recipes/likes
    /**
    * FPKey
    */
@@ -89,8 +91,11 @@ module.exports = (app, express) => {
   app.get('/api/v1/follows/users/:user', /* checkAuth,*/ fc.getAllFollowedUsers);
 
   app.get('/api/v1/follows/recipes', fc.getRecipeFollowState);
+  // 'api/v1/recipes/:recipe_id/follows'
   app.post('/api/v1/follows/recipes', checkAuth, fc.addOrRemoveRecipeFollow);
+  // 'api/v1/recipes/:recipe_id/follows/:follower_id' post and delete
   app.get('/api/v1/follows/recipes/:user', /* checkAuth,*/ fc.getAllFollowedRecipes);
+
 
   /**
    * Catch unspecified routes

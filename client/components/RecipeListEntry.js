@@ -25,13 +25,16 @@ const RecipeListEntry = (props) => {
 
   const createdTime = moment(props.recipe.created_at).fromNow();
   return (
-    <div className="recipe-list-entry">
-      <img src={image} />
-      <Link to={`/recipe/${props.recipe.recipe_id || props.recipe.id || 1}`} 
-        className="recipe-entry-title">{title}
-      </Link>
-      <p className="recipe-author" >Created by {props.recipe.display_name}</p>
-      <p className="recipe-create-date" >Created at {createdTime}</p>
+    <div className="recipe-list-entry media">
+      <div className="media-left">
+        <img src={image} />
+      </div>
+      <div className="media-body">
+        <Link to={`/recipe/${props.recipe.recipe_id || props.recipe.id || 1}`}
+          className="recipe-entry-title">{title}
+        </Link>
+        <p className="recipe-author" >Created by {props.recipe.display_name} <span className="text-muted">{createdTime}</span></p>
+      </div>
     </div>
   );
 };
