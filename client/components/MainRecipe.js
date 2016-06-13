@@ -78,7 +78,7 @@ class MainRecipe extends Component {
     let recipeIngredients;
     if (recipe.ingredients) {
       recipeIngredients = (
-        <div className="ingredients col-xs-12">
+        <div className="ingredients">
           <h4 className="instruction-title">Ingredients</h4>
           <ul>
             {recipe.ingredients.map((i) => <li> {i} </li>)}
@@ -90,7 +90,7 @@ class MainRecipe extends Component {
     let recipePrep;
     if (recipe.prep_steps) {
       recipePrep = (
-        <div className="prep col-xs-12" style={{marginTop: '10px'}}>
+        <div className="prep" style={{marginTop: '10px'}}>
           <h4 className="instruction-title"> Preparation <small>Time: {recipe.prep_time}</small></h4>
           <ol>
             {recipe.prep_steps.map((s) => <li> {s} </li>)}
@@ -102,7 +102,7 @@ class MainRecipe extends Component {
     let recipeCook;
     if (recipe.cook_steps) {
       recipeCook = (
-        <div className="cook col-xs-12" style={{marginTop: '10px'}}>
+        <div className="cook" style={{marginTop: '10px'}}>
           <h4 className="instruction-title"> Cook <small>Time: {recipe.cook_time}</small></h4>
           <ol>
           { recipe.cook_steps.map((s) => <li> {s} </li>)}
@@ -114,7 +114,7 @@ class MainRecipe extends Component {
     let recipeFinish;
     if (recipe.finish_steps) {
       recipeFinish = (
-        <div className="finish col-xs-12" style={{marginTop: '10px'}}>
+        <div className="finish" style={{marginTop: '10px'}}>
           <h4 className="instruction-title"> Finish </h4>
           <ol>
           { recipe.finish_steps.map((s) => <li> {s} </li>)}
@@ -143,7 +143,7 @@ class MainRecipe extends Component {
 
       if (recipe.parentRecipe.ingredients) {
         parentRecipeIngredients = (
-          <div className="ingredients col-xs-12">
+          <div className="ingredients">
             <h4>Ingredients</h4>
             <ul>
               {recipe.parentRecipe.ingredients.map((ingredient, i) => recipe.ingredients[i] === ingredient ?  <li> {ingredient} </li> :  <li className="changedParentItem"> {ingredient} </li>)}
@@ -154,7 +154,7 @@ class MainRecipe extends Component {
 
       if (recipe.parentRecipe.prep_steps) {
         parentRecipePrep = (
-          <div className="prep col-xs-12" style={{marginTop: '10px'}}>
+          <div className="prep" style={{marginTop: '10px'}}>
             <h4> Preparation <small>Time: {recipe.parentRecipe.prep_time} </small></h4>
             <ol>
               {recipe.parentRecipe.prep_steps.map((s) => <li> {s} </li>)}
@@ -165,7 +165,7 @@ class MainRecipe extends Component {
 
       if (recipe.parentRecipe.cook_steps) {
         parentRecipeCook = (
-          <div className="cook col-xs-12" style={{marginTop: '10px'}}>
+          <div className="cook" style={{marginTop: '10px'}}>
             <h4> Cook <small>Time: {recipe.parentRecipe.cook_time}</small></h4>
             <ol>
             { recipe.parentRecipe.cook_steps.map((s) => <li> {s} </li>)}
@@ -176,7 +176,7 @@ class MainRecipe extends Component {
 
       if (recipe.parentRecipe.finish_steps) {
         parentRecipeFinish = (
-          <div className="finish col-xs-12" style={{marginTop: '10px'}}>
+          <div className="finish" style={{marginTop: '10px'}}>
             <h4> Finish </h4>
             <ol>
             { recipe.parentRecipe.finish_steps.map((s) => <li> {s} </li>)}
@@ -190,11 +190,15 @@ class MainRecipe extends Component {
     if (recipe.showParentSteps) {
       parentSteps = (
         <div className="parent-recipe-instructions row">
-          <h2 className="col-xs-12"> Previous Recipe Steps </h2>
-          {parentRecipeIngredients}
-          {parentRecipePrep}
-          {parentRecipeCook}
-          {parentRecipeFinish}
+          <div className="col-xs-12">
+            <h2>Previous Recipe Steps</h2>
+            <div className="recipe-instructions">
+              {parentRecipeIngredients}
+              {parentRecipePrep}
+              {parentRecipeCook}
+              {parentRecipeFinish}
+            </div>
+          </div>
         </div>
       )
     }
@@ -242,15 +246,15 @@ class MainRecipe extends Component {
             {/*</div>*/}
 
             <div className="row">
-              <div className="recipe-instructions col-sm-12">
+              <div className="col-xs-12">
                 <h2> Recipe Steps </h2>
+                <div className="recipe-instructions">
+                  {recipeIngredients}
+                  {recipePrep}
+                  {recipeCook}
+                  {recipeFinish}
+                </div>
               </div>
-            </div>
-            <div className="row">
-              {recipeIngredients}
-              {recipePrep}
-              {recipeCook}
-              {recipeFinish}
             </div>
           </div>
         </div>
