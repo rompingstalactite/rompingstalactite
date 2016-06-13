@@ -152,7 +152,6 @@ class MainRecipe extends Component {
         );
       }
 
-
       if (recipe.parentRecipe.prep_steps) {
         parentRecipePrep = (
           <div className="prep col-xs-12" style={{marginTop: '10px'}}>
