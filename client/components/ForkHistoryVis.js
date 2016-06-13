@@ -17,6 +17,9 @@ class ForkHistoryVis extends Component {
     let recipeHistory = null;
     if (history && history.length > 0) {
       recipeHistory = <div>
+      <div className="history-vis-node" data-recipeInfo={recipe}>
+        <span className="tooltiptext"> Current Recipe </span>
+      </div>
       {history.map(histRecipe => {
         let creationDate = 'no date specified';
         if (histRecipe.created_at) {
@@ -34,9 +37,6 @@ class ForkHistoryVis extends Component {
     }
     return (
       <div className="history-vis">
-        <div className="history-vis-node" data-recipeInfo={recipe}>
-          <span className="tooltiptext"> Current Recipe </span>
-        </div>
         {recipeHistory}
       </div>
     );
