@@ -24,13 +24,14 @@ class Profile extends Component {
     const { user, recipesCreated, recipesFollowed, recipesLiked } = this.props;
     // const avatarLarge = avatar.slice(0, user.avatar.length - 6); // slice off ?sz=50 from Google's avatar url
     return (
-      <div className="profile-content">
-        <div className="profile-avatar-username col-1">
-          <img className="profile-avatar" src={user.avatar} alt="avatar"></img>
-          <p className="profile-username">{user.display_name}</p>
-        </div>
-        <div className= "recipe-grid">
-          <div className="profile-recipe-containers col-3-4">
+      <div className="container">
+        <div className="profile-avatar-username row">
+          <div className="col-xs-12 col-md-3">
+            <h1 className="profile-username">{user.display_name}</h1>
+            <img className="profile-avatar" src={user.avatar} alt="avatar"></img>
+          </div>
+          <div className="profile-recipe-containers col-xs-12 col-md-9">
+            <h3>Created Recipes</h3>
             <RecipeContainer
               className="recipes-created"
               type="My Recipes"
@@ -41,6 +42,7 @@ class Profile extends Component {
               type="Followed Recipes"
               recipes={recipesFollowed}
             />*/}
+            <h3>Liked Recipes</h3>
             <RecipeContainer
               className="recipes-liked"
               type="Liked Recipes"
