@@ -7,7 +7,7 @@ import RecipeListEntry from '../../client/components/RecipeListEntry.js';
 const RecipeContainer = (props) => {
   let childRecipes;
   if (!props.recipes || props.recipes.length === 0) {
-    childRecipes = <p>No recipes to show.</p>;
+    childRecipes = <p className="text-center text-muted" style={{marginLeft: '10px'}}>No recipes to show.</p>;
   } else if (props.type === 'Recipe History') {
     childRecipes = props.recipes.map((recipe) => <RecipeListEntry recipe={recipe} />);
   } else {
