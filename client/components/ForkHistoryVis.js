@@ -17,22 +17,22 @@ class ForkHistoryVis extends Component {
     let recipeHistory = null;
     if (history && history.length > 0) {
       recipeHistory = <div>
-      <div className="history-vis-node" data-recipeInfo={recipe}>
-        <span className="tooltiptext"> Current Recipe </span>
-      </div>
-      {history.map(histRecipe => {
-        let creationDate = 'no date specified';
-        if (histRecipe.created_at) {
-          creationDate = 'Created: ' + histRecipe.created_at.slice(0, 10);
-        }
-        return (<div>
-        <div className="history-vis-edge"> </div>
-          <div className="history-vis-node" onClick={() => navToHistRecipe(histRecipe.id)} data-recipeInfo={histRecipe.title}>
-            <div className="tooltiptext"> {histRecipe.title} <br /> {creationDate}</div>
+        {history.map(histRecipe => {
+          let creationDate = 'no date specified';
+          if (histRecipe.created_at) {
+            creationDate = 'Created: ' + histRecipe.created_at.slice(0, 10);
+          }
+          return (<div>
+            <div className="history-vis-node" onClick={() => navToHistRecipe(histRecipe.id)} data-recipeInfo={histRecipe.title}>
+              <div className="tooltiptext"> {histRecipe.title} <br /> {creationDate}</div>
+            </div>
+          <div className="history-vis-edge"> </div>
           </div>
-        </div>
+          )}
         )}
-      )}
+        <div className="history-vis-node" data-recipeInfo={recipe}>
+          <span className="tooltiptext"> Current Recipe </span>
+        </div>
       </div>;
     }
     return (
