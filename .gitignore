@@ -19,7 +19,6 @@ coverage
 .grunt
 
 # Compiled Dirs (http://nodejs.org/api/addons.html)
-build/
 dist/
 
 # Dependency directorys
@@ -27,8 +26,11 @@ dist/
 # see https://npmjs.org/doc/faq.html#Should-I-check-my-node_modules-folder-into-git
 node_modules/
 bower_components/
-client/bundle.js
 client/bundle.js.map
+build/keys/googleAuth.js
+build/keys/filePicker.js
+build/keys/expressSecrets.js
+build/db/seedData.js
 server/keys/googleAuth.js
 server/keys/filePicker.js
 server/keys/expressSecrets.js

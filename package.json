@@ -20,10 +20,12 @@
     "clean": "rm -rf build && mkdir build",
     "build-server": "babel server -d build",
     "build-css": "node-sass --include-path scss client/scss/app.scss client/css/app.css",
+    "build-client": "NODE_ENV=\"production\" webpack -p",
+    "build": "npm run clean && npm run build-server && npm run build-client",
     "test": "karma start && mocha ./test/server --compilers js:babel-register",
     "test:client": "karma start",
     "test:server": "mocha ./test/server --watch --compilers js:babel-register",
-    "start": "npm run clean && npm run build-server && NODE_ENV=\"production\" webpack -p && node build/server.js",
+    "start": "node build/server.js",
     "dev-start": "webpack -d --watch --progress & nodemon server/server.js --exec babel-node --debug --presets es2015"
   },
   "repository": {
