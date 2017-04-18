@@ -24,7 +24,6 @@ module.exports = {
   },
   getMultipleRecipes: (request, response, next) => {
     // left over from searchController
-    // console.log(request.body._queryResultIds);
     const newQueryObj = {
       name: 'get-multiple-recipes',
       text: `

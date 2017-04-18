@@ -27,6 +27,8 @@ module.exports = {
     db.query(queryObj)
       .then((data) => {
         response.status(200);
+        request.body = request.body || {};
+        request.body.recipes = request.body.recipes || [];
         request.body.recipes = data.map((val) => {
           return val.id;
         });
